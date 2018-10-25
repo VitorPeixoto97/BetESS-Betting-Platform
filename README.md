@@ -3,6 +3,6 @@
 
 # Contributors
 
-[Daniel](https://github.com/SilentLynx)
+[Daniel Maia](https://github.com/SilentLynx)
 
-[Vitor](https://github.com/VitorPeixoto97)
+[Vitor Peixoto](https://github.com/VitorPeixoto97)
