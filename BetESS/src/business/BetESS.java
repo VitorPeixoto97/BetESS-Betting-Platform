@@ -13,6 +13,16 @@ public class BetESS {
     private HashMap<Integer,Evento> eventos;
     private HashMap<Integer,Equipa> equipas;
     
+    public HashMap<Integer,Apostador> getApostadores(){
+        return this.apostadores;
+    }
+    public HashMap<Integer,Evento> getEventos(){
+        return this.eventos;
+    }
+    public HashMap<Integer,Equipa> getEquipas(){
+        return this.equipas;
+    }
+    
     public void criarEvento(Evento e){
         eventos.put(e.getID(), e);
     }
@@ -33,5 +43,7 @@ public class BetESS {
         if(equipas.containsKey(e.getID()))
             equipas.get(e.getID()).setEstado(false);
     }
+    
+    
     
 }

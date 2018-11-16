@@ -5,6 +5,7 @@
  */
 package betess;
 
+import business.BetESS;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -25,7 +26,8 @@ public class Main extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Login form = new Login();
+        BetESS betess = new BetESS();
+        Login form = new Login(betess);
         form.setVisible(true);
     }
 
