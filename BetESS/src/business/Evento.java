@@ -4,12 +4,13 @@
  * and open the template in the editor.
  */
 package business;
+import java.io.Serializable;
 
 /**
  *
  * @author vitorpeixoto
  */
-public class Evento {
+public class Evento implements Serializable{
     private int id;
     private double oddV;
     private double oddE;

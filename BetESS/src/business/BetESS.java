@@ -110,6 +110,8 @@ public class BetESS implements Serializable{
         Equipa sporting     = new Equipa(15, "Sporting CP", true);
         Equipa setubal      = new Equipa(16, "Vitória FC", true);
         Equipa guimaraes    = new Equipa(17, "Vitória SC", true);
+        Equipa famalicao    = new Equipa(18, "FC Famalicão", false);
+        Equipa pacos        = new Equipa(19, "FC Paços de Ferreira", false);
         
         equipas.put(0,belenenses);
         equipas.put(1,boavista);
@@ -129,6 +131,8 @@ public class BetESS implements Serializable{
         equipas.put(15,sporting);
         equipas.put(16,setubal);
         equipas.put(17,guimaraes);
+        equipas.put(18,famalicao);
+        equipas.put(19,pacos);
     }
     public void povoarApostadores(){
         Apostador a = new Apostador(0, "joaonunes@gmail.com", "joaonunes", "João Nunes", 25.00, new HashMap<Integer,Aposta>());

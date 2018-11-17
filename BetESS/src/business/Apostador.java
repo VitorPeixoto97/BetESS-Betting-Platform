@@ -6,12 +6,14 @@
 package business;
 
 import java.util.HashMap;
+import java.io.Serializable;
+
 
 /**
  *
  * @author vitorpeixoto
  */
-public class Apostador {
+public class Apostador implements Serializable{
     private int id;
     private String email;
     private String password;
