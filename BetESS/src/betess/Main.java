@@ -6,6 +6,12 @@
 package betess;
 
 import business.BetESS;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -19,16 +25,31 @@ import presentation.Login;
  *
  * @author vitorpeixoto
  */
-public class Main extends Application {
+public class Main extends Application implements Serializable{
 
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
         BetESS betess = new BetESS();
         Login form = new Login(betess);
         form.setVisible(true);
+    }
+    
+    public BetESS load() throws IOException, ClassNotFoundException {
+        BetESS b = new BetESS();
+        try{
+            FileInputStream fileIn = new FileInputStream("betess.obj");
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            b = (BetESS) in.readObject();
+            in.close();
+            fileIn.close();
+            System.out.println("Data loaded!");
+        } catch (IOException i) {
+            i.printStackTrace();
+        } catch (ClassNotFoundException c) {
+            System.out.println("Class not found");
+            c.printStackTrace();
+        }
+        return b;
     }
 
     @Override
