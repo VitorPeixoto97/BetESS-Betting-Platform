@@ -19,6 +19,33 @@ public class Apostador {
     private double esscoins;
     private HashMap<Integer,Aposta> apostas;
     
+    public Apostador(){
+        this.id = 9999;
+        this.email = "";
+        this.password = "";
+        this.nome = "";
+        this.esscoins = 0.0;
+        this.apostas = new HashMap<>();
+    }
+    
+    public Apostador(int id, String email, String password, String nome, double esscoins, HashMap<Integer,Aposta> apostas){
+        this.id = id;
+        this.email = email;
+        this.password = password;
+        this.nome = nome;
+        this.esscoins = esscoins;
+        this.apostas = apostas;
+    }
+    
+    public Apostador(Apostador a){
+        this.id = a.getID();
+        this.email = a.getEmail();
+        this.password = a.getPassword();
+        this.nome = a.getNome();
+        this.esscoins = a.getESSCoins();
+        this.apostas = a.getApostas();
+    }
+    
     public int getID(){
         return this.id;
     }
@@ -33,6 +60,9 @@ public class Apostador {
     }
     public double getESSCoins(){
         return this.esscoins;
+    }
+    public HashMap<Integer,Aposta> getApostas(){
+        return this.apostas;
     }
     
     public void setID(int id){
@@ -49,6 +79,9 @@ public class Apostador {
     }
     public void setESSCoins(double esscoins){
         this.esscoins=esscoins;
+    }
+    public void setApostas(HashMap<Integer,Aposta> apostas){
+        this.apostas = apostas;
     }
     
     public void efetuarAposta(Aposta a){

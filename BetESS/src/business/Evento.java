@@ -19,6 +19,37 @@ public class Evento {
     private Equipa equipaC;
     private Equipa equipaF;
     
+    public Evento(){
+        this.id = 9999;
+        this.oddV = 0.0;
+        this.oddE = 0.0;
+        this.oddD = 0.0;
+        this.estado = false;
+        this.resultado = "";
+        this.equipaC = new Equipa();
+        this.equipaF = new Equipa();
+    }
+    public Evento(int id, double oddV, double oddE, double oddD, boolean estado, String resultado, Equipa c, Equipa f){
+        this.id = id;
+        this.oddV = oddV;
+        this.oddE = oddE;
+        this.oddD = oddD;
+        this.estado = estado;
+        this.resultado = resultado;
+        this.equipaC = c;
+        this.equipaF = f;
+    }
+    public Evento(Evento e){
+        this.id = e.getID();
+        this.oddV = e.getOddV();
+        this.oddE = e.getOddE();
+        this.oddD = e.getOddD();
+        this.estado = e.getEstado();
+        this.resultado = e.getResultado();
+        this.equipaC = e.getEquipaC();
+        this.equipaF = e.getEquipaF();
+    }
+    
     public int getID(){
         return this.id;
     }

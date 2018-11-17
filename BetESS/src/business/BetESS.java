@@ -84,14 +84,93 @@ public class BetESS implements Serializable{
     /**
      * Este método está incompleto. É só para testar o serializable.
      */
-    public BetESS populate(){
-        Equipa boavista = new Equipa(1, "Boavista FC", true);
-        Equipa tondela  = new Equipa(2, "CD Tondela", true);
+    public BetESS povoar(){
+        this.povoarEquipas();
+        this.povoarApostadores();
+        this.povoarEventos();
+        return this;
+    }
+    
+    public void povoarEquipas(){
+        Equipa belenenses   = new Equipa(0, "Belenenses SAD", true);
+        Equipa boavista     = new Equipa(1, "Boavista FC", true);
+        Equipa tondela      = new Equipa(2, "CD Tondela", true);
+        Equipa aves         = new Equipa(3, "CD Aves", true);
+        Equipa feirense     = new Equipa(4, "CD Feirense", true);
+        Equipa nacional     = new Equipa(5, "CD Nacional", true);
+        Equipa maritimo     = new Equipa(6, "CS Marítimo", true);
+        Equipa porto        = new Equipa(7, "FC Porto", true);
+        Equipa chaves       = new Equipa(8, "GD Chaves", true);
+        Equipa moreirense   = new Equipa(9, "Moreirense FC", true);
+        Equipa portimonense = new Equipa(10, "Portimonense SC", true);
+        Equipa rioave       = new Equipa(11, "Rio Ave FC", true);
+        Equipa santaclara   = new Equipa(12, "Santa Clara", true);
+        Equipa benfica      = new Equipa(13, "SL Benfica", true);
+        Equipa braga        = new Equipa(14, "SC Braga", true);
+        Equipa sporting     = new Equipa(15, "Sporting CP", true);
+        Equipa setubal      = new Equipa(16, "Vitória FC", true);
+        Equipa guimaraes    = new Equipa(17, "Vitória SC", true);
+        
+        equipas.put(0,belenenses);
         equipas.put(1,boavista);
         equipas.put(2,tondela);
-        return this;
-        
+        equipas.put(3,aves);
+        equipas.put(4,feirense);
+        equipas.put(5,nacional);
+        equipas.put(6,maritimo);
+        equipas.put(7,porto);
+        equipas.put(8,chaves);
+        equipas.put(9,moreirense);
+        equipas.put(10,portimonense);
+        equipas.put(11,rioave);
+        equipas.put(12,santaclara);
+        equipas.put(13,benfica);
+        equipas.put(14,braga);
+        equipas.put(15,sporting);
+        equipas.put(16,setubal);
+        equipas.put(17,guimaraes);
     }
+    public void povoarApostadores(){
+        Apostador a = new Apostador(0, "joaonunes@gmail.com", "joaonunes", "João Nunes", 25.00, new HashMap<Integer,Aposta>());
+        Apostador b = new Apostador(1, "saramoreno@gmail.com", "saramoreno", "Sara Moreno", 5.00, new HashMap<Integer,Aposta>());
+        Apostador c = new Apostador(2, "pauloprazeres@gmail.com", "pauloprazeres", "Paulo Prazeres", 2.92, new HashMap<Integer,Aposta>());
+        Apostador d = new Apostador(3, "albanojeronimo@gmail.com", "albanojeronimo", "Albano Jerónimo", 89.20, new HashMap<Integer,Aposta>());
+        Apostador e = new Apostador(4, "nunolopes@gmail.com", "nunolopes", "Nuno Lopes", 102.36, new HashMap<Integer,Aposta>());
+        Apostador f = new Apostador(5, "marcomartins@gmail.com", "marcomartins", "Marco Martins", 19.76, new HashMap<Integer,Aposta>());
+        Apostador g = new Apostador(6, "miguelguilherme@gmail.com", "miguelguilherme", "Miguel Guilherme", 15.58, new HashMap<Integer,Aposta>());
+        Apostador h = new Apostador(7, "beatrizbatarda@gmail.com", "beatrizbatarda", "Beatriz Batarda", 5.01, new HashMap<Integer,Aposta>());
+        
+        this.apostadores.put(a.getID(),a);
+        this.apostadores.put(b.getID(),b);
+        this.apostadores.put(c.getID(),c);
+        this.apostadores.put(d.getID(),d);
+        this.apostadores.put(e.getID(),e);
+        this.apostadores.put(f.getID(),f);
+        this.apostadores.put(g.getID(),g);
+        this.apostadores.put(h.getID(),h);
+    }
+    public void povoarEventos(){
+        Evento j1j1 = new Evento(0, 1.11, 3.94, 8.71, true, "", equipas.get(7), equipas.get(9));
+        Evento j1j2 = new Evento(1, 2.10, 2.81, 4.50, true, "", equipas.get(12), equipas.get(16));
+        Evento j1j3 = new Evento(2, 1.72, 3.81, 7.21, true, "", equipas.get(17), equipas.get(10));
+        Evento j1j4 = new Evento(3, 1.68, 3.54, 7.02, true, "", equipas.get(0), equipas.get(1));
+        Evento j1j5 = new Evento(4, 2.13, 2.81, 2.50, true, "", equipas.get(14), equipas.get(13));
+        Evento j1j6 = new Evento(5, 1.42, 3.36, 3.47, true, "", equipas.get(8), equipas.get(6));
+        Evento j1j7 = new Evento(6, 1.09, 3.81, 8.98, true, "", equipas.get(15), equipas.get(5));
+        Evento j1j8 = new Evento(7, 1.87, 2.98, 3.49, true, "", equipas.get(3), equipas.get(2));
+        Evento j1j9 = new Evento(8, 1.42, 3.25, 3.99, true, "", equipas.get(11), equipas.get(4));
+        
+        this.eventos.put(j1j1.getID(),j1j1);
+        this.eventos.put(j1j2.getID(),j1j2);
+        this.eventos.put(j1j3.getID(),j1j3);
+        this.eventos.put(j1j4.getID(),j1j4);
+        this.eventos.put(j1j5.getID(),j1j5);
+        this.eventos.put(j1j6.getID(),j1j6);
+        this.eventos.put(j1j7.getID(),j1j7);
+        this.eventos.put(j1j8.getID(),j1j8);
+        this.eventos.put(j1j9.getID(),j1j9);
+    }
+    
     
     public BetESS load() throws IOException, ClassNotFoundException {
         BetESS b = new BetESS();

@@ -15,7 +15,7 @@ public class Equipa {
     private boolean estado;
     
     public Equipa(){
-        this.id=0;
+        this.id=9999;
         this.nome="";
         this.estado=false;
     }
