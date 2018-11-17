@@ -1,6 +1,7 @@
 package business;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -75,11 +76,39 @@ public class BetESS implements Serializable{
             out.flush();
             out.close();
             fileOut.close();
-            System.out.printf("Serialized data is saved in betess.obj");
+            System.out.printf("Serialized data is saved in betess.obj\n");
         } catch (IOException i) {
             i.printStackTrace();
         }
     }
-
+    /**
+     * Este método está incompleto. É só para testar o serializable.
+     */
+    public BetESS populate(){
+        Equipa boavista = new Equipa(1, "Boavista FC", true);
+        Equipa tondela  = new Equipa(2, "CD Tondela", true);
+        equipas.put(1,boavista);
+        equipas.put(2,tondela);
+        return this;
+        
+    }
     
+    public BetESS load() throws IOException, ClassNotFoundException {
+        BetESS b = new BetESS();
+        try{
+            FileInputStream fileIn = new FileInputStream("betess.obj");
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            b = (BetESS) in.readObject();
+            in.close();
+            fileIn.close();
+            System.out.println("Data loaded!\n");
+        } catch (IOException i) {
+            i.printStackTrace();
+        } catch (ClassNotFoundException c) {
+            System.out.println("Class not found\n");
+            c.printStackTrace();
+        }
+        
+        return b;
+    }
 }

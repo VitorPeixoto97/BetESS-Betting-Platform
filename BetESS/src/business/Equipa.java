@@ -14,6 +14,24 @@ public class Equipa {
     private String nome;
     private boolean estado;
     
+    public Equipa(){
+        this.id=0;
+        this.nome="";
+        this.estado=false;
+    }
+    
+    public Equipa(int id, String nome, boolean estado){
+        this.id=id;
+        this.nome=nome;
+        this.estado=estado;
+    }
+    
+    public Equipa(Equipa e){
+        this.id = e.getID();
+        this.nome = e.getNome();
+        this.estado = e.getEstado();
+    }
+    
     public int getID(){
         return this.id;
     }

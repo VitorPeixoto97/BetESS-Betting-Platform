@@ -30,27 +30,15 @@ public class Main extends Application implements Serializable{
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         BetESS betess = new BetESS();
+        betess = betess.populate();
+        betess.save();
+        betess = betess.load();
         Login form = new Login(betess);
         form.setVisible(true);
+        
     }
     
-    public BetESS load() throws IOException, ClassNotFoundException {
-        BetESS b = new BetESS();
-        try{
-            FileInputStream fileIn = new FileInputStream("betess.obj");
-            ObjectInputStream in = new ObjectInputStream(fileIn);
-            b = (BetESS) in.readObject();
-            in.close();
-            fileIn.close();
-            System.out.println("Data loaded!");
-        } catch (IOException i) {
-            i.printStackTrace();
-        } catch (ClassNotFoundException c) {
-            System.out.println("Class not found");
-            c.printStackTrace();
-        }
-        return b;
-    }
+    
 
     @Override
     public void start(Stage primaryStage) throws Exception {
