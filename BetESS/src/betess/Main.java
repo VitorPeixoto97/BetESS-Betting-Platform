@@ -30,9 +30,13 @@ public class Main extends Application implements Serializable{
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         BetESS betess = new BetESS();
-        betess = betess.povoar();
-        betess.save();
-        betess = betess.load();
+        try{
+            betess.load();
+        } catch (IOException i){
+            betess = betess.povoar();
+            betess.save();
+        }
+        //betess = betess.load(); Acho que não é preciso fazer este
         Login form = new Login(betess);
         form.setVisible(true);
         

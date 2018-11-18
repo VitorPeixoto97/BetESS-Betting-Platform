@@ -67,9 +67,9 @@ public class Apostador implements Serializable{
         return this.apostas;
     }
     
-    public void setID(int id){
+    /*public void setID(int id){ fazer set de id parece manhoso
         this.id=id;
-    }
+    }*/
     public void setEmail(String email){
         this.email=email;
     }
@@ -79,12 +79,12 @@ public class Apostador implements Serializable{
     public void setNome(String nome){
         this.nome=nome;
     }
-    public void setESSCoins(double esscoins){
+    /*public void setESSCoins(double esscoins){ Acho que fica melhor fazer com adicionar e levantar só, basicamente pela mesma razão do setId
         this.esscoins=esscoins;
     }
-    public void setApostas(HashMap<Integer,Aposta> apostas){
+    public void setApostas(HashMap<Integer,Aposta> apostas){ Igual aqui
         this.apostas = apostas;
-    }
+    }*/
     
     public void efetuarAposta(Aposta a){
         apostas.put(a.getID(),a);
