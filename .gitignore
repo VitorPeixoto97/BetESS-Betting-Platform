@@ -1,3 +1,5 @@
-/BetESS/nbproject/private/
-/BetESS/build/
-/BetESS/dist/
+.DS_Store
+*.DS_Store
+**/.DS_Store
+
+betess.svg
