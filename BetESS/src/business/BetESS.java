@@ -185,8 +185,8 @@ public class BetESS implements Serializable{
             in.close();
             fileIn.close();
             System.out.println("Data loaded!\n");
-        } catch (IOException i) {
-            i.printStackTrace();
+        //} catch (IOException i) {
+        //    i.printStackTrace();
         } catch (ClassNotFoundException c) {
             System.out.println("Class not found\n");
             c.printStackTrace();
