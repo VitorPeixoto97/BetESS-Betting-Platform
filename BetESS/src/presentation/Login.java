@@ -44,10 +44,6 @@ public class Login extends javax.swing.JFrame {
         loginButton.setBackground(new Color(244,64,1));
         loginButton.setContentAreaFilled(false);
         loginButton.setOpaque(true);
-        
-
-
-
     }
 
     /**
@@ -197,7 +193,9 @@ public class Login extends javax.swing.JFrame {
         for (Apostador a : apostadores) {
             if (a.getEmail().compareTo(this.emailField.getText())==0){
                 if (a.getPassword().compareTo(this.passwordField.getText())==0){
-                    
+                    Home home = new Home(this.betess, a);
+                    home.setVisible(true);
+                    this.setVisible(false);
                 }
             }   
         }

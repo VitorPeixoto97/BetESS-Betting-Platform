@@ -92,26 +92,26 @@ public class BetESS implements Serializable{
     }
     
     public void povoarEquipas(){
-        Equipa belenenses   = new Equipa(0, "Belenenses SAD", true);
-        Equipa boavista     = new Equipa(1, "Boavista FC", true);
-        Equipa tondela      = new Equipa(2, "CD Tondela", true);
-        Equipa aves         = new Equipa(3, "CD Aves", true);
-        Equipa feirense     = new Equipa(4, "CD Feirense", true);
-        Equipa nacional     = new Equipa(5, "CD Nacional", true);
-        Equipa maritimo     = new Equipa(6, "CS Marítimo", true);
-        Equipa porto        = new Equipa(7, "FC Porto", true);
-        Equipa chaves       = new Equipa(8, "GD Chaves", true);
-        Equipa moreirense   = new Equipa(9, "Moreirense FC", true);
-        Equipa portimonense = new Equipa(10, "Portimonense SC", true);
-        Equipa rioave       = new Equipa(11, "Rio Ave FC", true);
-        Equipa santaclara   = new Equipa(12, "Santa Clara", true);
-        Equipa benfica      = new Equipa(13, "SL Benfica", true);
-        Equipa braga        = new Equipa(14, "SC Braga", true);
-        Equipa sporting     = new Equipa(15, "Sporting CP", true);
-        Equipa setubal      = new Equipa(16, "Vitória FC", true);
-        Equipa guimaraes    = new Equipa(17, "Vitória SC", true);
-        Equipa famalicao    = new Equipa(18, "FC Famalicão", false);
-        Equipa pacos        = new Equipa(19, "FC Paços de Ferreira", false);
+        Equipa belenenses   = new Equipa(0, "Belenenses SAD", true, "resources/equipas/belenenses.png");
+        Equipa boavista     = new Equipa(1, "Boavista FC", true, "resources/equipas/boavista.png");
+        Equipa tondela      = new Equipa(2, "CD Tondela", true, "resources/equipas/tondela.png");
+        Equipa aves         = new Equipa(3, "CD Aves", true, "resources/equipas/aves.png");
+        Equipa feirense     = new Equipa(4, "CD Feirense", true, "resources/equipas/feirense.png");
+        Equipa nacional     = new Equipa(5, "CD Nacional", true, "resources/equipas/nacional.png");
+        Equipa maritimo     = new Equipa(6, "CS Marítimo", true, "resources/equipas/maritimo.png");
+        Equipa porto        = new Equipa(7, "FC Porto", true, "resources/equipas/porto.png");
+        Equipa chaves       = new Equipa(8, "GD Chaves", true, "resources/equipas/chaves.png");
+        Equipa moreirense   = new Equipa(9, "Moreirense FC", true, "resources/equipas/moreirense.png");
+        Equipa portimonense = new Equipa(10, "Portimonense SC", true, "resources/equipas/portimonense.png");
+        Equipa rioave       = new Equipa(11, "Rio Ave FC", true, "resources/equipas/rioave.png");
+        Equipa santaclara   = new Equipa(12, "Santa Clara", true, "resources/equipas/santaclara.png");
+        Equipa benfica      = new Equipa(13, "SL Benfica", true, "resources/equipas/benfica.png");
+        Equipa braga        = new Equipa(14, "SC Braga", true, "resources/equipas/braga.png");
+        Equipa sporting     = new Equipa(15, "Sporting CP", true, "resources/equipas/sporting.png");
+        Equipa setubal      = new Equipa(16, "Vitória FC", true, "resources/equipas/setubal.png");
+        Equipa guimaraes    = new Equipa(17, "Vitória SC", true, "resources/equipas/guimaraes.png");
+        Equipa famalicao    = new Equipa(18, "FC Famalicão", false, "resources/equipas/famalicao.png");
+        Equipa pacos        = new Equipa(19, "FC Paços de Ferreira", false, "resources/equipas/pacos.png");
         
         equipas.put(0,belenenses);
         equipas.put(1,boavista);
