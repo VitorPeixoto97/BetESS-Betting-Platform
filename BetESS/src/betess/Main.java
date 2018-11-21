@@ -32,7 +32,7 @@ public class Main extends Application implements Serializable{
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         BetESS betess = new BetESS();
         try{
-            betess.load();
+            betess = betess.load();
         } catch (IOException i){
             betess = betess.povoar();
             betess.save();

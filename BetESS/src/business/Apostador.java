@@ -7,6 +7,7 @@ package business;
 
 import java.util.HashMap;
 import java.io.Serializable;
+import java.util.ArrayList;
 
 
 /**
@@ -19,7 +20,7 @@ public class Apostador implements Serializable{
     private String password;
     private String nome;
     private double esscoins;
-    private HashMap<Integer,Aposta> apostas;
+    private ArrayList<Aposta> apostas;
     
     public Apostador(){
         this.id = 9999;
@@ -27,10 +28,10 @@ public class Apostador implements Serializable{
         this.password = "";
         this.nome = "";
         this.esscoins = 0.0;
-        this.apostas = new HashMap<>();
+        this.apostas = new ArrayList<>();
     }
     
-    public Apostador(int id, String email, String password, String nome, double esscoins, HashMap<Integer,Aposta> apostas){
+    public Apostador(int id, String email, String password, String nome, double esscoins, ArrayList<Aposta> apostas){
         this.id = id;
         this.email = email;
         this.password = password;
@@ -63,7 +64,7 @@ public class Apostador implements Serializable{
     public double getESSCoins(){
         return this.esscoins;
     }
-    public HashMap<Integer,Aposta> getApostas(){
+    public ArrayList<Aposta> getApostas(){
         return this.apostas;
     }
     
@@ -79,20 +80,14 @@ public class Apostador implements Serializable{
     public void setNome(String nome){
         this.nome=nome;
     }
-    /*public void setESSCoins(double esscoins){ Acho que fica melhor fazer com adicionar e levantar só, basicamente pela mesma razão do setId
-        this.esscoins=esscoins;
-    }
-    public void setApostas(HashMap<Integer,Aposta> apostas){ Igual aqui
-        this.apostas = apostas;
-    }*/
     
     public void efetuarAposta(Aposta a){
-        apostas.put(a.getID(),a);
+        apostas.add(a);
     }
     
     public void removerAposta(Aposta a){
         if(a.getEvento().getEstado())
-            apostas.remove(a.getID(), a);
+            apostas.remove(a);
     }
     
     public void adicionarESSCoins(double coins){

@@ -6,6 +6,7 @@
 
 package presentation;
 
+import business.Aposta;
 import business.Apostador;
 import business.BetESS;
 import business.Evento;
@@ -15,6 +16,7 @@ import java.awt.Insets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -24,11 +26,18 @@ public class Home extends javax.swing.JFrame {
 
     BetESS betess;
     Apostador apostador;
+    ArrayList<Evento> jogos = new ArrayList<Evento>(); 
+        
     
     /** Creates new form Home */
     public Home(BetESS b, Apostador a) {
         initComponents();
         this.betess = b;
+        for(Evento e : this.betess.getEventos().values()){
+            if(e.getEstado()){
+                jogos.add(e);
+            }
+        }
         this.apostador = a;
         this.setLocationRelativeTo(null);
         this.setResizable(false);
@@ -187,9 +196,10 @@ public class Home extends javax.swing.JFrame {
             .addGroup(jogo16Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jogo16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jogo16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addGroup(jogo16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jogo1F7, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
-                        .addComponent(jogo1C7, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE))
+                        .addGroup(jogo16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jogo1C7, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jogo16Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jogo16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -251,9 +261,10 @@ public class Home extends javax.swing.JFrame {
             .addGroup(jogo18Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jogo18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jogo18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addGroup(jogo18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jogo1F9, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
-                        .addComponent(jogo1C9, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE))
+                        .addGroup(jogo18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jogo1C9, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jogo18Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jogo18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -308,7 +319,6 @@ public class Home extends javax.swing.JFrame {
 
         j1V.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         j1V.setText("jToggleButton1");
-        j1V.setBorderPainted(false);
         j1V.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 j1VActionPerformed(evt);
@@ -317,7 +327,6 @@ public class Home extends javax.swing.JFrame {
 
         j1E.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         j1E.setText("jToggleButton1");
-        j1E.setBorderPainted(false);
         j1E.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 j1EActionPerformed(evt);
@@ -326,7 +335,6 @@ public class Home extends javax.swing.JFrame {
 
         j1D.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         j1D.setText("jToggleButton1");
-        j1D.setBorderPainted(false);
         j1D.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 j1DActionPerformed(evt);
@@ -337,6 +345,11 @@ public class Home extends javax.swing.JFrame {
         j1Spin.setModel(new javax.swing.SpinnerNumberModel(1, 1, 100, 1));
 
         j1Bet.setText("APOSTAR");
+        j1Bet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                j1BetActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jogo1Layout = new javax.swing.GroupLayout(jogo1);
         jogo1.setLayout(jogo1Layout);
@@ -375,9 +388,8 @@ public class Home extends javax.swing.JFrame {
                             .addComponent(j1V)
                             .addComponent(j1E)
                             .addComponent(j1D)))
-                    .addGroup(jogo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jogo1F, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
-                        .addComponent(jogo1C, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)))
+                    .addComponent(jogo1F, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jogo1C, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -389,7 +401,6 @@ public class Home extends javax.swing.JFrame {
 
         j2V.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         j2V.setText("jToggleButton1");
-        j2V.setBorderPainted(false);
         j2V.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 j2VActionPerformed(evt);
@@ -398,7 +409,6 @@ public class Home extends javax.swing.JFrame {
 
         j2E.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         j2E.setText("jToggleButton1");
-        j2E.setBorderPainted(false);
         j2E.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 j2EActionPerformed(evt);
@@ -407,7 +417,6 @@ public class Home extends javax.swing.JFrame {
 
         j2D.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         j2D.setText("jToggleButton1");
-        j2D.setBorderPainted(false);
         j2D.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 j2DActionPerformed(evt);
@@ -456,9 +465,8 @@ public class Home extends javax.swing.JFrame {
                             .addComponent(j2V)
                             .addComponent(j2E)
                             .addComponent(j2D)))
-                    .addGroup(jogo2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jogo2F, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
-                        .addComponent(jogo2C, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)))
+                    .addComponent(jogo2F, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jogo2C, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -470,7 +478,6 @@ public class Home extends javax.swing.JFrame {
 
         j3V.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         j3V.setText("jToggleButton1");
-        j3V.setBorderPainted(false);
         j3V.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 j3VActionPerformed(evt);
@@ -479,7 +486,6 @@ public class Home extends javax.swing.JFrame {
 
         j3E.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         j3E.setText("jToggleButton1");
-        j3E.setBorderPainted(false);
         j3E.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 j3EActionPerformed(evt);
@@ -488,7 +494,6 @@ public class Home extends javax.swing.JFrame {
 
         j3D.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         j3D.setText("jToggleButton1");
-        j3D.setBorderPainted(false);
         j3D.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 j3DActionPerformed(evt);
@@ -537,9 +542,8 @@ public class Home extends javax.swing.JFrame {
                             .addComponent(j3V)
                             .addComponent(j3E)
                             .addComponent(j3D)))
-                    .addGroup(jogo3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jogo3F, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
-                        .addComponent(jogo3C, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)))
+                    .addComponent(jogo3F, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jogo3C, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -551,7 +555,6 @@ public class Home extends javax.swing.JFrame {
 
         j4V.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         j4V.setText("jToggleButton1");
-        j4V.setBorderPainted(false);
         j4V.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 j4VActionPerformed(evt);
@@ -560,7 +563,6 @@ public class Home extends javax.swing.JFrame {
 
         j4E.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         j4E.setText("jToggleButton1");
-        j4E.setBorderPainted(false);
         j4E.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 j4EActionPerformed(evt);
@@ -569,7 +571,6 @@ public class Home extends javax.swing.JFrame {
 
         j4D.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         j4D.setText("jToggleButton1");
-        j4D.setBorderPainted(false);
         j4D.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 j4DActionPerformed(evt);
@@ -618,9 +619,8 @@ public class Home extends javax.swing.JFrame {
                             .addComponent(j4V)
                             .addComponent(j4E)
                             .addComponent(j4D)))
-                    .addGroup(jogo4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jogo4F, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
-                        .addComponent(jogo4C, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)))
+                    .addComponent(jogo4F, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jogo4C, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -632,7 +632,6 @@ public class Home extends javax.swing.JFrame {
 
         j6V.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         j6V.setText("jToggleButton1");
-        j6V.setBorderPainted(false);
         j6V.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 j6VActionPerformed(evt);
@@ -641,7 +640,6 @@ public class Home extends javax.swing.JFrame {
 
         j6E.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         j6E.setText("jToggleButton1");
-        j6E.setBorderPainted(false);
         j6E.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 j6EActionPerformed(evt);
@@ -650,7 +648,6 @@ public class Home extends javax.swing.JFrame {
 
         j6D.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         j6D.setText("jToggleButton1");
-        j6D.setBorderPainted(false);
         j6D.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 j6DActionPerformed(evt);
@@ -699,9 +696,8 @@ public class Home extends javax.swing.JFrame {
                             .addComponent(j6V)
                             .addComponent(j6E)
                             .addComponent(j6D)))
-                    .addGroup(jogo6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jogo6F, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
-                        .addComponent(jogo6C, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)))
+                    .addComponent(jogo6F, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jogo6C, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -713,7 +709,6 @@ public class Home extends javax.swing.JFrame {
 
         j5V.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         j5V.setText("jToggleButton1");
-        j5V.setBorderPainted(false);
         j5V.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 j5VActionPerformed(evt);
@@ -722,7 +717,6 @@ public class Home extends javax.swing.JFrame {
 
         j5E.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         j5E.setText("jToggleButton1");
-        j5E.setBorderPainted(false);
         j5E.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 j5EActionPerformed(evt);
@@ -731,7 +725,6 @@ public class Home extends javax.swing.JFrame {
 
         j5D.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         j5D.setText("jToggleButton1");
-        j5D.setBorderPainted(false);
         j5D.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 j5DActionPerformed(evt);
@@ -780,9 +773,8 @@ public class Home extends javax.swing.JFrame {
                             .addComponent(j5V)
                             .addComponent(j5E)
                             .addComponent(j5D)))
-                    .addGroup(jogo5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jogo5F, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
-                        .addComponent(jogo5C, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)))
+                    .addComponent(jogo5F, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jogo5C, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -794,7 +786,6 @@ public class Home extends javax.swing.JFrame {
 
         j7V.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         j7V.setText("jToggleButton1");
-        j7V.setBorderPainted(false);
         j7V.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 j7VActionPerformed(evt);
@@ -803,7 +794,6 @@ public class Home extends javax.swing.JFrame {
 
         j7E.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         j7E.setText("jToggleButton1");
-        j7E.setBorderPainted(false);
         j7E.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 j7EActionPerformed(evt);
@@ -812,7 +802,6 @@ public class Home extends javax.swing.JFrame {
 
         j7D.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         j7D.setText("jToggleButton1");
-        j7D.setBorderPainted(false);
         j7D.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 j7DActionPerformed(evt);
@@ -861,9 +850,8 @@ public class Home extends javax.swing.JFrame {
                             .addComponent(j7V)
                             .addComponent(j7E)
                             .addComponent(j7D)))
-                    .addGroup(jogo7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jogo7F, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
-                        .addComponent(jogo7C, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)))
+                    .addComponent(jogo7F, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jogo7C, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -875,7 +863,6 @@ public class Home extends javax.swing.JFrame {
 
         j8V.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         j8V.setText("jToggleButton1");
-        j8V.setBorderPainted(false);
         j8V.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 j8VActionPerformed(evt);
@@ -884,7 +871,6 @@ public class Home extends javax.swing.JFrame {
 
         j8E.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         j8E.setText("jToggleButton1");
-        j8E.setBorderPainted(false);
         j8E.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 j8EActionPerformed(evt);
@@ -893,7 +879,6 @@ public class Home extends javax.swing.JFrame {
 
         j8D.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         j8D.setText("jToggleButton1");
-        j8D.setBorderPainted(false);
         j8D.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 j8DActionPerformed(evt);
@@ -942,9 +927,8 @@ public class Home extends javax.swing.JFrame {
                             .addComponent(j8V)
                             .addComponent(j8E)
                             .addComponent(j8D)))
-                    .addGroup(jogo8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jogo8F, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
-                        .addComponent(jogo8C, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)))
+                    .addComponent(jogo8F, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jogo8C, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -956,7 +940,6 @@ public class Home extends javax.swing.JFrame {
 
         j9V.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         j9V.setText("jToggleButton1");
-        j9V.setBorderPainted(false);
         j9V.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 j9VActionPerformed(evt);
@@ -965,7 +948,6 @@ public class Home extends javax.swing.JFrame {
 
         j9E.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         j9E.setText("jToggleButton1");
-        j9E.setBorderPainted(false);
         j9E.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 j9EActionPerformed(evt);
@@ -974,7 +956,6 @@ public class Home extends javax.swing.JFrame {
 
         j9D.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         j9D.setText("jToggleButton1");
-        j9D.setBorderPainted(false);
         j9D.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 j9DActionPerformed(evt);
@@ -1023,9 +1004,8 @@ public class Home extends javax.swing.JFrame {
                             .addComponent(j9V)
                             .addComponent(j9E)
                             .addComponent(j9D)))
-                    .addGroup(jogo9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jogo9F, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
-                        .addComponent(jogo9C, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)))
+                    .addComponent(jogo9F, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jogo9C, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -1283,6 +1263,28 @@ public class Home extends javax.swing.JFrame {
             j9E.setSelected(false);
         }
     }//GEN-LAST:event_j9DActionPerformed
+
+    private void j1BetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j1BetActionPerformed
+        
+        int res = 0;
+        int val = (Integer) j1Spin.getValue();
+        if(j1V.isSelected()) res = 1;
+        else if (j1E.isSelected()) res = 2;
+        else if (j1D.isSelected()) res = 3;
+        else {
+            ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/warning.png"));
+            JOptionPane.showMessageDialog(null, "Selecione um resultado!", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
+        }
+        
+        if(res!=0){
+            Aposta a = new Aposta(res, val, jogos.get(0));
+            this.betess.getApostadores().get(apostador.getID()).efetuarAposta(a);
+            ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/check.png"));
+            JOptionPane.showMessageDialog(null, "Aposta registada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, icon);
+        }
+        
+        
+    }//GEN-LAST:event_j1BetActionPerformed
     
     public void style(){
         ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/logo2.png"));
@@ -1295,13 +1297,6 @@ public class Home extends javax.swing.JFrame {
         perfilButton.setContentAreaFilled(false);
         perfilButton.setOpaque(true);
         perfilButton.setText(apostador.getNome());
-        
-        ArrayList<Evento> jogos = new ArrayList<Evento>(); 
-            for(Evento e : this.betess.getEventos().values()){
-                if(e.getEstado()){
-                    jogos.add(e);
-                }
-            }
 
         ImageIcon j1C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaC().getSimbolo()));
         ImageIcon j1F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaF().getSimbolo()));
@@ -1343,148 +1338,32 @@ public class Home extends javax.swing.JFrame {
         
         
 
-        j1V.setBackground(new Color(244,64,1));
-        j1V.setContentAreaFilled(false);
-        j1V.setOpaque(true);
-        j1V.setMargin(new Insets(0, 0, 0, 0));
         j1V.setText(Double.toString(jogos.get(0).getOddV()));
-        j1E.setBackground(new Color(244,64,1));
-        j1E.setContentAreaFilled(false);
-        j1E.setOpaque(true);
-        j1E.setMargin(new Insets(0, 0, 0, 0));
         j1E.setText(Double.toString(jogos.get(0).getOddE()));
-        j1D.setBackground(new Color(244,64,1));
-        j1D.setContentAreaFilled(false);
-        j1D.setOpaque(true);
-        j1D.setMargin(new Insets(0, 0, 0, 0));
         j1D.setText(Double.toString(jogos.get(0).getOddD()));
-       
-        j2V.setBackground(new Color(244,64,1));
-        j2V.setContentAreaFilled(false);
-        j2V.setOpaque(true);
-        j2V.setMargin(new Insets(0, 0, 0, 0));
         j2V.setText(Double.toString(jogos.get(1).getOddV()));
-        j2E.setBackground(new Color(244,64,1));
-        j2E.setContentAreaFilled(false);
-        j2E.setOpaque(true);
-        j2E.setMargin(new Insets(0, 0, 0, 0));
         j2E.setText(Double.toString(jogos.get(1).getOddE()));
-        j2D.setBackground(new Color(244,64,1));
-        j2D.setContentAreaFilled(false);
-        j2D.setOpaque(true);
-        j2D.setMargin(new Insets(0, 0, 0, 0));
         j2D.setText(Double.toString(jogos.get(1).getOddD()));
-        
-        j3V.setBackground(new Color(244,64,1));
-        j3V.setContentAreaFilled(false);
-        j3V.setOpaque(true);
-        j3V.setMargin(new Insets(0, 0, 0, 0));
         j3V.setText(Double.toString(jogos.get(2).getOddV()));
-        j3E.setBackground(new Color(244,64,1));
-        j3E.setContentAreaFilled(false);
-        j3E.setOpaque(true);
-        j3E.setMargin(new Insets(0, 0, 0, 0));
         j3E.setText(Double.toString(jogos.get(2).getOddE()));
-        j3D.setBackground(new Color(244,64,1));
-        j3D.setContentAreaFilled(false);
-        j3D.setOpaque(true);
-        j3D.setMargin(new Insets(0, 0, 0, 0));
         j3D.setText(Double.toString(jogos.get(2).getOddD()));
-        
-        j4V.setBackground(new Color(244,64,1));
-        j4V.setContentAreaFilled(false);
-        j4V.setOpaque(true);
-        j4V.setMargin(new Insets(0, 0, 0, 0));
         j4V.setText(Double.toString(jogos.get(3).getOddV()));
-        j4E.setBackground(new Color(244,64,1));
-        j4E.setContentAreaFilled(false);
-        j4E.setOpaque(true);
-        j4E.setMargin(new Insets(0, 0, 0, 0));
         j4E.setText(Double.toString(jogos.get(3).getOddE()));
-        j4D.setBackground(new Color(244,64,1));
-        j4D.setContentAreaFilled(false);
-        j4D.setOpaque(true);
-        j4D.setMargin(new Insets(0, 0, 0, 0));
         j4D.setText(Double.toString(jogos.get(3).getOddD()));
-        
-        j5V.setBackground(new Color(244,64,1));
-        j5V.setContentAreaFilled(false);
-        j5V.setOpaque(true);
-        j5V.setMargin(new Insets(0, 0, 0, 0));
         j5V.setText(Double.toString(jogos.get(4).getOddV()));
-        j5E.setBackground(new Color(244,64,1));
-        j5E.setContentAreaFilled(false);
-        j5E.setOpaque(true);
-        j5E.setMargin(new Insets(0, 0, 0, 0));
         j5E.setText(Double.toString(jogos.get(4).getOddE()));
-        j5D.setBackground(new Color(244,64,1));
-        j5D.setContentAreaFilled(false);
-        j5D.setOpaque(true);
-        j5D.setMargin(new Insets(0, 0, 0, 0));
         j5D.setText(Double.toString(jogos.get(4).getOddD()));
-        
-        j6V.setBackground(new Color(244,64,1));
-        j6V.setContentAreaFilled(false);
-        j6V.setOpaque(true);
-        j6V.setMargin(new Insets(0, 0, 0, 0));
         j6V.setText(Double.toString(jogos.get(5).getOddV()));
-        j6E.setBackground(new Color(244,64,1));
-        j6E.setContentAreaFilled(false);
-        j6E.setOpaque(true);
-        j6E.setMargin(new Insets(0, 0, 0, 0));
         j6E.setText(Double.toString(jogos.get(5).getOddE()));
-        j6D.setBackground(new Color(244,64,1));
-        j6D.setContentAreaFilled(false);
-        j6D.setOpaque(true);
-        j6D.setMargin(new Insets(0, 0, 0, 0));
         j6D.setText(Double.toString(jogos.get(5).getOddD()));
-        
-        j7V.setBackground(new Color(244,64,1));
-        j7V.setContentAreaFilled(false);
-        j7V.setOpaque(true);
-        j7V.setMargin(new Insets(0, 0, 0, 0));
         j7V.setText(Double.toString(jogos.get(6).getOddV()));
-        j7E.setBackground(new Color(244,64,1));
-        j7E.setContentAreaFilled(false);
-        j7E.setOpaque(true);
-        j7E.setMargin(new Insets(0, 0, 0, 0));
         j7E.setText(Double.toString(jogos.get(6).getOddE()));
-        j7D.setBackground(new Color(244,64,1));
-        j7D.setContentAreaFilled(false);
-        j7D.setOpaque(true);
-        j7D.setMargin(new Insets(0, 0, 0, 0));
         j7D.setText(Double.toString(jogos.get(6).getOddD()));
-        
-        j8V.setBackground(new Color(244,64,1));
-        j8V.setContentAreaFilled(false);
-        j8V.setOpaque(true);
-        j8V.setMargin(new Insets(0, 0, 0, 0));
         j8V.setText(Double.toString(jogos.get(7).getOddV()));
-        j8E.setBackground(new Color(244,64,1));
-        j8E.setContentAreaFilled(false);
-        j8E.setOpaque(true);
-        j8E.setMargin(new Insets(0, 0, 0, 0));
         j8E.setText(Double.toString(jogos.get(7).getOddE()));
-        j8D.setBackground(new Color(244,64,1));
-        j8D.setContentAreaFilled(false);
-        j8D.setOpaque(true);
-        j8D.setMargin(new Insets(0, 0, 0, 0));
         j8D.setText(Double.toString(jogos.get(7).getOddD()));
-        
-        j9V.setBackground(new Color(244,64,1));
-        j9V.setContentAreaFilled(false);
-        j9V.setOpaque(true);
-        j9V.setMargin(new Insets(0, 0, 0, 0));
         j9V.setText(Double.toString(jogos.get(8).getOddV()));
-        j9E.setBackground(new Color(244,64,1));
-        j9E.setContentAreaFilled(false);
-        j9E.setOpaque(true);
-        j9E.setMargin(new Insets(0, 0, 0, 0));
         j9E.setText(Double.toString(jogos.get(8).getOddE()));
-        j9D.setBackground(new Color(244,64,1));
-        j9D.setContentAreaFilled(false);
-        j9D.setOpaque(true);
-        j9D.setMargin(new Insets(0, 0, 0, 0));
         j9D.setText(Double.toString(jogos.get(8).getOddD()));
     }
     

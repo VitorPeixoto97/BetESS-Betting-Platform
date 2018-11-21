@@ -187,8 +187,6 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-        
-        
         List<Apostador> apostadores = new ArrayList<>(this.betess.getApostadores().values());
         for (Apostador a : apostadores) {
             if (a.getEmail().compareTo(this.emailField.getText())==0){

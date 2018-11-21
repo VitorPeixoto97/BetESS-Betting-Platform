@@ -32,9 +32,11 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                      <Group type="103" alignment="0" groupAlignment="0" attributes="0">
                           <Component id="jogo1F7" alignment="0" pref="72" max="32767" attributes="0"/>
-                          <Component id="jogo1C7" alignment="3" pref="72" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jogo1C7" alignment="3" pref="72" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -152,9 +154,11 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                      <Group type="103" alignment="0" groupAlignment="0" attributes="0">
                           <Component id="jogo1F9" alignment="0" pref="72" max="32767" attributes="0"/>
-                          <Component id="jogo1C9" alignment="3" pref="72" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jogo1C9" alignment="3" pref="72" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -459,10 +463,8 @@
                                   <Component id="j1D" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jogo1F" alignment="0" pref="72" max="32767" attributes="0"/>
-                              <Component id="jogo1C" alignment="3" pref="72" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="jogo1F" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jogo1C" alignment="0" min="-2" pref="72" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -486,7 +488,6 @@
                   <Font name="Arial" size="11" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="jToggleButton1"/>
-                <Property name="borderPainted" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="j1VActionPerformed"/>
@@ -498,7 +499,6 @@
                   <Font name="Arial" size="11" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="jToggleButton1"/>
-                <Property name="borderPainted" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="j1EActionPerformed"/>
@@ -510,7 +510,6 @@
                   <Font name="Arial" size="11" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="jToggleButton1"/>
-                <Property name="borderPainted" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="j1DActionPerformed"/>
@@ -530,6 +529,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="APOSTAR"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="j1BetActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -584,10 +586,8 @@
                                   <Component id="j2D" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                              <Component id="jogo2F" alignment="0" pref="72" max="32767" attributes="0"/>
-                              <Component id="jogo2C" alignment="3" pref="72" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="jogo2F" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jogo2C" alignment="0" min="-2" pref="72" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -611,7 +611,6 @@
                   <Font name="Arial" size="11" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="jToggleButton1"/>
-                <Property name="borderPainted" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="j2VActionPerformed"/>
@@ -623,7 +622,6 @@
                   <Font name="Arial" size="11" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="jToggleButton1"/>
-                <Property name="borderPainted" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="j2EActionPerformed"/>
@@ -635,7 +633,6 @@
                   <Font name="Arial" size="11" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="jToggleButton1"/>
-                <Property name="borderPainted" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="j2DActionPerformed"/>
@@ -709,10 +706,8 @@
                                   <Component id="j3D" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                              <Component id="jogo3F" alignment="0" pref="72" max="32767" attributes="0"/>
-                              <Component id="jogo3C" alignment="3" pref="72" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="jogo3F" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jogo3C" alignment="0" min="-2" pref="72" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -736,7 +731,6 @@
                   <Font name="Arial" size="11" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="jToggleButton1"/>
-                <Property name="borderPainted" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="j3VActionPerformed"/>
@@ -748,7 +742,6 @@
                   <Font name="Arial" size="11" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="jToggleButton1"/>
-                <Property name="borderPainted" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="j3EActionPerformed"/>
@@ -760,7 +753,6 @@
                   <Font name="Arial" size="11" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="jToggleButton1"/>
-                <Property name="borderPainted" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="j3DActionPerformed"/>
@@ -834,10 +826,8 @@
                                   <Component id="j4D" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                              <Component id="jogo4F" alignment="0" pref="72" max="32767" attributes="0"/>
-                              <Component id="jogo4C" alignment="3" pref="72" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="jogo4F" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jogo4C" alignment="0" min="-2" pref="72" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -861,7 +851,6 @@
                   <Font name="Arial" size="11" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="jToggleButton1"/>
-                <Property name="borderPainted" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="j4VActionPerformed"/>
@@ -873,7 +862,6 @@
                   <Font name="Arial" size="11" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="jToggleButton1"/>
-                <Property name="borderPainted" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="j4EActionPerformed"/>
@@ -885,7 +873,6 @@
                   <Font name="Arial" size="11" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="jToggleButton1"/>
-                <Property name="borderPainted" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="j4DActionPerformed"/>
@@ -959,10 +946,8 @@
                                   <Component id="j6D" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                              <Component id="jogo6F" alignment="0" pref="72" max="32767" attributes="0"/>
-                              <Component id="jogo6C" alignment="3" pref="72" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="jogo6F" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jogo6C" alignment="0" min="-2" pref="72" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -986,7 +971,6 @@
                   <Font name="Arial" size="11" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="jToggleButton1"/>
-                <Property name="borderPainted" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="j6VActionPerformed"/>
@@ -998,7 +982,6 @@
                   <Font name="Arial" size="11" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="jToggleButton1"/>
-                <Property name="borderPainted" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="j6EActionPerformed"/>
@@ -1010,7 +993,6 @@
                   <Font name="Arial" size="11" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="jToggleButton1"/>
-                <Property name="borderPainted" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="j6DActionPerformed"/>
@@ -1084,10 +1066,8 @@
                                   <Component id="j5D" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                              <Component id="jogo5F" alignment="0" pref="72" max="32767" attributes="0"/>
-                              <Component id="jogo5C" alignment="3" pref="72" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="jogo5F" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jogo5C" alignment="0" min="-2" pref="72" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -1111,7 +1091,6 @@
                   <Font name="Arial" size="11" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="jToggleButton1"/>
-                <Property name="borderPainted" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="j5VActionPerformed"/>
@@ -1123,7 +1102,6 @@
                   <Font name="Arial" size="11" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="jToggleButton1"/>
-                <Property name="borderPainted" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="j5EActionPerformed"/>
@@ -1135,7 +1113,6 @@
                   <Font name="Arial" size="11" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="jToggleButton1"/>
-                <Property name="borderPainted" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="j5DActionPerformed"/>
@@ -1209,10 +1186,8 @@
                                   <Component id="j7D" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                              <Component id="jogo7F" alignment="0" pref="72" max="32767" attributes="0"/>
-                              <Component id="jogo7C" alignment="3" pref="72" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="jogo7F" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jogo7C" alignment="0" min="-2" pref="72" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -1236,7 +1211,6 @@
                   <Font name="Arial" size="11" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="jToggleButton1"/>
-                <Property name="borderPainted" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="j7VActionPerformed"/>
@@ -1248,7 +1222,6 @@
                   <Font name="Arial" size="11" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="jToggleButton1"/>
-                <Property name="borderPainted" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="j7EActionPerformed"/>
@@ -1260,7 +1233,6 @@
                   <Font name="Arial" size="11" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="jToggleButton1"/>
-                <Property name="borderPainted" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="j7DActionPerformed"/>
@@ -1334,10 +1306,8 @@
                                   <Component id="j8D" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                              <Component id="jogo8F" alignment="0" pref="72" max="32767" attributes="0"/>
-                              <Component id="jogo8C" alignment="3" pref="72" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="jogo8F" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jogo8C" alignment="0" min="-2" pref="72" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -1361,7 +1331,6 @@
                   <Font name="Arial" size="11" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="jToggleButton1"/>
-                <Property name="borderPainted" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="j8VActionPerformed"/>
@@ -1373,7 +1342,6 @@
                   <Font name="Arial" size="11" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="jToggleButton1"/>
-                <Property name="borderPainted" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="j8EActionPerformed"/>
@@ -1385,7 +1353,6 @@
                   <Font name="Arial" size="11" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="jToggleButton1"/>
-                <Property name="borderPainted" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="j8DActionPerformed"/>
@@ -1459,10 +1426,8 @@
                                   <Component id="j9D" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                              <Component id="jogo9F" alignment="0" pref="72" max="32767" attributes="0"/>
-                              <Component id="jogo9C" alignment="3" pref="72" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="jogo9F" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jogo9C" alignment="0" min="-2" pref="72" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -1486,7 +1451,6 @@
                   <Font name="Arial" size="11" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="jToggleButton1"/>
-                <Property name="borderPainted" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="j9VActionPerformed"/>
@@ -1498,7 +1462,6 @@
                   <Font name="Arial" size="11" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="jToggleButton1"/>
-                <Property name="borderPainted" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="j9EActionPerformed"/>
@@ -1510,7 +1473,6 @@
                   <Font name="Arial" size="11" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="jToggleButton1"/>
-                <Property name="borderPainted" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="j9DActionPerformed"/>
