@@ -13,8 +13,11 @@ import business.Evento;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.Insets;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -504,6 +507,11 @@ public class Home extends javax.swing.JFrame {
         j3Spin.setModel(new javax.swing.SpinnerNumberModel(1, 1, 100, 1));
 
         j3Bet.setText("APOSTAR");
+        j3Bet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                j3BetActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jogo3Layout = new javax.swing.GroupLayout(jogo3);
         jogo3.setLayout(jogo3Layout);
@@ -1277,14 +1285,34 @@ public class Home extends javax.swing.JFrame {
         }
         
         if(res!=0){
-            Aposta a = new Aposta(res, val, jogos.get(0));
-            this.betess.getApostadores().get(apostador.getID()).efetuarAposta(a);
-            ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/check.png"));
-            JOptionPane.showMessageDialog(null, "Aposta registada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, icon);
+            boolean apostou = false;
+            for (Aposta a : this.betess.getApostadores().get(apostador.getID()).getApostas()){
+                if(a.getEvento().getID() == this.betess.getEventos().get(0).getID()){
+                    apostou = true;
+                   
+                }
+            }
+            if(apostou) {
+                ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
+                JOptionPane.showMessageDialog(null, "Já registou uma aposta neste evento.", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
+            }
+            else{
+                Aposta a = new Aposta(res, val, jogos.get(0));
+                this.betess.getApostadores().get(apostador.getID()).efetuarAposta(a);
+                ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/check.png"));
+                JOptionPane.showMessageDialog(null, "Aposta registada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, icon);
+                try {
+                    betess.save(this.betess);
+                } catch (IOException ex) {
+                    Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
         }
-        
-        
     }//GEN-LAST:event_j1BetActionPerformed
+
+    private void j3BetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j3BetActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_j3BetActionPerformed
     
     public void style(){
         ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/logo2.png"));

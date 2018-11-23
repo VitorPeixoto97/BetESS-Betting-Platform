@@ -772,6 +772,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="APOSTAR"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="j3BetActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

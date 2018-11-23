@@ -69,11 +69,11 @@ public class BetESS implements Serializable{
             equipas.get(e.getID()).setEstado(false);
     }
     
-    public void save() throws IOException {
+    public void save(BetESS betess) throws IOException {
         try {
             FileOutputStream fileOut = new FileOutputStream("betess.obj");
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
-            out.writeObject(this);
+            out.writeObject(betess);
             out.flush();
             out.close();
             fileOut.close();
@@ -89,6 +89,7 @@ public class BetESS implements Serializable{
         this.povoarEquipas();
         this.povoarApostadores();
         this.povoarEventos();
+        System.out.println("Dados inseridos!\n");
         return this;
     }
     

@@ -35,7 +35,7 @@ public class Main extends Application implements Serializable{
             betess = betess.load();
         } catch (IOException i){
             betess = betess.povoar();
-            betess.save();
+            betess.save(betess);
         }
         //betess = betess.load(); Acho que não é preciso fazer este
         Login form = new Login(betess);
