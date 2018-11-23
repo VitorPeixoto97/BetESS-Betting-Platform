@@ -74,6 +74,8 @@ public class Home extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         logo = new javax.swing.JLabel();
         perfilButton = new javax.swing.JButton();
+        movimentosButton = new javax.swing.JButton();
+        apostasButton = new javax.swing.JButton();
         jogo1 = new javax.swing.JPanel();
         jogo1F = new javax.swing.JLabel();
         jogo1C = new javax.swing.JLabel();
@@ -288,30 +290,58 @@ public class Home extends javax.swing.JFrame {
         perfilButton.setBackground(new java.awt.Color(0, 0, 0));
         perfilButton.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         perfilButton.setForeground(new java.awt.Color(204, 204, 204));
-        perfilButton.setText("VER CONTA");
-        perfilButton.setBorder(null);
+        perfilButton.setText("Perfil");
         perfilButton.setBorderPainted(false);
         perfilButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         perfilButton.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+
+        movimentosButton.setBackground(new java.awt.Color(0, 0, 0));
+        movimentosButton.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        movimentosButton.setForeground(new java.awt.Color(204, 204, 204));
+        movimentosButton.setText("Depositar/Levantar");
+        movimentosButton.setBorderPainted(false);
+        movimentosButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        movimentosButton.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        movimentosButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                movimentosButtonActionPerformed(evt);
+            }
+        });
+
+        apostasButton.setBackground(new java.awt.Color(0, 0, 0));
+        apostasButton.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        apostasButton.setForeground(new java.awt.Color(204, 204, 204));
+        apostasButton.setText("Minhas apostas");
+        apostasButton.setBorderPainted(false);
+        apostasButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        apostasButton.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        apostasButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                apostasButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(perfilButton, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(apostasButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(movimentosButton)
+                .addGap(69, 69, 69)
+                .addComponent(perfilButton, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
                 .addGap(14, 14, 14))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(8, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(perfilButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+            .addComponent(perfilButton, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
+            .addComponent(movimentosButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(apostasButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(logo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jogo1.setBackground(new java.awt.Color(5, 5, 5));
@@ -430,6 +460,11 @@ public class Home extends javax.swing.JFrame {
         j2Spin.setModel(new javax.swing.SpinnerNumberModel(1, 1, 100, 1));
 
         j2Bet.setText("APOSTAR");
+        j2Bet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                j2BetActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jogo2Layout = new javax.swing.GroupLayout(jogo2);
         jogo2.setLayout(jogo2Layout);
@@ -589,6 +624,11 @@ public class Home extends javax.swing.JFrame {
         j4Spin.setModel(new javax.swing.SpinnerNumberModel(1, 1, 100, 1));
 
         j4Bet.setText("APOSTAR");
+        j4Bet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                j4BetActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jogo4Layout = new javax.swing.GroupLayout(jogo4);
         jogo4.setLayout(jogo4Layout);
@@ -666,6 +706,11 @@ public class Home extends javax.swing.JFrame {
         j6Spin.setModel(new javax.swing.SpinnerNumberModel(1, 1, 100, 1));
 
         j6Bet.setText("APOSTAR");
+        j6Bet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                j6BetActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jogo6Layout = new javax.swing.GroupLayout(jogo6);
         jogo6.setLayout(jogo6Layout);
@@ -743,6 +788,11 @@ public class Home extends javax.swing.JFrame {
         j5Spin.setModel(new javax.swing.SpinnerNumberModel(1, 1, 100, 1));
 
         j5Bet.setText("APOSTAR");
+        j5Bet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                j5BetActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jogo5Layout = new javax.swing.GroupLayout(jogo5);
         jogo5.setLayout(jogo5Layout);
@@ -820,6 +870,11 @@ public class Home extends javax.swing.JFrame {
         j7Spin.setModel(new javax.swing.SpinnerNumberModel(1, 1, 100, 1));
 
         j7Bet.setText("APOSTAR");
+        j7Bet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                j7BetActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jogo7Layout = new javax.swing.GroupLayout(jogo7);
         jogo7.setLayout(jogo7Layout);
@@ -897,6 +952,11 @@ public class Home extends javax.swing.JFrame {
         j8Spin.setModel(new javax.swing.SpinnerNumberModel(1, 1, 100, 1));
 
         j8Bet.setText("APOSTAR");
+        j8Bet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                j8BetActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jogo8Layout = new javax.swing.GroupLayout(jogo8);
         jogo8.setLayout(jogo8Layout);
@@ -974,6 +1034,11 @@ public class Home extends javax.swing.JFrame {
         j9Spin.setModel(new javax.swing.SpinnerNumberModel(1, 1, 100, 1));
 
         j9Bet.setText("APOSTAR");
+        j9Bet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                j9BetActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jogo9Layout = new javax.swing.GroupLayout(jogo9);
         jogo9.setLayout(jogo9Layout);
@@ -1021,9 +1086,11 @@ public class Home extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jogo9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -1042,7 +1109,7 @@ public class Home extends javax.swing.JFrame {
                         .addComponent(jogo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jogo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(102, Short.MAX_VALUE))
+                .addGap(14, 14, 14))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1273,7 +1340,6 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_j9DActionPerformed
 
     private void j1BetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j1BetActionPerformed
-        
         int res = 0;
         int val = (Integer) j1Spin.getValue();
         if(j1V.isSelected()) res = 1;
@@ -1283,15 +1349,11 @@ public class Home extends javax.swing.JFrame {
             ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/warning.png"));
             JOptionPane.showMessageDialog(null, "Selecione um resultado!", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
         }
-        
         if(res!=0){
             boolean apostou = false;
-            for (Aposta a : this.betess.getApostadores().get(apostador.getID()).getApostas()){
-                if(a.getEvento().getID() == this.betess.getEventos().get(0).getID()){
+            for (Aposta a : this.betess.getApostadores().get(apostador.getID()).getApostas())
+                if(a.getEvento().getID() == jogos.get(0).getID())
                     apostou = true;
-                   
-                }
-            }
             if(apostou) {
                 ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
                 JOptionPane.showMessageDialog(null, "Já registou uma aposta neste evento.", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
@@ -1311,8 +1373,278 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_j1BetActionPerformed
 
     private void j3BetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j3BetActionPerformed
-        // TODO add your handling code here:
+        int res = 0;
+        int val = (Integer) j3Spin.getValue();
+        if(j3V.isSelected()) res = 1;
+        else if (j3E.isSelected()) res = 2;
+        else if (j3D.isSelected()) res = 3;
+        else {
+            ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/warning.png"));
+            JOptionPane.showMessageDialog(null, "Selecione um resultado!", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
+        }
+        if(res!=0){
+            boolean apostou = false;
+            for (Aposta a : this.betess.getApostadores().get(apostador.getID()).getApostas())
+                if(a.getEvento().getID() == jogos.get(2).getID())
+                    apostou = true;
+            if(apostou) {
+                ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
+                JOptionPane.showMessageDialog(null, "Já registou uma aposta neste evento.", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
+            }
+            else{
+                Aposta a = new Aposta(res, val, jogos.get(2));
+                this.betess.getApostadores().get(apostador.getID()).efetuarAposta(a);
+                ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/check.png"));
+                JOptionPane.showMessageDialog(null, "Aposta registada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, icon);
+                try {
+                    betess.save(this.betess);
+                } catch (IOException ex) {
+                    Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
     }//GEN-LAST:event_j3BetActionPerformed
+
+    private void j2BetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j2BetActionPerformed
+        int res = 0;
+        int val = (Integer) j2Spin.getValue();
+        if(j2V.isSelected()) res = 1;
+        else if (j2E.isSelected()) res = 2;
+        else if (j2D.isSelected()) res = 3;
+        else {
+            ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/warning.png"));
+            JOptionPane.showMessageDialog(null, "Selecione um resultado!", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
+        }
+        if(res!=0){
+            boolean apostou = false;
+            for (Aposta a : this.betess.getApostadores().get(apostador.getID()).getApostas())
+                if(a.getEvento().getID() == jogos.get(1).getID())
+                    apostou = true;
+            if(apostou) {
+                ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
+                JOptionPane.showMessageDialog(null, "Já registou uma aposta neste evento.", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
+            }
+            else{
+                Aposta a = new Aposta(res, val, jogos.get(1));
+                this.betess.getApostadores().get(apostador.getID()).efetuarAposta(a);
+                ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/check.png"));
+                JOptionPane.showMessageDialog(null, "Aposta registada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, icon);
+                try {
+                    betess.save(this.betess);
+                } catch (IOException ex) {
+                    Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }//GEN-LAST:event_j2BetActionPerformed
+
+    private void j4BetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j4BetActionPerformed
+        int res = 0;
+        int val = (Integer) j4Spin.getValue();
+        if(j4V.isSelected()) res = 1;
+        else if (j4E.isSelected()) res = 2;
+        else if (j4D.isSelected()) res = 3;
+        else {
+            ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/warning.png"));
+            JOptionPane.showMessageDialog(null, "Selecione um resultado!", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
+        }
+        if(res!=0){
+            boolean apostou = false;
+            for (Aposta a : this.betess.getApostadores().get(apostador.getID()).getApostas())
+                if(a.getEvento().getID() == jogos.get(3).getID())
+                    apostou = true;
+            if(apostou) {
+                ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
+                JOptionPane.showMessageDialog(null, "Já registou uma aposta neste evento.", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
+            }
+            else{
+                Aposta a = new Aposta(res, val, jogos.get(3));
+                this.betess.getApostadores().get(apostador.getID()).efetuarAposta(a);
+                ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/check.png"));
+                JOptionPane.showMessageDialog(null, "Aposta registada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, icon);
+                try {
+                    betess.save(this.betess);
+                } catch (IOException ex) {
+                    Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }//GEN-LAST:event_j4BetActionPerformed
+
+    private void j5BetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j5BetActionPerformed
+        int res = 0;
+        int val = (Integer) j5Spin.getValue();
+        if(j5V.isSelected()) res = 1;
+        else if (j5E.isSelected()) res = 2;
+        else if (j5D.isSelected()) res = 3;
+        else {
+            ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/warning.png"));
+            JOptionPane.showMessageDialog(null, "Selecione um resultado!", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
+        }
+        if(res!=0){
+            boolean apostou = false;
+            for (Aposta a : this.betess.getApostadores().get(apostador.getID()).getApostas())
+                if(a.getEvento().getID() == jogos.get(4).getID())
+                    apostou = true;
+            if(apostou) {
+                ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
+                JOptionPane.showMessageDialog(null, "Já registou uma aposta neste evento.", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
+            }
+            else{
+                Aposta a = new Aposta(res, val, jogos.get(4));
+                this.betess.getApostadores().get(apostador.getID()).efetuarAposta(a);
+                ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/check.png"));
+                JOptionPane.showMessageDialog(null, "Aposta registada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, icon);
+                try {
+                    betess.save(this.betess);
+                } catch (IOException ex) {
+                    Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }//GEN-LAST:event_j5BetActionPerformed
+
+    private void j6BetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j6BetActionPerformed
+        int res = 0;
+        int val = (Integer) j6Spin.getValue();
+        if(j6V.isSelected()) res = 1;
+        else if (j6E.isSelected()) res = 2;
+        else if (j6D.isSelected()) res = 3;
+        else {
+            ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/warning.png"));
+            JOptionPane.showMessageDialog(null, "Selecione um resultado!", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
+        }
+        if(res!=0){
+            boolean apostou = false;
+            for (Aposta a : this.betess.getApostadores().get(apostador.getID()).getApostas())
+                if(a.getEvento().getID() == jogos.get(5).getID())
+                    apostou = true;
+            if(apostou) {
+                ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
+                JOptionPane.showMessageDialog(null, "Já registou uma aposta neste evento.", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
+            }
+            else{
+                Aposta a = new Aposta(res, val, jogos.get(5));
+                this.betess.getApostadores().get(apostador.getID()).efetuarAposta(a);
+                ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/check.png"));
+                JOptionPane.showMessageDialog(null, "Aposta registada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, icon);
+                try {
+                    betess.save(this.betess);
+                } catch (IOException ex) {
+                    Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }//GEN-LAST:event_j6BetActionPerformed
+
+    private void j7BetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j7BetActionPerformed
+        int res = 0;
+        int val = (Integer) j7Spin.getValue();
+        if(j7V.isSelected()) res = 1;
+        else if (j7E.isSelected()) res = 2;
+        else if (j7D.isSelected()) res = 3;
+        else {
+            ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/warning.png"));
+            JOptionPane.showMessageDialog(null, "Selecione um resultado!", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
+        }
+        if(res!=0){
+            boolean apostou = false;
+            for (Aposta a : this.betess.getApostadores().get(apostador.getID()).getApostas())
+                if(a.getEvento().getID() == jogos.get(6).getID())
+                    apostou = true;
+            if(apostou) {
+                ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
+                JOptionPane.showMessageDialog(null, "Já registou uma aposta neste evento.", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
+            }
+            else{
+                Aposta a = new Aposta(res, val, jogos.get(6));
+                this.betess.getApostadores().get(apostador.getID()).efetuarAposta(a);
+                ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/check.png"));
+                JOptionPane.showMessageDialog(null, "Aposta registada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, icon);
+                try {
+                    betess.save(this.betess);
+                } catch (IOException ex) {
+                    Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }//GEN-LAST:event_j7BetActionPerformed
+
+    private void j8BetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j8BetActionPerformed
+        int res = 0;
+        int val = (Integer) j8Spin.getValue();
+        if(j8V.isSelected()) res = 1;
+        else if (j8E.isSelected()) res = 2;
+        else if (j8D.isSelected()) res = 3;
+        else {
+            ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/warning.png"));
+            JOptionPane.showMessageDialog(null, "Selecione um resultado!", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
+        }
+        if(res!=0){
+            boolean apostou = false;
+            for (Aposta a : this.betess.getApostadores().get(apostador.getID()).getApostas())
+                if(a.getEvento().getID() == jogos.get(7).getID())
+                    apostou = true;
+            if(apostou) {
+                ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
+                JOptionPane.showMessageDialog(null, "Já registou uma aposta neste evento.", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
+            }
+            else{
+                Aposta a = new Aposta(res, val, jogos.get(7));
+                this.betess.getApostadores().get(apostador.getID()).efetuarAposta(a);
+                ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/check.png"));
+                JOptionPane.showMessageDialog(null, "Aposta registada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, icon);
+                try {
+                    betess.save(this.betess);
+                } catch (IOException ex) {
+                    Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }//GEN-LAST:event_j8BetActionPerformed
+
+    private void j9BetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j9BetActionPerformed
+        int res = 0;
+        int val = (Integer) j9Spin.getValue();
+        if(j9V.isSelected()) res = 1;
+        else if (j9E.isSelected()) res = 2;
+        else if (j9D.isSelected()) res = 3;
+        else {
+            ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/warning.png"));
+            JOptionPane.showMessageDialog(null, "Selecione um resultado!", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
+        }
+        if(res!=0){
+            boolean apostou = false;
+            for (Aposta a : this.betess.getApostadores().get(apostador.getID()).getApostas())
+                if(a.getEvento().getID() == jogos.get(8).getID())
+                    apostou = true;
+            if(apostou) {
+                ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
+                JOptionPane.showMessageDialog(null, "Já registou uma aposta neste evento.", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
+            }
+            else{
+                Aposta a = new Aposta(res, val, jogos.get(8));
+                this.betess.getApostadores().get(apostador.getID()).efetuarAposta(a);
+                ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/check.png"));
+                JOptionPane.showMessageDialog(null, "Aposta registada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, icon);
+                try {
+                    betess.save(this.betess);
+                } catch (IOException ex) {
+                    Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }//GEN-LAST:event_j9BetActionPerformed
+
+    private void movimentosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_movimentosButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_movimentosButtonActionPerformed
+
+    private void apostasButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_apostasButtonActionPerformed
+        MinhasApostas ma = new MinhasApostas(this.betess, apostador);
+        ma.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_apostasButtonActionPerformed
     
     public void style(){
         ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/logo2.png"));
@@ -1324,7 +1656,7 @@ public class Home extends javax.swing.JFrame {
         perfilButton.setBackground(new Color(0,0,0));
         perfilButton.setContentAreaFilled(false);
         perfilButton.setOpaque(true);
-        perfilButton.setText(apostador.getNome());
+        perfilButton.setText(this.apostador.getNome());
 
         ImageIcon j1C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaC().getSimbolo()));
         ImageIcon j1F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaF().getSimbolo()));
@@ -1426,6 +1758,7 @@ public class Home extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton apostasButton;
     private javax.swing.JButton j1Bet;
     private javax.swing.JToggleButton j1D;
     private javax.swing.JButton j1D7;
@@ -1513,6 +1846,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel jogo9C;
     private javax.swing.JLabel jogo9F;
     private javax.swing.JLabel logo;
+    private javax.swing.JButton movimentosButton;
     private javax.swing.JButton perfilButton;
     // End of variables declaration//GEN-END:variables
 

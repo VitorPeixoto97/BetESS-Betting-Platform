@@ -160,7 +160,7 @@ public class BetESS implements Serializable{
         Evento j1j2 = new Evento(1, 2.10, 2.81, 4.50, true, "", equipas.get(12), equipas.get(16));
         Evento j1j3 = new Evento(2, 1.72, 3.81, 7.21, true, "", equipas.get(17), equipas.get(10));
         Evento j1j4 = new Evento(3, 1.68, 3.54, 7.02, true, "", equipas.get(0), equipas.get(1));
-        Evento j1j5 = new Evento(4, 2.13, 2.81, 2.50, true, "", equipas.get(14), equipas.get(13));
+        Evento j1j5 = new Evento(9, 2.13, 2.81, 2.50, true, "", equipas.get(14), equipas.get(13));
         Evento j1j6 = new Evento(5, 1.42, 3.36, 3.47, true, "", equipas.get(8), equipas.get(6));
         Evento j1j7 = new Evento(6, 1.09, 3.81, 8.98, true, "", equipas.get(15), equipas.get(5));
         Evento j1j8 = new Evento(7, 1.87, 2.98, 3.49, true, "", equipas.get(3), equipas.get(2));
@@ -175,6 +175,7 @@ public class BetESS implements Serializable{
         this.eventos.put(j1j7.getID(),j1j7);
         this.eventos.put(j1j8.getID(),j1j8);
         this.eventos.put(j1j9.getID(),j1j9);
+
     }
     
     
