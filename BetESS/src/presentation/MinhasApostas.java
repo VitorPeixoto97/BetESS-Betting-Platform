@@ -9,7 +9,10 @@ import business.Aposta;
 import business.Apostador;
 import business.BetESS;
 import java.awt.Image;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
 
@@ -30,18 +33,28 @@ public class MinhasApostas extends javax.swing.JFrame {
         this.betess = b;
         this.apostador = a;
         
-        String[] colunas = {"Evento", "Resultado", "Valor", "Ganhos"};
+        preencherTabela();
+        ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/logo2.png"));
+        Image image = icon.getImage();
+        Image newimg = image.getScaledInstance(155, 35, java.awt.Image.SCALE_SMOOTH);
+        icon = new ImageIcon(newimg);
+        this.logo.setIcon(icon);
+    }
+    
+    public void preencherTabela(){
+        String[] colunas = {"ID","Evento", "Resultado", "Valor", "Ganhos"};
         ArrayList<Aposta> apostas = new ArrayList<Aposta>();
         for(Aposta ap : apostador.getApostas()){
             if(ap.getEvento().getEstado())
                 apostas.add(ap);
         }
-        Object[][] data = new Object[apostas.size()][4];
+        Object[][] data = new Object[apostas.size()][5];
         int i=0;
         String res = "";
         double ganho = 0;
         for (Aposta ap : apostas){
-            data[i][0] = ap.getEvento().getEquipaC().getNome() + " x " + ap.getEvento().getEquipaF().getNome();
+            data[i][0] = ap.getEvento().getID();
+            data[i][1] = ap.getEvento().getEquipaC().getNome() + " x " + ap.getEvento().getEquipaF().getNome();
             switch (ap.getResultado()) {
                 case 1:
                     res = ap.getEvento().getEquipaC().getNome();
@@ -56,8 +69,8 @@ public class MinhasApostas extends javax.swing.JFrame {
                     res = "ERRO!";
                     break;
             }
-            data[i][1] = res;
-            data[i][2] = ap.getValor();
+            data[i][2] = res;
+            data[i][3] = ap.getValor();
             
             if(ap.getResultado()==1){
                 ganho = ap.getValor() * ap.getEvento().getOddV();
@@ -68,7 +81,7 @@ public class MinhasApostas extends javax.swing.JFrame {
             if(ap.getResultado()==3){
                 ganho = ap.getValor() * ap.getEvento().getOddD();
             }
-            data[i][3] = ganho;
+            data[i][4] = ganho;
             i++;
         }
         model = new DefaultTableModel(data,colunas);
@@ -77,11 +90,10 @@ public class MinhasApostas extends javax.swing.JFrame {
         this.setTitle("Minhas Apostas");
         this.setLocationRelativeTo(null);
         
-        ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/logo2.png"));
-        Image image = icon.getImage();
-        Image newimg = image.getScaledInstance(155, 35, java.awt.Image.SCALE_SMOOTH);
-        icon = new ImageIcon(newimg);
-        this.logo.setIcon(icon);
+        betsTable.getColumnModel().getColumn(0).setPreferredWidth(25);
+        betsTable.getColumnModel().getColumn(1).setPreferredWidth(230);
+        betsTable.getColumnModel().getColumn(2).setPreferredWidth(120);
+        betsTable.getColumnModel().getColumn(3).setPreferredWidth(40);
     }
 
     /**
@@ -100,7 +112,8 @@ public class MinhasApostas extends javax.swing.JFrame {
         movimentosButton = new javax.swing.JButton();
         apostasButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        betsTable = new javax.swing.JTable();
+        deleteButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -167,8 +180,16 @@ public class MinhasApostas extends javax.swing.JFrame {
             .addComponent(apostasButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        jTable1.setModel(model);
-        jScrollPane1.setViewportView(jTable1);
+        betsTable.setModel(model);
+        betsTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        jScrollPane1.setViewportView(betsTable);
+
+        deleteButton.setText("Eliminar");
+        deleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -180,6 +201,8 @@ public class MinhasApostas extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 592, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -187,7 +210,9 @@ public class MinhasApostas extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(60, Short.MAX_VALUE))
         );
 
@@ -214,6 +239,31 @@ public class MinhasApostas extends javax.swing.JFrame {
         home.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_apostasButtonActionPerformed
+
+    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
+        int row = betsTable.getSelectedRow();
+        int value = (Integer) betsTable.getModel().getValueAt(row, 0);
+        System.out.println(value);
+        
+        Aposta aposta = new Aposta();
+        
+        for(Aposta a: this.betess.getApostadores().get(apostador.getID()).getApostas()){
+            if (a.getEvento().getID() == value) aposta = a;
+        }
+        
+        this.betess.getApostadores().get(this.apostador.getID()).removerAposta(aposta);
+
+        try {
+            betess.save(betess);
+        } catch (IOException ex) {
+            Logger.getLogger(MinhasApostas.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        MinhasApostas ma = new MinhasApostas(this.betess, apostador);
+        ma.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_deleteButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -246,10 +296,11 @@ public class MinhasApostas extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton apostasButton;
+    private javax.swing.JTable betsTable;
+    private javax.swing.JButton deleteButton;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel logo;
     private javax.swing.JButton movimentosButton;
     private javax.swing.JButton perfilButton;
