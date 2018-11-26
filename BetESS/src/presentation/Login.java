@@ -18,6 +18,7 @@ import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
 import javafx.stage.StageStyle;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -206,14 +207,23 @@ public class Login extends javax.swing.JFrame {
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         List<Apostador> apostadores = new ArrayList<>(this.betess.getApostadores().values());
-        for (Apostador a : apostadores) {
-            if (a.getEmail().compareTo(this.emailField.getText())==0){
-                if (a.getPassword().compareTo(this.passwordField.getText())==0){
-                    Home home = new Home(this.betess, a);
-                    home.setVisible(true);
-                    this.setVisible(false);
-                }
-            }   
+        if(this.emailField.getText().equals("admin") && this.passwordField.getText().equals("admin")){
+            Admin admin = new Admin(this.betess);
+            admin.setVisible(true);
+            this.setVisible(false);
+        }
+        else{
+            for (Apostador a : apostadores) {
+                if (a.getEmail().compareTo(this.emailField.getText())==0){
+                    if (a.getPassword().compareTo(this.passwordField.getText())==0){
+                        Home home = new Home(this.betess, a);
+                        home.setVisible(true);
+                        this.setVisible(false);
+                    }
+                }   
+            }
+            ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
+            JOptionPane.showMessageDialog(null, "Dados incorretos!", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
         }
     }//GEN-LAST:event_loginButtonActionPerformed
 

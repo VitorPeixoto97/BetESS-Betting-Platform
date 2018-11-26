@@ -34,6 +34,9 @@ public class MinhasApostas extends javax.swing.JFrame {
         this.apostador = a;
         
         preencherTabela();
+        this.setTitle("Minhas Apostas");
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
         ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/logo2.png"));
         Image image = icon.getImage();
         Image newimg = image.getScaledInstance(155, 35, java.awt.Image.SCALE_SMOOTH);
@@ -87,8 +90,7 @@ public class MinhasApostas extends javax.swing.JFrame {
         model = new DefaultTableModel(data,colunas);
         
         initComponents();
-        this.setTitle("Minhas Apostas");
-        this.setLocationRelativeTo(null);
+        
         
         betsTable.getColumnModel().getColumn(0).setPreferredWidth(25);
         betsTable.getColumnModel().getColumn(1).setPreferredWidth(230);
@@ -125,11 +127,16 @@ public class MinhasApostas extends javax.swing.JFrame {
 
         perfilButton.setBackground(new java.awt.Color(0, 0, 0));
         perfilButton.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        perfilButton.setForeground(new java.awt.Color(204, 204, 204));
+        perfilButton.setForeground(new java.awt.Color(255, 102, 102));
         perfilButton.setText("Perfil");
         perfilButton.setBorderPainted(false);
         perfilButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         perfilButton.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        perfilButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                perfilButtonActionPerformed(evt);
+            }
+        });
 
         movimentosButton.setBackground(new java.awt.Color(0, 0, 0));
         movimentosButton.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -231,7 +238,9 @@ public class MinhasApostas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void movimentosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_movimentosButtonActionPerformed
-        // TODO add your handling code here:
+        DepositarLevantar dl = new DepositarLevantar(this.betess, apostador);
+        dl.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_movimentosButtonActionPerformed
 
     private void apostasButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_apostasButtonActionPerformed
@@ -264,6 +273,12 @@ public class MinhasApostas extends javax.swing.JFrame {
         ma.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_deleteButtonActionPerformed
+
+    private void perfilButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_perfilButtonActionPerformed
+        Login login = new Login(this.betess);
+        login.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_perfilButtonActionPerformed
 
     /**
      * @param args the command line arguments

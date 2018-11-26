@@ -133,8 +133,6 @@ public class BetESS implements Serializable{
         equipas.put(15,sporting);
         equipas.put(16,setubal);
         equipas.put(17,guimaraes);
-        equipas.put(18,famalicao);
-        equipas.put(19,pacos);
     }
     public void povoarApostadores(){
         Apostador a = new Apostador(0, "joaonunes@gmail.com", "joaonunes", "João Nunes", 25.00, new ArrayList<Aposta>());

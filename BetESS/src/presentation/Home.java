@@ -42,6 +42,7 @@ public class Home extends javax.swing.JFrame {
             }
         }
         this.apostador = a;
+        this.setTitle("Eventos ativos");
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         
@@ -289,11 +290,16 @@ public class Home extends javax.swing.JFrame {
 
         perfilButton.setBackground(new java.awt.Color(0, 0, 0));
         perfilButton.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        perfilButton.setForeground(new java.awt.Color(204, 204, 204));
+        perfilButton.setForeground(new java.awt.Color(255, 102, 102));
         perfilButton.setText("Perfil");
         perfilButton.setBorderPainted(false);
         perfilButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         perfilButton.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        perfilButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                perfilButtonActionPerformed(evt);
+            }
+        });
 
         movimentosButton.setBackground(new java.awt.Color(0, 0, 0));
         movimentosButton.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -1358,7 +1364,7 @@ public class Home extends javax.swing.JFrame {
                 ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
                 JOptionPane.showMessageDialog(null, "Já registou uma aposta neste evento.", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
             }
-            else{
+            else if(this.apostador.getESSCoins()-val >= 0){
                 Aposta a = new Aposta(res, val, jogos.get(0));
                 this.betess.getApostadores().get(apostador.getID()).efetuarAposta(a);
                 ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/check.png"));
@@ -1368,6 +1374,13 @@ public class Home extends javax.swing.JFrame {
                 } catch (IOException ex) {
                     Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                Home home = new Home(this.betess, apostador);
+                home.setVisible(true);
+                this.setVisible(false);
+            }
+            else{
+                ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
+                JOptionPane.showMessageDialog(null, "Não tem saldo suficiente para realizar a aposta.", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
             }
         }
     }//GEN-LAST:event_j1BetActionPerformed
@@ -1391,7 +1404,7 @@ public class Home extends javax.swing.JFrame {
                 ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
                 JOptionPane.showMessageDialog(null, "Já registou uma aposta neste evento.", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
             }
-            else{
+            else if(this.apostador.getESSCoins()-val >= 0){
                 Aposta a = new Aposta(res, val, jogos.get(2));
                 this.betess.getApostadores().get(apostador.getID()).efetuarAposta(a);
                 ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/check.png"));
@@ -1401,6 +1414,13 @@ public class Home extends javax.swing.JFrame {
                 } catch (IOException ex) {
                     Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                Home home = new Home(this.betess, apostador);
+                home.setVisible(true);
+                this.setVisible(false);
+            }
+            else{
+                ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
+                JOptionPane.showMessageDialog(null, "Não tem saldo suficiente para realizar a aposta.", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
             }
         }
     }//GEN-LAST:event_j3BetActionPerformed
@@ -1424,7 +1444,7 @@ public class Home extends javax.swing.JFrame {
                 ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
                 JOptionPane.showMessageDialog(null, "Já registou uma aposta neste evento.", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
             }
-            else{
+            else if(this.apostador.getESSCoins()-val >= 0){
                 Aposta a = new Aposta(res, val, jogos.get(1));
                 this.betess.getApostadores().get(apostador.getID()).efetuarAposta(a);
                 ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/check.png"));
@@ -1434,6 +1454,13 @@ public class Home extends javax.swing.JFrame {
                 } catch (IOException ex) {
                     Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                Home home = new Home(this.betess, apostador);
+                home.setVisible(true);
+                this.setVisible(false);
+            }
+            else{
+                ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
+                JOptionPane.showMessageDialog(null, "Não tem saldo suficiente para realizar a aposta.", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
             }
         }
     }//GEN-LAST:event_j2BetActionPerformed
@@ -1457,7 +1484,7 @@ public class Home extends javax.swing.JFrame {
                 ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
                 JOptionPane.showMessageDialog(null, "Já registou uma aposta neste evento.", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
             }
-            else{
+            else if(this.apostador.getESSCoins()-val >= 0){
                 Aposta a = new Aposta(res, val, jogos.get(3));
                 this.betess.getApostadores().get(apostador.getID()).efetuarAposta(a);
                 ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/check.png"));
@@ -1467,6 +1494,13 @@ public class Home extends javax.swing.JFrame {
                 } catch (IOException ex) {
                     Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                Home home = new Home(this.betess, apostador);
+                home.setVisible(true);
+                this.setVisible(false);
+            }
+            else{
+                ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
+                JOptionPane.showMessageDialog(null, "Não tem saldo suficiente para realizar a aposta.", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
             }
         }
     }//GEN-LAST:event_j4BetActionPerformed
@@ -1490,7 +1524,7 @@ public class Home extends javax.swing.JFrame {
                 ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
                 JOptionPane.showMessageDialog(null, "Já registou uma aposta neste evento.", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
             }
-            else{
+            else if(this.apostador.getESSCoins()-val >= 0){
                 Aposta a = new Aposta(res, val, jogos.get(4));
                 this.betess.getApostadores().get(apostador.getID()).efetuarAposta(a);
                 ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/check.png"));
@@ -1500,6 +1534,13 @@ public class Home extends javax.swing.JFrame {
                 } catch (IOException ex) {
                     Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                Home home = new Home(this.betess, apostador);
+                home.setVisible(true);
+                this.setVisible(false);
+            }
+            else{
+                ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
+                JOptionPane.showMessageDialog(null, "Não tem saldo suficiente para realizar a aposta.", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
             }
         }
     }//GEN-LAST:event_j5BetActionPerformed
@@ -1523,7 +1564,7 @@ public class Home extends javax.swing.JFrame {
                 ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
                 JOptionPane.showMessageDialog(null, "Já registou uma aposta neste evento.", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
             }
-            else{
+            else if(this.apostador.getESSCoins()-val >= 0){
                 Aposta a = new Aposta(res, val, jogos.get(5));
                 this.betess.getApostadores().get(apostador.getID()).efetuarAposta(a);
                 ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/check.png"));
@@ -1533,6 +1574,13 @@ public class Home extends javax.swing.JFrame {
                 } catch (IOException ex) {
                     Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                Home home = new Home(this.betess, apostador);
+                home.setVisible(true);
+                this.setVisible(false);
+            }
+            else{
+                ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
+                JOptionPane.showMessageDialog(null, "Não tem saldo suficiente para realizar a aposta.", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
             }
         }
     }//GEN-LAST:event_j6BetActionPerformed
@@ -1556,7 +1604,7 @@ public class Home extends javax.swing.JFrame {
                 ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
                 JOptionPane.showMessageDialog(null, "Já registou uma aposta neste evento.", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
             }
-            else{
+            else if(this.apostador.getESSCoins()-val >= 0){
                 Aposta a = new Aposta(res, val, jogos.get(6));
                 this.betess.getApostadores().get(apostador.getID()).efetuarAposta(a);
                 ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/check.png"));
@@ -1566,6 +1614,13 @@ public class Home extends javax.swing.JFrame {
                 } catch (IOException ex) {
                     Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                Home home = new Home(this.betess, apostador);
+                home.setVisible(true);
+                this.setVisible(false);
+            }
+            else{
+                ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
+                JOptionPane.showMessageDialog(null, "Não tem saldo suficiente para realizar a aposta.", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
             }
         }
     }//GEN-LAST:event_j7BetActionPerformed
@@ -1589,7 +1644,7 @@ public class Home extends javax.swing.JFrame {
                 ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
                 JOptionPane.showMessageDialog(null, "Já registou uma aposta neste evento.", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
             }
-            else{
+            else if(this.apostador.getESSCoins()-val >= 0){
                 Aposta a = new Aposta(res, val, jogos.get(7));
                 this.betess.getApostadores().get(apostador.getID()).efetuarAposta(a);
                 ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/check.png"));
@@ -1599,6 +1654,13 @@ public class Home extends javax.swing.JFrame {
                 } catch (IOException ex) {
                     Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                Home home = new Home(this.betess, apostador);
+                home.setVisible(true);
+                this.setVisible(false);
+            }
+            else{
+                ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
+                JOptionPane.showMessageDialog(null, "Não tem saldo suficiente para realizar a aposta.", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
             }
         }
     }//GEN-LAST:event_j8BetActionPerformed
@@ -1622,7 +1684,7 @@ public class Home extends javax.swing.JFrame {
                 ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
                 JOptionPane.showMessageDialog(null, "Já registou uma aposta neste evento.", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
             }
-            else{
+            else if(this.apostador.getESSCoins()-val >= 0){
                 Aposta a = new Aposta(res, val, jogos.get(8));
                 this.betess.getApostadores().get(apostador.getID()).efetuarAposta(a);
                 ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/check.png"));
@@ -1632,12 +1694,21 @@ public class Home extends javax.swing.JFrame {
                 } catch (IOException ex) {
                     Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                Home home = new Home(this.betess, apostador);
+                home.setVisible(true);
+                this.setVisible(false);
+            }
+            else{
+                ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
+                JOptionPane.showMessageDialog(null, "Não tem saldo suficiente para realizar a aposta.", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
             }
         }
     }//GEN-LAST:event_j9BetActionPerformed
 
     private void movimentosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_movimentosButtonActionPerformed
-        // TODO add your handling code here:
+        DepositarLevantar dl = new DepositarLevantar(this.betess, apostador);
+        dl.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_movimentosButtonActionPerformed
 
     private void apostasButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_apostasButtonActionPerformed
@@ -1645,6 +1716,12 @@ public class Home extends javax.swing.JFrame {
         ma.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_apostasButtonActionPerformed
+
+    private void perfilButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_perfilButtonActionPerformed
+        Login login = new Login(this.betess);
+        login.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_perfilButtonActionPerformed
     
     public void style(){
         ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/logo2.png"));
@@ -1657,74 +1734,566 @@ public class Home extends javax.swing.JFrame {
         perfilButton.setContentAreaFilled(false);
         perfilButton.setOpaque(true);
         perfilButton.setText(this.apostador.getNome());
-
-        ImageIcon j1C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaC().getSimbolo()));
-        ImageIcon j1F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaF().getSimbolo()));
-        ImageIcon j2C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(1).getEquipaC().getSimbolo()));
-        ImageIcon j2F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(1).getEquipaF().getSimbolo()));
-        ImageIcon j3C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(2).getEquipaC().getSimbolo()));
-        ImageIcon j3F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(2).getEquipaF().getSimbolo()));
-        ImageIcon j4C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(3).getEquipaC().getSimbolo()));
-        ImageIcon j4F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(3).getEquipaF().getSimbolo()));
-        ImageIcon j5C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(4).getEquipaC().getSimbolo()));
-        ImageIcon j5F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(4).getEquipaF().getSimbolo()));
-        ImageIcon j6C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(5).getEquipaC().getSimbolo()));
-        ImageIcon j6F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(5).getEquipaF().getSimbolo()));
-        ImageIcon j7C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(6).getEquipaC().getSimbolo()));
-        ImageIcon j7F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(6).getEquipaF().getSimbolo()));
-        ImageIcon j8C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(7).getEquipaC().getSimbolo()));
-        ImageIcon j8F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(7).getEquipaF().getSimbolo()));
-        ImageIcon j9C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(8).getEquipaC().getSimbolo()));
-        ImageIcon j9F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(8).getEquipaF().getSimbolo()));
-        
-        jogo1C.setIcon(j1C);
-        jogo1F.setIcon(j1F);
-        jogo2C.setIcon(j2C);
-        jogo2F.setIcon(j2F);
-        jogo3C.setIcon(j3C);
-        jogo3F.setIcon(j3F);
-        jogo4C.setIcon(j4C);
-        jogo4F.setIcon(j4F);
-        jogo5C.setIcon(j5C);
-        jogo5F.setIcon(j5F);
-        jogo6C.setIcon(j6C);
-        jogo6F.setIcon(j6F);
-        jogo7C.setIcon(j7C);
-        jogo7F.setIcon(j7F);
-        jogo8C.setIcon(j8C);
-        jogo8F.setIcon(j8F);
-        jogo9C.setIcon(j9C);
-        jogo9F.setIcon(j9F);
-        
-        
-
-        j1V.setText(Double.toString(jogos.get(0).getOddV()));
-        j1E.setText(Double.toString(jogos.get(0).getOddE()));
-        j1D.setText(Double.toString(jogos.get(0).getOddD()));
-        j2V.setText(Double.toString(jogos.get(1).getOddV()));
-        j2E.setText(Double.toString(jogos.get(1).getOddE()));
-        j2D.setText(Double.toString(jogos.get(1).getOddD()));
-        j3V.setText(Double.toString(jogos.get(2).getOddV()));
-        j3E.setText(Double.toString(jogos.get(2).getOddE()));
-        j3D.setText(Double.toString(jogos.get(2).getOddD()));
-        j4V.setText(Double.toString(jogos.get(3).getOddV()));
-        j4E.setText(Double.toString(jogos.get(3).getOddE()));
-        j4D.setText(Double.toString(jogos.get(3).getOddD()));
-        j5V.setText(Double.toString(jogos.get(4).getOddV()));
-        j5E.setText(Double.toString(jogos.get(4).getOddE()));
-        j5D.setText(Double.toString(jogos.get(4).getOddD()));
-        j6V.setText(Double.toString(jogos.get(5).getOddV()));
-        j6E.setText(Double.toString(jogos.get(5).getOddE()));
-        j6D.setText(Double.toString(jogos.get(5).getOddD()));
-        j7V.setText(Double.toString(jogos.get(6).getOddV()));
-        j7E.setText(Double.toString(jogos.get(6).getOddE()));
-        j7D.setText(Double.toString(jogos.get(6).getOddD()));
-        j8V.setText(Double.toString(jogos.get(7).getOddV()));
-        j8E.setText(Double.toString(jogos.get(7).getOddE()));
-        j8D.setText(Double.toString(jogos.get(7).getOddD()));
-        j9V.setText(Double.toString(jogos.get(8).getOddV()));
-        j9E.setText(Double.toString(jogos.get(8).getOddE()));
-        j9D.setText(Double.toString(jogos.get(8).getOddD()));
+        if(jogos.size()==0){
+            j1V.setEnabled(false);
+            j1E.setEnabled(false);
+            j1D.setEnabled(false);
+            j1Bet.setEnabled(false);
+            j1Spin.setEnabled(false);
+            j2V.setEnabled(false);
+            j2E.setEnabled(false);
+            j2D.setEnabled(false);
+            j2Bet.setEnabled(false);
+            j2Spin.setEnabled(false);
+            j3V.setEnabled(false);
+            j3E.setEnabled(false);
+            j3D.setEnabled(false);
+            j3Bet.setEnabled(false);
+            j3Spin.setEnabled(false);
+            j4V.setEnabled(false);
+            j4E.setEnabled(false);
+            j4D.setEnabled(false);
+            j4Bet.setEnabled(false);
+            j4Spin.setEnabled(false);
+            j5V.setEnabled(false);
+            j5E.setEnabled(false);
+            j5D.setEnabled(false);
+            j5Bet.setEnabled(false);
+            j5Spin.setEnabled(false);
+            j6V.setEnabled(false);
+            j6E.setEnabled(false);
+            j6D.setEnabled(false);
+            j6Bet.setEnabled(false);
+            j6Spin.setEnabled(false);
+            j7V.setEnabled(false);
+            j7E.setEnabled(false);
+            j7D.setEnabled(false);
+            j7Bet.setEnabled(false);
+            j7Spin.setEnabled(false);
+            j8V.setEnabled(false);
+            j8E.setEnabled(false);
+            j8D.setEnabled(false);
+            j8Bet.setEnabled(false);
+            j8Spin.setEnabled(false);
+            j9V.setEnabled(false);
+            j9E.setEnabled(false);
+            j9D.setEnabled(false);
+            j9Bet.setEnabled(false);
+            j9Spin.setEnabled(false);
+        }
+        else if(jogos.size()==1){
+            ImageIcon j1C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaC().getSimbolo()));
+            ImageIcon j1F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaF().getSimbolo()));
+            jogo1C.setIcon(j1C);
+            jogo1F.setIcon(j1F);
+            j1V.setText(Double.toString(jogos.get(0).getOddV()));
+            j1E.setText(Double.toString(jogos.get(0).getOddE()));
+            j1D.setText(Double.toString(jogos.get(0).getOddD()));
+            j2V.setEnabled(false);
+            j2E.setEnabled(false);
+            j2D.setEnabled(false);
+            j2Bet.setEnabled(false);
+            j2Spin.setEnabled(false);
+            j3V.setEnabled(false);
+            j3E.setEnabled(false);
+            j3D.setEnabled(false);
+            j3Bet.setEnabled(false);
+            j3Spin.setEnabled(false);
+            j4V.setEnabled(false);
+            j4E.setEnabled(false);
+            j4D.setEnabled(false);
+            j4Bet.setEnabled(false);
+            j4Spin.setEnabled(false);
+            j5V.setEnabled(false);
+            j5E.setEnabled(false);
+            j5D.setEnabled(false);
+            j5Bet.setEnabled(false);
+            j5Spin.setEnabled(false);
+            j6V.setEnabled(false);
+            j6E.setEnabled(false);
+            j6D.setEnabled(false);
+            j6Bet.setEnabled(false);
+            j6Spin.setEnabled(false);
+            j7V.setEnabled(false);
+            j7E.setEnabled(false);
+            j7D.setEnabled(false);
+            j7Bet.setEnabled(false);
+            j7Spin.setEnabled(false);
+            j8V.setEnabled(false);
+            j8E.setEnabled(false);
+            j8D.setEnabled(false);
+            j8Bet.setEnabled(false);
+            j8Spin.setEnabled(false);
+            j9V.setEnabled(false);
+            j9E.setEnabled(false);
+            j9D.setEnabled(false);
+            j9Bet.setEnabled(false);
+            j9Spin.setEnabled(false);
+        }
+        else if(jogos.size()==2){
+            ImageIcon j1C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaC().getSimbolo()));
+            ImageIcon j1F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaF().getSimbolo()));
+            ImageIcon j2C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(1).getEquipaC().getSimbolo()));
+            ImageIcon j2F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(1).getEquipaF().getSimbolo()));
+            jogo1C.setIcon(j1C);
+            jogo1F.setIcon(j1F);
+            jogo2C.setIcon(j2C);
+            jogo2F.setIcon(j2F);
+            j1V.setText(Double.toString(jogos.get(0).getOddV()));
+            j1E.setText(Double.toString(jogos.get(0).getOddE()));
+            j1D.setText(Double.toString(jogos.get(0).getOddD()));
+            j2V.setText(Double.toString(jogos.get(1).getOddV()));
+            j2E.setText(Double.toString(jogos.get(1).getOddE()));
+            j2D.setText(Double.toString(jogos.get(1).getOddD()));
+            j3V.setEnabled(false);
+            j3E.setEnabled(false);
+            j3D.setEnabled(false);
+            j3Bet.setEnabled(false);
+            j3Spin.setEnabled(false);
+            j4V.setEnabled(false);
+            j4E.setEnabled(false);
+            j4D.setEnabled(false);
+            j4Bet.setEnabled(false);
+            j4Spin.setEnabled(false);
+            j5V.setEnabled(false);
+            j5E.setEnabled(false);
+            j5D.setEnabled(false);
+            j5Bet.setEnabled(false);
+            j5Spin.setEnabled(false);
+            j6V.setEnabled(false);
+            j6E.setEnabled(false);
+            j6D.setEnabled(false);
+            j6Bet.setEnabled(false);
+            j6Spin.setEnabled(false);
+            j7V.setEnabled(false);
+            j7E.setEnabled(false);
+            j7D.setEnabled(false);
+            j7Bet.setEnabled(false);
+            j7Spin.setEnabled(false);
+            j8V.setEnabled(false);
+            j8E.setEnabled(false);
+            j8D.setEnabled(false);
+            j8Bet.setEnabled(false);
+            j8Spin.setEnabled(false);
+            j9V.setEnabled(false);
+            j9E.setEnabled(false);
+            j9D.setEnabled(false);
+            j9Bet.setEnabled(false);
+            j9Spin.setEnabled(false);
+        }
+        else if(jogos.size()==3){
+            ImageIcon j1C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaC().getSimbolo()));
+            ImageIcon j1F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaF().getSimbolo()));
+            ImageIcon j2C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(1).getEquipaC().getSimbolo()));
+            ImageIcon j2F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(1).getEquipaF().getSimbolo()));
+            ImageIcon j3C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(2).getEquipaC().getSimbolo()));
+            ImageIcon j3F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(2).getEquipaF().getSimbolo()));
+            jogo1C.setIcon(j1C);
+            jogo1F.setIcon(j1F);
+            jogo2C.setIcon(j2C);
+            jogo2F.setIcon(j2F);
+            jogo3C.setIcon(j3C);
+            jogo3F.setIcon(j3F);
+            j1V.setText(Double.toString(jogos.get(0).getOddV()));
+            j1E.setText(Double.toString(jogos.get(0).getOddE()));
+            j1D.setText(Double.toString(jogos.get(0).getOddD()));
+            j2V.setText(Double.toString(jogos.get(1).getOddV()));
+            j2E.setText(Double.toString(jogos.get(1).getOddE()));
+            j2D.setText(Double.toString(jogos.get(1).getOddD()));
+            j3V.setText(Double.toString(jogos.get(2).getOddV()));
+            j3E.setText(Double.toString(jogos.get(2).getOddE()));
+            j3D.setText(Double.toString(jogos.get(2).getOddD()));
+            j4V.setEnabled(false);
+            j4E.setEnabled(false);
+            j4D.setEnabled(false);
+            j4Bet.setEnabled(false);
+            j4Spin.setEnabled(false);
+            j5V.setEnabled(false);
+            j5E.setEnabled(false);
+            j5D.setEnabled(false);
+            j5Bet.setEnabled(false);
+            j5Spin.setEnabled(false);
+            j6V.setEnabled(false);
+            j6E.setEnabled(false);
+            j6D.setEnabled(false);
+            j6Bet.setEnabled(false);
+            j6Spin.setEnabled(false);
+            j7V.setEnabled(false);
+            j7E.setEnabled(false);
+            j7D.setEnabled(false);
+            j7Bet.setEnabled(false);
+            j7Spin.setEnabled(false);
+            j8V.setEnabled(false);
+            j8E.setEnabled(false);
+            j8D.setEnabled(false);
+            j8Bet.setEnabled(false);
+            j8Spin.setEnabled(false);
+            j9V.setEnabled(false);
+            j9E.setEnabled(false);
+            j9D.setEnabled(false);
+            j9Bet.setEnabled(false);
+            j9Spin.setEnabled(false);
+        }
+        else if(jogos.size()==4){
+            ImageIcon j1C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaC().getSimbolo()));
+            ImageIcon j1F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaF().getSimbolo()));
+            ImageIcon j2C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(1).getEquipaC().getSimbolo()));
+            ImageIcon j2F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(1).getEquipaF().getSimbolo()));
+            ImageIcon j3C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(2).getEquipaC().getSimbolo()));
+            ImageIcon j3F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(2).getEquipaF().getSimbolo()));
+            ImageIcon j4C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(3).getEquipaC().getSimbolo()));
+            ImageIcon j4F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(3).getEquipaF().getSimbolo()));
+            jogo1C.setIcon(j1C);
+            jogo1F.setIcon(j1F);
+            jogo2C.setIcon(j2C);
+            jogo2F.setIcon(j2F);
+            jogo3C.setIcon(j3C);
+            jogo3F.setIcon(j3F);
+            jogo4C.setIcon(j4C);
+            jogo4F.setIcon(j4F);
+            j1V.setText(Double.toString(jogos.get(0).getOddV()));
+            j1E.setText(Double.toString(jogos.get(0).getOddE()));
+            j1D.setText(Double.toString(jogos.get(0).getOddD()));
+            j2V.setText(Double.toString(jogos.get(1).getOddV()));
+            j2E.setText(Double.toString(jogos.get(1).getOddE()));
+            j2D.setText(Double.toString(jogos.get(1).getOddD()));
+            j3V.setText(Double.toString(jogos.get(2).getOddV()));
+            j3E.setText(Double.toString(jogos.get(2).getOddE()));
+            j3D.setText(Double.toString(jogos.get(2).getOddD()));
+            j4V.setText(Double.toString(jogos.get(3).getOddV()));
+            j4E.setText(Double.toString(jogos.get(3).getOddE()));
+            j4D.setText(Double.toString(jogos.get(3).getOddD()));
+            j5V.setEnabled(false);
+            j5E.setEnabled(false);
+            j5D.setEnabled(false);
+            j5Bet.setEnabled(false);
+            j5Spin.setEnabled(false);
+            j6V.setEnabled(false);
+            j6E.setEnabled(false);
+            j6D.setEnabled(false);
+            j6Bet.setEnabled(false);
+            j6Spin.setEnabled(false);
+            j7V.setEnabled(false);
+            j7E.setEnabled(false);
+            j7D.setEnabled(false);
+            j7Bet.setEnabled(false);
+            j7Spin.setEnabled(false);
+            j8V.setEnabled(false);
+            j8E.setEnabled(false);
+            j8D.setEnabled(false);
+            j8Bet.setEnabled(false);
+            j8Spin.setEnabled(false);
+            j9V.setEnabled(false);
+            j9E.setEnabled(false);
+            j9D.setEnabled(false);
+            j9Bet.setEnabled(false);
+            j9Spin.setEnabled(false);
+        }
+        else if(jogos.size()==5){
+            ImageIcon j1C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaC().getSimbolo()));
+            ImageIcon j1F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaF().getSimbolo()));
+            ImageIcon j2C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(1).getEquipaC().getSimbolo()));
+            ImageIcon j2F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(1).getEquipaF().getSimbolo()));
+            ImageIcon j3C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(2).getEquipaC().getSimbolo()));
+            ImageIcon j3F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(2).getEquipaF().getSimbolo()));
+            ImageIcon j4C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(3).getEquipaC().getSimbolo()));
+            ImageIcon j4F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(3).getEquipaF().getSimbolo()));
+            ImageIcon j5C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(4).getEquipaC().getSimbolo()));
+            ImageIcon j5F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(4).getEquipaF().getSimbolo()));
+            jogo1C.setIcon(j1C);
+            jogo1F.setIcon(j1F);
+            jogo2C.setIcon(j2C);
+            jogo2F.setIcon(j2F);
+            jogo3C.setIcon(j3C);
+            jogo3F.setIcon(j3F);
+            jogo4C.setIcon(j4C);
+            jogo4F.setIcon(j4F);
+            jogo5C.setIcon(j5C);
+            jogo5F.setIcon(j5F);
+            j1V.setText(Double.toString(jogos.get(0).getOddV()));
+            j1E.setText(Double.toString(jogos.get(0).getOddE()));
+            j1D.setText(Double.toString(jogos.get(0).getOddD()));
+            j2V.setText(Double.toString(jogos.get(1).getOddV()));
+            j2E.setText(Double.toString(jogos.get(1).getOddE()));
+            j2D.setText(Double.toString(jogos.get(1).getOddD()));
+            j3V.setText(Double.toString(jogos.get(2).getOddV()));
+            j3E.setText(Double.toString(jogos.get(2).getOddE()));
+            j3D.setText(Double.toString(jogos.get(2).getOddD()));
+            j4V.setText(Double.toString(jogos.get(3).getOddV()));
+            j4E.setText(Double.toString(jogos.get(3).getOddE()));
+            j4D.setText(Double.toString(jogos.get(3).getOddD()));
+            j5V.setText(Double.toString(jogos.get(4).getOddV()));
+            j5E.setText(Double.toString(jogos.get(4).getOddE()));
+            j5D.setText(Double.toString(jogos.get(4).getOddD()));
+            j6V.setEnabled(false);
+            j6E.setEnabled(false);
+            j6D.setEnabled(false);
+            j6Bet.setEnabled(false);
+            j6Spin.setEnabled(false);
+            j7V.setEnabled(false);
+            j7E.setEnabled(false);
+            j7D.setEnabled(false);
+            j7Bet.setEnabled(false);
+            j7Spin.setEnabled(false);
+            j8V.setEnabled(false);
+            j8E.setEnabled(false);
+            j8D.setEnabled(false);
+            j8Bet.setEnabled(false);
+            j8Spin.setEnabled(false);
+            j9V.setEnabled(false);
+            j9E.setEnabled(false);
+            j9D.setEnabled(false);
+            j9Bet.setEnabled(false);
+            j9Spin.setEnabled(false);
+        }
+        else if(jogos.size()==6){
+            ImageIcon j1C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaC().getSimbolo()));
+            ImageIcon j1F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaF().getSimbolo()));
+            ImageIcon j2C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(1).getEquipaC().getSimbolo()));
+            ImageIcon j2F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(1).getEquipaF().getSimbolo()));
+            ImageIcon j3C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(2).getEquipaC().getSimbolo()));
+            ImageIcon j3F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(2).getEquipaF().getSimbolo()));
+            ImageIcon j4C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(3).getEquipaC().getSimbolo()));
+            ImageIcon j4F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(3).getEquipaF().getSimbolo()));
+            ImageIcon j5C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(4).getEquipaC().getSimbolo()));
+            ImageIcon j5F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(4).getEquipaF().getSimbolo()));
+            ImageIcon j6C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(5).getEquipaC().getSimbolo()));
+            ImageIcon j6F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(5).getEquipaF().getSimbolo()));
+            jogo1C.setIcon(j1C);
+            jogo1F.setIcon(j1F);
+            jogo2C.setIcon(j2C);
+            jogo2F.setIcon(j2F);
+            jogo3C.setIcon(j3C);
+            jogo3F.setIcon(j3F);
+            jogo4C.setIcon(j4C);
+            jogo4F.setIcon(j4F);
+            jogo5C.setIcon(j5C);
+            jogo5F.setIcon(j5F);
+            jogo6C.setIcon(j6C);
+            jogo6F.setIcon(j6F);
+            j1V.setText(Double.toString(jogos.get(0).getOddV()));
+            j1E.setText(Double.toString(jogos.get(0).getOddE()));
+            j1D.setText(Double.toString(jogos.get(0).getOddD()));
+            j2V.setText(Double.toString(jogos.get(1).getOddV()));
+            j2E.setText(Double.toString(jogos.get(1).getOddE()));
+            j2D.setText(Double.toString(jogos.get(1).getOddD()));
+            j3V.setText(Double.toString(jogos.get(2).getOddV()));
+            j3E.setText(Double.toString(jogos.get(2).getOddE()));
+            j3D.setText(Double.toString(jogos.get(2).getOddD()));
+            j4V.setText(Double.toString(jogos.get(3).getOddV()));
+            j4E.setText(Double.toString(jogos.get(3).getOddE()));
+            j4D.setText(Double.toString(jogos.get(3).getOddD()));
+            j5V.setText(Double.toString(jogos.get(4).getOddV()));
+            j5E.setText(Double.toString(jogos.get(4).getOddE()));
+            j5D.setText(Double.toString(jogos.get(4).getOddD()));
+            j6V.setText(Double.toString(jogos.get(5).getOddV()));
+            j6E.setText(Double.toString(jogos.get(5).getOddE()));
+            j6D.setText(Double.toString(jogos.get(5).getOddD()));
+            j7V.setEnabled(false);
+            j7E.setEnabled(false);
+            j7D.setEnabled(false);
+            j7Bet.setEnabled(false);
+            j7Spin.setEnabled(false);
+            j8V.setEnabled(false);
+            j8E.setEnabled(false);
+            j8D.setEnabled(false);
+            j8Bet.setEnabled(false);
+            j8Spin.setEnabled(false);
+            j9V.setEnabled(false);
+            j9E.setEnabled(false);
+            j9D.setEnabled(false);
+            j9Bet.setEnabled(false);
+            j9Spin.setEnabled(false);
+        }
+        else if(jogos.size()==7){
+            ImageIcon j1C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaC().getSimbolo()));
+            ImageIcon j1F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaF().getSimbolo()));
+            ImageIcon j2C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(1).getEquipaC().getSimbolo()));
+            ImageIcon j2F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(1).getEquipaF().getSimbolo()));
+            ImageIcon j3C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(2).getEquipaC().getSimbolo()));
+            ImageIcon j3F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(2).getEquipaF().getSimbolo()));
+            ImageIcon j4C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(3).getEquipaC().getSimbolo()));
+            ImageIcon j4F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(3).getEquipaF().getSimbolo()));
+            ImageIcon j5C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(4).getEquipaC().getSimbolo()));
+            ImageIcon j5F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(4).getEquipaF().getSimbolo()));
+            ImageIcon j6C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(5).getEquipaC().getSimbolo()));
+            ImageIcon j6F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(5).getEquipaF().getSimbolo()));
+            ImageIcon j7C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(6).getEquipaC().getSimbolo()));
+            ImageIcon j7F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(6).getEquipaF().getSimbolo()));
+            jogo1C.setIcon(j1C);
+            jogo1F.setIcon(j1F);
+            jogo2C.setIcon(j2C);
+            jogo2F.setIcon(j2F);
+            jogo3C.setIcon(j3C);
+            jogo3F.setIcon(j3F);
+            jogo4C.setIcon(j4C);
+            jogo4F.setIcon(j4F);
+            jogo5C.setIcon(j5C);
+            jogo5F.setIcon(j5F);
+            jogo6C.setIcon(j6C);
+            jogo6F.setIcon(j6F);
+            jogo7C.setIcon(j7C);
+            jogo7F.setIcon(j7F);
+            j1V.setText(Double.toString(jogos.get(0).getOddV()));
+            j1E.setText(Double.toString(jogos.get(0).getOddE()));
+            j1D.setText(Double.toString(jogos.get(0).getOddD()));
+            j2V.setText(Double.toString(jogos.get(1).getOddV()));
+            j2E.setText(Double.toString(jogos.get(1).getOddE()));
+            j2D.setText(Double.toString(jogos.get(1).getOddD()));
+            j3V.setText(Double.toString(jogos.get(2).getOddV()));
+            j3E.setText(Double.toString(jogos.get(2).getOddE()));
+            j3D.setText(Double.toString(jogos.get(2).getOddD()));
+            j4V.setText(Double.toString(jogos.get(3).getOddV()));
+            j4E.setText(Double.toString(jogos.get(3).getOddE()));
+            j4D.setText(Double.toString(jogos.get(3).getOddD()));
+            j5V.setText(Double.toString(jogos.get(4).getOddV()));
+            j5E.setText(Double.toString(jogos.get(4).getOddE()));
+            j5D.setText(Double.toString(jogos.get(4).getOddD()));
+            j6V.setText(Double.toString(jogos.get(5).getOddV()));
+            j6E.setText(Double.toString(jogos.get(5).getOddE()));
+            j6D.setText(Double.toString(jogos.get(5).getOddD()));
+            j7V.setText(Double.toString(jogos.get(6).getOddV()));
+            j7E.setText(Double.toString(jogos.get(6).getOddE()));
+            j7D.setText(Double.toString(jogos.get(6).getOddD()));
+            j8V.setEnabled(false);
+            j8E.setEnabled(false);
+            j8D.setEnabled(false);
+            j8Bet.setEnabled(false);
+            j8Spin.setEnabled(false);
+            j9V.setEnabled(false);
+            j9E.setEnabled(false);
+            j9D.setEnabled(false);
+            j9Bet.setEnabled(false);
+            j9Spin.setEnabled(false);
+        }
+        else if(jogos.size()==8){
+            ImageIcon j1C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaC().getSimbolo()));
+            ImageIcon j1F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaF().getSimbolo()));
+            ImageIcon j2C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(1).getEquipaC().getSimbolo()));
+            ImageIcon j2F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(1).getEquipaF().getSimbolo()));
+            ImageIcon j3C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(2).getEquipaC().getSimbolo()));
+            ImageIcon j3F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(2).getEquipaF().getSimbolo()));
+            ImageIcon j4C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(3).getEquipaC().getSimbolo()));
+            ImageIcon j4F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(3).getEquipaF().getSimbolo()));
+            ImageIcon j5C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(4).getEquipaC().getSimbolo()));
+            ImageIcon j5F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(4).getEquipaF().getSimbolo()));
+            ImageIcon j6C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(5).getEquipaC().getSimbolo()));
+            ImageIcon j6F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(5).getEquipaF().getSimbolo()));
+            ImageIcon j7C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(6).getEquipaC().getSimbolo()));
+            ImageIcon j7F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(6).getEquipaF().getSimbolo()));
+            ImageIcon j8C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(7).getEquipaC().getSimbolo()));
+            ImageIcon j8F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(7).getEquipaF().getSimbolo()));
+            jogo1C.setIcon(j1C);
+            jogo1F.setIcon(j1F);
+            jogo2C.setIcon(j2C);
+            jogo2F.setIcon(j2F);
+            jogo3C.setIcon(j3C);
+            jogo3F.setIcon(j3F);
+            jogo4C.setIcon(j4C);
+            jogo4F.setIcon(j4F);
+            jogo5C.setIcon(j5C);
+            jogo5F.setIcon(j5F);
+            jogo6C.setIcon(j6C);
+            jogo6F.setIcon(j6F);
+            jogo7C.setIcon(j7C);
+            jogo7F.setIcon(j7F);
+            jogo8C.setIcon(j8C);
+            jogo8F.setIcon(j8F);
+            j1V.setText(Double.toString(jogos.get(0).getOddV()));
+            j1E.setText(Double.toString(jogos.get(0).getOddE()));
+            j1D.setText(Double.toString(jogos.get(0).getOddD()));
+            j2V.setText(Double.toString(jogos.get(1).getOddV()));
+            j2E.setText(Double.toString(jogos.get(1).getOddE()));
+            j2D.setText(Double.toString(jogos.get(1).getOddD()));
+            j3V.setText(Double.toString(jogos.get(2).getOddV()));
+            j3E.setText(Double.toString(jogos.get(2).getOddE()));
+            j3D.setText(Double.toString(jogos.get(2).getOddD()));
+            j4V.setText(Double.toString(jogos.get(3).getOddV()));
+            j4E.setText(Double.toString(jogos.get(3).getOddE()));
+            j4D.setText(Double.toString(jogos.get(3).getOddD()));
+            j5V.setText(Double.toString(jogos.get(4).getOddV()));
+            j5E.setText(Double.toString(jogos.get(4).getOddE()));
+            j5D.setText(Double.toString(jogos.get(4).getOddD()));
+            j6V.setText(Double.toString(jogos.get(5).getOddV()));
+            j6E.setText(Double.toString(jogos.get(5).getOddE()));
+            j6D.setText(Double.toString(jogos.get(5).getOddD()));
+            j7V.setText(Double.toString(jogos.get(6).getOddV()));
+            j7E.setText(Double.toString(jogos.get(6).getOddE()));
+            j7D.setText(Double.toString(jogos.get(6).getOddD()));
+            j8V.setText(Double.toString(jogos.get(7).getOddV()));
+            j8E.setText(Double.toString(jogos.get(7).getOddE()));
+            j8D.setText(Double.toString(jogos.get(7).getOddD()));
+            j9V.setEnabled(false);
+            j9E.setEnabled(false);
+            j9D.setEnabled(false);
+            j9Bet.setEnabled(false);
+            j9Spin.setEnabled(false);
+        }
+        else if(jogos.size()==9){
+            ImageIcon j1C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaC().getSimbolo()));
+            ImageIcon j1F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaF().getSimbolo()));
+            ImageIcon j2C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(1).getEquipaC().getSimbolo()));
+            ImageIcon j2F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(1).getEquipaF().getSimbolo()));
+            ImageIcon j3C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(2).getEquipaC().getSimbolo()));
+            ImageIcon j3F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(2).getEquipaF().getSimbolo()));
+            ImageIcon j4C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(3).getEquipaC().getSimbolo()));
+            ImageIcon j4F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(3).getEquipaF().getSimbolo()));
+            ImageIcon j5C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(4).getEquipaC().getSimbolo()));
+            ImageIcon j5F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(4).getEquipaF().getSimbolo()));
+            ImageIcon j6C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(5).getEquipaC().getSimbolo()));
+            ImageIcon j6F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(5).getEquipaF().getSimbolo()));
+            ImageIcon j7C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(6).getEquipaC().getSimbolo()));
+            ImageIcon j7F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(6).getEquipaF().getSimbolo()));
+            ImageIcon j8C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(7).getEquipaC().getSimbolo()));
+            ImageIcon j8F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(7).getEquipaF().getSimbolo()));
+            ImageIcon j9C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(8).getEquipaC().getSimbolo()));
+            ImageIcon j9F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(8).getEquipaF().getSimbolo()));
+            jogo1C.setIcon(j1C);
+            jogo1F.setIcon(j1F);
+            jogo2C.setIcon(j2C);
+            jogo2F.setIcon(j2F);
+            jogo3C.setIcon(j3C);
+            jogo3F.setIcon(j3F);
+            jogo4C.setIcon(j4C);
+            jogo4F.setIcon(j4F);
+            jogo5C.setIcon(j5C);
+            jogo5F.setIcon(j5F);
+            jogo6C.setIcon(j6C);
+            jogo6F.setIcon(j6F);
+            jogo7C.setIcon(j7C);
+            jogo7F.setIcon(j7F);
+            jogo8C.setIcon(j8C);
+            jogo8F.setIcon(j8F);
+            jogo9C.setIcon(j9C);
+            jogo9F.setIcon(j9F);
+            j1V.setText(Double.toString(jogos.get(0).getOddV()));
+            j1E.setText(Double.toString(jogos.get(0).getOddE()));
+            j1D.setText(Double.toString(jogos.get(0).getOddD()));
+            j2V.setText(Double.toString(jogos.get(1).getOddV()));
+            j2E.setText(Double.toString(jogos.get(1).getOddE()));
+            j2D.setText(Double.toString(jogos.get(1).getOddD()));
+            j3V.setText(Double.toString(jogos.get(2).getOddV()));
+            j3E.setText(Double.toString(jogos.get(2).getOddE()));
+            j3D.setText(Double.toString(jogos.get(2).getOddD()));
+            j4V.setText(Double.toString(jogos.get(3).getOddV()));
+            j4E.setText(Double.toString(jogos.get(3).getOddE()));
+            j4D.setText(Double.toString(jogos.get(3).getOddD()));
+            j5V.setText(Double.toString(jogos.get(4).getOddV()));
+            j5E.setText(Double.toString(jogos.get(4).getOddE()));
+            j5D.setText(Double.toString(jogos.get(4).getOddD()));
+            j6V.setText(Double.toString(jogos.get(5).getOddV()));
+            j6E.setText(Double.toString(jogos.get(5).getOddE()));
+            j6D.setText(Double.toString(jogos.get(5).getOddD()));
+            j7V.setText(Double.toString(jogos.get(6).getOddV()));
+            j7E.setText(Double.toString(jogos.get(6).getOddE()));
+            j7D.setText(Double.toString(jogos.get(6).getOddD()));
+            j8V.setText(Double.toString(jogos.get(7).getOddV()));
+            j8E.setText(Double.toString(jogos.get(7).getOddE()));
+            j8D.setText(Double.toString(jogos.get(7).getOddD()));
+            j9V.setText(Double.toString(jogos.get(8).getOddV()));
+            j9E.setText(Double.toString(jogos.get(8).getOddE()));
+            j9D.setText(Double.toString(jogos.get(8).getOddD()));
+        }
     }
     
     /**

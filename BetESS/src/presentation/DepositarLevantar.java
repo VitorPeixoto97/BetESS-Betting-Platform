@@ -7,6 +7,11 @@ package presentation;
 
 import business.Apostador;
 import business.BetESS;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -21,8 +26,12 @@ public class DepositarLevantar extends javax.swing.JFrame {
      */
     public DepositarLevantar(BetESS b, Apostador a) {
         initComponents();
+        this.setTitle("Depositar/Levantar");
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
         this.betess = b;
         this.apostador = a;
+        this.Saldo.setText("Saldo atual: " + apostador.getESSCoins() + " ESScoins");
     }
 
     /**
@@ -40,6 +49,13 @@ public class DepositarLevantar extends javax.swing.JFrame {
         perfilButton = new javax.swing.JButton();
         apostasButton = new javax.swing.JButton();
         eventosButton = new javax.swing.JButton();
+        Saldo = new javax.swing.JLabel();
+        Levantar = new javax.swing.JLabel();
+        Levantar1 = new javax.swing.JLabel();
+        levSpinner = new javax.swing.JSpinner();
+        levButton = new javax.swing.JButton();
+        depSpinner = new javax.swing.JSpinner();
+        depButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,11 +67,16 @@ public class DepositarLevantar extends javax.swing.JFrame {
 
         perfilButton.setBackground(new java.awt.Color(0, 0, 0));
         perfilButton.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        perfilButton.setForeground(new java.awt.Color(204, 204, 204));
+        perfilButton.setForeground(new java.awt.Color(255, 102, 102));
         perfilButton.setText("Perfil");
         perfilButton.setBorderPainted(false);
         perfilButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         perfilButton.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        perfilButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                perfilButtonActionPerformed(evt);
+            }
+        });
 
         apostasButton.setBackground(new java.awt.Color(0, 0, 0));
         apostasButton.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -109,6 +130,36 @@ public class DepositarLevantar extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
+        Saldo.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        Saldo.setForeground(new java.awt.Color(255, 255, 255));
+        Saldo.setText("Saldo:");
+
+        Levantar.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        Levantar.setForeground(new java.awt.Color(255, 255, 255));
+        Levantar.setText("Levantar");
+
+        Levantar1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        Levantar1.setForeground(new java.awt.Color(255, 255, 255));
+        Levantar1.setText("Depositar");
+
+        levSpinner.setModel(new javax.swing.SpinnerNumberModel(20, 20, 1000, 1));
+
+        levButton.setText("Levantar");
+        levButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                levButtonActionPerformed(evt);
+            }
+        });
+
+        depSpinner.setModel(new javax.swing.SpinnerNumberModel(1, 1, 1000, 1));
+
+        depButton.setText("Depositar");
+        depButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                depButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -116,12 +167,39 @@ public class DepositarLevantar extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(Levantar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Saldo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Levantar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(levSpinner)
+                    .addComponent(depSpinner, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(depButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(levButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(476, Short.MAX_VALUE))
+                .addGap(35, 35, 35)
+                .addComponent(Saldo)
+                .addGap(41, 41, 41)
+                .addComponent(Levantar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(levButton)
+                    .addComponent(levSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(57, 57, 57)
+                .addComponent(Levantar1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(depSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(depButton))
+                .addContainerGap(189, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -132,7 +210,7 @@ public class DepositarLevantar extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -149,6 +227,42 @@ public class DepositarLevantar extends javax.swing.JFrame {
         home.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_eventosButtonActionPerformed
+
+    private void levButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_levButtonActionPerformed
+        int quantia = (Integer) levSpinner.getValue();
+        if (apostador.getESSCoins()-quantia < 5){
+            ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
+            JOptionPane.showMessageDialog(null, "O seu saldo atual não lhe permite levantar essa quantia. Tem de manter um saldo mínimo de 5 ESScoins!", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
+        }
+        else{
+            this.betess.getApostadores().get(apostador.getID()).levantarESSCoins(quantia);
+            try {
+                betess.save(betess);
+            } catch (IOException ex) {
+                Logger.getLogger(DepositarLevantar.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/check.png"));
+            JOptionPane.showMessageDialog(null, "Quantia depositada na sua conta bancária!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, icon);
+        }
+    }//GEN-LAST:event_levButtonActionPerformed
+
+    private void depButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depButtonActionPerformed
+        int quantia = (Integer) depSpinner.getValue();
+        this.betess.getApostadores().get(apostador.getID()).adicionarESSCoins(quantia);
+        try {
+                betess.save(betess);
+            } catch (IOException ex) {
+                Logger.getLogger(DepositarLevantar.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/check.png"));
+        JOptionPane.showMessageDialog(null, "Quantia adicionada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, icon);
+    }//GEN-LAST:event_depButtonActionPerformed
+
+    private void perfilButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_perfilButtonActionPerformed
+        Login login = new Login(this.betess);
+        login.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_perfilButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -180,10 +294,17 @@ public class DepositarLevantar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Levantar;
+    private javax.swing.JLabel Levantar1;
+    private javax.swing.JLabel Saldo;
     private javax.swing.JButton apostasButton;
+    private javax.swing.JButton depButton;
+    private javax.swing.JSpinner depSpinner;
     private javax.swing.JButton eventosButton;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JButton levButton;
+    private javax.swing.JSpinner levSpinner;
     private javax.swing.JLabel logo;
     private javax.swing.JButton perfilButton;
     // End of variables declaration//GEN-END:variables

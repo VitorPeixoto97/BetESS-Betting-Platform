@@ -83,6 +83,7 @@ public class Apostador implements Serializable{
     
     public void efetuarAposta(Aposta a){
         apostas.add(a);
+        levantarESSCoins(a.getValor());
     }
     
     public void removerAposta(Aposta a){
@@ -94,8 +95,6 @@ public class Apostador implements Serializable{
         this.esscoins+=coins;
     }
     public void levantarESSCoins(double coins){
-        if(this.esscoins-coins > 5.00){
-            this.esscoins-=coins;
-        }
+        this.esscoins-=coins;
     }
 }
