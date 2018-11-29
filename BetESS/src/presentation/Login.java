@@ -220,10 +220,12 @@ public class Login extends javax.swing.JFrame {
                         home.setVisible(true);
                         this.setVisible(false);
                     }
+                    else{
+                        ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
+                        JOptionPane.showMessageDialog(null, "Dados incorretos!", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
+                    }
                 }   
             }
-            ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
-            JOptionPane.showMessageDialog(null, "Dados incorretos!", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
         }
     }//GEN-LAST:event_loginButtonActionPerformed
 

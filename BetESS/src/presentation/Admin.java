@@ -278,8 +278,7 @@ public class Admin extends javax.swing.JFrame {
         }
         for(Evento e : evAtiv){
             if(e.getEquipaC().getNome().equals(equipas[0]) && e.getEquipaF().getNome().equals(equipas[1])){
-                this.betess.getEventos().get(e.getID()).setEstado(false);
-                this.betess.getEventos().get(e.getID()).setResultado(resField.getText());
+                this.betess.finalizarEvento(e, resField.getText());
                 String[] venc = split(resField.getText(),"-");
                 int res;
                 if(Integer.parseInt(venc[0])>Integer.parseInt(venc[1])){ //equipa casa venceu

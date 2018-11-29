@@ -52,15 +52,16 @@ public class BetESS implements Serializable{
         eventos.put(e.getID(), e);
     }
     
-    public void removerEvento(Evento e){
-        eventos.remove(e.getID(), e);
+    public void finalizarEvento(Evento e, String res){
+        getEventos().get(e.getID()).setEstado(false);
+        getEventos().get(e.getID()).setResultado(res);
     }
     
     public void registarApostador(Apostador a){
         apostadores.put(a.getID(),a);
     }
     
-    public void addEquipa(Equipa e){
+    public void adicionarEquipa(Equipa e){
         equipas.put(e.getID(),e);
     }
     

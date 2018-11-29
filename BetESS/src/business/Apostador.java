@@ -67,10 +67,7 @@ public class Apostador implements Serializable{
     public ArrayList<Aposta> getApostas(){
         return this.apostas;
     }
-    
-    /*public void setID(int id){ fazer set de id parece manhoso
-        this.id=id;
-    }*/
+  
     public void setEmail(String email){
         this.email=email;
     }
@@ -87,8 +84,10 @@ public class Apostador implements Serializable{
     }
     
     public void removerAposta(Aposta a){
-        if(a.getEvento().getEstado())
+        if(a.getEvento().getEstado()){
             apostas.remove(a);
+            this.esscoins+=a.getValor();
+        }
     }
     
     public void adicionarESSCoins(double coins){
