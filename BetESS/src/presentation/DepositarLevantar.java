@@ -7,6 +7,8 @@ package presentation;
 
 import business.Apostador;
 import business.BetESS;
+import java.awt.Color;
+import java.awt.Image;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -32,6 +34,18 @@ public class DepositarLevantar extends javax.swing.JFrame {
         this.betess = b;
         this.apostador = a;
         this.Saldo.setText("Saldo atual: " + apostador.getESSCoins() + " ESScoins");
+        
+        ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/logo2.png"));
+        Image image = icon.getImage();
+        Image newimg = image.getScaledInstance(155, 35, java.awt.Image.SCALE_SMOOTH);
+        icon = new ImageIcon(newimg);
+        logo.setIcon(icon);
+        
+        perfilButton.setBackground(new Color(0,0,0));
+        perfilButton.setContentAreaFilled(false);
+        perfilButton.setOpaque(true);
+        perfilButton.setText(this.apostador.getNome());
+        
     }
 
     /**

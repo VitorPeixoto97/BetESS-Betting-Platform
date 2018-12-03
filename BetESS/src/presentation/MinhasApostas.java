@@ -8,6 +8,7 @@ package presentation;
 import business.Aposta;
 import business.Apostador;
 import business.BetESS;
+import java.awt.Color;
 import java.awt.Image;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -42,6 +43,10 @@ public class MinhasApostas extends javax.swing.JFrame {
         Image newimg = image.getScaledInstance(155, 35, java.awt.Image.SCALE_SMOOTH);
         icon = new ImageIcon(newimg);
         this.logo.setIcon(icon);
+        perfilButton.setBackground(new Color(0,0,0));
+        perfilButton.setContentAreaFilled(false);
+        perfilButton.setOpaque(true);
+        perfilButton.setText(this.apostador.getNome());
     }
     
     public void preencherTabela(){
