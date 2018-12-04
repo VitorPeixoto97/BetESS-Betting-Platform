@@ -3,3 +3,8 @@
 **/.DS_Store
 
 betess.svg
+*.obj
+*.properties
+*.html
+*.jar
+*.jnlp
