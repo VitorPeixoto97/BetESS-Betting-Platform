@@ -3,17 +3,19 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/danie/Documents/NetBeansProjects/PatternedBetESS/src/business/Data.java</file>
-            <file>file:/C:/Users/danie/Documents/NetBeansProjects/PatternedBetESS/src/presentation/Admin.java</file>
-            <file>file:/C:/Users/danie/Documents/NetBeansProjects/PatternedBetESS/src/business/BetESS.java</file>
-            <file>file:/C:/Users/danie/Documents/NetBeansProjects/PatternedBetESS/src/business/FutebolFactory.java</file>
-            <file>file:/C:/Users/danie/Documents/NetBeansProjects/PatternedBetESS/src/presentation/DepositarLevantar.java</file>
-            <file>file:/C:/Users/danie/Documents/NetBeansProjects/PatternedBetESS/src/business/FutebolEvento.java</file>
-            <file>file:/C:/Users/danie/Documents/NetBeansProjects/PatternedBetESS/src/patternedbetess/Main.java</file>
-            <file>file:/C:/Users/danie/Documents/NetBeansProjects/PatternedBetESS/src/presentation/Login.java</file>
-            <file>file:/C:/Users/danie/Documents/NetBeansProjects/PatternedBetESS/src/business/Evento.java</file>
-            <file>file:/C:/Users/danie/Documents/NetBeansProjects/PatternedBetESS/src/business/Factory.java</file>
-            <file>file:/C:/Users/danie/Documents/NetBeansProjects/PatternedBetESS/src/presentation/Home.java</file>
+            <file>file:/C:/Users/danie/Documents/GitHub/BetESS-Betting-Platform/PatternedBetESS/src/business/Factory.java</file>
+            <file>file:/C:/Users/danie/Documents/GitHub/BetESS-Betting-Platform/PatternedBetESS/src/presentation/Home.java</file>
+            <file>file:/C:/Users/danie/Documents/GitHub/BetESS-Betting-Platform/PatternedBetESS/src/business/FutebolEvento.java</file>
+            <file>file:/C:/Users/danie/Documents/GitHub/BetESS-Betting-Platform/PatternedBetESS/src/business/Equipa.java</file>
+            <file>file:/C:/Users/danie/Documents/GitHub/BetESS-Betting-Platform/PatternedBetESS/src/business/ConcreteFactory.java</file>
+            <file>file:/C:/Users/danie/Documents/GitHub/BetESS-Betting-Platform/PatternedBetESS/src/business/Data.java</file>
+            <file>file:/C:/Users/danie/Documents/GitHub/BetESS-Betting-Platform/PatternedBetESS/src/business/BetESS.java</file>
+            <file>file:/C:/Users/danie/Documents/GitHub/BetESS-Betting-Platform/PatternedBetESS/src/business/Evento.java</file>
+            <file>file:/C:/Users/danie/Documents/GitHub/BetESS-Betting-Platform/PatternedBetESS/src/business/Aposta.java</file>
+            <file>file:/C:/Users/danie/Documents/GitHub/BetESS-Betting-Platform/PatternedBetESS/src/business/Apostador.java</file>
+            <file>file:/C:/Users/danie/Documents/GitHub/BetESS-Betting-Platform/PatternedBetESS/src/presentation/MinhasApostas.java</file>
+            <file>file:/C:/Users/danie/Documents/GitHub/BetESS-Betting-Platform/PatternedBetESS/src/presentation/Admin.java</file>
+            <file>file:/C:/Users/danie/Documents/GitHub/BetESS-Betting-Platform/PatternedBetESS/src/presentation/DepositarLevantar.java</file>
         </group>
     </open-files>
 </project-private>

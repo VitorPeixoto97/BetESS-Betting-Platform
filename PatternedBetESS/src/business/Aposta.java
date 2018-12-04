@@ -16,11 +16,6 @@ public class Aposta implements Serializable{
     private int valor;
     private Evento evento;
     
-    public Aposta(){
-        this.resultado=0;
-        this.valor=0;
-        this.evento = new Evento();
-    }
     
     public Aposta(int resultado, int valor, Evento evento){
         this.resultado = resultado;

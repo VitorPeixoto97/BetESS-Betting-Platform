@@ -10,6 +10,7 @@ import business.Aposta;
 import business.Apostador;
 import business.BetESS;
 import business.Evento;
+import business.FutebolEvento;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.Insets;
@@ -29,7 +30,7 @@ public class Home extends javax.swing.JFrame {
 
     BetESS betess;
     Apostador apostador;
-    ArrayList<Evento> jogos = new ArrayList<Evento>(); 
+    ArrayList<FutebolEvento> jogos = new ArrayList<>(); 
         
     
     /** Creates new form Home */
@@ -37,8 +38,8 @@ public class Home extends javax.swing.JFrame {
         initComponents();
         this.betess = b;
         for(Evento e : this.betess.getData().getEventos().values()){
-            if(e.getEstado()){
-                jogos.add(e);
+            if("FutebolEvento".equals(e.getClass().getSimpleName()) && e.getEstado()){
+                jogos.add((FutebolEvento) e);
             }
         }
         this.apostador = a;

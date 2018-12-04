@@ -11,4 +11,9 @@ package business;
  */
 public interface Factory {
     
+    public Evento newEvento(int id, double oddV, double oddE, double oddD, boolean estado, String resultado, Equipa c, Equipa f);
+    
+    public Evento newEvento(Evento fe);
+    
+    public Equipa newEquipa(int id, String equipa0, boolean estado, String simbolo);
 }

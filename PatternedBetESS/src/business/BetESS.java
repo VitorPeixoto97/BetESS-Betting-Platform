@@ -1,19 +1,9 @@
 package business;
 
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.PrintWriter;
-import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Observable;
-import java.util.Set;
 
-/**
- *
- * @author vitorpeixoto
- */
+
 public class BetESS {
     private Data data;
     

@@ -4,6 +4,7 @@ import business.Apostador;
 import business.BetESS;
 import business.Equipa;
 import business.Evento;
+import business.FutebolEvento;
 import java.awt.Image;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -39,12 +40,12 @@ public class Admin extends javax.swing.JFrame {
     
     private void fillCombos(){
         ArrayList<Equipa> eqDisp = new ArrayList<>(betess.getData().getEquipas().values());
-        ArrayList<Evento> evAtiv = new ArrayList<>();
+        ArrayList<FutebolEvento> evAtiv = new ArrayList<>();
         for(Evento e : this.betess.getData().getEventos().values()){
-            if(e.getEstado())
-                evAtiv.add(e);
+            if("FutebolEvento".equals(e.getClass().getSimpleName()) && e.getEstado())
+                evAtiv.add((FutebolEvento) e);
         }
-        for(Evento e : evAtiv){
+        for(FutebolEvento e : evAtiv){
             eqDisp.remove(e.getEquipaC());
             eqDisp.remove(e.getEquipaF());
             this.eventCombo.addItem(e.getEquipaC().getNome() + " X " + e.getEquipaF().getNome());
@@ -271,12 +272,12 @@ public class Admin extends javax.swing.JFrame {
 
     private void fecharButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fecharButtonActionPerformed
         String[] equipas = split(this.eventCombo.getSelectedItem().toString(), " X ");
-        ArrayList<Evento> evAtiv = new ArrayList<>();
+        ArrayList<FutebolEvento> evAtiv = new ArrayList<>();
         for(Evento e : this.betess.getEventos().values()){
             if(e.getEstado())
-                evAtiv.add(e);
+                evAtiv.add((FutebolEvento) e);
         }
-        for(Evento e : evAtiv){
+        for(FutebolEvento e : evAtiv){
             if(e.getEquipaC().getNome().equals(equipas[0]) && e.getEquipaF().getNome().equals(equipas[1])){
                 this.betess.finalizarEvento(e, resField.getText());
                 String[] venc = split(resField.getText(),"-");
@@ -339,7 +340,7 @@ public class Admin extends javax.swing.JFrame {
         }
         else{
             int id = this.betess.getData().getEventos().size()+1;
-            Evento evento = new Evento(id, Double.parseDouble(oddV.getText()) , Double.parseDouble(oddE.getText()), Double.parseDouble(oddD.getText()), true, " ", casa, fora); 
+            Evento evento = new FutebolEvento(id, Double.parseDouble(oddV.getText()) , Double.parseDouble(oddE.getText()), Double.parseDouble(oddD.getText()), true, " ", casa, fora); 
             this.betess.criarEvento(evento);
             try {
                 betess.save(betess);

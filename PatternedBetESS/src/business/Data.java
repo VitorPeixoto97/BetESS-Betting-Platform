@@ -23,6 +23,7 @@ public class Data implements Serializable{
     private HashMap<Integer,Apostador> apostadores;
     private HashMap<Integer,Evento> eventos;
     private HashMap<Integer,Equipa> equipas;
+    private Factory factory;
     
     public Data(){
         this.apostadores = new HashMap<>();
@@ -96,26 +97,26 @@ public class Data implements Serializable{
     }
     
     public void povoarEquipas(){
-        Equipa belenenses   = new Equipa(0, "Belenenses SAD", true, "resources/equipas/belenenses.png");
-        Equipa boavista     = new Equipa(1, "Boavista FC", true, "resources/equipas/boavista.png");
-        Equipa tondela      = new Equipa(2, "CD Tondela", true, "resources/equipas/tondela.png");
-        Equipa aves         = new Equipa(3, "CD Aves", true, "resources/equipas/aves.png");
-        Equipa feirense     = new Equipa(4, "CD Feirense", true, "resources/equipas/feirense.png");
-        Equipa nacional     = new Equipa(5, "CD Nacional", true, "resources/equipas/nacional.png");
-        Equipa maritimo     = new Equipa(6, "CS Marítimo", true, "resources/equipas/maritimo.png");
-        Equipa porto        = new Equipa(7, "FC Porto", true, "resources/equipas/porto.png");
-        Equipa chaves       = new Equipa(8, "GD Chaves", true, "resources/equipas/chaves.png");
-        Equipa moreirense   = new Equipa(9, "Moreirense FC", true, "resources/equipas/moreirense.png");
-        Equipa portimonense = new Equipa(10, "Portimonense SC", true, "resources/equipas/portimonense.png");
-        Equipa rioave       = new Equipa(11, "Rio Ave FC", true, "resources/equipas/rioave.png");
-        Equipa santaclara   = new Equipa(12, "Santa Clara", true, "resources/equipas/santaclara.png");
-        Equipa benfica      = new Equipa(13, "SL Benfica", true, "resources/equipas/benfica.png");
-        Equipa braga        = new Equipa(14, "SC Braga", true, "resources/equipas/braga.png");
-        Equipa sporting     = new Equipa(15, "Sporting CP", true, "resources/equipas/sporting.png");
-        Equipa setubal      = new Equipa(16, "Vitória FC", true, "resources/equipas/setubal.png");
-        Equipa guimaraes    = new Equipa(17, "Vitória SC", true, "resources/equipas/guimaraes.png");
-        Equipa famalicao    = new Equipa(18, "FC Famalicão", false, "resources/equipas/famalicao.png");
-        Equipa pacos        = new Equipa(19, "FC Paços de Ferreira", false, "resources/equipas/pacos.png");
+        Equipa belenenses   = factory.newEquipa(0, "Belenenses SAD", true, "resources/equipas/belenenses.png");
+        Equipa boavista     = factory.newEquipa(1, "Boavista FC", true, "resources/equipas/boavista.png");
+        Equipa tondela      = factory.newEquipa(2, "CD Tondela", true, "resources/equipas/tondela.png");
+        Equipa aves         = factory.newEquipa(3, "CD Aves", true, "resources/equipas/aves.png");
+        Equipa feirense     = factory.newEquipa(4, "CD Feirense", true, "resources/equipas/feirense.png");
+        Equipa nacional     = factory.newEquipa(5, "CD Nacional", true, "resources/equipas/nacional.png");
+        Equipa maritimo     = factory.newEquipa(6, "CS Marítimo", true, "resources/equipas/maritimo.png");
+        Equipa porto        = factory.newEquipa(7, "FC Porto", true, "resources/equipas/porto.png");
+        Equipa chaves       = factory.newEquipa(8, "GD Chaves", true, "resources/equipas/chaves.png");
+        Equipa moreirense   = factory.newEquipa(9, "Moreirense FC", true, "resources/equipas/moreirense.png");
+        Equipa portimonense = factory.newEquipa(10, "Portimonense SC", true, "resources/equipas/portimonense.png");
+        Equipa rioave       = factory.newEquipa(11, "Rio Ave FC", true, "resources/equipas/rioave.png");
+        Equipa santaclara   = factory.newEquipa(12, "Santa Clara", true, "resources/equipas/santaclara.png");
+        Equipa benfica      = factory.newEquipa(13, "SL Benfica", true, "resources/equipas/benfica.png");
+        Equipa braga        = factory.newEquipa(14, "SC Braga", true, "resources/equipas/braga.png");
+        Equipa sporting     = factory.newEquipa(15, "Sporting CP", true, "resources/equipas/sporting.png");
+        Equipa setubal      = factory.newEquipa(16, "Vitória FC", true, "resources/equipas/setubal.png");
+        Equipa guimaraes    = factory.newEquipa(17, "Vitória SC", true, "resources/equipas/guimaraes.png");
+        Equipa famalicao    = factory.newEquipa(18, "FC Famalicão", false, "resources/equipas/famalicao.png");
+        Equipa pacos        = factory.newEquipa(19, "FC Paços de Ferreira", false, "resources/equipas/pacos.png");
         
         equipas.put(0,belenenses);
         equipas.put(1,boavista);
@@ -156,15 +157,15 @@ public class Data implements Serializable{
         this.apostadores.put(h.getID(),h);
     }
     public void povoarEventos(){
-        Evento j1j1 = new Evento(0, 1.11, 3.94, 8.71, true, "", equipas.get(7), equipas.get(9));
-        Evento j1j2 = new Evento(1, 2.10, 2.81, 4.50, true, "", equipas.get(12), equipas.get(16));
-        Evento j1j3 = new Evento(2, 1.72, 3.81, 7.21, true, "", equipas.get(17), equipas.get(10));
-        Evento j1j4 = new Evento(3, 1.68, 3.54, 7.02, true, "", equipas.get(0), equipas.get(1));
-        Evento j1j5 = new Evento(9, 2.13, 2.81, 2.50, true, "", equipas.get(14), equipas.get(13));
-        Evento j1j6 = new Evento(5, 1.42, 3.36, 3.47, true, "", equipas.get(8), equipas.get(6));
-        Evento j1j7 = new Evento(6, 1.09, 3.81, 8.98, true, "", equipas.get(15), equipas.get(5));
-        Evento j1j8 = new Evento(7, 1.87, 2.98, 3.49, true, "", equipas.get(3), equipas.get(2));
-        Evento j1j9 = new Evento(8, 1.42, 3.25, 3.99, true, "", equipas.get(11), equipas.get(4));
+        Evento j1j1 = factory.newEvento(0, 1.11, 3.94, 8.71, true, "", equipas.get(7), equipas.get(9));
+        Evento j1j2 = factory.newEvento(1, 2.10, 2.81, 4.50, true, "", equipas.get(12), equipas.get(16));
+        Evento j1j3 = factory.newEvento(2, 1.72, 3.81, 7.21, true, "", equipas.get(17), equipas.get(10));
+        Evento j1j4 = factory.newEvento(3, 1.68, 3.54, 7.02, true, "", equipas.get(0), equipas.get(1));
+        Evento j1j5 = factory.newEvento(9, 2.13, 2.81, 2.50, true, "", equipas.get(14), equipas.get(13));
+        Evento j1j6 = factory.newEvento(5, 1.42, 3.36, 3.47, true, "", equipas.get(8), equipas.get(6));
+        Evento j1j7 = factory.newEvento(6, 1.09, 3.81, 8.98, true, "", equipas.get(15), equipas.get(5));
+        Evento j1j8 = factory.newEvento(7, 1.87, 2.98, 3.49, true, "", equipas.get(3), equipas.get(2));
+        Evento j1j9 = factory.newEvento(8, 1.42, 3.25, 3.99, true, "", equipas.get(11), equipas.get(4));
         
         this.eventos.put(j1j1.getID(),j1j1);
         this.eventos.put(j1j2.getID(),j1j2);
