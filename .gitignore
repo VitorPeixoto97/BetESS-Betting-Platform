@@ -8,3 +8,4 @@ betess.svg
 *.html
 *.jar
 *.jnlp
+/PatternedBetESS (overcomplicated)/nbproject/private/

@@ -5,6 +5,7 @@
  */
 package business;
 
+import static com.sun.javafx.util.Utils.split;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -23,7 +24,6 @@ public class Data implements Serializable{
     private HashMap<Integer,Apostador> apostadores;
     private HashMap<Integer,Evento> eventos;
     private HashMap<Integer,Equipa> equipas;
-    private Factory factory;
     
     public Data(){
         this.apostadores = new HashMap<>();
@@ -58,8 +58,23 @@ public class Data implements Serializable{
     }
     
     public void endEvento(Evento e, String res){
+        String[] venc = split(res,"-");
+                int result;
+                if(Integer.parseInt(venc[0])>Integer.parseInt(venc[1])){ //equipa casa venceu
+                    System.out.println("equipa casa venceu\n");
+                    result = 1;
+                }
+                else if(Integer.parseInt(venc[1])>Integer.parseInt(venc[0])){ //equipa fora venceu
+                    System.out.println("equipa fora venceu\n");
+                    result = 3;
+                }
+                else{ //empate
+                    System.out.println("empate\n");
+                    result = 2;
+                }
         this.eventos.get(e.getID()).setEstado(false);
-        this.eventos.get(e.getID()).setResultado(res);
+        this.eventos.get(e.getID()).setResultado(result);
+        e.notifyApostadores();
     }
     
     public void newApostador(Apostador a){
@@ -75,11 +90,15 @@ public class Data implements Serializable{
             equipas.get(e.getID()).setEstado(false);
     }
     
-    public void save(Data data){
+    public void removeAposta(Aposta a, int apostadorID){
+        apostadores.get(apostadorID).removerAposta(a);
+    }
+    
+    public void save(){
         try {
             FileOutputStream fileOut = new FileOutputStream("betessData.obj");
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
-            out.writeObject(data);
+            out.writeObject(this);
             out.flush();
             out.close();
             fileOut.close();
@@ -97,26 +116,26 @@ public class Data implements Serializable{
     }
     
     public void povoarEquipas(){
-        Equipa belenenses   = factory.newEquipa(0, "Belenenses SAD", true, "resources/equipas/belenenses.png");
-        Equipa boavista     = factory.newEquipa(1, "Boavista FC", true, "resources/equipas/boavista.png");
-        Equipa tondela      = factory.newEquipa(2, "CD Tondela", true, "resources/equipas/tondela.png");
-        Equipa aves         = factory.newEquipa(3, "CD Aves", true, "resources/equipas/aves.png");
-        Equipa feirense     = factory.newEquipa(4, "CD Feirense", true, "resources/equipas/feirense.png");
-        Equipa nacional     = factory.newEquipa(5, "CD Nacional", true, "resources/equipas/nacional.png");
-        Equipa maritimo     = factory.newEquipa(6, "CS Marítimo", true, "resources/equipas/maritimo.png");
-        Equipa porto        = factory.newEquipa(7, "FC Porto", true, "resources/equipas/porto.png");
-        Equipa chaves       = factory.newEquipa(8, "GD Chaves", true, "resources/equipas/chaves.png");
-        Equipa moreirense   = factory.newEquipa(9, "Moreirense FC", true, "resources/equipas/moreirense.png");
-        Equipa portimonense = factory.newEquipa(10, "Portimonense SC", true, "resources/equipas/portimonense.png");
-        Equipa rioave       = factory.newEquipa(11, "Rio Ave FC", true, "resources/equipas/rioave.png");
-        Equipa santaclara   = factory.newEquipa(12, "Santa Clara", true, "resources/equipas/santaclara.png");
-        Equipa benfica      = factory.newEquipa(13, "SL Benfica", true, "resources/equipas/benfica.png");
-        Equipa braga        = factory.newEquipa(14, "SC Braga", true, "resources/equipas/braga.png");
-        Equipa sporting     = factory.newEquipa(15, "Sporting CP", true, "resources/equipas/sporting.png");
-        Equipa setubal      = factory.newEquipa(16, "Vitória FC", true, "resources/equipas/setubal.png");
-        Equipa guimaraes    = factory.newEquipa(17, "Vitória SC", true, "resources/equipas/guimaraes.png");
-        Equipa famalicao    = factory.newEquipa(18, "FC Famalicão", false, "resources/equipas/famalicao.png");
-        Equipa pacos        = factory.newEquipa(19, "FC Paços de Ferreira", false, "resources/equipas/pacos.png");
+        Equipa belenenses   = new Equipa(0, "Belenenses SAD", true, "resources/equipas/belenenses.png");
+        Equipa boavista     = new Equipa(1, "Boavista FC", true, "resources/equipas/boavista.png");
+        Equipa tondela      = new Equipa(2, "CD Tondela", true, "resources/equipas/tondela.png");
+        Equipa aves         = new Equipa(3, "CD Aves", true, "resources/equipas/aves.png");
+        Equipa feirense     = new Equipa(4, "CD Feirense", true, "resources/equipas/feirense.png");
+        Equipa nacional     = new Equipa(5, "CD Nacional", true, "resources/equipas/nacional.png");
+        Equipa maritimo     = new Equipa(6, "CS Marítimo", true, "resources/equipas/maritimo.png");
+        Equipa porto        = new Equipa(7, "FC Porto", true, "resources/equipas/porto.png");
+        Equipa chaves       = new Equipa(8, "GD Chaves", true, "resources/equipas/chaves.png");
+        Equipa moreirense   = new Equipa(9, "Moreirense FC", true, "resources/equipas/moreirense.png");
+        Equipa portimonense = new Equipa(10, "Portimonense SC", true, "resources/equipas/portimonense.png");
+        Equipa rioave       = new Equipa(11, "Rio Ave FC", true, "resources/equipas/rioave.png");
+        Equipa santaclara   = new Equipa(12, "Santa Clara", true, "resources/equipas/santaclara.png");
+        Equipa benfica      = new Equipa(13, "SL Benfica", true, "resources/equipas/benfica.png");
+        Equipa braga        = new Equipa(14, "SC Braga", true, "resources/equipas/braga.png");
+        Equipa sporting     = new Equipa(15, "Sporting CP", true, "resources/equipas/sporting.png");
+        Equipa setubal      = new Equipa(16, "Vitória FC", true, "resources/equipas/setubal.png");
+        Equipa guimaraes    = new Equipa(17, "Vitória SC", true, "resources/equipas/guimaraes.png");
+        Equipa famalicao    = new Equipa(18, "FC Famalicão", false, "resources/equipas/famalicao.png");
+        Equipa pacos        = new Equipa(19, "FC Paços de Ferreira", false, "resources/equipas/pacos.png");
         
         equipas.put(0,belenenses);
         equipas.put(1,boavista);
@@ -138,14 +157,14 @@ public class Data implements Serializable{
         equipas.put(17,guimaraes);
     }
     public void povoarApostadores(){
-        Apostador a = new Apostador(0, "joaonunes@gmail.com", "joaonunes", "João Nunes", 25.00, new ArrayList<>());
-        Apostador b = new Apostador(1, "saramoreno@gmail.com", "saramoreno", "Sara Moreno", 5.00, new ArrayList<>());
-        Apostador c = new Apostador(2, "pauloprazeres@gmail.com", "pauloprazeres", "Paulo Prazeres", 2.92, new ArrayList<>());
-        Apostador d = new Apostador(3, "albanojeronimo@gmail.com", "albanojeronimo", "Albano Jerónimo", 89.20, new ArrayList<>());
-        Apostador e = new Apostador(4, "nunolopes@gmail.com", "nunolopes", "Nuno Lopes", 102.36, new ArrayList<>());
-        Apostador f = new Apostador(5, "marcomartins@gmail.com", "marcomartins", "Marco Martins", 19.76, new ArrayList<>());
-        Apostador g = new Apostador(6, "miguelguilherme@gmail.com", "miguelguilherme", "Miguel Guilherme", 15.58, new ArrayList<>());
-        Apostador h = new Apostador(7, "beatrizbatarda@gmail.com", "beatrizbatarda", "Beatriz Batarda", 5.01, new ArrayList<>());
+        Apostador a = new Apostador(0, "joaonunes@gmail.com", "joaonunes", "João Nunes", 25.00, new HashMap<>());
+        Apostador b = new Apostador(1, "saramoreno@gmail.com", "saramoreno", "Sara Moreno", 5.00, new HashMap<>());
+        Apostador c = new Apostador(2, "pauloprazeres@gmail.com", "pauloprazeres", "Paulo Prazeres", 2.92, new HashMap<>());
+        Apostador d = new Apostador(3, "albanojeronimo@gmail.com", "albanojeronimo", "Albano Jerónimo", 89.20, new HashMap<>());
+        Apostador e = new Apostador(4, "nunolopes@gmail.com", "nunolopes", "Nuno Lopes", 102.36, new HashMap<>());
+        Apostador f = new Apostador(5, "marcomartins@gmail.com", "marcomartins", "Marco Martins", 19.76, new HashMap<>());
+        Apostador g = new Apostador(6, "miguelguilherme@gmail.com", "miguelguilherme", "Miguel Guilherme", 15.58, new HashMap<>());
+        Apostador h = new Apostador(7, "beatrizbatarda@gmail.com", "beatrizbatarda", "Beatriz Batarda", 5.01, new HashMap<>());
         
         this.apostadores.put(a.getID(),a);
         this.apostadores.put(b.getID(),b);
@@ -157,15 +176,15 @@ public class Data implements Serializable{
         this.apostadores.put(h.getID(),h);
     }
     public void povoarEventos(){
-        Evento j1j1 = factory.newEvento(0, 1.11, 3.94, 8.71, true, "", equipas.get(7), equipas.get(9));
-        Evento j1j2 = factory.newEvento(1, 2.10, 2.81, 4.50, true, "", equipas.get(12), equipas.get(16));
-        Evento j1j3 = factory.newEvento(2, 1.72, 3.81, 7.21, true, "", equipas.get(17), equipas.get(10));
-        Evento j1j4 = factory.newEvento(3, 1.68, 3.54, 7.02, true, "", equipas.get(0), equipas.get(1));
-        Evento j1j5 = factory.newEvento(9, 2.13, 2.81, 2.50, true, "", equipas.get(14), equipas.get(13));
-        Evento j1j6 = factory.newEvento(5, 1.42, 3.36, 3.47, true, "", equipas.get(8), equipas.get(6));
-        Evento j1j7 = factory.newEvento(6, 1.09, 3.81, 8.98, true, "", equipas.get(15), equipas.get(5));
-        Evento j1j8 = factory.newEvento(7, 1.87, 2.98, 3.49, true, "", equipas.get(3), equipas.get(2));
-        Evento j1j9 = factory.newEvento(8, 1.42, 3.25, 3.99, true, "", equipas.get(11), equipas.get(4));
+        Evento j1j1 = new Evento(0, 1.11d, 3.94d, 8.71d, true, 0, equipas.get(7), equipas.get(9), new HashMap<>());
+        Evento j1j2 = new Evento(1, 2.10, 2.81, 4.50, true, 0, equipas.get(12), equipas.get(16), new HashMap<>());
+        Evento j1j3 = new Evento(2, 1.72, 3.81, 7.21, true, 0, equipas.get(17), equipas.get(10), new HashMap<>());
+        Evento j1j4 = new Evento(3, 1.68, 3.54, 7.02, true, 0, equipas.get(0), equipas.get(1), new HashMap<>());
+        Evento j1j5 = new Evento(9, 2.13, 2.81, 2.50, true, 0, equipas.get(14), equipas.get(13), new HashMap<>());
+        Evento j1j6 = new Evento(5, 1.42, 3.36, 3.47, true, 0, equipas.get(8), equipas.get(6), new HashMap<>());
+        Evento j1j7 = new Evento(6, 1.09, 3.81, 8.98, true, 0, equipas.get(15), equipas.get(5), new HashMap<>());
+        Evento j1j8 = new Evento(7, 1.87, 2.98, 3.49, true, 0, equipas.get(3), equipas.get(2), new HashMap<>());
+        Evento j1j9 = new Evento(8, 1.42, 3.25, 3.99, true, 0, equipas.get(11), equipas.get(4), new HashMap<>());
         
         this.eventos.put(j1j1.getID(),j1j1);
         this.eventos.put(j1j2.getID(),j1j2);
@@ -179,7 +198,7 @@ public class Data implements Serializable{
 
     }
     
-    public Data load() throws FileNotFoundException, IOException{
+    public static Data load() throws FileNotFoundException, IOException{
         Data d = new Data();
         try{
             FileInputStream fileIn = new FileInputStream("betessData.obj");
@@ -190,11 +209,15 @@ public class Data implements Serializable{
             System.out.println("Data loaded!\n");
         //} catch (IOException i) {
         //    i.printStackTrace();
-        } catch (ClassNotFoundException c) {
-            System.out.println("Class not found\n");
-            c.printStackTrace();
+        } catch (Exception e) {
+            d.povoar();
+            d.save();
         }
         
         return d;
+    }
+
+    void addAposta(Aposta a, int apostadorID) {
+        this.apostadores.get(apostadorID).efetuarAposta(a);
     }
 }

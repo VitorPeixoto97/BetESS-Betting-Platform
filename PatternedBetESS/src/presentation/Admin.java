@@ -4,12 +4,9 @@ import business.Apostador;
 import business.BetESS;
 import business.Equipa;
 import business.Evento;
-import business.FutebolEvento;
 import java.awt.Image;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.HashMap;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -39,13 +36,13 @@ public class Admin extends javax.swing.JFrame {
     }
     
     private void fillCombos(){
-        ArrayList<Equipa> eqDisp = new ArrayList<>(betess.getData().getEquipas().values());
-        ArrayList<FutebolEvento> evAtiv = new ArrayList<>();
-        for(Evento e : this.betess.getData().getEventos().values()){
-            if("FutebolEvento".equals(e.getClass().getSimpleName()) && e.getEstado())
-                evAtiv.add((FutebolEvento) e);
+        ArrayList<Equipa> eqDisp = new ArrayList<>(betess.getEquipas().values());
+        ArrayList<Evento> evAtiv = new ArrayList<>();
+        for(Evento e : this.betess.getEventos().values()){
+            if(e.getEstado())
+                evAtiv.add(e);
         }
-        for(FutebolEvento e : evAtiv){
+        for(Evento e : evAtiv){
             eqDisp.remove(e.getEquipaC());
             eqDisp.remove(e.getEquipaF());
             this.eventCombo.addItem(e.getEquipaC().getNome() + " X " + e.getEquipaF().getNome());
@@ -272,52 +269,20 @@ public class Admin extends javax.swing.JFrame {
 
     private void fecharButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fecharButtonActionPerformed
         String[] equipas = split(this.eventCombo.getSelectedItem().toString(), " X ");
-        ArrayList<FutebolEvento> evAtiv = new ArrayList<>();
+        ArrayList<Evento> evAtiv = new ArrayList<>();
         for(Evento e : this.betess.getEventos().values()){
             if(e.getEstado())
-                evAtiv.add((FutebolEvento) e);
+                evAtiv.add(e);
         }
-        for(FutebolEvento e : evAtiv){
+        for(Evento e : evAtiv){
             if(e.getEquipaC().getNome().equals(equipas[0]) && e.getEquipaF().getNome().equals(equipas[1])){
                 this.betess.finalizarEvento(e, resField.getText());
-                String[] venc = split(resField.getText(),"-");
-                int res;
-                if(Integer.parseInt(venc[0])>Integer.parseInt(venc[1])){ //equipa casa venceu
-                    System.out.println("equipa casa venceu\n");
-                    res = 1;
-                }
-                else if(Integer.parseInt(venc[1])>Integer.parseInt(venc[0])){ //equipa fora venceu
-                    System.out.println("equipa fora venceu\n");
-                    res = 3;
-                }
-                else{ //empate
-                    System.out.println("empate\n");
-                    res = 2;
-                }
-                for(Apostador a : this.betess.getApostadores().values()){
-                    ArrayList<Aposta> toRem = new ArrayList<>();
-                    for(Aposta ap : a.getApostas()){
-                        if(ap.getEvento().equals(e)){
-                            if(ap.getResultado()==res){
-                                if(res==1) a.adicionarESSCoins(e.getOddV()*ap.getValor());
-                                else if(res==2) a.adicionarESSCoins(e.getOddE()*ap.getValor());
-                                else if(res==3) a.adicionarESSCoins(e.getOddD()*ap.getValor());
-                                toRem.add(ap);
-                                ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/check.png"));
-                                JOptionPane.showMessageDialog(null, "Evento encerrado e prémios distribuídos.", "Sucesso", JOptionPane.INFORMATION_MESSAGE, icon);
-                                //a.getApostas().remove(ap);
-                            }
-                        }
-                    }
-                    a.getApostas().removeAll(toRem);
-                }  
+                
+                ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/check.png"));
+                JOptionPane.showMessageDialog(null, "Evento encerrado e prémios distribuídos.", "Sucesso", JOptionPane.INFORMATION_MESSAGE, icon); 
             }
         }
-        try {
-            betess.save(betess);
-        } catch (IOException ex) {
-            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            betess.save();
         Admin admin = new Admin(this.betess);
         admin.setVisible(true);
         this.setVisible(false);
@@ -326,7 +291,7 @@ public class Admin extends javax.swing.JFrame {
     private void criarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criarButtonActionPerformed
         Equipa casa = new Equipa();
         Equipa fora = new Equipa();
-        for(Equipa a : this.betess.getData().getEquipas().values()){
+        for(Equipa a : this.betess.getEquipas().values()){
             if(a.getNome().equals(casaCombo.getSelectedItem().toString())){
                 casa = a;
             }
@@ -339,14 +304,10 @@ public class Admin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "As equipas selecionadas são a mesma. Por favor escolha outra.", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
         }
         else{
-            int id = this.betess.getData().getEventos().size()+1;
-            Evento evento = new FutebolEvento(id, Double.parseDouble(oddV.getText()) , Double.parseDouble(oddE.getText()), Double.parseDouble(oddD.getText()), true, " ", casa, fora); 
+            int id = this.betess.getEventos().size()+1;
+            Evento evento = new Evento(id, Double.parseDouble(oddV.getText()) , Double.parseDouble(oddE.getText()), Double.parseDouble(oddD.getText()), true, 0, casa, fora, new HashMap<>()); 
             this.betess.criarEvento(evento);
-            try {
-                betess.save(betess);
-            } catch (IOException ex) {
-                Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            betess.save();
             ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/check.png"));
             JOptionPane.showMessageDialog(null, "Evento criado e disponível.", "Sucesso", JOptionPane.INFORMATION_MESSAGE, icon);
         }
@@ -366,15 +327,11 @@ public class Admin extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Admin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Admin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Admin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Admin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        
         //</editor-fold>
 
        

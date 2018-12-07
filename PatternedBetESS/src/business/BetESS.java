@@ -1,11 +1,16 @@
 package business;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.HashMap;
+import java.util.Map;
 
-
-public class BetESS {
-    private Data data;
+/**
+ *
+ * @author vitorpeixoto
+ */
+public class BetESS implements Serializable{
+    Data data;
     
     public BetESS() {
         this.data = new Data();
@@ -14,59 +19,60 @@ public class BetESS {
         this.data = new Data(a,ev,eq);
     }
     public BetESS(Data d) {
-        this.data = new Data(d);
-    }
-    
-    public Data getData(){
-        return this.data;
-    }
-    
-    public HashMap<Integer, Apostador> getApostadores(){
-        return this.data.getApostadores();
-    }
-    
-    public HashMap<Integer, Evento> getEventos(){
-        return this.data.getEventos();
-    }
-        
-    public HashMap<Integer, Equipa> getEquipas(){
-        return this.data.getEquipas();
+        this.data = d;
     }
     
     public void criarEvento(Evento e){
-        this.data.addEvento(e);
+        data.addEvento(e);
     }
     
     public void finalizarEvento(Evento e, String res){
-        this.data.endEvento(e,res);
+        data.endEvento(e, res);
     }
     
     public void registarApostador(Apostador a){
-        this.data.newApostador(a);
+        data.newApostador(a);
     }
     
     public void adicionarEquipa(Equipa e){
-        this.data.addEquipa(e);
+        data.addEquipa(e);
     }
     
     public void removerEquipa(Equipa e){
-        this.data.removeEquipa(e);
+        data.removeEquipa(e);
     }
     
-    public void save(BetESS betess) throws IOException {
-        this.data.save(betess.getData());
-    }
-    /**
-     * Este método está incompleto. É só para testar o serializable.
-     */
-    public BetESS povoar(){
-        this.data.povoar();
-        return this;
+    public Map<Integer, Evento> getEventos(){
+        return data.getEventos();
     }
     
-    public BetESS load() throws IOException {
-        BetESS b = new BetESS(this.data.load());
-        
+    public Map<Integer, Equipa> getEquipas(){
+        return data.getEquipas();
+    }
+    
+    public Map<Integer, Apostador> getApostadores(){
+        return data.getApostadores();
+    }
+    
+    public void efetuarAposta(Aposta a, int apostadorID) {
+        data.addAposta(a,apostadorID);
+    }
+    
+    public void cancelarAposta(Aposta a, int apostadorID){
+        data.removeAposta(a,apostadorID);
+    }
+    
+    public Apostador getApostador(int id){
+        return data.getApostadores().get(id);
+    }
+    
+    public void save() {
+        this.data.save();
+    }    
+    
+    public static BetESS load() throws IOException, ClassNotFoundException {
+        Data d = Data.load();
+        BetESS b = new BetESS(d);
         return b;
     }
 }

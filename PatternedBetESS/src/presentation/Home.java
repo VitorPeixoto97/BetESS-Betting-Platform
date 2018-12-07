@@ -10,15 +10,9 @@ import business.Aposta;
 import business.Apostador;
 import business.BetESS;
 import business.Evento;
-import business.FutebolEvento;
 import java.awt.Color;
 import java.awt.Image;
-import java.awt.Insets;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -30,16 +24,16 @@ public class Home extends javax.swing.JFrame {
 
     BetESS betess;
     Apostador apostador;
-    ArrayList<FutebolEvento> jogos = new ArrayList<>(); 
+    ArrayList<Evento> jogos = new ArrayList<Evento>(); 
         
     
     /** Creates new form Home */
     public Home(BetESS b, Apostador a) {
         initComponents();
         this.betess = b;
-        for(Evento e : this.betess.getData().getEventos().values()){
-            if("FutebolEvento".equals(e.getClass().getSimpleName()) && e.getEstado()){
-                jogos.add((FutebolEvento) e);
+        for(Evento e : this.betess.getEventos().values()){
+            if(e.getEstado()){
+                jogos.add(e);
             }
         }
         this.apostador = a;
@@ -1348,33 +1342,29 @@ public class Home extends javax.swing.JFrame {
 
     private void j1BetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j1BetActionPerformed
         int res = 0;
+        double odd = 0.0d;
+        Evento e = jogos.get(0);
+        int eventoID = e.getID();
         int val = (Integer) j1Spin.getValue();
-        if(j1V.isSelected()) res = 1;
-        else if (j1E.isSelected()) res = 2;
-        else if (j1D.isSelected()) res = 3;
+        if(j1V.isSelected()) { res = 1; odd = e.getOddV(); }
+        else if (j1E.isSelected()) { res = 2; odd = e.getOddE(); }
+        else if (j1D.isSelected()) { res = 3; odd = e.getOddV(); }
         else {
             ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/warning.png"));
             JOptionPane.showMessageDialog(null, "Selecione um resultado!", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
         }
         if(res!=0){
-            boolean apostou = false;
-            for (Aposta a : this.betess.getApostadores().get(apostador.getID()).getApostas())
-                if(a.getEvento().getID() == jogos.get(0).getID())
-                    apostou = true;
+            boolean apostou = this.betess.getApostadores().get(apostador.getID()).getApostas().containsKey(eventoID);
             if(apostou) {
                 ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
                 JOptionPane.showMessageDialog(null, "Já registou uma aposta neste evento.", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
             }
             else if(this.apostador.getESSCoins()-val >= 0){
-                Aposta a = new Aposta(res, val, jogos.get(0));
-                this.betess.getApostadores().get(apostador.getID()).efetuarAposta(a);
+                Aposta a = new Aposta(eventoID, res, val, odd);
+                this.betess.efetuarAposta(a, apostador.getID());
                 ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/check.png"));
                 JOptionPane.showMessageDialog(null, "Aposta registada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, icon);
-                try {
-                    betess.save(this.betess);
-                } catch (IOException ex) {
-                    Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                betess.save();
                 Home home = new Home(this.betess, apostador);
                 home.setVisible(true);
                 this.setVisible(false);
@@ -1388,33 +1378,29 @@ public class Home extends javax.swing.JFrame {
 
     private void j3BetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j3BetActionPerformed
         int res = 0;
+        double odd = 0.0d;
+        Evento e = jogos.get(2);
+        int eventoID = e.getID();
         int val = (Integer) j3Spin.getValue();
-        if(j3V.isSelected()) res = 1;
-        else if (j3E.isSelected()) res = 2;
-        else if (j3D.isSelected()) res = 3;
+        if(j3V.isSelected()) { res = 1; odd = e.getOddV(); }
+        else if (j3E.isSelected()) { res = 2; odd = e.getOddE(); }
+        else if (j3D.isSelected()) { res = 3; odd = e.getOddV(); }
         else {
             ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/warning.png"));
             JOptionPane.showMessageDialog(null, "Selecione um resultado!", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
         }
         if(res!=0){
-            boolean apostou = false;
-            for (Aposta a : this.betess.getApostadores().get(apostador.getID()).getApostas())
-                if(a.getEvento().getID() == jogos.get(2).getID())
-                    apostou = true;
+            boolean apostou = this.betess.getApostadores().get(apostador.getID()).getApostas().containsKey(eventoID);
             if(apostou) {
                 ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
                 JOptionPane.showMessageDialog(null, "Já registou uma aposta neste evento.", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
             }
             else if(this.apostador.getESSCoins()-val >= 0){
-                Aposta a = new Aposta(res, val, jogos.get(2));
-                this.betess.getApostadores().get(apostador.getID()).efetuarAposta(a);
+                Aposta a = new Aposta(eventoID, res, val, odd);
+                this.betess.efetuarAposta(a, apostador.getID());
                 ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/check.png"));
                 JOptionPane.showMessageDialog(null, "Aposta registada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, icon);
-                try {
-                    betess.save(this.betess);
-                } catch (IOException ex) {
-                    Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                betess.save();
                 Home home = new Home(this.betess, apostador);
                 home.setVisible(true);
                 this.setVisible(false);
@@ -1428,33 +1414,29 @@ public class Home extends javax.swing.JFrame {
 
     private void j2BetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j2BetActionPerformed
         int res = 0;
+        double odd = 0.0d;
+        Evento e = jogos.get(1);
+        int eventoID = e.getID();
         int val = (Integer) j2Spin.getValue();
-        if(j2V.isSelected()) res = 1;
-        else if (j2E.isSelected()) res = 2;
-        else if (j2D.isSelected()) res = 3;
+        if(j2V.isSelected()) { res = 1; odd = e.getOddV(); }
+        else if (j2E.isSelected()) { res = 2; odd = e.getOddE(); }
+        else if (j2D.isSelected()) { res = 3; odd = e.getOddV(); }
         else {
             ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/warning.png"));
             JOptionPane.showMessageDialog(null, "Selecione um resultado!", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
         }
         if(res!=0){
-            boolean apostou = false;
-            for (Aposta a : this.betess.getApostadores().get(apostador.getID()).getApostas())
-                if(a.getEvento().getID() == jogos.get(1).getID())
-                    apostou = true;
+            boolean apostou = this.betess.getApostadores().get(apostador.getID()).getApostas().containsKey(eventoID);
             if(apostou) {
                 ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
                 JOptionPane.showMessageDialog(null, "Já registou uma aposta neste evento.", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
             }
             else if(this.apostador.getESSCoins()-val >= 0){
-                Aposta a = new Aposta(res, val, jogos.get(1));
-                this.betess.getApostadores().get(apostador.getID()).efetuarAposta(a);
+                Aposta a = new Aposta(eventoID, res, val, odd);
+                this.betess.efetuarAposta(a, apostador.getID());
                 ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/check.png"));
                 JOptionPane.showMessageDialog(null, "Aposta registada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, icon);
-                try {
-                    betess.save(this.betess);
-                } catch (IOException ex) {
-                    Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                betess.save();
                 Home home = new Home(this.betess, apostador);
                 home.setVisible(true);
                 this.setVisible(false);
@@ -1468,33 +1450,29 @@ public class Home extends javax.swing.JFrame {
 
     private void j4BetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j4BetActionPerformed
         int res = 0;
+        double odd = 0.0d;
+        Evento e = jogos.get(3);
+        int eventoID = e.getID();
         int val = (Integer) j4Spin.getValue();
-        if(j4V.isSelected()) res = 1;
-        else if (j4E.isSelected()) res = 2;
-        else if (j4D.isSelected()) res = 3;
+        if(j4V.isSelected()) { res = 1; odd = e.getOddV(); }
+        else if (j4E.isSelected()) { res = 2; odd = e.getOddE(); }
+        else if (j4D.isSelected()) { res = 3; odd = e.getOddV(); }
         else {
             ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/warning.png"));
             JOptionPane.showMessageDialog(null, "Selecione um resultado!", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
         }
         if(res!=0){
-            boolean apostou = false;
-            for (Aposta a : this.betess.getApostadores().get(apostador.getID()).getApostas())
-                if(a.getEvento().getID() == jogos.get(3).getID())
-                    apostou = true;
+            boolean apostou = this.betess.getApostadores().get(apostador.getID()).getApostas().containsKey(eventoID);
             if(apostou) {
                 ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
                 JOptionPane.showMessageDialog(null, "Já registou uma aposta neste evento.", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
             }
             else if(this.apostador.getESSCoins()-val >= 0){
-                Aposta a = new Aposta(res, val, jogos.get(3));
-                this.betess.getApostadores().get(apostador.getID()).efetuarAposta(a);
+                Aposta a = new Aposta(eventoID, res, val, odd);
+                this.betess.efetuarAposta(a, apostador.getID());
                 ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/check.png"));
                 JOptionPane.showMessageDialog(null, "Aposta registada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, icon);
-                try {
-                    betess.save(this.betess);
-                } catch (IOException ex) {
-                    Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                betess.save();
                 Home home = new Home(this.betess, apostador);
                 home.setVisible(true);
                 this.setVisible(false);
@@ -1508,33 +1486,29 @@ public class Home extends javax.swing.JFrame {
 
     private void j5BetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j5BetActionPerformed
         int res = 0;
+        double odd = 0.0d;
+        Evento e = jogos.get(4);
+        int eventoID = e.getID();
         int val = (Integer) j5Spin.getValue();
-        if(j5V.isSelected()) res = 1;
-        else if (j5E.isSelected()) res = 2;
-        else if (j5D.isSelected()) res = 3;
+        if(j5V.isSelected()) { res = 1; odd = e.getOddV(); }
+        else if (j5E.isSelected()) { res = 2; odd = e.getOddE(); }
+        else if (j5D.isSelected()) { res = 3; odd = e.getOddV(); }
         else {
             ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/warning.png"));
             JOptionPane.showMessageDialog(null, "Selecione um resultado!", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
         }
         if(res!=0){
-            boolean apostou = false;
-            for (Aposta a : this.betess.getApostadores().get(apostador.getID()).getApostas())
-                if(a.getEvento().getID() == jogos.get(4).getID())
-                    apostou = true;
+            boolean apostou = this.betess.getApostadores().get(apostador.getID()).getApostas().containsKey(eventoID);
             if(apostou) {
                 ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
                 JOptionPane.showMessageDialog(null, "Já registou uma aposta neste evento.", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
             }
             else if(this.apostador.getESSCoins()-val >= 0){
-                Aposta a = new Aposta(res, val, jogos.get(4));
-                this.betess.getApostadores().get(apostador.getID()).efetuarAposta(a);
+                Aposta a = new Aposta(eventoID, res, val, odd);
+                this.betess.efetuarAposta(a, apostador.getID());
                 ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/check.png"));
                 JOptionPane.showMessageDialog(null, "Aposta registada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, icon);
-                try {
-                    betess.save(this.betess);
-                } catch (IOException ex) {
-                    Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                betess.save();
                 Home home = new Home(this.betess, apostador);
                 home.setVisible(true);
                 this.setVisible(false);
@@ -1548,33 +1522,29 @@ public class Home extends javax.swing.JFrame {
 
     private void j6BetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j6BetActionPerformed
         int res = 0;
+        double odd = 0.0d;
+        Evento e = jogos.get(5);
+        int eventoID = e.getID();
         int val = (Integer) j6Spin.getValue();
-        if(j6V.isSelected()) res = 1;
-        else if (j6E.isSelected()) res = 2;
-        else if (j6D.isSelected()) res = 3;
+        if(j6V.isSelected()) { res = 1; odd = e.getOddV(); }
+        else if (j6E.isSelected()) { res = 2; odd = e.getOddE(); }
+        else if (j6D.isSelected()) { res = 3; odd = e.getOddV(); }
         else {
             ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/warning.png"));
             JOptionPane.showMessageDialog(null, "Selecione um resultado!", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
         }
         if(res!=0){
-            boolean apostou = false;
-            for (Aposta a : this.betess.getApostadores().get(apostador.getID()).getApostas())
-                if(a.getEvento().getID() == jogos.get(5).getID())
-                    apostou = true;
+            boolean apostou = this.betess.getApostadores().get(apostador.getID()).getApostas().containsKey(eventoID);
             if(apostou) {
                 ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
                 JOptionPane.showMessageDialog(null, "Já registou uma aposta neste evento.", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
             }
             else if(this.apostador.getESSCoins()-val >= 0){
-                Aposta a = new Aposta(res, val, jogos.get(5));
-                this.betess.getApostadores().get(apostador.getID()).efetuarAposta(a);
+                Aposta a = new Aposta(eventoID, res, val, odd);
+                this.betess.efetuarAposta(a, apostador.getID());
                 ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/check.png"));
                 JOptionPane.showMessageDialog(null, "Aposta registada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, icon);
-                try {
-                    betess.save(this.betess);
-                } catch (IOException ex) {
-                    Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                betess.save();
                 Home home = new Home(this.betess, apostador);
                 home.setVisible(true);
                 this.setVisible(false);
@@ -1588,33 +1558,29 @@ public class Home extends javax.swing.JFrame {
 
     private void j7BetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j7BetActionPerformed
         int res = 0;
+        double odd = 0.0d;
+        Evento e = jogos.get(6);
+        int eventoID = e.getID();
         int val = (Integer) j7Spin.getValue();
-        if(j7V.isSelected()) res = 1;
-        else if (j7E.isSelected()) res = 2;
-        else if (j7D.isSelected()) res = 3;
+        if(j7V.isSelected()) { res = 1; odd = e.getOddV(); }
+        else if (j7E.isSelected()) { res = 2; odd = e.getOddE(); }
+        else if (j7D.isSelected()) { res = 3; odd = e.getOddV(); }
         else {
             ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/warning.png"));
             JOptionPane.showMessageDialog(null, "Selecione um resultado!", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
         }
         if(res!=0){
-            boolean apostou = false;
-            for (Aposta a : this.betess.getApostadores().get(apostador.getID()).getApostas())
-                if(a.getEvento().getID() == jogos.get(6).getID())
-                    apostou = true;
+            boolean apostou = this.betess.getApostadores().get(apostador.getID()).getApostas().containsKey(eventoID);
             if(apostou) {
                 ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
                 JOptionPane.showMessageDialog(null, "Já registou uma aposta neste evento.", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
             }
             else if(this.apostador.getESSCoins()-val >= 0){
-                Aposta a = new Aposta(res, val, jogos.get(6));
-                this.betess.getApostadores().get(apostador.getID()).efetuarAposta(a);
+                Aposta a = new Aposta(eventoID, res, val, odd);
+                this.betess.efetuarAposta(a, apostador.getID());
                 ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/check.png"));
                 JOptionPane.showMessageDialog(null, "Aposta registada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, icon);
-                try {
-                    betess.save(this.betess);
-                } catch (IOException ex) {
-                    Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                betess.save();
                 Home home = new Home(this.betess, apostador);
                 home.setVisible(true);
                 this.setVisible(false);
@@ -1628,33 +1594,29 @@ public class Home extends javax.swing.JFrame {
 
     private void j8BetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j8BetActionPerformed
         int res = 0;
+        double odd = 0.0d;
+        Evento e = jogos.get(7);
+        int eventoID = e.getID();
         int val = (Integer) j8Spin.getValue();
-        if(j8V.isSelected()) res = 1;
-        else if (j8E.isSelected()) res = 2;
-        else if (j8D.isSelected()) res = 3;
+        if(j8V.isSelected()) { res = 1; odd = e.getOddV(); }
+        else if (j8E.isSelected()) { res = 2; odd = e.getOddE(); }
+        else if (j8D.isSelected()) { res = 3; odd = e.getOddV(); }
         else {
             ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/warning.png"));
             JOptionPane.showMessageDialog(null, "Selecione um resultado!", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
         }
         if(res!=0){
-            boolean apostou = false;
-            for (Aposta a : this.betess.getApostadores().get(apostador.getID()).getApostas())
-                if(a.getEvento().getID() == jogos.get(7).getID())
-                    apostou = true;
+            boolean apostou = this.betess.getApostadores().get(apostador.getID()).getApostas().containsKey(eventoID);
             if(apostou) {
                 ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
                 JOptionPane.showMessageDialog(null, "Já registou uma aposta neste evento.", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
             }
             else if(this.apostador.getESSCoins()-val >= 0){
-                Aposta a = new Aposta(res, val, jogos.get(7));
-                this.betess.getApostadores().get(apostador.getID()).efetuarAposta(a);
+                Aposta a = new Aposta(eventoID, res, val, odd);
+                this.betess.efetuarAposta(a, apostador.getID());
                 ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/check.png"));
                 JOptionPane.showMessageDialog(null, "Aposta registada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, icon);
-                try {
-                    betess.save(this.betess);
-                } catch (IOException ex) {
-                    Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                betess.save();
                 Home home = new Home(this.betess, apostador);
                 home.setVisible(true);
                 this.setVisible(false);
@@ -1668,33 +1630,29 @@ public class Home extends javax.swing.JFrame {
 
     private void j9BetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j9BetActionPerformed
         int res = 0;
+        double odd = 0.0d;
+        Evento e = jogos.get(8);
+        int eventoID = e.getID();
         int val = (Integer) j9Spin.getValue();
-        if(j9V.isSelected()) res = 1;
-        else if (j9E.isSelected()) res = 2;
-        else if (j9D.isSelected()) res = 3;
+        if(j9V.isSelected()) { res = 1; odd = e.getOddV(); }
+        else if (j9E.isSelected()) { res = 2; odd = e.getOddE(); }
+        else if (j9D.isSelected()) { res = 3; odd = e.getOddV(); }
         else {
             ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/warning.png"));
             JOptionPane.showMessageDialog(null, "Selecione um resultado!", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
         }
         if(res!=0){
-            boolean apostou = false;
-            for (Aposta a : this.betess.getApostadores().get(apostador.getID()).getApostas())
-                if(a.getEvento().getID() == jogos.get(8).getID())
-                    apostou = true;
+            boolean apostou = this.betess.getApostadores().get(apostador.getID()).getApostas().containsKey(eventoID);
             if(apostou) {
                 ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
                 JOptionPane.showMessageDialog(null, "Já registou uma aposta neste evento.", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
             }
             else if(this.apostador.getESSCoins()-val >= 0){
-                Aposta a = new Aposta(res, val, jogos.get(8));
-                this.betess.getApostadores().get(apostador.getID()).efetuarAposta(a);
+                Aposta a = new Aposta(eventoID, res, val, odd);
+                this.betess.efetuarAposta(a, apostador.getID());
                 ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/check.png"));
                 JOptionPane.showMessageDialog(null, "Aposta registada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, icon);
-                try {
-                    betess.save(this.betess);
-                } catch (IOException ex) {
-                    Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                betess.save();
                 Home home = new Home(this.betess, apostador);
                 home.setVisible(true);
                 this.setVisible(false);

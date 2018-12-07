@@ -8,10 +8,7 @@ package presentation;
 import business.Aposta;
 import business.Apostador;
 import business.BetESS;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.HashMap;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -239,14 +236,10 @@ public class Registar extends javax.swing.JFrame {
             }
             if(flag){
                 int last_id = this.betess.getApostadores().size()+1;
-                ArrayList<Aposta> apostas = new ArrayList<Aposta>();
+                HashMap<Integer, Aposta> apostas = new HashMap<>();
                 Apostador novo = new Apostador(last_id, email, password, nome, coins, apostas);
                 this.betess.registarApostador(novo);
-                try {
-                    this.betess.save(betess);
-                } catch (IOException ex) {
-                    Logger.getLogger(Registar.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                this.betess.save();
                 ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/check.png"));
                 JOptionPane.showMessageDialog(null, "Registado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, icon);
                 Login login = new Login(this.betess);

@@ -7,7 +7,7 @@ package business;
 
 import java.util.HashMap;
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.Map;
 
 
 /**
@@ -20,7 +20,8 @@ public class Apostador implements Serializable{
     private String password;
     private String nome;
     private double esscoins;
-    private ArrayList<Aposta> apostas;
+    private boolean locked;
+    private Map<Integer, Aposta> apostas;
     
     public Apostador(){
         this.id = 9999;
@@ -28,16 +29,18 @@ public class Apostador implements Serializable{
         this.password = "";
         this.nome = "";
         this.esscoins = 0.0;
-        this.apostas = new ArrayList<>();
+        this.apostas = new HashMap<>();
+        this.locked = false;
     }
     
-    public Apostador(int id, String email, String password, String nome, double esscoins, ArrayList<Aposta> apostas){
+    public Apostador(int id, String email, String password, String nome, double esscoins, Map<Integer, Aposta> apostas){
         this.id = id;
         this.email = email;
         this.password = password;
         this.nome = nome;
         this.esscoins = esscoins;
         this.apostas = apostas;
+        this.locked = false;
     }
     
     public Apostador(Apostador a){
@@ -47,6 +50,7 @@ public class Apostador implements Serializable{
         this.nome = a.getNome();
         this.esscoins = a.getESSCoins();
         this.apostas = a.getApostas();
+        this.locked = a.isLocked();
     }
     
     public int getID(){
@@ -64,10 +68,14 @@ public class Apostador implements Serializable{
     public double getESSCoins(){
         return this.esscoins;
     }
-    public ArrayList<Aposta> getApostas(){
+    public Map<Integer, Aposta> getApostas(){
         return this.apostas;
     }
   
+    public boolean isLocked(){
+        return this.locked;
+    }
+    
     public void setEmail(String email){
         this.email=email;
     }
@@ -79,21 +87,36 @@ public class Apostador implements Serializable{
     }
     
     public void efetuarAposta(Aposta a){
-        apostas.add(a);
+        apostas.put(a.getID(), a);
         levantarESSCoins(a.getValor());
     }
     
-    public void removerAposta(Aposta a){
-        if(a.getEvento().getEstado()){
-            apostas.remove(a);
-            this.esscoins+=a.getValor();
-        }
+    public Aposta getAposta(int id){
+        return this.apostas.get(id);
     }
     
+    public void removerAposta(Aposta a){
+            apostas.remove(a.getID());
+            this.esscoins+=a.getValor();
+    }
+        
     public void adicionarESSCoins(double coins){
         this.esscoins+=coins;
     }
     public void levantarESSCoins(double coins){
         this.esscoins-=coins;
     }
+
+    public void update(int id, int resultado) {
+        
+        if(this.apostas.containsKey(id)){
+           
+           Aposta a = this.apostas.get(id);
+           if(a.getResultado() == resultado){
+               this.esscoins += a.earnings();
+           }
+           this.apostas.remove(id);
+        }    
+    }
+
 }

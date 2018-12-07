@@ -12,31 +12,37 @@ import java.io.Serializable;
  * @author vitorpeixoto
  */
 public class Aposta implements Serializable{
+    private int id;
     private int resultado; //resultado em que o apostador apostou (V/E/D)
     private int valor;
-    private Evento evento;
+    private double odd;
     
-    
-    public Aposta(int resultado, int valor, Evento evento){
+    public Aposta(int id, int resultado, int valor, double odd){
+        this.id = id;
         this.resultado = resultado;
         this.valor= valor;
-        this.evento = evento;
+        this.odd = odd;
     }
     
     public Aposta(Aposta a){
+        this.id = a.getID();
         this.resultado = a.getResultado();
         this.valor = a.getValor();
-        this.evento = a.getEvento();
+        this.odd = a.getOdd();
     }
 
+    public int getID(){
+        return this.id;
+    }
     public int getResultado(){
         return this.resultado;
     }
     public int getValor(){
         return this.valor;
     }
-    public Evento getEvento(){
-        return this.evento;
+    
+    public double getOdd(){
+        return this.odd;
     }
     
     public void setResultado(int resultado){
@@ -45,7 +51,8 @@ public class Aposta implements Serializable{
     public void setValor(int valor){
         this.valor=valor;
     }
-    public void setEvento(Evento evento){
-        this.evento=evento;
+    
+    public double earnings(){
+        return odd * (double) valor;
     }
 }

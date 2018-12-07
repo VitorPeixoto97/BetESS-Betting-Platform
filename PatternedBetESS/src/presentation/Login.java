@@ -9,14 +9,8 @@ import business.Apostador;
 import business.BetESS;
 import java.awt.Color;
 import java.awt.Image;
-import java.io.File;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import static javafx.application.ConditionalFeature.FXML;
-import javafx.fxml.FXML;
-import javafx.scene.image.ImageView;
-import javafx.stage.StageStyle;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 

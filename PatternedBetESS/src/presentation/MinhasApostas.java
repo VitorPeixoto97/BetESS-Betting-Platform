@@ -8,11 +8,10 @@ package presentation;
 import business.Aposta;
 import business.Apostador;
 import business.BetESS;
+import business.Evento;
+import java.awt.Color;
 import java.awt.Image;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
 
@@ -42,31 +41,35 @@ public class MinhasApostas extends javax.swing.JFrame {
         Image newimg = image.getScaledInstance(155, 35, java.awt.Image.SCALE_SMOOTH);
         icon = new ImageIcon(newimg);
         this.logo.setIcon(icon);
+        perfilButton.setBackground(new Color(0,0,0));
+        perfilButton.setContentAreaFilled(false);
+        perfilButton.setOpaque(true);
+        perfilButton.setText(this.apostador.getNome());
     }
     
     public void preencherTabela(){
         String[] colunas = {"ID","Evento", "Resultado", "Valor", "Ganhos"};
-        ArrayList<Aposta> apostas = new ArrayList<Aposta>();
-        for(Aposta ap : apostador.getApostas()){
-            if(ap.getEvento().getEstado())
+        ArrayList<Aposta> apostas = new ArrayList<>();
+        for(Aposta ap : apostador.getApostas().values())
                 apostas.add(ap);
-        }
+        
         Object[][] data = new Object[apostas.size()][5];
         int i=0;
-        String res = "";
+        String res;
         double ganho = 0;
         for (Aposta ap : apostas){
-            data[i][0] = ap.getEvento().getID();
-            data[i][1] = ap.getEvento().getEquipaC().getNome() + " x " + ap.getEvento().getEquipaF().getNome();
+            Evento e = betess.getEventos().get(ap.getID());
+            data[i][0] = ap.getID();
+            data[i][1] = e.getEquipaC().getNome() + " x " + e.getEquipaF().getNome();
             switch (ap.getResultado()) {
                 case 1:
-                    res = ap.getEvento().getEquipaC().getNome();
+                    res = e.getEquipaC().getNome();
                     break;
                 case 2:
                     res = "Empate";
                     break;
                 case 3:
-                    res = ap.getEvento().getEquipaF().getNome();
+                    res = e.getEquipaF().getNome();
                     break;
                 default:
                     res = "ERRO!";
@@ -74,17 +77,7 @@ public class MinhasApostas extends javax.swing.JFrame {
             }
             data[i][2] = res;
             data[i][3] = ap.getValor();
-            
-            if(ap.getResultado()==1){
-                ganho = ap.getValor() * ap.getEvento().getOddV();
-            }
-            else if(ap.getResultado()==2){
-                ganho = ap.getValor() * ap.getEvento().getOddE();
-            }
-            if(ap.getResultado()==3){
-                ganho = ap.getValor() * ap.getEvento().getOddD();
-            }
-            data[i][4] = ganho;
+            data[i][4] = ap.earnings();
             i++;
         }
         model = new DefaultTableModel(data,colunas);
@@ -254,24 +247,21 @@ public class MinhasApostas extends javax.swing.JFrame {
         int value = (Integer) betsTable.getModel().getValueAt(row, 0);
         System.out.println(value);
         
-        Aposta aposta = new Aposta();
+//        Aposta aposta = new Aposta();
+//        
+//        for(Aposta a: this.betess.getApostadores().get(apostador.getID()).getApostas()){
+//            if (a.getEvento().getID() == value) aposta = a;
+//        }
         
-        for(Aposta a: this.betess.getApostadores().get(apostador.getID()).getApostas()){
-            if (a.getEvento().getID() == value) aposta = a;
-        }
+        Aposta a = this.betess.getApostador(apostador.getID()).getAposta(value);
+        if(a != null){
+            this.betess.cancelarAposta(a, apostador.getID());
+            betess.save();
+            MinhasApostas ma = new MinhasApostas(this.betess, apostador);
+            ma.setVisible(true);
+            this.setVisible(false);
+        }        
         
-        this.betess.getApostadores().get(this.apostador.getID()).removerAposta(aposta);
-
-        try {
-            betess.save(betess);
-        } catch (IOException ex) {
-            Logger.getLogger(MinhasApostas.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        
-        MinhasApostas ma = new MinhasApostas(this.betess, apostador);
-        ma.setVisible(true);
-        this.setVisible(false);
     }//GEN-LAST:event_deleteButtonActionPerformed
 
     private void perfilButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_perfilButtonActionPerformed

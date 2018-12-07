@@ -7,9 +7,8 @@ package presentation;
 
 import business.Apostador;
 import business.BetESS;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.awt.Color;
+import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -32,6 +31,18 @@ public class DepositarLevantar extends javax.swing.JFrame {
         this.betess = b;
         this.apostador = a;
         this.Saldo.setText("Saldo atual: " + apostador.getESSCoins() + " ESScoins");
+        
+        ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/logo2.png"));
+        Image image = icon.getImage();
+        Image newimg = image.getScaledInstance(155, 35, java.awt.Image.SCALE_SMOOTH);
+        icon = new ImageIcon(newimg);
+        logo.setIcon(icon);
+        
+        perfilButton.setBackground(new Color(0,0,0));
+        perfilButton.setContentAreaFilled(false);
+        perfilButton.setOpaque(true);
+        perfilButton.setText(this.apostador.getNome());
+        
     }
 
     /**
@@ -235,12 +246,8 @@ public class DepositarLevantar extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "O seu saldo atual não lhe permite levantar essa quantia. Tem de manter um saldo mínimo de 5 ESScoins!", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
         }
         else{
-            this.betess.getData().getApostadores().get(apostador.getID()).levantarESSCoins(quantia);
-            try {
-                betess.save(betess);
-            } catch (IOException ex) {
-                Logger.getLogger(DepositarLevantar.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            this.betess.getApostadores().get(apostador.getID()).levantarESSCoins(quantia);
+            betess.save();
             ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/check.png"));
             JOptionPane.showMessageDialog(null, "Quantia depositada na sua conta bancária!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, icon);
         }
@@ -248,12 +255,8 @@ public class DepositarLevantar extends javax.swing.JFrame {
 
     private void depButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depButtonActionPerformed
         int quantia = (Integer) depSpinner.getValue();
-        this.betess.getData().getApostadores().get(apostador.getID()).adicionarESSCoins(quantia);
-        try {
-                betess.save(betess);
-            } catch (IOException ex) {
-                Logger.getLogger(DepositarLevantar.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        this.betess.getApostadores().get(apostador.getID()).adicionarESSCoins(quantia);
+        betess.save();
         ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/check.png"));
         JOptionPane.showMessageDialog(null, "Quantia adicionada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, icon);
     }//GEN-LAST:event_depButtonActionPerformed
