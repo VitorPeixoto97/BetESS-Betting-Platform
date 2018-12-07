@@ -50,9 +50,10 @@ public class MinhasApostas extends javax.swing.JFrame {
     public void preencherTabela(){
         String[] colunas = {"ID","Evento", "Resultado", "Valor", "Ganhos"};
         ArrayList<Aposta> apostas = new ArrayList<>();
-        for(Aposta ap : apostador.getApostas().values())
+        for(Aposta ap : apostador.getApostas().values()){
+            if(betess.getEventos().get(ap.getID()).getEstado())
                 apostas.add(ap);
-        
+        }
         Object[][] data = new Object[apostas.size()][5];
         int i=0;
         String res;

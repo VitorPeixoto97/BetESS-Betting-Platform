@@ -3,8 +3,11 @@ package business;
 import persistence.Data;
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -23,12 +26,64 @@ public class BetESS implements Serializable{
         this.data = d;
     }
     
-    public void criarEvento(Evento e){
-        data.addEvento(e);
+    public void criarEvento(String equipaC, String equipaF, Double oddV, Double oddE, Double oddD){
+        Equipa casa = new Equipa();
+        Equipa fora = new Equipa();
+        for(Equipa a : this.data.getEquipas().values()){
+            if(a.getNome().equals(equipaC)) casa = a;
+            else if(a.getNome().equals(equipaF)) fora = a;
+        }
+        if(equipaC.equals(equipaF)){
+            ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
+            JOptionPane.showMessageDialog(null, "As equipas selecionadas são a mesma. Por favor escolha outra.", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
+        }
+        else{
+            int id = this.data.getEventos().size()+1;
+            Evento evento = new Evento(id, oddV , oddE, oddD, true, 0, casa, fora, new HashMap<>()); 
+            data.addEvento(evento);
+            this.save();
+            ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/check.png"));
+            JOptionPane.showMessageDialog(null, "Evento criado e disponível.", "Sucesso", JOptionPane.INFORMATION_MESSAGE, icon);
+        }
+        
+        
+        
+        
     }
     
-    public void finalizarEvento(Evento e, String res){
-        data.endEvento(e, res);
+    public void fecharEvento(String evento, String resultado){
+        String[] equipas = evento.split(" X ");
+        ArrayList<Evento> evAtiv = new ArrayList<>();
+        for(Evento e : this.getEventos().values()){
+            if(e.getEstado())
+                evAtiv.add(e);
+        }
+        for(Evento e : evAtiv){
+            if(e.getEquipaC().getNome().equals(equipas[0]) && e.getEquipaF().getNome().equals(equipas[1])){
+                
+                String[] venc = resultado.split("-");
+                int res;
+                if(Integer.parseInt(venc[0])>Integer.parseInt(venc[1])){ //equipa casa venceu
+                    System.out.println("equipa casa venceu\n");
+                    res = 1;
+                }
+                else if(Integer.parseInt(venc[1])>Integer.parseInt(venc[0])){ //equipa fora venceu
+                    System.out.println("equipa fora venceu\n");
+                    res = 3;
+                }
+                else{ //empate
+                    System.out.println("empate\n");
+                    res = 2;
+                }
+                for(Apostador a : this.getApostadores().values()){
+                    for(Aposta ap : a.getApostas().values()){
+                        this.data.endEvento(a,ap,e,res);
+                    }
+                }
+            }
+        }
+        this.save();
+ 
     }
     
     public void registarApostador(Apostador a){

@@ -60,24 +60,21 @@ public class Data implements Serializable{
         this.eventos.put(e.getID(), e);
     }
     
-    public void endEvento(Evento e, String res){
-        String[] venc = split(res,"-");
-                int result;
-                if(Integer.parseInt(venc[0])>Integer.parseInt(venc[1])){ //equipa casa venceu
-                    System.out.println("equipa casa venceu\n");
-                    result = 1;
-                }
-                else if(Integer.parseInt(venc[1])>Integer.parseInt(venc[0])){ //equipa fora venceu
-                    System.out.println("equipa fora venceu\n");
-                    result = 3;
-                }
-                else{ //empate
-                    System.out.println("empate\n");
-                    result = 2;
-                }
+    public void endEvento(Apostador a, Aposta ap, Evento e, int res){
+        this.distribuiPremios(a,ap,e,res);
         this.eventos.get(e.getID()).setEstado(false);
-        this.eventos.get(e.getID()).setResultado(result);
+        this.eventos.get(e.getID()).setResultado(res);
         e.notifyApostadores();
+    }
+    
+    public void distribuiPremios(Apostador a, Aposta ap, Evento e, int res){
+        if(this.eventos.get(ap.getID()).equals(e)){
+            if(ap.getResultado()==res){
+                if(res==1)      a.adicionarESSCoins(e.getOddV()*ap.getValor());
+                else if(res==2) a.adicionarESSCoins(e.getOddE()*ap.getValor());
+                else if(res==3) a.adicionarESSCoins(e.getOddD()*ap.getValor());
+            }
+        }
     }
     
     public void newApostador(Apostador a){
@@ -158,8 +155,8 @@ public class Data implements Serializable{
         equipas.put(15,sporting);
         equipas.put(16,setubal);
         equipas.put(17,guimaraes);
-        equipas.put(18,famalicao);
-        equipas.put(19,pacos);
+        //equipas.put(18,famalicao);
+        //equipas.put(19,pacos);
     }
     public void povoarApostadores(){
         Apostador a = new Apostador(0, "joaonunes@gmail.com", "joaonunes", "João Nunes", 25.00, new HashMap<>());

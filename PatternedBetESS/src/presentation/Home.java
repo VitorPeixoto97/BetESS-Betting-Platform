@@ -1348,7 +1348,7 @@ public class Home extends javax.swing.JFrame {
         int val = (Integer) j1Spin.getValue();
         if(j1V.isSelected()) { res = 1; odd = e.getOddV(); }
         else if (j1E.isSelected()) { res = 2; odd = e.getOddE(); }
-        else if (j1D.isSelected()) { res = 3; odd = e.getOddV(); }
+        else if (j1D.isSelected()) { res = 3; odd = e.getOddD(); }
         else {
             ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/warning.png"));
             JOptionPane.showMessageDialog(null, "Selecione um resultado!", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
@@ -1384,7 +1384,7 @@ public class Home extends javax.swing.JFrame {
         int val = (Integer) j3Spin.getValue();
         if(j3V.isSelected()) { res = 1; odd = e.getOddV(); }
         else if (j3E.isSelected()) { res = 2; odd = e.getOddE(); }
-        else if (j3D.isSelected()) { res = 3; odd = e.getOddV(); }
+        else if (j3D.isSelected()) { res = 3; odd = e.getOddD(); }
         else {
             ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/warning.png"));
             JOptionPane.showMessageDialog(null, "Selecione um resultado!", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
@@ -1420,7 +1420,7 @@ public class Home extends javax.swing.JFrame {
         int val = (Integer) j2Spin.getValue();
         if(j2V.isSelected()) { res = 1; odd = e.getOddV(); }
         else if (j2E.isSelected()) { res = 2; odd = e.getOddE(); }
-        else if (j2D.isSelected()) { res = 3; odd = e.getOddV(); }
+        else if (j2D.isSelected()) { res = 3; odd = e.getOddD(); }
         else {
             ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/warning.png"));
             JOptionPane.showMessageDialog(null, "Selecione um resultado!", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
@@ -1456,7 +1456,7 @@ public class Home extends javax.swing.JFrame {
         int val = (Integer) j4Spin.getValue();
         if(j4V.isSelected()) { res = 1; odd = e.getOddV(); }
         else if (j4E.isSelected()) { res = 2; odd = e.getOddE(); }
-        else if (j4D.isSelected()) { res = 3; odd = e.getOddV(); }
+        else if (j4D.isSelected()) { res = 3; odd = e.getOddD(); }
         else {
             ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/warning.png"));
             JOptionPane.showMessageDialog(null, "Selecione um resultado!", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
@@ -1492,7 +1492,7 @@ public class Home extends javax.swing.JFrame {
         int val = (Integer) j5Spin.getValue();
         if(j5V.isSelected()) { res = 1; odd = e.getOddV(); }
         else if (j5E.isSelected()) { res = 2; odd = e.getOddE(); }
-        else if (j5D.isSelected()) { res = 3; odd = e.getOddV(); }
+        else if (j5D.isSelected()) { res = 3; odd = e.getOddD(); }
         else {
             ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/warning.png"));
             JOptionPane.showMessageDialog(null, "Selecione um resultado!", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
@@ -1528,7 +1528,7 @@ public class Home extends javax.swing.JFrame {
         int val = (Integer) j6Spin.getValue();
         if(j6V.isSelected()) { res = 1; odd = e.getOddV(); }
         else if (j6E.isSelected()) { res = 2; odd = e.getOddE(); }
-        else if (j6D.isSelected()) { res = 3; odd = e.getOddV(); }
+        else if (j6D.isSelected()) { res = 3; odd = e.getOddD(); }
         else {
             ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/warning.png"));
             JOptionPane.showMessageDialog(null, "Selecione um resultado!", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
@@ -1564,7 +1564,7 @@ public class Home extends javax.swing.JFrame {
         int val = (Integer) j7Spin.getValue();
         if(j7V.isSelected()) { res = 1; odd = e.getOddV(); }
         else if (j7E.isSelected()) { res = 2; odd = e.getOddE(); }
-        else if (j7D.isSelected()) { res = 3; odd = e.getOddV(); }
+        else if (j7D.isSelected()) { res = 3; odd = e.getOddD(); }
         else {
             ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/warning.png"));
             JOptionPane.showMessageDialog(null, "Selecione um resultado!", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
@@ -1600,7 +1600,7 @@ public class Home extends javax.swing.JFrame {
         int val = (Integer) j8Spin.getValue();
         if(j8V.isSelected()) { res = 1; odd = e.getOddV(); }
         else if (j8E.isSelected()) { res = 2; odd = e.getOddE(); }
-        else if (j8D.isSelected()) { res = 3; odd = e.getOddV(); }
+        else if (j8D.isSelected()) { res = 3; odd = e.getOddD(); }
         else {
             ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/warning.png"));
             JOptionPane.showMessageDialog(null, "Selecione um resultado!", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
@@ -1636,7 +1636,7 @@ public class Home extends javax.swing.JFrame {
         int val = (Integer) j9Spin.getValue();
         if(j9V.isSelected()) { res = 1; odd = e.getOddV(); }
         else if (j9E.isSelected()) { res = 2; odd = e.getOddE(); }
-        else if (j9D.isSelected()) { res = 3; odd = e.getOddV(); }
+        else if (j9D.isSelected()) { res = 3; odd = e.getOddD(); }
         else {
             ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/warning.png"));
             JOptionPane.showMessageDialog(null, "Selecione um resultado!", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);

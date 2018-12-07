@@ -268,49 +268,23 @@ public class Admin extends javax.swing.JFrame {
     }//GEN-LAST:event_perfilButtonActionPerformed
 
     private void fecharButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fecharButtonActionPerformed
-        String[] equipas = split(this.eventCombo.getSelectedItem().toString(), " X ");
-        ArrayList<Evento> evAtiv = new ArrayList<>();
-        for(Evento e : this.betess.getEventos().values()){
-            if(e.getEstado())
-                evAtiv.add(e);
-        }
-        for(Evento e : evAtiv){
-            if(e.getEquipaC().getNome().equals(equipas[0]) && e.getEquipaF().getNome().equals(equipas[1])){
-                this.betess.finalizarEvento(e, resField.getText());
-                
-                ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/check.png"));
-                JOptionPane.showMessageDialog(null, "Evento encerrado e prémios distribuídos.", "Sucesso", JOptionPane.INFORMATION_MESSAGE, icon); 
-            }
-        }
-            betess.save();
+        
+        betess.fecharEvento(this.eventCombo.getSelectedItem().toString(), resField.getText());
+        
+        ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/check.png"));
+        JOptionPane.showMessageDialog(null, "Evento encerrado e ganhos distribuídos.", "Sucesso", JOptionPane.INFORMATION_MESSAGE, icon);
+        
         Admin admin = new Admin(this.betess);
         admin.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_fecharButtonActionPerformed
 
     private void criarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criarButtonActionPerformed
-        Equipa casa = new Equipa();
-        Equipa fora = new Equipa();
-        for(Equipa a : this.betess.getEquipas().values()){
-            if(a.getNome().equals(casaCombo.getSelectedItem().toString())){
-                casa = a;
-            }
-            else if(a.getNome().equals(foraCombo.getSelectedItem().toString())){
-                fora = a;
-            }
-        }
-        if(casaCombo.getSelectedItem().toString().equals(foraCombo.getSelectedItem().toString())){
-            ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
-            JOptionPane.showMessageDialog(null, "As equipas selecionadas são a mesma. Por favor escolha outra.", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
-        }
-        else{
-            int id = this.betess.getEventos().size()+1;
-            Evento evento = new Evento(id, Double.parseDouble(oddV.getText()) , Double.parseDouble(oddE.getText()), Double.parseDouble(oddD.getText()), true, 0, casa, fora, new HashMap<>()); 
-            this.betess.criarEvento(evento);
-            betess.save();
-            ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/check.png"));
-            JOptionPane.showMessageDialog(null, "Evento criado e disponível.", "Sucesso", JOptionPane.INFORMATION_MESSAGE, icon);
-        }
+        this.betess.criarEvento(casaCombo.getSelectedItem().toString(),
+                                foraCombo.getSelectedItem().toString(),
+                                Double.parseDouble(oddV.getText()),
+                                Double.parseDouble(oddE.getText()),
+                                Double.parseDouble(oddD.getText()));
 
     }//GEN-LAST:event_criarButtonActionPerformed
 
