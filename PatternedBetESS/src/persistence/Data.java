@@ -3,8 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package business;
+package persistence;
 
+import business.Aposta;
+import business.Apostador;
+import business.Equipa;
+import business.Evento;
 import static com.sun.javafx.util.Utils.split;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -13,7 +17,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -155,6 +158,8 @@ public class Data implements Serializable{
         equipas.put(15,sporting);
         equipas.put(16,setubal);
         equipas.put(17,guimaraes);
+        equipas.put(18,famalicao);
+        equipas.put(19,pacos);
     }
     public void povoarApostadores(){
         Apostador a = new Apostador(0, "joaonunes@gmail.com", "joaonunes", "João Nunes", 25.00, new HashMap<>());
@@ -217,7 +222,7 @@ public class Data implements Serializable{
         return d;
     }
 
-    void addAposta(Aposta a, int apostadorID) {
+    public void addAposta(Aposta a, int apostadorID) {
         this.apostadores.get(apostadorID).efetuarAposta(a);
     }
 }

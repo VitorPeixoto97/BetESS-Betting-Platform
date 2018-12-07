@@ -1,5 +1,6 @@
 package business;
 
+import persistence.Data;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.HashMap;
