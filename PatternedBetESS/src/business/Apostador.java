@@ -107,7 +107,7 @@ public class Apostador implements Serializable{
         this.esscoins-=coins;
     }
 
-    public void update(int id, int resultado) {
+    public Apostador update(int id, int resultado) {
         
         if(this.apostas.containsKey(id)){
            
@@ -117,6 +117,7 @@ public class Apostador implements Serializable{
            }
            this.apostas.remove(id);
         }    
+        return this;
     }
 
 }

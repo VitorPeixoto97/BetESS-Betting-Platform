@@ -1,12 +1,9 @@
 package presentation;
-import business.Aposta;
-import business.Apostador;
 import business.BetESS;
 import business.Equipa;
 import business.Evento;
 import java.awt.Image;
 import java.util.ArrayList;
-import java.util.HashMap;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
