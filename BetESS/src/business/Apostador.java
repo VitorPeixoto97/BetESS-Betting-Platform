@@ -77,6 +77,9 @@ public class Apostador implements Serializable{
     public void setNome(String nome){
         this.nome=nome;
     }
+    public void setApostas(ArrayList<Aposta> apostas){
+        this.apostas=apostas;
+    }
     
     public void efetuarAposta(Aposta a){
         apostas.add(a);

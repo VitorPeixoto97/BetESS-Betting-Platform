@@ -294,21 +294,22 @@ public class Admin extends javax.swing.JFrame {
                     res = 2;
                 }
                 for(Apostador a : this.betess.getApostadores().values()){
-                    ArrayList<Aposta> toRem = new ArrayList<>();
+                    //ArrayList<Aposta> toRem = new ArrayList<>();
                     for(Aposta ap : a.getApostas()){
                         if(ap.getEvento().equals(e)){
                             if(ap.getResultado()==res){
                                 if(res==1) a.adicionarESSCoins(e.getOddV()*ap.getValor());
                                 else if(res==2) a.adicionarESSCoins(e.getOddE()*ap.getValor());
                                 else if(res==3) a.adicionarESSCoins(e.getOddD()*ap.getValor());
-                                toRem.add(ap);
+                                //toRem.add(ap);
                                 ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/check.png"));
                                 JOptionPane.showMessageDialog(null, "Evento encerrado e prémios distribuídos.", "Sucesso", JOptionPane.INFORMATION_MESSAGE, icon);
                                 //a.getApostas().remove(ap);
                             }
                         }
+                        ap.notificaApostador();
                     }
-                    a.getApostas().removeAll(toRem);
+                    //a.getApostas().removeAll(toRem);
                 }  
             }
         }

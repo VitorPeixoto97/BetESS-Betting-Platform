@@ -9,3 +9,4 @@ betess.svg
 *.jar
 *.jnlp
 /PatternedBetESS (overcomplicated)/nbproject/private/
+/PatternedBetESS/build/

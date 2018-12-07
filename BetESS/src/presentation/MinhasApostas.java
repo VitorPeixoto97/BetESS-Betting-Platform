@@ -16,6 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
+import static jdk.nashorn.internal.objects.NativeMath.round;
 
 /**
  *
@@ -59,7 +60,7 @@ public class MinhasApostas extends javax.swing.JFrame {
         Object[][] data = new Object[apostas.size()][5];
         int i=0;
         String res = "";
-        double ganho = 0;
+        double ganho = 0.0;
         for (Aposta ap : apostas){
             data[i][0] = ap.getEvento().getID();
             data[i][1] = ap.getEvento().getEquipaC().getNome() + " x " + ap.getEvento().getEquipaF().getNome();
