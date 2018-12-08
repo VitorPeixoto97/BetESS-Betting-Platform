@@ -1353,27 +1353,10 @@ public class Home extends javax.swing.JFrame {
             ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/warning.png"));
             JOptionPane.showMessageDialog(null, "Selecione um resultado!", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
         }
-        if(res!=0){
-            boolean apostou = apostador.getApostas().containsKey(eventoID);
-            if(apostou) {
-                ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
-                JOptionPane.showMessageDialog(null, "Já registou uma aposta neste evento.", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
-            }
-            else if(this.apostador.getESSCoins()-val >= 0){
-                Aposta a = new Aposta(eventoID, res, val, odd);
-                this.betess.efetuarAposta(a, apostador.getID());
-                ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/check.png"));
-                JOptionPane.showMessageDialog(null, "Aposta registada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, icon);
-                betess.save();
-                Home home = new Home(this.betess, apostador);
-                home.setVisible(true);
-                this.setVisible(false);
-            }
-            else{
-                ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
-                JOptionPane.showMessageDialog(null, "Não tem saldo suficiente para realizar a aposta.", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
-            }
-        }
+        if(res!=0) this.betess.apostar(e, apostador, res, val, odd);
+        Home home = new Home(this.betess, apostador);
+        home.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_j1BetActionPerformed
 
     private void j3BetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j3BetActionPerformed
@@ -1389,27 +1372,10 @@ public class Home extends javax.swing.JFrame {
             ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/warning.png"));
             JOptionPane.showMessageDialog(null, "Selecione um resultado!", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
         }
-        if(res!=0){
-            boolean apostou = apostador.getApostas().containsKey(eventoID);
-            if(apostou) {
-                ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
-                JOptionPane.showMessageDialog(null, "Já registou uma aposta neste evento.", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
-            }
-            else if(this.apostador.getESSCoins()-val >= 0){
-                Aposta a = new Aposta(eventoID, res, val, odd);
-                this.betess.efetuarAposta(a, apostador.getID());
-                ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/check.png"));
-                JOptionPane.showMessageDialog(null, "Aposta registada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, icon);
-                betess.save();
-                Home home = new Home(this.betess, apostador);
-                home.setVisible(true);
-                this.setVisible(false);
-            }
-            else{
-                ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
-                JOptionPane.showMessageDialog(null, "Não tem saldo suficiente para realizar a aposta.", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
-            }
-        }
+        if(res!=0) this.betess.apostar(e, apostador, res, val, odd);
+        Home home = new Home(this.betess, apostador);
+        home.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_j3BetActionPerformed
 
     private void j2BetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j2BetActionPerformed
@@ -1425,27 +1391,10 @@ public class Home extends javax.swing.JFrame {
             ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/warning.png"));
             JOptionPane.showMessageDialog(null, "Selecione um resultado!", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
         }
-        if(res!=0){
-            boolean apostou = apostador.getApostas().containsKey(eventoID);
-            if(apostou) {
-                ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
-                JOptionPane.showMessageDialog(null, "Já registou uma aposta neste evento.", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
-            }
-            else if(this.apostador.getESSCoins()-val >= 0){
-                Aposta a = new Aposta(eventoID, res, val, odd);
-                this.betess.efetuarAposta(a, apostador.getID());
-                ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/check.png"));
-                JOptionPane.showMessageDialog(null, "Aposta registada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, icon);
-                betess.save();
-                Home home = new Home(this.betess, apostador);
-                home.setVisible(true);
-                this.setVisible(false);
-            }
-            else{
-                ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
-                JOptionPane.showMessageDialog(null, "Não tem saldo suficiente para realizar a aposta.", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
-            }
-        }
+        if(res!=0) this.betess.apostar(e, apostador, res, val, odd);
+        Home home = new Home(this.betess, apostador);
+        home.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_j2BetActionPerformed
 
     private void j4BetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j4BetActionPerformed
@@ -1461,27 +1410,10 @@ public class Home extends javax.swing.JFrame {
             ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/warning.png"));
             JOptionPane.showMessageDialog(null, "Selecione um resultado!", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
         }
-        if(res!=0){
-            boolean apostou = apostador.getApostas().containsKey(eventoID);
-            if(apostou) {
-                ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
-                JOptionPane.showMessageDialog(null, "Já registou uma aposta neste evento.", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
-            }
-            else if(this.apostador.getESSCoins()-val >= 0){
-                Aposta a = new Aposta(eventoID, res, val, odd);
-                this.betess.efetuarAposta(a, apostador.getID());
-                ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/check.png"));
-                JOptionPane.showMessageDialog(null, "Aposta registada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, icon);
-                betess.save();
-                Home home = new Home(this.betess, apostador);
-                home.setVisible(true);
-                this.setVisible(false);
-            }
-            else{
-                ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
-                JOptionPane.showMessageDialog(null, "Não tem saldo suficiente para realizar a aposta.", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
-            }
-        }
+        if(res!=0) this.betess.apostar(e, apostador, res, val, odd);
+        Home home = new Home(this.betess, apostador);
+        home.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_j4BetActionPerformed
 
     private void j5BetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j5BetActionPerformed
@@ -1497,27 +1429,10 @@ public class Home extends javax.swing.JFrame {
             ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/warning.png"));
             JOptionPane.showMessageDialog(null, "Selecione um resultado!", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
         }
-        if(res!=0){
-            boolean apostou = apostador.getApostas().containsKey(eventoID);
-            if(apostou) {
-                ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
-                JOptionPane.showMessageDialog(null, "Já registou uma aposta neste evento.", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
-            }
-            else if(this.apostador.getESSCoins()-val >= 0){
-                Aposta a = new Aposta(eventoID, res, val, odd);
-                this.betess.efetuarAposta(a, apostador.getID());
-                ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/check.png"));
-                JOptionPane.showMessageDialog(null, "Aposta registada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, icon);
-                betess.save();
-                Home home = new Home(this.betess, apostador);
-                home.setVisible(true);
-                this.setVisible(false);
-            }
-            else{
-                ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
-                JOptionPane.showMessageDialog(null, "Não tem saldo suficiente para realizar a aposta.", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
-            }
-        }
+        if(res!=0) this.betess.apostar(e, apostador, res, val, odd);
+        Home home = new Home(this.betess, apostador);
+        home.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_j5BetActionPerformed
 
     private void j6BetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j6BetActionPerformed
@@ -1533,27 +1448,10 @@ public class Home extends javax.swing.JFrame {
             ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/warning.png"));
             JOptionPane.showMessageDialog(null, "Selecione um resultado!", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
         }
-        if(res!=0){
-            boolean apostou = apostador.getApostas().containsKey(eventoID);
-            if(apostou) {
-                ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
-                JOptionPane.showMessageDialog(null, "Já registou uma aposta neste evento.", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
-            }
-            else if(this.apostador.getESSCoins()-val >= 0){
-                Aposta a = new Aposta(eventoID, res, val, odd);
-                this.betess.efetuarAposta(a, apostador.getID());
-                ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/check.png"));
-                JOptionPane.showMessageDialog(null, "Aposta registada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, icon);
-                betess.save();
-                Home home = new Home(this.betess, apostador);
-                home.setVisible(true);
-                this.setVisible(false);
-            }
-            else{
-                ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
-                JOptionPane.showMessageDialog(null, "Não tem saldo suficiente para realizar a aposta.", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
-            }
-        }
+        if(res!=0) this.betess.apostar(e, apostador, res, val, odd);
+        Home home = new Home(this.betess, apostador);
+        home.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_j6BetActionPerformed
 
     private void j7BetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j7BetActionPerformed
@@ -1569,27 +1467,10 @@ public class Home extends javax.swing.JFrame {
             ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/warning.png"));
             JOptionPane.showMessageDialog(null, "Selecione um resultado!", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
         }
-        if(res!=0){
-            boolean apostou = apostador.getApostas().containsKey(eventoID);
-            if(apostou) {
-                ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
-                JOptionPane.showMessageDialog(null, "Já registou uma aposta neste evento.", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
-            }
-            else if(this.apostador.getESSCoins()-val >= 0){
-                Aposta a = new Aposta(eventoID, res, val, odd);
-                this.betess.efetuarAposta(a, apostador.getID());
-                ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/check.png"));
-                JOptionPane.showMessageDialog(null, "Aposta registada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, icon);
-                betess.save();
-                Home home = new Home(this.betess, apostador);
-                home.setVisible(true);
-                this.setVisible(false);
-            }
-            else{
-                ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
-                JOptionPane.showMessageDialog(null, "Não tem saldo suficiente para realizar a aposta.", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
-            }
-        }
+        if(res!=0) this.betess.apostar(e, apostador, res, val, odd);
+        Home home = new Home(this.betess, apostador);
+        home.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_j7BetActionPerformed
 
     private void j8BetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j8BetActionPerformed
@@ -1605,27 +1486,10 @@ public class Home extends javax.swing.JFrame {
             ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/warning.png"));
             JOptionPane.showMessageDialog(null, "Selecione um resultado!", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
         }
-        if(res!=0){
-            boolean apostou = apostador.getApostas().containsKey(eventoID);
-            if(apostou) {
-                ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
-                JOptionPane.showMessageDialog(null, "Já registou uma aposta neste evento.", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
-            }
-            else if(this.apostador.getESSCoins()-val >= 0){
-                Aposta a = new Aposta(eventoID, res, val, odd);
-                this.betess.efetuarAposta(a, apostador.getID());
-                ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/check.png"));
-                JOptionPane.showMessageDialog(null, "Aposta registada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, icon);
-                betess.save();
-                Home home = new Home(this.betess, apostador);
-                home.setVisible(true);
-                this.setVisible(false);
-            }
-            else{
-                ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
-                JOptionPane.showMessageDialog(null, "Não tem saldo suficiente para realizar a aposta.", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
-            }
-        }
+        if(res!=0) this.betess.apostar(e, apostador, res, val, odd);
+        Home home = new Home(this.betess, apostador);
+        home.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_j8BetActionPerformed
 
     private void j9BetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j9BetActionPerformed
@@ -1641,27 +1505,10 @@ public class Home extends javax.swing.JFrame {
             ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/warning.png"));
             JOptionPane.showMessageDialog(null, "Selecione um resultado!", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
         }
-        if(res!=0){
-            boolean apostou = apostador.getApostas().containsKey(eventoID);
-            if(apostou) {
-                ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
-                JOptionPane.showMessageDialog(null, "Já registou uma aposta neste evento.", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
-            }
-            else if(this.apostador.getESSCoins()-val >= 0){
-                Aposta a = new Aposta(eventoID, res, val, odd);
-                this.betess.efetuarAposta(a, apostador.getID());
-                ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/check.png"));
-                JOptionPane.showMessageDialog(null, "Aposta registada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, icon);
-                betess.save();
-                Home home = new Home(this.betess, apostador);
-                home.setVisible(true);
-                this.setVisible(false);
-            }
-            else{
-                ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
-                JOptionPane.showMessageDialog(null, "Não tem saldo suficiente para realizar a aposta.", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
-            }
-        }
+        if(res!=0) this.betess.apostar(e, apostador, res, val, odd);
+        Home home = new Home(this.betess, apostador);
+        home.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_j9BetActionPerformed
 
     private void movimentosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_movimentosButtonActionPerformed
@@ -1695,51 +1542,15 @@ public class Home extends javax.swing.JFrame {
         perfilButton.setText(this.apostador.getNome());
         switch (jogos.size()) {
             case 0:
-                j1V.setEnabled(false);
-                j1E.setEnabled(false);
-                j1D.setEnabled(false);
-                j1Bet.setEnabled(false);
-                j1Spin.setEnabled(false);
-                j2V.setEnabled(false);
-                j2E.setEnabled(false);
-                j2D.setEnabled(false);
-                j2Bet.setEnabled(false);
-                j2Spin.setEnabled(false);
-                j3V.setEnabled(false);
-                j3E.setEnabled(false);
-                j3D.setEnabled(false);
-                j3Bet.setEnabled(false);
-                j3Spin.setEnabled(false);
-                j4V.setEnabled(false);
-                j4E.setEnabled(false);
-                j4D.setEnabled(false);
-                j4Bet.setEnabled(false);
-                j4Spin.setEnabled(false);
-                j5V.setEnabled(false);
-                j5E.setEnabled(false);
-                j5D.setEnabled(false);
-                j5Bet.setEnabled(false);
-                j5Spin.setEnabled(false);
-                j6V.setEnabled(false);
-                j6E.setEnabled(false);
-                j6D.setEnabled(false);
-                j6Bet.setEnabled(false);
-                j6Spin.setEnabled(false);
-                j7V.setEnabled(false);
-                j7E.setEnabled(false);
-                j7D.setEnabled(false);
-                j7Bet.setEnabled(false);
-                j7Spin.setEnabled(false);
-                j8V.setEnabled(false);
-                j8E.setEnabled(false);
-                j8D.setEnabled(false);
-                j8Bet.setEnabled(false);
-                j8Spin.setEnabled(false);
-                j9V.setEnabled(false);
-                j9E.setEnabled(false);
-                j9D.setEnabled(false);
-                j9Bet.setEnabled(false);
-                j9Spin.setEnabled(false);
+                jogo1.setVisible(false);
+                jogo2.setVisible(false);
+                jogo3.setVisible(false);
+                jogo4.setVisible(false);
+                jogo5.setVisible(false);
+                jogo6.setVisible(false);
+                jogo7.setVisible(false);
+                jogo8.setVisible(false);
+                jogo9.setVisible(false);
                 break;
             case 1:
                 {
@@ -1750,46 +1561,14 @@ public class Home extends javax.swing.JFrame {
                     j1V.setText(Double.toString(jogos.get(0).getOddV()));
                     j1E.setText(Double.toString(jogos.get(0).getOddE()));
                     j1D.setText(Double.toString(jogos.get(0).getOddD()));
-                    j2V.setEnabled(false);
-                    j2E.setEnabled(false);
-                    j2D.setEnabled(false);
-                    j2Bet.setEnabled(false);
-                    j2Spin.setEnabled(false);
-                    j3V.setEnabled(false);
-                    j3E.setEnabled(false);
-                    j3D.setEnabled(false);
-                    j3Bet.setEnabled(false);
-                    j3Spin.setEnabled(false);
-                    j4V.setEnabled(false);
-                    j4E.setEnabled(false);
-                    j4D.setEnabled(false);
-                    j4Bet.setEnabled(false);
-                    j4Spin.setEnabled(false);
-                    j5V.setEnabled(false);
-                    j5E.setEnabled(false);
-                    j5D.setEnabled(false);
-                    j5Bet.setEnabled(false);
-                    j5Spin.setEnabled(false);
-                    j6V.setEnabled(false);
-                    j6E.setEnabled(false);
-                    j6D.setEnabled(false);
-                    j6Bet.setEnabled(false);
-                    j6Spin.setEnabled(false);
-                    j7V.setEnabled(false);
-                    j7E.setEnabled(false);
-                    j7D.setEnabled(false);
-                    j7Bet.setEnabled(false);
-                    j7Spin.setEnabled(false);
-                    j8V.setEnabled(false);
-                    j8E.setEnabled(false);
-                    j8D.setEnabled(false);
-                    j8Bet.setEnabled(false);
-                    j8Spin.setEnabled(false);
-                    j9V.setEnabled(false);
-                    j9E.setEnabled(false);
-                    j9D.setEnabled(false);
-                    j9Bet.setEnabled(false);
-                    j9Spin.setEnabled(false);
+                    jogo2.setVisible(false);
+                    jogo3.setVisible(false);
+                    jogo4.setVisible(false);
+                    jogo5.setVisible(false);
+                    jogo6.setVisible(false);
+                    jogo7.setVisible(false);
+                    jogo8.setVisible(false);
+                    jogo9.setVisible(false);
                     break;
                 }
             case 2:
@@ -1808,41 +1587,13 @@ public class Home extends javax.swing.JFrame {
                     j2V.setText(Double.toString(jogos.get(1).getOddV()));
                     j2E.setText(Double.toString(jogos.get(1).getOddE()));
                     j2D.setText(Double.toString(jogos.get(1).getOddD()));
-                    j3V.setEnabled(false);
-                    j3E.setEnabled(false);
-                    j3D.setEnabled(false);
-                    j3Bet.setEnabled(false);
-                    j3Spin.setEnabled(false);
-                    j4V.setEnabled(false);
-                    j4E.setEnabled(false);
-                    j4D.setEnabled(false);
-                    j4Bet.setEnabled(false);
-                    j4Spin.setEnabled(false);
-                    j5V.setEnabled(false);
-                    j5E.setEnabled(false);
-                    j5D.setEnabled(false);
-                    j5Bet.setEnabled(false);
-                    j5Spin.setEnabled(false);
-                    j6V.setEnabled(false);
-                    j6E.setEnabled(false);
-                    j6D.setEnabled(false);
-                    j6Bet.setEnabled(false);
-                    j6Spin.setEnabled(false);
-                    j7V.setEnabled(false);
-                    j7E.setEnabled(false);
-                    j7D.setEnabled(false);
-                    j7Bet.setEnabled(false);
-                    j7Spin.setEnabled(false);
-                    j8V.setEnabled(false);
-                    j8E.setEnabled(false);
-                    j8D.setEnabled(false);
-                    j8Bet.setEnabled(false);
-                    j8Spin.setEnabled(false);
-                    j9V.setEnabled(false);
-                    j9E.setEnabled(false);
-                    j9D.setEnabled(false);
-                    j9Bet.setEnabled(false);
-                    j9Spin.setEnabled(false);
+                    jogo3.setVisible(false);
+                    jogo4.setVisible(false);
+                    jogo5.setVisible(false);
+                    jogo6.setVisible(false);
+                    jogo7.setVisible(false);
+                    jogo8.setVisible(false);
+                    jogo9.setVisible(false);
                     break;
                 }
             case 3:
@@ -1868,36 +1619,12 @@ public class Home extends javax.swing.JFrame {
                     j3V.setText(Double.toString(jogos.get(2).getOddV()));
                     j3E.setText(Double.toString(jogos.get(2).getOddE()));
                     j3D.setText(Double.toString(jogos.get(2).getOddD()));
-                    j4V.setEnabled(false);
-                    j4E.setEnabled(false);
-                    j4D.setEnabled(false);
-                    j4Bet.setEnabled(false);
-                    j4Spin.setEnabled(false);
-                    j5V.setEnabled(false);
-                    j5E.setEnabled(false);
-                    j5D.setEnabled(false);
-                    j5Bet.setEnabled(false);
-                    j5Spin.setEnabled(false);
-                    j6V.setEnabled(false);
-                    j6E.setEnabled(false);
-                    j6D.setEnabled(false);
-                    j6Bet.setEnabled(false);
-                    j6Spin.setEnabled(false);
-                    j7V.setEnabled(false);
-                    j7E.setEnabled(false);
-                    j7D.setEnabled(false);
-                    j7Bet.setEnabled(false);
-                    j7Spin.setEnabled(false);
-                    j8V.setEnabled(false);
-                    j8E.setEnabled(false);
-                    j8D.setEnabled(false);
-                    j8Bet.setEnabled(false);
-                    j8Spin.setEnabled(false);
-                    j9V.setEnabled(false);
-                    j9E.setEnabled(false);
-                    j9D.setEnabled(false);
-                    j9Bet.setEnabled(false);
-                    j9Spin.setEnabled(false);
+                    jogo4.setVisible(false);
+                    jogo5.setVisible(false);
+                    jogo6.setVisible(false);
+                    jogo7.setVisible(false);
+                    jogo8.setVisible(false);
+                    jogo9.setVisible(false);
                     break;
                 }
             case 4:
@@ -1930,31 +1657,11 @@ public class Home extends javax.swing.JFrame {
                     j4V.setText(Double.toString(jogos.get(3).getOddV()));
                     j4E.setText(Double.toString(jogos.get(3).getOddE()));
                     j4D.setText(Double.toString(jogos.get(3).getOddD()));
-                    j5V.setEnabled(false);
-                    j5E.setEnabled(false);
-                    j5D.setEnabled(false);
-                    j5Bet.setEnabled(false);
-                    j5Spin.setEnabled(false);
-                    j6V.setEnabled(false);
-                    j6E.setEnabled(false);
-                    j6D.setEnabled(false);
-                    j6Bet.setEnabled(false);
-                    j6Spin.setEnabled(false);
-                    j7V.setEnabled(false);
-                    j7E.setEnabled(false);
-                    j7D.setEnabled(false);
-                    j7Bet.setEnabled(false);
-                    j7Spin.setEnabled(false);
-                    j8V.setEnabled(false);
-                    j8E.setEnabled(false);
-                    j8D.setEnabled(false);
-                    j8Bet.setEnabled(false);
-                    j8Spin.setEnabled(false);
-                    j9V.setEnabled(false);
-                    j9E.setEnabled(false);
-                    j9D.setEnabled(false);
-                    j9Bet.setEnabled(false);
-                    j9Spin.setEnabled(false);
+                    jogo5.setVisible(false);
+                    jogo6.setVisible(false);
+                    jogo7.setVisible(false);
+                    jogo8.setVisible(false);
+                    jogo9.setVisible(false);
                     break;
                 }
             case 5:
@@ -1994,26 +1701,10 @@ public class Home extends javax.swing.JFrame {
                     j5V.setText(Double.toString(jogos.get(4).getOddV()));
                     j5E.setText(Double.toString(jogos.get(4).getOddE()));
                     j5D.setText(Double.toString(jogos.get(4).getOddD()));
-                    j6V.setEnabled(false);
-                    j6E.setEnabled(false);
-                    j6D.setEnabled(false);
-                    j6Bet.setEnabled(false);
-                    j6Spin.setEnabled(false);
-                    j7V.setEnabled(false);
-                    j7E.setEnabled(false);
-                    j7D.setEnabled(false);
-                    j7Bet.setEnabled(false);
-                    j7Spin.setEnabled(false);
-                    j8V.setEnabled(false);
-                    j8E.setEnabled(false);
-                    j8D.setEnabled(false);
-                    j8Bet.setEnabled(false);
-                    j8Spin.setEnabled(false);
-                    j9V.setEnabled(false);
-                    j9E.setEnabled(false);
-                    j9D.setEnabled(false);
-                    j9Bet.setEnabled(false);
-                    j9Spin.setEnabled(false);
+                    jogo6.setVisible(false);
+                    jogo7.setVisible(false);
+                    jogo8.setVisible(false);
+                    jogo9.setVisible(false);
                     break;
                 }
             case 6:
@@ -2060,21 +1751,9 @@ public class Home extends javax.swing.JFrame {
                     j6V.setText(Double.toString(jogos.get(5).getOddV()));
                     j6E.setText(Double.toString(jogos.get(5).getOddE()));
                     j6D.setText(Double.toString(jogos.get(5).getOddD()));
-                    j7V.setEnabled(false);
-                    j7E.setEnabled(false);
-                    j7D.setEnabled(false);
-                    j7Bet.setEnabled(false);
-                    j7Spin.setEnabled(false);
-                    j8V.setEnabled(false);
-                    j8E.setEnabled(false);
-                    j8D.setEnabled(false);
-                    j8Bet.setEnabled(false);
-                    j8Spin.setEnabled(false);
-                    j9V.setEnabled(false);
-                    j9E.setEnabled(false);
-                    j9D.setEnabled(false);
-                    j9Bet.setEnabled(false);
-                    j9Spin.setEnabled(false);
+                    jogo7.setVisible(false);
+                    jogo8.setVisible(false);
+                    jogo9.setVisible(false);
                     break;
                 }
             case 7:
@@ -2128,16 +1807,8 @@ public class Home extends javax.swing.JFrame {
                     j7V.setText(Double.toString(jogos.get(6).getOddV()));
                     j7E.setText(Double.toString(jogos.get(6).getOddE()));
                     j7D.setText(Double.toString(jogos.get(6).getOddD()));
-                    j8V.setEnabled(false);
-                    j8E.setEnabled(false);
-                    j8D.setEnabled(false);
-                    j8Bet.setEnabled(false);
-                    j8Spin.setEnabled(false);
-                    j9V.setEnabled(false);
-                    j9E.setEnabled(false);
-                    j9D.setEnabled(false);
-                    j9Bet.setEnabled(false);
-                    j9Spin.setEnabled(false);
+                    jogo8.setVisible(false);
+                    jogo9.setVisible(false);
                     break;
                 }
             case 8:
@@ -2198,11 +1869,7 @@ public class Home extends javax.swing.JFrame {
                     j8V.setText(Double.toString(jogos.get(7).getOddV()));
                     j8E.setText(Double.toString(jogos.get(7).getOddE()));
                     j8D.setText(Double.toString(jogos.get(7).getOddD()));
-                    j9V.setEnabled(false);
-                    j9E.setEnabled(false);
-                    j9D.setEnabled(false);
-                    j9Bet.setEnabled(false);
-                    j9Spin.setEnabled(false);
+                    jogo9.setVisible(false);
                     break;
                 }
             case 9:

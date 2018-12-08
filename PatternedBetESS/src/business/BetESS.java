@@ -103,8 +103,25 @@ public class BetESS implements Serializable{
         return data.getApostadores();
     }
     
-    public void efetuarAposta(Aposta a, int apostadorID) {
-        data.addAposta(a,apostadorID);
+    public void apostar(Evento evento, Apostador a, int res, int val, double odd){
+        
+            boolean apostou = a.getApostas().containsKey(evento.getID());
+            if(apostou) {
+                ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
+                JOptionPane.showMessageDialog(null, "Já registou uma aposta neste evento.", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
+            }
+            else if(a.getESSCoins()-val >= 0){
+                Aposta ap = new Aposta(evento.getID(), res, val, odd);
+                data.addAposta(ap, a.getID());
+                ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/check.png"));
+                JOptionPane.showMessageDialog(null, "Aposta registada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, icon);
+                this.save();
+                
+            }
+            else{
+                ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
+                JOptionPane.showMessageDialog(null, "Não tem saldo suficiente para realizar a aposta.", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
+            }
     }
     
     public void cancelarAposta(Aposta a, int apostadorID){
