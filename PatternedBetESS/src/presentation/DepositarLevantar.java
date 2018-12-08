@@ -241,16 +241,11 @@ public class DepositarLevantar extends javax.swing.JFrame {
 
     private void levButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_levButtonActionPerformed
         int quantia = (Integer) levSpinner.getValue();
-        if (apostador.getESSCoins()-quantia < 5){
-            ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
-            JOptionPane.showMessageDialog(null, "O seu saldo atual não lhe permite levantar essa quantia. Tem de manter um saldo mínimo de 5 ESScoins!", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
-        }
-        else{
-            this.betess.getApostadores().get(apostador.getID()).levantarESSCoins(quantia);
-            betess.save();
-            ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/check.png"));
-            JOptionPane.showMessageDialog(null, "Quantia depositada na sua conta bancária!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, icon);
-        }
+        this.betess.levantarCoins(apostador, quantia);
+        
+        DepositarLevantar dl = new DepositarLevantar(this.betess, apostador);
+        dl.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_levButtonActionPerformed
 
     private void depButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depButtonActionPerformed
@@ -259,6 +254,10 @@ public class DepositarLevantar extends javax.swing.JFrame {
         betess.save();
         ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/check.png"));
         JOptionPane.showMessageDialog(null, "Quantia adicionada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, icon);
+        
+        DepositarLevantar dl = new DepositarLevantar(this.betess, apostador);
+        dl.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_depButtonActionPerformed
 
     private void perfilButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_perfilButtonActionPerformed

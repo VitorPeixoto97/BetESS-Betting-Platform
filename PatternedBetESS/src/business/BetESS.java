@@ -45,10 +45,6 @@ public class BetESS implements Serializable{
             ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/check.png"));
             JOptionPane.showMessageDialog(null, "Evento criado e disponível.", "Sucesso", JOptionPane.INFORMATION_MESSAGE, icon);
         }
-        
-        
-        
-        
     }
     
     public void fecharEvento(String evento, String resultado){
@@ -78,12 +74,9 @@ public class BetESS implements Serializable{
                 
                     
                         this.data.endEvento(e,res);
-
-
             }
         }
         this.save();
- 
     }
     
     public void registarApostador(Apostador a){
@@ -120,6 +113,19 @@ public class BetESS implements Serializable{
     
     public Apostador getApostador(int id){
         return data.getApostadores().get(id);
+    }
+    
+    public void levantarCoins(Apostador a, double quantia){
+        if (a.getESSCoins()-quantia < 5){
+            ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
+            JOptionPane.showMessageDialog(null, "O seu saldo atual não lhe permite levantar essa quantia. Tem de manter um saldo mínimo de 5 ESScoins!", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
+        }
+        else{
+            this.getApostadores().get(a.getID()).levantarESSCoins(quantia);
+            this.save();
+            ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/check.png"));
+            JOptionPane.showMessageDialog(null, "Quantia depositada na sua conta bancária!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, icon);
+        }
     }
     
     public void save() {
