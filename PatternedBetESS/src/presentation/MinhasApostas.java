@@ -57,7 +57,6 @@ public class MinhasApostas extends javax.swing.JFrame {
         Object[][] data = new Object[apostas.size()][5];
         int i=0;
         String res;
-        double ganho = 0;
         for (Aposta ap : apostas){
             Evento e = betess.getEventos().get(ap.getID());
             data[i][0] = ap.getID();
@@ -254,7 +253,7 @@ public class MinhasApostas extends javax.swing.JFrame {
 //            if (a.getEvento().getID() == value) aposta = a;
 //        }
         
-        Aposta a = this.betess.getApostador(apostador.getID()).getAposta(value);
+        Aposta a = apostador.getAposta(value);
         if(a != null){
             this.betess.cancelarAposta(a, apostador.getID());
             betess.save();

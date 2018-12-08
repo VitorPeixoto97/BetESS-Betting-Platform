@@ -75,11 +75,11 @@ public class BetESS implements Serializable{
                     System.out.println("empate\n");
                     res = 2;
                 }
-                for(Apostador a : this.getApostadores().values()){
-                    for(Aposta ap : a.getApostas().values()){
-                        this.data.endEvento(a,ap,e,res);
-                    }
-                }
+                
+                    
+                        this.data.endEvento(e,res);
+
+
             }
         }
         this.save();

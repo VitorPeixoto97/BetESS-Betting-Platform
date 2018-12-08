@@ -60,19 +60,35 @@ public class Data implements Serializable{
         this.eventos.put(e.getID(), e);
     }
     
-    public void endEvento(Apostador a, Aposta ap, Evento e, int res){
-        this.distribuiPremios(a,ap,e,res);
+    public void endEvento(Evento e, int res){
+        //this.distribuiPremios(a,ap,e,res);
         this.eventos.get(e.getID()).setEstado(false);
         this.eventos.get(e.getID()).setResultado(res);
-        e.notifyApostadores();
+        notifyApostadores(e);
+        //e.getApostadores().values().stream().forEach(a -> apostadores.put(a.getID(), a));
+    }
+    
+    public void notifyApostadores(Evento e) {
+        apostadores.values().stream().forEach(a -> a.update(e.getID(), e.getResultado()));
+        
     }
     
     public void distribuiPremios(Apostador a, Aposta ap, Evento e, int res){
         if(this.eventos.get(ap.getID()).equals(e)){
             if(ap.getResultado()==res){
-                if(res==1)      a.adicionarESSCoins(e.getOddV()*ap.getValor());
-                else if(res==2) a.adicionarESSCoins(e.getOddE()*ap.getValor());
-                else if(res==3) a.adicionarESSCoins(e.getOddD()*ap.getValor());
+                switch (res) {
+                    case 1:
+                        a.adicionarESSCoins(e.getOddV()*ap.getValor());
+                        break;
+                    case 2:
+                        a.adicionarESSCoins(e.getOddE()*ap.getValor());
+                        break;
+                    case 3:
+                        a.adicionarESSCoins(e.getOddD()*ap.getValor());
+                        break;
+                    default:
+                        break;
+                }
             }
         }
     }
@@ -102,7 +118,7 @@ public class Data implements Serializable{
             out.flush();
             out.close();
             fileOut.close();
-            System.out.printf("Serialized data is saved in betess.obj\n");
+            System.out.printf("Serialized data is saved in betessData.obj\n");
         } catch (IOException i) {
             i.printStackTrace();
         }
@@ -212,6 +228,7 @@ public class Data implements Serializable{
         //} catch (IOException i) {
         //    i.printStackTrace();
         } catch (Exception e) {
+            System.out.println("Dados preexistentes não encontrados. Gerando dados modelo...");
             d.povoar();
             d.save();
         }

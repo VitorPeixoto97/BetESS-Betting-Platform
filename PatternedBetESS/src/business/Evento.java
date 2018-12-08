@@ -116,10 +116,5 @@ public class Evento implements Serializable{
         }
         return false;
     }
-
-    public void notifyApostadores() {
-        apostadores.values().stream().forEach(a -> a.update(this.id, this.resultado));
-        
-    }
     
 }

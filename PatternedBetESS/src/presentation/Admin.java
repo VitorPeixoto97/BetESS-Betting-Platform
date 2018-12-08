@@ -284,11 +284,6 @@ public class Admin extends javax.swing.JFrame {
                                 Double.parseDouble(oddD.getText()));
 
     }//GEN-LAST:event_criarButtonActionPerformed
-
-    private String[] split(String res, String sig){
-        String[] parts = res.split(sig);
-        return parts;
-    }
     
     public static void main(String args[]) {
         try {

@@ -59,8 +59,11 @@ public class Apostador implements Serializable{
     public String getEmail(){
         return this.email;
     }
-    public String getPassword(){
+    private String getPassword(){
         return this.password;
+    }
+    public boolean verifyPassword(String pass){
+        return this.password.equals(pass);
     }
     public String getNome(){
         return this.nome;
@@ -107,7 +110,7 @@ public class Apostador implements Serializable{
         this.esscoins-=coins;
     }
 
-    public Apostador update(int id, int resultado) {
+    public void update(int id, int resultado) {
         
         if(this.apostas.containsKey(id)){
            
@@ -116,8 +119,7 @@ public class Apostador implements Serializable{
                this.esscoins += a.earnings();
            }
            this.apostas.remove(id);
-        }    
-        return this;
+        }
     }
 
 }

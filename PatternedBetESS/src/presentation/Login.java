@@ -209,7 +209,7 @@ public class Login extends javax.swing.JFrame {
         else{
             for (Apostador a : apostadores) {
                 if (a.getEmail().compareTo(this.emailField.getText())==0){
-                    if (a.getPassword().compareTo(this.passwordField.getText())==0){
+                    if (a.verifyPassword(this.passwordField.getText())){
                         Home home = new Home(this.betess, a);
                         home.setVisible(true);
                         this.setVisible(false);
@@ -245,15 +245,9 @@ public class Login extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        };
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

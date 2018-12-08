@@ -1354,7 +1354,6 @@ public class Home extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Selecione um resultado!", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
         }
         if(res!=0){
-            // boolean apostou = this.betess.getApostadores().get(apostador.getID()).getApostas().containsKey(eventoID);
             boolean apostou = apostador.getApostas().containsKey(eventoID);
             if(apostou) {
                 ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
@@ -1391,7 +1390,7 @@ public class Home extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Selecione um resultado!", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
         }
         if(res!=0){
-            boolean apostou = this.betess.getApostadores().get(apostador.getID()).getApostas().containsKey(eventoID);
+            boolean apostou = apostador.getApostas().containsKey(eventoID);
             if(apostou) {
                 ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
                 JOptionPane.showMessageDialog(null, "Já registou uma aposta neste evento.", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
@@ -1427,7 +1426,7 @@ public class Home extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Selecione um resultado!", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
         }
         if(res!=0){
-            boolean apostou = this.betess.getApostadores().get(apostador.getID()).getApostas().containsKey(eventoID);
+            boolean apostou = apostador.getApostas().containsKey(eventoID);
             if(apostou) {
                 ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
                 JOptionPane.showMessageDialog(null, "Já registou uma aposta neste evento.", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
@@ -1463,7 +1462,7 @@ public class Home extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Selecione um resultado!", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
         }
         if(res!=0){
-            boolean apostou = this.betess.getApostadores().get(apostador.getID()).getApostas().containsKey(eventoID);
+            boolean apostou = apostador.getApostas().containsKey(eventoID);
             if(apostou) {
                 ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
                 JOptionPane.showMessageDialog(null, "Já registou uma aposta neste evento.", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
@@ -1499,7 +1498,7 @@ public class Home extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Selecione um resultado!", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
         }
         if(res!=0){
-            boolean apostou = this.betess.getApostadores().get(apostador.getID()).getApostas().containsKey(eventoID);
+            boolean apostou = apostador.getApostas().containsKey(eventoID);
             if(apostou) {
                 ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
                 JOptionPane.showMessageDialog(null, "Já registou uma aposta neste evento.", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
@@ -1535,7 +1534,7 @@ public class Home extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Selecione um resultado!", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
         }
         if(res!=0){
-            boolean apostou = this.betess.getApostadores().get(apostador.getID()).getApostas().containsKey(eventoID);
+            boolean apostou = apostador.getApostas().containsKey(eventoID);
             if(apostou) {
                 ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
                 JOptionPane.showMessageDialog(null, "Já registou uma aposta neste evento.", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
@@ -1571,7 +1570,7 @@ public class Home extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Selecione um resultado!", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
         }
         if(res!=0){
-            boolean apostou = this.betess.getApostadores().get(apostador.getID()).getApostas().containsKey(eventoID);
+            boolean apostou = apostador.getApostas().containsKey(eventoID);
             if(apostou) {
                 ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
                 JOptionPane.showMessageDialog(null, "Já registou uma aposta neste evento.", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
@@ -1607,7 +1606,7 @@ public class Home extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Selecione um resultado!", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
         }
         if(res!=0){
-            boolean apostou = this.betess.getApostadores().get(apostador.getID()).getApostas().containsKey(eventoID);
+            boolean apostou = apostador.getApostas().containsKey(eventoID);
             if(apostou) {
                 ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
                 JOptionPane.showMessageDialog(null, "Já registou uma aposta neste evento.", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
@@ -1643,7 +1642,7 @@ public class Home extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Selecione um resultado!", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
         }
         if(res!=0){
-            boolean apostou = this.betess.getApostadores().get(apostador.getID()).getApostas().containsKey(eventoID);
+            boolean apostou = apostador.getApostas().containsKey(eventoID);
             if(apostou) {
                 ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
                 JOptionPane.showMessageDialog(null, "Já registou uma aposta neste evento.", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
