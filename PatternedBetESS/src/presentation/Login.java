@@ -200,26 +200,20 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-        List<Apostador> apostadores = new ArrayList<>(this.betess.getApostadores().values());
-        if(this.emailField.getText().equals("admin") && this.passwordField.getText().equals("admin")){
+        Apostador a = this.betess.login(this.emailField.getText(), this.passwordField.getText());
+        if(a==null){
             Admin admin = new Admin(this.betess);
             admin.setVisible(true);
             this.setVisible(false);
         }
+        else if(!a.getEmail().equals("")){
+            Home home = new Home(this.betess, a);
+            home.setVisible(true);
+            this.setVisible(false);
+        }
         else{
-            for (Apostador a : apostadores) {
-                if (a.getEmail().compareTo(this.emailField.getText())==0){
-                    if (a.verifyPassword(this.passwordField.getText())){
-                        Home home = new Home(this.betess, a);
-                        home.setVisible(true);
-                        this.setVisible(false);
-                    }
-                    else{
-                        ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
-                        JOptionPane.showMessageDialog(null, "Dados incorretos!", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
-                    }
-                }   
-            }
+            ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
+            JOptionPane.showMessageDialog(null, "Dados incorretos!", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
         }
     }//GEN-LAST:event_loginButtonActionPerformed
 

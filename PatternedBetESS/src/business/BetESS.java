@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -24,6 +25,20 @@ public class BetESS implements Serializable{
     }
     public BetESS(Data d) {
         this.data = d;
+    }
+    
+    public Apostador login(String email, String password){
+        Apostador erro = new Apostador();
+        List<Apostador> apostadores = new ArrayList<>(this.getApostadores().values());
+        if(email.equals("admin") && password.equals("admin")) return null;
+        else{
+            for (Apostador a : apostadores) {
+                if (a.getEmail().compareTo(email)==0){
+                    if (a.verifyPassword(password)) return a;
+                }   
+            }
+        }
+        return erro;
     }
     
     public void criarEvento(String equipaC, String equipaF, Double oddV, Double oddE, Double oddD){
