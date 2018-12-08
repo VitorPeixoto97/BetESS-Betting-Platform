@@ -1353,7 +1353,7 @@ public class Home extends javax.swing.JFrame {
             ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/warning.png"));
             JOptionPane.showMessageDialog(null, "Selecione um resultado!", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
         }
-        if(res!=0) this.betess.apostar(e, apostador, res, val, odd);
+        if(res!=0) this.betess.efetuarAposta(e, apostador, res, val, odd);
         Home home = new Home(this.betess, apostador);
         home.setVisible(true);
         this.setVisible(false);
@@ -1372,7 +1372,7 @@ public class Home extends javax.swing.JFrame {
             ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/warning.png"));
             JOptionPane.showMessageDialog(null, "Selecione um resultado!", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
         }
-        if(res!=0) this.betess.apostar(e, apostador, res, val, odd);
+        if(res!=0) this.betess.efetuarAposta(e, apostador, res, val, odd);
         Home home = new Home(this.betess, apostador);
         home.setVisible(true);
         this.setVisible(false);
@@ -1391,7 +1391,7 @@ public class Home extends javax.swing.JFrame {
             ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/warning.png"));
             JOptionPane.showMessageDialog(null, "Selecione um resultado!", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
         }
-        if(res!=0) this.betess.apostar(e, apostador, res, val, odd);
+        if(res!=0) this.betess.efetuarAposta(e, apostador, res, val, odd);
         Home home = new Home(this.betess, apostador);
         home.setVisible(true);
         this.setVisible(false);
@@ -1410,7 +1410,7 @@ public class Home extends javax.swing.JFrame {
             ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/warning.png"));
             JOptionPane.showMessageDialog(null, "Selecione um resultado!", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
         }
-        if(res!=0) this.betess.apostar(e, apostador, res, val, odd);
+        if(res!=0) this.betess.efetuarAposta(e, apostador, res, val, odd);
         Home home = new Home(this.betess, apostador);
         home.setVisible(true);
         this.setVisible(false);
@@ -1429,7 +1429,7 @@ public class Home extends javax.swing.JFrame {
             ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/warning.png"));
             JOptionPane.showMessageDialog(null, "Selecione um resultado!", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
         }
-        if(res!=0) this.betess.apostar(e, apostador, res, val, odd);
+        if(res!=0) this.betess.efetuarAposta(e, apostador, res, val, odd);
         Home home = new Home(this.betess, apostador);
         home.setVisible(true);
         this.setVisible(false);
@@ -1448,7 +1448,7 @@ public class Home extends javax.swing.JFrame {
             ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/warning.png"));
             JOptionPane.showMessageDialog(null, "Selecione um resultado!", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
         }
-        if(res!=0) this.betess.apostar(e, apostador, res, val, odd);
+        if(res!=0) this.betess.efetuarAposta(e, apostador, res, val, odd);
         Home home = new Home(this.betess, apostador);
         home.setVisible(true);
         this.setVisible(false);
@@ -1467,7 +1467,7 @@ public class Home extends javax.swing.JFrame {
             ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/warning.png"));
             JOptionPane.showMessageDialog(null, "Selecione um resultado!", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
         }
-        if(res!=0) this.betess.apostar(e, apostador, res, val, odd);
+        if(res!=0) this.betess.efetuarAposta(e, apostador, res, val, odd);
         Home home = new Home(this.betess, apostador);
         home.setVisible(true);
         this.setVisible(false);
@@ -1486,7 +1486,7 @@ public class Home extends javax.swing.JFrame {
             ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/warning.png"));
             JOptionPane.showMessageDialog(null, "Selecione um resultado!", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
         }
-        if(res!=0) this.betess.apostar(e, apostador, res, val, odd);
+        if(res!=0) this.betess.efetuarAposta(e, apostador, res, val, odd);
         Home home = new Home(this.betess, apostador);
         home.setVisible(true);
         this.setVisible(false);
@@ -1505,7 +1505,7 @@ public class Home extends javax.swing.JFrame {
             ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/warning.png"));
             JOptionPane.showMessageDialog(null, "Selecione um resultado!", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
         }
-        if(res!=0) this.betess.apostar(e, apostador, res, val, odd);
+        if(res!=0) this.betess.efetuarAposta(e, apostador, res, val, odd);
         Home home = new Home(this.betess, apostador);
         home.setVisible(true);
         this.setVisible(false);

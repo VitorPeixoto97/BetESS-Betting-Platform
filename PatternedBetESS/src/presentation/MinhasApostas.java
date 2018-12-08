@@ -84,7 +84,6 @@ public class MinhasApostas extends javax.swing.JFrame {
         
         initComponents();
         
-        
         betsTable.getColumnModel().getColumn(0).setPreferredWidth(25);
         betsTable.getColumnModel().getColumn(1).setPreferredWidth(230);
         betsTable.getColumnModel().getColumn(2).setPreferredWidth(120);
@@ -245,14 +244,6 @@ public class MinhasApostas extends javax.swing.JFrame {
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
         int row = betsTable.getSelectedRow();
         int value = (Integer) betsTable.getModel().getValueAt(row, 0);
-        System.out.println(value);
-        
-//        Aposta aposta = new Aposta();
-//        
-//        for(Aposta a: this.betess.getApostadores().get(apostador.getID()).getApostas()){
-//            if (a.getEvento().getID() == value) aposta = a;
-//        }
-        
         Aposta a = apostador.getAposta(value);
         if(a != null){
             this.betess.cancelarAposta(a, apostador.getID());
@@ -261,7 +252,6 @@ public class MinhasApostas extends javax.swing.JFrame {
             ma.setVisible(true);
             this.setVisible(false);
         }        
-        
     }//GEN-LAST:event_deleteButtonActionPerformed
 
     private void perfilButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_perfilButtonActionPerformed

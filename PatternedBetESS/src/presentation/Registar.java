@@ -224,34 +224,24 @@ public class Registar extends javax.swing.JFrame {
         int coins = (Integer) coinsField.getValue() + 5;
         boolean aut = acessoCheckBox.isSelected();
         
-        if(aut){
-            boolean flag = true;
-            for(Apostador a : this.betess.getApostadores().values()){
-                if(a.getEmail().equals(email) && flag){
-                    flag = false;
-                    System.out.println("Já existe!!!\n");
-                    ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
-                    JOptionPane.showMessageDialog(null, "Já foi registado um apostador com esse email. Por favor tente outro.", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
-                }
-            }
-            if(flag){
-                int last_id = this.betess.getApostadores().size()+1;
-                HashMap<Integer, Aposta> apostas = new HashMap<>();
-                Apostador novo = new Apostador(last_id, email, password, nome, coins, apostas);
-                this.betess.registarApostador(novo);
-                this.betess.save();
-                ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/check.png"));
-                JOptionPane.showMessageDialog(null, "Registado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, icon);
-                Login login = new Login(this.betess);
-                login.setVisible(true);
-                this.setVisible(false);
-            }
+        int r = betess.registar(nome, email, password, coins, aut);
+        
+        if(r==0){
+            ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/check.png"));
+            JOptionPane.showMessageDialog(null, "Registado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, icon);
+            Login login = new Login(this.betess);
+            login.setVisible(true);
+            this.setVisible(false);
         }
-        else{
+        else if(r==1){
+            ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
+            JOptionPane.showMessageDialog(null, "Já existe um utilizador com as seguintes credenciais. Por favor, tente de novo.", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
+        
+        }
+        else if(r==2){
             ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/warning.png"));
             JOptionPane.showMessageDialog(null, "A autorização de acesso e levantamentos da conta bancária é necessária para o registo.", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
         }
-        
     }//GEN-LAST:event_registarButtonActionPerformed
 
     /**

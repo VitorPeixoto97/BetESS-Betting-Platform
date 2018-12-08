@@ -27,6 +27,18 @@ public class BetESS implements Serializable{
         this.data = d;
     }
     
+    public Map<Integer, Evento> getEventos(){
+        return data.getEventos();
+    }
+    
+    public Map<Integer, Equipa> getEquipas(){
+        return data.getEquipas();
+    }
+    
+    public Map<Integer, Apostador> getApostadores(){
+        return data.getApostadores();
+    }
+    
     public Apostador login(String email, String password){
         Apostador erro = new Apostador();
         List<Apostador> apostadores = new ArrayList<>(this.getApostadores().values());
@@ -39,6 +51,30 @@ public class BetESS implements Serializable{
             }
         }
         return erro;
+    }
+    
+    public int registar(String nome, String email, String password, int coins, boolean aut){
+        if(aut){
+            boolean flag = true;
+            for(Apostador a : this.getApostadores().values()){
+                if(a.getEmail().equals(email) && flag){
+                    flag = false;
+                    System.out.println("Já existe!!!\n");
+                    return 1;
+                }
+            }
+            if(flag){
+                int last_id = this.getApostadores().size()+1;
+                HashMap<Integer, Aposta> apostas = new HashMap<>();
+                Apostador novo = new Apostador(last_id, email, password, nome, coins, apostas);
+                data.newApostador(novo);
+                this.save();
+            }
+        }
+        else{
+            return 2;
+        }
+        return 0;
     }
     
     public void criarEvento(String equipaC, String equipaF, Double oddV, Double oddE, Double oddD){
@@ -94,10 +130,6 @@ public class BetESS implements Serializable{
         this.save();
     }
     
-    public void registarApostador(Apostador a){
-        data.newApostador(a);
-    }
-    
     public void adicionarEquipa(Equipa e){
         data.addEquipa(e);
     }
@@ -105,20 +137,8 @@ public class BetESS implements Serializable{
     public void removerEquipa(Equipa e){
         data.removeEquipa(e);
     }
-    
-    public Map<Integer, Evento> getEventos(){
-        return data.getEventos();
-    }
-    
-    public Map<Integer, Equipa> getEquipas(){
-        return data.getEquipas();
-    }
-    
-    public Map<Integer, Apostador> getApostadores(){
-        return data.getApostadores();
-    }
-    
-    public void apostar(Evento evento, Apostador a, int res, int val, double odd){
+
+    public void efetuarAposta(Evento evento, Apostador a, int res, int val, double odd){
         
             boolean apostou = a.getApostas().containsKey(evento.getID());
             if(apostou) {
