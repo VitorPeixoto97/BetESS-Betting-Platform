@@ -66,15 +66,15 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="eventCombo" min="-2" pref="217" max="-2" attributes="0"/>
                                   <Group type="102" attributes="0">
-                                      <Component id="oddV1" min="-2" pref="89" max="-2" attributes="0"/>
+                                      <Component id="newOddV" min="-2" pref="89" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="oddE1" min="-2" pref="89" max="-2" attributes="0"/>
+                                      <Component id="newOddE" min="-2" pref="89" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="oddD1" min="-2" pref="89" max="-2" attributes="0"/>
+                                      <Component id="newOddD" min="-2" pref="89" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace min="-2" pref="87" max="-2" attributes="0"/>
-                              <Component id="fecharButton" min="-2" max="-2" attributes="0"/>
+                              <Component id="alterarButton" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -120,12 +120,12 @@
                       <Component id="eventCombo" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="oddE1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="oddD1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="oddV1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="newOddE" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="newOddD" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="newOddV" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <Component id="fecharButton" alignment="0" min="-2" pref="67" max="-2" attributes="0"/>
+                  <Component id="alterarButton" alignment="0" min="-2" pref="67" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -274,13 +274,13 @@
     </Component>
     <Component class="javax.swing.JSeparator" name="jSeparator1">
     </Component>
-    <Component class="javax.swing.JButton" name="fecharButton">
+    <Component class="javax.swing.JButton" name="alterarButton">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Fechar evento"/>
+        <Property name="text" type="java.lang.String" value="Alterar evento"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fecharButtonActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="alterarButtonActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JComboBox" name="casaCombo">
@@ -288,16 +288,17 @@
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="0"/>
         </Property>
+        <Property name="name" type="java.lang.String" value="" noResource="true"/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JTextField" name="oddD1">
+    <Component class="javax.swing.JTextField" name="newOddD">
     </Component>
-    <Component class="javax.swing.JTextField" name="oddE1">
+    <Component class="javax.swing.JTextField" name="newOddE">
     </Component>
-    <Component class="javax.swing.JTextField" name="oddV1">
+    <Component class="javax.swing.JTextField" name="newOddV">
     </Component>
   </SubComponents>
 </Form>

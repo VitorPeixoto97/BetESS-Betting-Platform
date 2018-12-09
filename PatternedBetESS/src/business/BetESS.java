@@ -65,8 +65,7 @@ public class BetESS implements Serializable{
             }
             if(flag){
                 int last_id = this.getApostadores().size()+1;
-                HashMap<Integer, Aposta> apostas = new HashMap<>();
-                Apostador novo = new Apostador(last_id, email, password, nome, coins, apostas);
+                Apostador novo = new Apostador(last_id, email, password, nome, coins);
                 data.newApostador(novo);
                 this.save();
             }

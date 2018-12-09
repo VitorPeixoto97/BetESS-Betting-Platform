@@ -43,6 +43,13 @@ public class Home extends javax.swing.JFrame {
         
         this.style();
         
+        if(a.hasNotif()){
+            for(String s : a.getNotif()){
+                ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/ball.png"));
+                JOptionPane.showMessageDialog(null, s, "Evento Terminado", JOptionPane.INFORMATION_MESSAGE, icon);
+            }
+            a.clearNotifs();
+        }
     }
 
     /** This method is called from within the constructor to
@@ -1344,7 +1351,6 @@ public class Home extends javax.swing.JFrame {
         int res = 0;
         double odd = 0.0d;
         Evento e = jogos.get(0);
-        int eventoID = e.getID();
         int val = (Integer) j1Spin.getValue();
         if(j1V.isSelected()) { res = 1; odd = e.getOddV(); }
         else if (j1E.isSelected()) { res = 2; odd = e.getOddE(); }
@@ -1363,7 +1369,6 @@ public class Home extends javax.swing.JFrame {
         int res = 0;
         double odd = 0.0d;
         Evento e = jogos.get(2);
-        int eventoID = e.getID();
         int val = (Integer) j3Spin.getValue();
         if(j3V.isSelected()) { res = 1; odd = e.getOddV(); }
         else if (j3E.isSelected()) { res = 2; odd = e.getOddE(); }
@@ -1382,7 +1387,6 @@ public class Home extends javax.swing.JFrame {
         int res = 0;
         double odd = 0.0d;
         Evento e = jogos.get(1);
-        int eventoID = e.getID();
         int val = (Integer) j2Spin.getValue();
         if(j2V.isSelected()) { res = 1; odd = e.getOddV(); }
         else if (j2E.isSelected()) { res = 2; odd = e.getOddE(); }
@@ -1401,7 +1405,6 @@ public class Home extends javax.swing.JFrame {
         int res = 0;
         double odd = 0.0d;
         Evento e = jogos.get(3);
-        int eventoID = e.getID();
         int val = (Integer) j4Spin.getValue();
         if(j4V.isSelected()) { res = 1; odd = e.getOddV(); }
         else if (j4E.isSelected()) { res = 2; odd = e.getOddE(); }
@@ -1420,7 +1423,6 @@ public class Home extends javax.swing.JFrame {
         int res = 0;
         double odd = 0.0d;
         Evento e = jogos.get(4);
-        int eventoID = e.getID();
         int val = (Integer) j5Spin.getValue();
         if(j5V.isSelected()) { res = 1; odd = e.getOddV(); }
         else if (j5E.isSelected()) { res = 2; odd = e.getOddE(); }
@@ -1439,7 +1441,6 @@ public class Home extends javax.swing.JFrame {
         int res = 0;
         double odd = 0.0d;
         Evento e = jogos.get(5);
-        int eventoID = e.getID();
         int val = (Integer) j6Spin.getValue();
         if(j6V.isSelected()) { res = 1; odd = e.getOddV(); }
         else if (j6E.isSelected()) { res = 2; odd = e.getOddE(); }
@@ -1458,7 +1459,6 @@ public class Home extends javax.swing.JFrame {
         int res = 0;
         double odd = 0.0d;
         Evento e = jogos.get(6);
-        int eventoID = e.getID();
         int val = (Integer) j7Spin.getValue();
         if(j7V.isSelected()) { res = 1; odd = e.getOddV(); }
         else if (j7E.isSelected()) { res = 2; odd = e.getOddE(); }
@@ -1477,7 +1477,6 @@ public class Home extends javax.swing.JFrame {
         int res = 0;
         double odd = 0.0d;
         Evento e = jogos.get(7);
-        int eventoID = e.getID();
         int val = (Integer) j8Spin.getValue();
         if(j8V.isSelected()) { res = 1; odd = e.getOddV(); }
         else if (j8E.isSelected()) { res = 2; odd = e.getOddE(); }
@@ -1496,7 +1495,6 @@ public class Home extends javax.swing.JFrame {
         int res = 0;
         double odd = 0.0d;
         Evento e = jogos.get(8);
-        int eventoID = e.getID();
         int val = (Integer) j9Spin.getValue();
         if(j9V.isSelected()) { res = 1; odd = e.getOddV(); }
         else if (j9E.isSelected()) { res = 2; odd = e.getOddE(); }

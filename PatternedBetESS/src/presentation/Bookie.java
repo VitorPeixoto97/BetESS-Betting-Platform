@@ -6,6 +6,7 @@
 package presentation;
 
 import business.BetESS;
+import business.Evento;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -54,11 +55,11 @@ public class Bookie extends javax.swing.JFrame {
         eventCombo = new javax.swing.JComboBox<>();
         Levantar1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        fecharButton = new javax.swing.JButton();
+        alterarButton = new javax.swing.JButton();
         casaCombo = new javax.swing.JComboBox<>();
-        oddD1 = new javax.swing.JTextField();
-        oddE1 = new javax.swing.JTextField();
-        oddV1 = new javax.swing.JTextField();
+        newOddD = new javax.swing.JTextField();
+        newOddE = new javax.swing.JTextField();
+        newOddV = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -123,13 +124,15 @@ public class Bookie extends javax.swing.JFrame {
         Levantar1.setForeground(new java.awt.Color(255, 255, 255));
         Levantar1.setText("Alterar evento");
 
-        fecharButton.setText("Fechar evento");
-        fecharButton.setToolTipText("");
-        fecharButton.addActionListener(new java.awt.event.ActionListener() {
+        alterarButton.setText("Alterar evento");
+        alterarButton.setToolTipText("");
+        alterarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fecharButtonActionPerformed(evt);
+                alterarButtonActionPerformed(evt);
             }
         });
+
+        casaCombo.setName(""); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -170,13 +173,13 @@ public class Bookie extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(eventCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(oddV1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(newOddV, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(oddE1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(newOddE, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(oddD1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(newOddD, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(87, 87, 87)
-                                .addComponent(fecharButton)))))
+                                .addComponent(alterarButton)))))
                 .addContainerGap(34, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -211,10 +214,10 @@ public class Bookie extends javax.swing.JFrame {
                         .addComponent(eventCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(oddE1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(oddD1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(oddV1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(fecharButton, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(newOddE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(newOddD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(newOddV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(alterarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -235,17 +238,23 @@ public class Bookie extends javax.swing.JFrame {
             Double.parseDouble(oddD.getText()));
     }//GEN-LAST:event_criarButtonActionPerformed
 
-    private void fecharButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fecharButtonActionPerformed
+    private void alterarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alterarButtonActionPerformed
 
-        betess.fecharEvento(this.eventCombo.getSelectedItem().toString(), resField.getText());
+        Evento e = (Evento) eventCombo.getSelectedItem();
+        
+        double newoddV = newOddV.getText() != null ? Double.parseDouble(newOddV.getText()) : e.getOddV();
+        double newoddE = newOddE.getText() != null ? Double.parseDouble(newOddE.getText()) : e.getOddE();
+        double newoddD = newOddD.getText() != null ? Double.parseDouble(newOddD.getText()) : e.getOddD();
+        
+        betess.criarEvento(e.getEquipaC().getNome(), e.getEquipaF().getNome(), newoddV, newoddE, newoddD);
 
         ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/check.png"));
-        JOptionPane.showMessageDialog(null, "Evento encerrado e ganhos distribuídos.", "Sucesso", JOptionPane.INFORMATION_MESSAGE, icon);
+        JOptionPane.showMessageDialog(null, "Evento alterado.", "Sucesso", JOptionPane.INFORMATION_MESSAGE, icon);
 
-        Admin admin = new Admin(this.betess);
-        admin.setVisible(true);
+        Bookie bookie = new Bookie(this.betess);
+        bookie.setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_fecharButtonActionPerformed
+    }//GEN-LAST:event_alterarButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -269,34 +278,27 @@ public class Bookie extends javax.swing.JFrame {
         //</editor-fold>
         
         //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Bookie().setVisible(true);
-            }
-        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Levantar1;
     private javax.swing.JLabel Levantar2;
     private javax.swing.JLabel Saldo;
+    private javax.swing.JButton alterarButton;
     private javax.swing.JComboBox<String> casaCombo;
     private javax.swing.JButton criarButton;
     private javax.swing.JComboBox<String> eventCombo;
-    private javax.swing.JButton fecharButton;
     private javax.swing.JComboBox<String> foraCombo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel logo;
+    private javax.swing.JTextField newOddD;
+    private javax.swing.JTextField newOddE;
+    private javax.swing.JTextField newOddV;
     private javax.swing.JTextField oddD;
-    private javax.swing.JTextField oddD1;
     private javax.swing.JTextField oddE;
-    private javax.swing.JTextField oddE1;
     private javax.swing.JTextField oddV;
-    private javax.swing.JTextField oddV1;
     private javax.swing.JButton perfilButton;
     // End of variables declaration//GEN-END:variables
 }

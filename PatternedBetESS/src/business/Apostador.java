@@ -7,17 +7,19 @@ package business;
 
 import java.util.HashMap;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 
 public class Apostador implements Serializable{
-    private int id;
+    private final int id;
     private String email;
     private String password;
     private String nome;
     private double esscoins;
-    private boolean locked;
     private Map<Integer, Aposta> apostas;
+    private List<String> notifications;
     
     public Apostador(){
         this.id = 9999;
@@ -26,17 +28,17 @@ public class Apostador implements Serializable{
         this.nome = "";
         this.esscoins = 0.0;
         this.apostas = new HashMap<>();
-        this.locked = false;
+        this.notifications = new ArrayList<>();
     }
     
-    public Apostador(int id, String email, String password, String nome, double esscoins, Map<Integer, Aposta> apostas){
+    public Apostador(int id, String email, String password, String nome, double esscoins){
         this.id = id;
         this.email = email;
         this.password = password;
         this.nome = nome;
         this.esscoins = esscoins;
-        this.apostas = apostas;
-        this.locked = false;
+        this.apostas = new HashMap<>();
+        this.notifications = new ArrayList<>();
     }
     
     public Apostador(Apostador a){
@@ -46,7 +48,7 @@ public class Apostador implements Serializable{
         this.nome = a.getNome();
         this.esscoins = a.getESSCoins();
         this.apostas = a.getApostas();
-        this.locked = a.isLocked();
+        this.notifications = a.getNotif();
     }
     
     public int getID(){
@@ -71,8 +73,16 @@ public class Apostador implements Serializable{
         return this.apostas;
     }
   
-    public boolean isLocked(){
-        return this.locked;
+    public List<String> getNotif(){
+        return this.notifications;
+    }
+    
+    public boolean hasNotif(){
+        return notifications.size() > 0;
+    }
+    
+    public void clearNotifs(){
+        this.notifications = new ArrayList<>();
     }
     
     public void setEmail(String email){
@@ -106,14 +116,24 @@ public class Apostador implements Serializable{
         this.esscoins-=coins;
     }
 
-    public void update(int id, int resultado) {
+    public void update(Evento e) {
         
-        if(this.apostas.containsKey(id)){
+        if(this.apostas.containsKey(e.getID())){
            
-           Aposta a = this.apostas.get(id);
-           if(a.getResultado() == resultado){
+           Aposta a = this.apostas.get(e.getID());
+           if(a.getResultado() == e.getResultado()){
                this.esscoins += a.earnings();
            }
+           
+           StringBuilder sb = new StringBuilder();
+           sb.append("Resultado final: ");
+           sb.append(e.getEquipaC().getNome()).append(" ");
+           sb.append(e.getResultado()).append(" ");
+           sb.append(e.getEquipaF().getNome()).append("\n");
+           sb.append("Ganhos: ").append(a.earnings()).append("ESScoins.");
+           
+           this.notifications.add(sb.toString());
+           
            this.apostas.remove(id);
         }
     }
