@@ -9,7 +9,6 @@ import business.Aposta;
 import business.Apostador;
 import business.Equipa;
 import business.Evento;
-import static com.sun.javafx.util.Utils.split;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -72,27 +71,6 @@ public class Data implements Serializable{
         apostadores.values().stream().forEach(a -> a.update(e.getID(), e.getResultado()));
         
     }
-    
-    public void distribuiPremios(Apostador a, Aposta ap, Evento e, int res){
-        if(this.eventos.get(ap.getID()).equals(e)){
-            if(ap.getResultado()==res){
-                switch (res) {
-                    case 1:
-                        a.adicionarESSCoins(e.getOddV()*ap.getValor());
-                        break;
-                    case 2:
-                        a.adicionarESSCoins(e.getOddE()*ap.getValor());
-                        break;
-                    case 3:
-                        a.adicionarESSCoins(e.getOddD()*ap.getValor());
-                        break;
-                    default:
-                        break;
-                }
-            }
-        }
-    }
-    
     public void newApostador(Apostador a){
         this.apostadores.put(a.getID(),a);
     }

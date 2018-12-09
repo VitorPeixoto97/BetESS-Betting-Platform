@@ -10,10 +10,6 @@ import java.io.Serializable;
 import java.util.Map;
 
 
-/**
- *
- * @author vitorpeixoto
- */
 public class Apostador implements Serializable{
     private int id;
     private String email;

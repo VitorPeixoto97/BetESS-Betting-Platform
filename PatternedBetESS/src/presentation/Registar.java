@@ -5,10 +5,7 @@
  */
 package presentation;
 
-import business.Aposta;
-import business.Apostador;
 import business.BetESS;
-import java.util.HashMap;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -226,21 +223,30 @@ public class Registar extends javax.swing.JFrame {
         
         int r = betess.registar(nome, email, password, coins, aut);
         
-        if(r==0){
-            ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/check.png"));
-            JOptionPane.showMessageDialog(null, "Registado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, icon);
-            Login login = new Login(this.betess);
-            login.setVisible(true);
-            this.setVisible(false);
-        }
-        else if(r==1){
-            ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
-            JOptionPane.showMessageDialog(null, "Já existe um utilizador com as seguintes credenciais. Por favor, tente de novo.", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
-        
-        }
-        else if(r==2){
-            ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/warning.png"));
-            JOptionPane.showMessageDialog(null, "A autorização de acesso e levantamentos da conta bancária é necessária para o registo.", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
+        switch (r) {
+            case 0:
+                {
+                    ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/check.png"));
+                    JOptionPane.showMessageDialog(null, "Registado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, icon);
+                    Login login = new Login(this.betess);
+                    login.setVisible(true);
+                    this.setVisible(false);
+                    break;
+                }
+            case 1:
+                {
+                    ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
+                    JOptionPane.showMessageDialog(null, "Já existe um utilizador com as seguintes credenciais. Por favor, tente de novo.", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
+                    break;
+                }
+            case 2:
+                {
+                    ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/warning.png"));
+                    JOptionPane.showMessageDialog(null, "A autorização de acesso e levantamentos da conta bancária é necessária para o registo.", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
+                    break;
+                }
+            default:
+                break;
         }
     }//GEN-LAST:event_registarButtonActionPerformed
 
@@ -260,15 +266,11 @@ public class Registar extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Registar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Registar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Registar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Registar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        
         //</editor-fold>
 
 
