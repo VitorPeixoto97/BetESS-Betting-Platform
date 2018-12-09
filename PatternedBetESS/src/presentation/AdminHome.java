@@ -1,4 +1,5 @@
 package presentation;
+import business.Admin;
 import business.BetESS;
 import business.Equipa;
 import business.Evento;
@@ -11,10 +12,12 @@ import javax.swing.JOptionPane;
 public class AdminHome extends javax.swing.JFrame {
 
     BetESS betess;
+    Admin admin;
     
-    public AdminHome(BetESS b) {
+    public AdminHome(BetESS b, Admin a) {
         
         this.betess = b;
+        this.admin = a;
         
         initComponents();
         
@@ -26,6 +29,7 @@ public class AdminHome extends javax.swing.JFrame {
         Image newimg = image.getScaledInstance(155, 35, java.awt.Image.SCALE_SMOOTH);
         icon = new ImageIcon(newimg);
         this.logo.setIcon(icon);
+        perfilButton.setText(a.getNome());
         
         fillCombos();
         
@@ -285,8 +289,8 @@ public class AdminHome extends javax.swing.JFrame {
         ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/check.png"));
         JOptionPane.showMessageDialog(null, "Evento encerrado e ganhos distribuídos.", "Sucesso", JOptionPane.INFORMATION_MESSAGE, icon);
         
-        AdminHome admin = new AdminHome(this.betess);
-        admin.setVisible(true);
+        AdminHome adminHome = new AdminHome(this.betess, admin);
+        adminHome.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_fecharButtonActionPerformed
 
@@ -298,8 +302,8 @@ public class AdminHome extends javax.swing.JFrame {
                                 Double.parseDouble(oddD.getText()),
                                 null);
         
-        AdminHome admin = new AdminHome(this.betess);
-        admin.setVisible(true);
+        AdminHome adminHome = new AdminHome(this.betess, admin);
+        adminHome.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_criarButtonActionPerformed
     

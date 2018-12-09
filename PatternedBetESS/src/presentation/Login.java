@@ -5,6 +5,7 @@
  */
 package presentation;
 
+import business.Admin;
 import business.Apostador;
 import business.BetESS;
 import business.Bookie;
@@ -200,7 +201,7 @@ public class Login extends javax.swing.JFrame {
         if(u!=null){        
             switch (u.getClass().getSimpleName()) {
                 case "Admin":
-                    AdminHome admin = new AdminHome(this.betess);
+                    AdminHome admin = new AdminHome(this.betess, (Admin) u);
                     admin.setVisible(true);
                     this.setVisible(false);
                     break;
@@ -219,7 +220,6 @@ public class Login extends javax.swing.JFrame {
             }
         }
         else{
-            System.out.println(u);
             ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
             JOptionPane.showMessageDialog(null, "Dados incorretos!", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
         }
