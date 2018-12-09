@@ -122,9 +122,8 @@ public class BetESS implements Serializable{
                     System.out.println("empate\n");
                     res = 2;
                 }
-                
-                    
-                        this.data.endEvento(e,res);
+
+                this.data.endEvento(e,res);
             }
         }
         this.save();

@@ -1162,15 +1162,7 @@ public class Home extends javax.swing.JFrame {
     private void notificacoes(){
         for(Aposta a : this.apostador.getApostas()){
             if(!a.getVisto()){
-                
-                a.visto();
-                this.betess.getApostadores().get(apostador.getID()).setApostas(this.apostador.getApostas());
 
-                try {
-                    this.betess.save(betess);
-                } catch (IOException ex) {
-                    Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-                }
                 double ganhos = 0.0;
                 
                 String[] venc = a.getEvento().getResultado().split("-");
@@ -1197,7 +1189,13 @@ public class Home extends javax.swing.JFrame {
                                                                                              a.getEvento().getEquipaF().getNome() +
                                                                                              "\nGanhos: " + ganhos + " ESScoins",
                                                     "Evento terminado", JOptionPane.INFORMATION_MESSAGE, icon);
+                a.visto();
             }
+        }
+        try {
+            this.betess.save(betess);
+        } catch (IOException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     

@@ -306,8 +306,9 @@ public class Admin extends javax.swing.JFrame {
                                 JOptionPane.showMessageDialog(null, "Evento encerrado e prémios distribuídos.", "Sucesso", JOptionPane.INFORMATION_MESSAGE, icon);
                                 //a.getApostas().remove(ap);
                             }
+                            ap.notificaApostador();
                         }
-                        ap.notificaApostador();
+                        
                     }
                     //a.getApostas().removeAll(toRem);
                 }  
