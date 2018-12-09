@@ -110,7 +110,6 @@ public class Apostador implements Serializable, User{
     @Override
     public double update(Evento e, double d) {
         d = 0.0d;
-        if(this.apostas.containsKey(e.getID())){
            
            Aposta a = this.apostas.get(e.getID());
            if(a.getResultado() == e.getResultado()){
@@ -142,7 +141,7 @@ public class Apostador implements Serializable, User{
            this.notifications.add(sb.toString());
            
            this.apostas.remove(e.getID());
-        }
+           
         return d;
     }
 

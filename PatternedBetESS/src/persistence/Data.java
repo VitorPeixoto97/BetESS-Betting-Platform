@@ -70,8 +70,13 @@ public class Data implements Serializable{
     }
     
     public void notifyUtilizadores(Evento e) {
-        double total = utilizadores.values().stream().filter(u -> u.getClass().getSimpleName().equals("Apostador") && e.getUtilizadores().containsKey(u.getEmail())).mapToDouble(a -> a.update(e, 0)).sum();
-        utilizadores.values().stream().filter(u -> u.getClass().getSimpleName().equals("Bookie") && e.getUtilizadores().containsKey(u.getEmail())).forEach(b -> b.update(e, total));
+        double total = utilizadores.values().stream()
+                                            .filter(u -> u.getClass().getSimpleName().equals("Apostador") && e.getUtilizadores().containsKey(u.getEmail()))
+                                            .mapToDouble(a -> a.update(e, 0)).sum();
+        
+        utilizadores.values().stream()
+                             .filter(u -> u.getClass().getSimpleName().equals("Bookie") && e.getUtilizadores().containsKey(u.getEmail()))
+                             .forEach(b -> b.update(e, total));
     }
     public void newApostador(Apostador a){
         this.utilizadores.put(a.getEmail(),a);
