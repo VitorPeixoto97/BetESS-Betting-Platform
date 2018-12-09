@@ -7,15 +7,13 @@ package presentation;
 
 import business.Apostador;
 import business.BetESS;
+import business.Bookie;
+import business.User;
 import java.awt.Color;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author vitorpeixoto
- */
 public class Login extends javax.swing.JFrame {
 
     /**
@@ -198,18 +196,30 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-        Apostador a = this.betess.login(this.emailField.getText(), this.passwordField.getText());
-        if(a==null){
-            Admin admin = new Admin(this.betess);
-            admin.setVisible(true);
-            this.setVisible(false);
-        }
-        else if(!a.getEmail().equals("")){
-            Home home = new Home(this.betess, a);
-            home.setVisible(true);
-            this.setVisible(false);
+        User u = this.betess.login(this.emailField.getText(), this.passwordField.getText());
+        if(u!=null){        
+            switch (u.getClass().getSimpleName()) {
+                case "Admin":
+                    AdminHome admin = new AdminHome(this.betess);
+                    admin.setVisible(true);
+                    this.setVisible(false);
+                    break;
+                case "Apostador":
+                    Home home = new Home(this.betess, (Apostador) u);
+                    home.setVisible(true);
+                    this.setVisible(false);
+                    break;
+                case "Bookie":
+                    BookieHome bookie = new BookieHome(this.betess, (Bookie) u);
+                    bookie.setVisible(true);
+                    this.setVisible(false);
+                    break;
+                default:
+                    break;
+            }
         }
         else{
+            System.out.println(u);
             ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
             JOptionPane.showMessageDialog(null, "Dados incorretos!", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
         }

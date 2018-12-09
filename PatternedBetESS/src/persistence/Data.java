@@ -5,10 +5,13 @@
  */
 package persistence;
 
+import business.Admin;
 import business.Aposta;
 import business.Apostador;
+import business.Bookie;
 import business.Equipa;
 import business.Evento;
+import business.User;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -23,30 +26,30 @@ import java.util.HashMap;
  * @author danie
  */
 public class Data implements Serializable{
-    private HashMap<Integer,Apostador> apostadores;
+    private HashMap<String,User> utilizadores;
     private HashMap<Integer,Evento> eventos;
     private HashMap<Integer,Equipa> equipas;
     
     public Data(){
-        this.apostadores = new HashMap<>();
+        this.utilizadores = new HashMap<>();
         this.eventos = new HashMap<>();
         this.equipas = new HashMap<>();
     }
     
-    public Data(HashMap<Integer,Apostador> a, HashMap<Integer,Evento> ev, HashMap<Integer,Equipa> eq){
-        this.apostadores = a;
+    public Data(HashMap<String,User> a, HashMap<Integer,Evento> ev, HashMap<Integer,Equipa> eq){
+        this.utilizadores = a;
         this.eventos = ev;
         this.equipas = eq;
     }
     
     public Data(Data d){
-        this.apostadores = d.getApostadores();
+        this.utilizadores = d.getUtilizadores();
         this.eventos = d.getEventos();
         this.equipas = d.getEquipas();
     }
     
-    public HashMap<Integer,Apostador> getApostadores(){
-        return this.apostadores;
+    public HashMap<String,User> getUtilizadores(){
+        return this.utilizadores;
     }
     public HashMap<Integer,Evento> getEventos(){
         return this.eventos;
@@ -63,16 +66,15 @@ public class Data implements Serializable{
         //this.distribuiPremios(a,ap,e,res);
         this.eventos.get(e.getID()).setEstado(false);
         this.eventos.get(e.getID()).setResultado(res);
-        notifyApostadores(e);
-        //e.getApostadores().values().stream().forEach(a -> apostadores.put(a.getID(), a));
+        notifyUtilizadores(e);
     }
     
-    public void notifyApostadores(Evento e) {
-        apostadores.values().stream().forEach(a -> a.update(e));
-        
+    public void notifyUtilizadores(Evento e) {
+        double total = utilizadores.values().stream().filter(u -> u.getClass().getSimpleName().equals("Apostador")).mapToDouble(a -> a.update(e, 0)).sum();
+        utilizadores.values().stream().filter(u -> u.getClass().getSimpleName().equals("Bookie")).forEach(b -> b.update(e, total));
     }
     public void newApostador(Apostador a){
-        this.apostadores.put(a.getID(),a);
+        this.utilizadores.put(a.getEmail(),a);
     }
     
     public void addEquipa(Equipa e){
@@ -84,8 +86,9 @@ public class Data implements Serializable{
             equipas.get(e.getID()).setEstado(false);
     }
     
-    public void removeAposta(Aposta a, int apostadorID){
-        apostadores.get(apostadorID).removerAposta(a);
+    public void removeAposta(Aposta a, String apostadorID){
+        Apostador ap = (Apostador) utilizadores.get(apostadorID);
+        ap.removerAposta(a);
     }
     
     public void save(){
@@ -104,6 +107,8 @@ public class Data implements Serializable{
     
     public void povoar(){
         this.povoarEquipas();
+        this.povoarAdmins();
+        this.povoarBookies();
         this.povoarApostadores();
         this.povoarEventos();
         System.out.println("Dados inseridos!\n");
@@ -152,24 +157,39 @@ public class Data implements Serializable{
         //equipas.put(18,famalicao);
         //equipas.put(19,pacos);
     }
-    public void povoarApostadores(){
-        Apostador a = new Apostador(0, "joaonunes@gmail.com", "joaonunes", "João Nunes", 25.00);
-        Apostador b = new Apostador(1, "saramoreno@gmail.com", "saramoreno", "Sara Moreno", 5.00);
-        Apostador c = new Apostador(2, "pauloprazeres@gmail.com", "pauloprazeres", "Paulo Prazeres", 2.92);
-        Apostador d = new Apostador(3, "albanojeronimo@gmail.com", "albanojeronimo", "Albano Jerónimo", 89.20);
-        Apostador e = new Apostador(4, "nunolopes@gmail.com", "nunolopes", "Nuno Lopes", 102.36);
-        Apostador f = new Apostador(5, "marcomartins@gmail.com", "marcomartins", "Marco Martins", 19.76);
-        Apostador g = new Apostador(6, "miguelguilherme@gmail.com", "miguelguilherme", "Miguel Guilherme", 15.58);
-        Apostador h = new Apostador(7, "beatrizbatarda@gmail.com", "beatrizbatarda", "Beatriz Batarda", 5.01);
+    
+    public void povoarAdmins(){
+        Admin a = new Admin("admin", "admin", "Administrador");
         
-        this.apostadores.put(a.getID(),a);
-        this.apostadores.put(b.getID(),b);
-        this.apostadores.put(c.getID(),c);
-        this.apostadores.put(d.getID(),d);
-        this.apostadores.put(e.getID(),e);
-        this.apostadores.put(f.getID(),f);
-        this.apostadores.put(g.getID(),g);
-        this.apostadores.put(h.getID(),h);
+        utilizadores.put(a.getEmail(), a);
+    }
+    
+    public void povoarBookies(){
+        Bookie a = new Bookie("adao@betess.com", "adao", "Adão");
+        Bookie b = new Bookie("eva@betess.com", "eva", "Eva");
+        
+        utilizadores.put(a.getEmail(), a);
+        utilizadores.put(b.getEmail(), b);
+    }
+    
+    public void povoarApostadores(){
+        Apostador a = new Apostador("joaonunes@gmail.com", "joaonunes", "João Nunes", 25.00);
+        Apostador b = new Apostador("saramoreno@gmail.com", "saramoreno", "Sara Moreno", 5.00);
+        Apostador c = new Apostador("pauloprazeres@gmail.com", "pauloprazeres", "Paulo Prazeres", 2.92);
+        Apostador d = new Apostador("albanojeronimo@gmail.com", "albanojeronimo", "Albano Jerónimo", 89.20);
+        Apostador e = new Apostador("nunolopes@gmail.com", "nunolopes", "Nuno Lopes", 102.36);
+        Apostador f = new Apostador("marcomartins@gmail.com", "marcomartins", "Marco Martins", 19.76);
+        Apostador g = new Apostador("miguelguilherme@gmail.com", "miguelguilherme", "Miguel Guilherme", 15.58);
+        Apostador h = new Apostador("beatrizbatarda@gmail.com", "beatrizbatarda", "Beatriz Batarda", 5.01);
+        
+        this.utilizadores.put(a.getEmail(),a);
+        this.utilizadores.put(b.getEmail(),b);
+        this.utilizadores.put(c.getEmail(),c);
+        this.utilizadores.put(d.getEmail(),d);
+        this.utilizadores.put(e.getEmail(),e);
+        this.utilizadores.put(f.getEmail(),f);
+        this.utilizadores.put(g.getEmail(),g);
+        this.utilizadores.put(h.getEmail(),h);
     }
     public void povoarEventos(){
         Evento j1j1 = new Evento(0, 1.11d, 3.94d, 8.71d, true, 0, equipas.get(7), equipas.get(9), new HashMap<>());
@@ -214,7 +234,8 @@ public class Data implements Serializable{
         return d;
     }
 
-    public void addAposta(Aposta a, int apostadorID) {
-        this.apostadores.get(apostadorID).efetuarAposta(a);
+    public void addAposta(Aposta a, String apostadorID) {
+        Apostador ap = (Apostador) this.utilizadores.get(apostadorID);
+        ap.efetuarAposta(a);
     }
 }

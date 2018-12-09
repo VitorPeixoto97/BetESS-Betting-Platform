@@ -6,25 +6,26 @@
 package presentation;
 
 import business.BetESS;
-import business.Evento;
+import business.Bookie;
 import java.awt.Image;
 import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
 
 /**
  *
  * @author danie
  */
-public class Bookie extends javax.swing.JFrame {
+public class BookieHome extends javax.swing.JFrame {
 
     BetESS betess;
+    Bookie bookie;
     
     /**
      * Creates new form Bookie
      */
-    public Bookie(BetESS b) {
+    public BookieHome(BetESS b, Bookie bo) {
         
         this.betess = b;
+        this.bookie = bo;
         
         initComponents();
         
@@ -234,8 +235,11 @@ public class Bookie extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Bookie.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BookieHome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        
+        //</editor-fold>
         //</editor-fold>
         
         //</editor-fold>

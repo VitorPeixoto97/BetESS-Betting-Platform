@@ -250,7 +250,9 @@ public class DepositarLevantar extends javax.swing.JFrame {
 
     private void depButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depButtonActionPerformed
         int quantia = (Integer) depSpinner.getValue();
-        this.betess.getApostadores().get(apostador.getID()).adicionarESSCoins(quantia);
+        Apostador ap = (Apostador) this.betess.getUtilizadores().get(apostador.getEmail());
+        ap.adicionarESSCoins(quantia);
+        this.betess.getUtilizadores().put(ap.getEmail(), ap);
         betess.save();
         ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/check.png"));
         JOptionPane.showMessageDialog(null, "Quantia adicionada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, icon);

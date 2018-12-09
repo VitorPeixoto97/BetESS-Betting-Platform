@@ -8,11 +8,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 
-public class Admin extends javax.swing.JFrame {
+public class AdminHome extends javax.swing.JFrame {
 
     BetESS betess;
     
-    public Admin(BetESS b) {
+    public AdminHome(BetESS b) {
         
         this.betess = b;
         
@@ -279,7 +279,7 @@ public class Admin extends javax.swing.JFrame {
         ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/check.png"));
         JOptionPane.showMessageDialog(null, "Evento encerrado e ganhos distribuídos.", "Sucesso", JOptionPane.INFORMATION_MESSAGE, icon);
         
-        Admin admin = new Admin(this.betess);
+        AdminHome admin = new AdminHome(this.betess);
         admin.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_fecharButtonActionPerformed
@@ -302,8 +302,11 @@ public class Admin extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Admin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminHome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        
+        //</editor-fold>
         //</editor-fold>
         
         //</editor-fold>

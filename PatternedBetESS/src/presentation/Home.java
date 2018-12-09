@@ -6,7 +6,6 @@
 
 package presentation;
 
-import business.Aposta;
 import business.Apostador;
 import business.BetESS;
 import business.Evento;
@@ -48,7 +47,8 @@ public class Home extends javax.swing.JFrame {
                 ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/ball.png"));
                 JOptionPane.showMessageDialog(null, s, "Evento Terminado", JOptionPane.INFORMATION_MESSAGE, icon);
             }
-            a.clearNotifs();
+            apostador.clearNotifs();
+            betess.save();
         }
     }
 

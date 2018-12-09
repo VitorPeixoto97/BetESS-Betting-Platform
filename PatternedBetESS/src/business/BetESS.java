@@ -20,8 +20,8 @@ public class BetESS implements Serializable{
     public BetESS() {
         this.data = new Data();
     }
-    public BetESS(HashMap<Integer,Apostador> a, HashMap<Integer,Evento> ev, HashMap<Integer,Equipa> eq) {
-        this.data = new Data(a,ev,eq);
+    public BetESS(HashMap<String,User> u, HashMap<Integer,Evento> ev, HashMap<Integer,Equipa> eq) {
+        this.data = new Data(u,ev,eq);
     }
     public BetESS(Data d) {
         this.data = d;
@@ -35,20 +35,14 @@ public class BetESS implements Serializable{
         return data.getEquipas();
     }
     
-    public Map<Integer, Apostador> getApostadores(){
-        return data.getApostadores();
+    public Map<String, User> getUtilizadores(){
+        return data.getUtilizadores();
     }
     
-    public Apostador login(String email, String password){
-        Apostador erro = new Apostador();
-        List<Apostador> apostadores = new ArrayList<>(this.getApostadores().values());
-        if(email.equals("admin") && password.equals("admin")) return null;
-        else{
-            for (Apostador a : apostadores) {
-                if (a.getEmail().compareTo(email)==0){
-                    if (a.verifyPassword(password)) return a;
-                }   
-            }
+    public User login(String email, String password){
+        User erro = this.data.getUtilizadores().get(email);
+        if(erro != null && !erro.verifyPassword(password)){
+            erro = null;
         }
         return erro;
     }
@@ -56,7 +50,7 @@ public class BetESS implements Serializable{
     public int registar(String nome, String email, String password, int coins, boolean aut){
         if(aut){
             boolean flag = true;
-            for(Apostador a : this.getApostadores().values()){
+            for(User a : this.getUtilizadores().values()){
                 if(a.getEmail().equals(email) && flag){
                     flag = false;
                     System.out.println("Já existe!!!\n");
@@ -64,8 +58,7 @@ public class BetESS implements Serializable{
                 }
             }
             if(flag){
-                int last_id = this.getApostadores().size()+1;
-                Apostador novo = new Apostador(last_id, email, password, nome, coins);
+                Apostador novo = new Apostador(email, password, nome, coins);
                 data.newApostador(novo);
                 this.save();
             }
@@ -100,10 +93,7 @@ public class BetESS implements Serializable{
     public void fecharEvento(String evento, String resultado){
         String[] equipas = evento.split(" X ");
         ArrayList<Evento> evAtiv = new ArrayList<>();
-        for(Evento e : this.getEventos().values()){
-            if(e.getEstado())
-                evAtiv.add(e);
-        }
+        this.getEventos().values().stream().filter(e -> e.getEstado()).forEach((e) -> evAtiv.add(e));
         for(Evento e : evAtiv){
             if(e.getEquipaC().getNome().equals(equipas[0]) && e.getEquipaF().getNome().equals(equipas[1])){
                 
@@ -145,7 +135,7 @@ public class BetESS implements Serializable{
             }
             else if(a.getESSCoins()-val >= 0){
                 Aposta ap = new Aposta(evento.getID(), res, val, odd);
-                data.addAposta(ap, a.getID());
+                data.addAposta(ap, a.getEmail());
                 ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/check.png"));
                 JOptionPane.showMessageDialog(null, "Aposta registada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, icon);
                 this.save();
@@ -157,12 +147,12 @@ public class BetESS implements Serializable{
             }
     }
     
-    public void cancelarAposta(Aposta a, int apostadorID){
+    public void cancelarAposta(Aposta a, String apostadorID){
         data.removeAposta(a,apostadorID);
     }
     
-    public Apostador getApostador(int id){
-        return data.getApostadores().get(id);
+    public User getApostador(String email){
+        return data.getUtilizadores().get(email);
     }
     
     public void levantarCoins(Apostador a, double quantia){
@@ -171,7 +161,8 @@ public class BetESS implements Serializable{
             JOptionPane.showMessageDialog(null, "O seu saldo atual não lhe permite levantar essa quantia. Tem de manter um saldo mínimo de 5 ESScoins!", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
         }
         else{
-            this.getApostadores().get(a.getID()).levantarESSCoins(quantia);
+            Apostador ap = (Apostador) this.getUtilizadores().get(a.getEmail());
+            ap.levantarESSCoins(quantia);
             this.save();
             ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/check.png"));
             JOptionPane.showMessageDialog(null, "Quantia depositada na sua conta bancária!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, icon);

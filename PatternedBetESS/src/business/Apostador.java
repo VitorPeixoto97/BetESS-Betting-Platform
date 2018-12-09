@@ -12,9 +12,8 @@ import java.util.List;
 import java.util.Map;
 
 
-public class Apostador implements Serializable{
-    private final int id;
-    private String email;
+public class Apostador implements Serializable, User{
+    private final String email;
     private String password;
     private String nome;
     private double esscoins;
@@ -22,7 +21,6 @@ public class Apostador implements Serializable{
     private List<String> notifications;
     
     public Apostador(){
-        this.id = 9999;
         this.email = "";
         this.password = "";
         this.nome = "";
@@ -31,8 +29,7 @@ public class Apostador implements Serializable{
         this.notifications = new ArrayList<>();
     }
     
-    public Apostador(int id, String email, String password, String nome, double esscoins){
-        this.id = id;
+    public Apostador(String email, String password, String nome, double esscoins){
         this.email = email;
         this.password = password;
         this.nome = nome;
@@ -42,27 +39,24 @@ public class Apostador implements Serializable{
     }
     
     public Apostador(Apostador a){
-        this.id = a.getID();
         this.email = a.getEmail();
-        this.password = a.getPassword();
+        this.password = a.password;
         this.nome = a.getNome();
         this.esscoins = a.getESSCoins();
         this.apostas = a.getApostas();
         this.notifications = a.getNotif();
     }
-    
-    public int getID(){
-        return this.id;
-    }
+   
+    @Override
     public String getEmail(){
         return this.email;
     }
-    private String getPassword(){
-        return this.password;
-    }
+
+    @Override
     public boolean verifyPassword(String pass){
         return this.password.equals(pass);
     }
+    @Override
     public String getNome(){
         return this.nome;
     }
@@ -78,16 +72,13 @@ public class Apostador implements Serializable{
     }
     
     public boolean hasNotif(){
-        return notifications.size() > 0;
+        return !notifications.isEmpty();
     }
     
     public void clearNotifs(){
         this.notifications = new ArrayList<>();
     }
-    
-    public void setEmail(String email){
-        this.email=email;
-    }
+
     public void setPassword(String password){
         this.password=password;
     }
@@ -116,8 +107,9 @@ public class Apostador implements Serializable{
         this.esscoins-=coins;
     }
 
-    public void update(Evento e) {
-        
+    @Override
+    public double update(Evento e, double d) {
+        d = 0.0d;
         if(this.apostas.containsKey(e.getID())){
            
            Aposta a = this.apostas.get(e.getID());
@@ -127,15 +119,31 @@ public class Apostador implements Serializable{
            
            StringBuilder sb = new StringBuilder();
            sb.append("Resultado final: ");
-           sb.append(e.getEquipaC().getNome()).append(" ");
-           sb.append(e.getResultado()).append(" ");
-           sb.append(e.getEquipaF().getNome()).append("\n");
-           sb.append("Ganhos: ").append(a.earnings()).append("ESScoins.");
+           switch(e.getResultado()){
+                   case 1:
+                       sb.append(e.getEquipaC().getNome()).append(" ganha contra ").append(e.getEquipaF().getNome()).append("!\n");
+                       break;
+                   case 2: 
+                       sb.append(e.getEquipaC().getNome()).append(" perde contra ").append(e.getEquipaF().getNome()).append("!\n");
+                       break;
+                   case 3:
+                       sb.append(e.getEquipaC().getNome()).append(" empata contra ").append(e.getEquipaF().getNome()).append("!\n");
+                       break;
+           }
+           if(e.getResultado() == a.getResultado()){
+               sb.append("Ganhos: ").append(a.earnings()).append(" ESScoins.");
+               d -= a.earnings();
+           }
+           else{
+               sb.append("Não ganhou desta vez. Melhor sorte para a próxima!");
+               d += a.getValor();
+           }
            
            this.notifications.add(sb.toString());
            
-           this.apostas.remove(id);
+           this.apostas.remove(e.getID());
         }
+        return d;
     }
 
 }

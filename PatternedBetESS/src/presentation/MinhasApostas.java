@@ -246,7 +246,7 @@ public class MinhasApostas extends javax.swing.JFrame {
         int value = (Integer) betsTable.getModel().getValueAt(row, 0);
         Aposta a = apostador.getAposta(value);
         if(a != null){
-            this.betess.cancelarAposta(a, apostador.getID());
+            this.betess.cancelarAposta(a, apostador.getEmail());
             betess.save();
             MinhasApostas ma = new MinhasApostas(this.betess, apostador);
             ma.setVisible(true);
