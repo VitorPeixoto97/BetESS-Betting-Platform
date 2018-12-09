@@ -7,8 +7,12 @@ package presentation;
 
 import business.BetESS;
 import business.Bookie;
+import business.Equipa;
+import business.Evento;
 import java.awt.Image;
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -38,6 +42,31 @@ public class BookieHome extends javax.swing.JFrame {
         Image newimg = image.getScaledInstance(155, 35, java.awt.Image.SCALE_SMOOTH);
         icon = new ImageIcon(newimg);
         this.logo.setIcon(icon);
+        
+        fillCombos();
+        
+        if(bookie.hasNotifs()){
+            for(String s : bookie.getNotifs()){
+                icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/ball.png"));
+                JOptionPane.showMessageDialog(null, s, "Evento Terminado", JOptionPane.INFORMATION_MESSAGE, icon);
+            }
+            bookie.clearNotifs();
+            betess.save();
+        }
+    }
+    
+    private void fillCombos(){
+        ArrayList<Equipa> eqDisp = new ArrayList<>(betess.getEquipas().values());
+        ArrayList<Evento> evAtiv = new ArrayList<>();
+        this.betess.getEventos().values().stream().filter(e -> e.getEstado()).forEach((e) -> evAtiv.add(e));
+        for(Evento e : evAtiv){
+            eqDisp.remove(e.getEquipaC());
+            eqDisp.remove(e.getEquipaF());
+        }
+        for(Equipa eq : eqDisp){
+            this.casaCombo.addItem(eq.getNome());
+            this.foraCombo.addItem(eq.getNome());
+        }
     }
 
     /**
@@ -111,6 +140,17 @@ public class BookieHome extends javax.swing.JFrame {
                 .addComponent(jLabel1))
             .addComponent(logo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+
+        oddV.setText("0.0");
+        oddV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                oddVActionPerformed(evt);
+            }
+        });
+
+        oddE.setText("0.0");
+
+        oddD.setText("0.0");
 
         criarButton.setText("Criar evento");
         criarButton.addActionListener(new java.awt.event.ActionListener() {
@@ -207,16 +247,30 @@ public class BookieHome extends javax.swing.JFrame {
     }//GEN-LAST:event_logoutButtonActionPerformed
 
     private void criarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criarButtonActionPerformed
+        Bookie b = null;
+        if(notificacaoCheckBox.isSelected()){
+            b = this.bookie;
+        }
+            
         this.betess.criarEvento(casaCombo.getSelectedItem().toString(),
             foraCombo.getSelectedItem().toString(),
             Double.parseDouble(oddV.getText()),
             Double.parseDouble(oddE.getText()),
-            Double.parseDouble(oddD.getText()));
+            Double.parseDouble(oddD.getText()),
+            b);
+       
+        BookieHome bookieHome = new BookieHome(this.betess, this.bookie);
+        bookieHome.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_criarButtonActionPerformed
 
     private void notificacaoCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notificacaoCheckBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_notificacaoCheckBoxActionPerformed
+
+    private void oddVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_oddVActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_oddVActionPerformed
 
     /**
      * @param args the command line arguments

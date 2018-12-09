@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -69,7 +68,7 @@ public class BetESS implements Serializable{
         return 0;
     }
     
-    public void criarEvento(String equipaC, String equipaF, Double oddV, Double oddE, Double oddD){
+    public void criarEvento(String equipaC, String equipaF, Double oddV, Double oddE, Double oddD, User u){
         Equipa casa = new Equipa();
         Equipa fora = new Equipa();
         for(Equipa a : this.data.getEquipas().values()){
@@ -82,11 +81,17 @@ public class BetESS implements Serializable{
         }
         else{
             int id = this.data.getEventos().size()+1;
-            Evento evento = new Evento(id, oddV , oddE, oddD, true, 0, casa, fora, new HashMap<>()); 
+            Evento evento = new Evento(id, oddV , oddE, oddD, true, 0, casa, fora, u); 
             data.addEvento(evento);
             this.save();
+            
+            StringBuilder sb = new StringBuilder();
+            sb.append("Evento criado e disponível.");
+            if(u != null)
+                sb.append("\nSerá notificado quando o evento terminar.");
+            
             ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/check.png"));
-            JOptionPane.showMessageDialog(null, "Evento criado e disponível.", "Sucesso", JOptionPane.INFORMATION_MESSAGE, icon);
+            JOptionPane.showMessageDialog(null, sb.toString(), "Sucesso", JOptionPane.INFORMATION_MESSAGE, icon);
         }
     }
     

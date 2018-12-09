@@ -21,7 +21,7 @@ public class Evento implements Serializable{
     private int resultado;
     private Equipa equipaC;
     private Equipa equipaF;
-    private Map<Integer, User> utilizadores;
+    private Map<String, User> utilizadores;
     
     public Evento(){
         this.id = 9999;
@@ -34,7 +34,7 @@ public class Evento implements Serializable{
         this.equipaF = new Equipa();
         this.utilizadores = new HashMap<>();
     }
-    public Evento(int id, double oddV, double oddE, double oddD, boolean estado, int resultado, Equipa c, Equipa f, Map<Integer, User> apostadores){
+    public Evento(int id, double oddV, double oddE, double oddD, boolean estado, int resultado, Equipa c, Equipa f, User u){
         this.id = id;
         this.oddV = oddV;
         this.oddE = oddE;
@@ -43,7 +43,9 @@ public class Evento implements Serializable{
         this.resultado = resultado;
         this.equipaC = c;
         this.equipaF = f;
-        this.utilizadores = apostadores;
+        this.utilizadores = new HashMap<>();
+        if(u != null)
+            utilizadores.put(u.getEmail(), u);
     }
     public Evento(Evento e){
         this.id = e.getID();
@@ -81,7 +83,7 @@ public class Evento implements Serializable{
     public Equipa getEquipaF(){
         return this.equipaF;
     }
-    public Map<Integer, User> getUtilizadores(){
+    public Map<String, User> getUtilizadores(){
         return this.utilizadores;
     }
     public void setID(int id){

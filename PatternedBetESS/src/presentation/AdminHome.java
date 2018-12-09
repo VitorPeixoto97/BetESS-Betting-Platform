@@ -139,6 +139,12 @@ public class AdminHome extends javax.swing.JFrame {
         Levantar2.setForeground(new java.awt.Color(255, 255, 255));
         Levantar2.setText("x");
 
+        oddV.setText("0.0");
+
+        oddE.setText("0.0");
+
+        oddD.setText("0.0");
+
         criarButton.setText("Criar evento");
         criarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -289,8 +295,12 @@ public class AdminHome extends javax.swing.JFrame {
                                 foraCombo.getSelectedItem().toString(),
                                 Double.parseDouble(oddV.getText()),
                                 Double.parseDouble(oddE.getText()),
-                                Double.parseDouble(oddD.getText()));
-
+                                Double.parseDouble(oddD.getText()),
+                                null);
+        
+        AdminHome admin = new AdminHome(this.betess);
+        admin.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_criarButtonActionPerformed
     
     public static void main(String args[]) {

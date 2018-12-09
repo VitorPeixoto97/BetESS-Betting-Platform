@@ -192,15 +192,15 @@ public class Data implements Serializable{
         this.utilizadores.put(h.getEmail(),h);
     }
     public void povoarEventos(){
-        Evento j1j1 = new Evento(0, 1.11d, 3.94d, 8.71d, true, 0, equipas.get(7), equipas.get(9), new HashMap<>());
-        Evento j1j2 = new Evento(1, 2.10, 2.81, 4.50, true, 0, equipas.get(12), equipas.get(16), new HashMap<>());
-        Evento j1j3 = new Evento(2, 1.72, 3.81, 7.21, true, 0, equipas.get(17), equipas.get(10), new HashMap<>());
-        Evento j1j4 = new Evento(3, 1.68, 3.54, 7.02, true, 0, equipas.get(0), equipas.get(1), new HashMap<>());
-        Evento j1j5 = new Evento(9, 2.13, 2.81, 2.50, true, 0, equipas.get(14), equipas.get(13), new HashMap<>());
-        Evento j1j6 = new Evento(5, 1.42, 3.36, 3.47, true, 0, equipas.get(8), equipas.get(6), new HashMap<>());
-        Evento j1j7 = new Evento(6, 1.09, 3.81, 8.98, true, 0, equipas.get(15), equipas.get(5), new HashMap<>());
-        Evento j1j8 = new Evento(7, 1.87, 2.98, 3.49, true, 0, equipas.get(3), equipas.get(2), new HashMap<>());
-        Evento j1j9 = new Evento(8, 1.42, 3.25, 3.99, true, 0, equipas.get(11), equipas.get(4), new HashMap<>());
+        Evento j1j1 = new Evento(0, 1.11d, 3.94d, 8.71d, true, 0, equipas.get(7), equipas.get(9), null);
+        Evento j1j2 = new Evento(1, 2.10, 2.81, 4.50, true, 0, equipas.get(12), equipas.get(16), null);
+        Evento j1j3 = new Evento(2, 1.72, 3.81, 7.21, true, 0, equipas.get(17), equipas.get(10), null);
+        Evento j1j4 = new Evento(3, 1.68, 3.54, 7.02, true, 0, equipas.get(0), equipas.get(1), null);
+        Evento j1j5 = new Evento(9, 2.13, 2.81, 2.50, true, 0, equipas.get(14), equipas.get(13), null);
+        Evento j1j6 = new Evento(5, 1.42, 3.36, 3.47, true, 0, equipas.get(8), equipas.get(6), null);
+        Evento j1j7 = new Evento(6, 1.09, 3.81, 8.98, true, 0, equipas.get(15), equipas.get(5), null);
+        Evento j1j8 = new Evento(7, 1.87, 2.98, 3.49, true, 0, equipas.get(3), equipas.get(2), null);
+        Evento j1j9 = new Evento(8, 1.42, 3.25, 3.99, true, 0, equipas.get(11), equipas.get(4), null);
         
         this.eventos.put(j1j1.getID(),j1j1);
         this.eventos.put(j1j2.getID(),j1j2);
