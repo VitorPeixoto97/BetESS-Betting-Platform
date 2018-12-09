@@ -9,6 +9,7 @@ import business.BetESS;
 import business.Bookie;
 import business.Equipa;
 import business.Evento;
+import java.awt.Color;
 import java.awt.Image;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
@@ -42,6 +43,10 @@ public class BookieHome extends javax.swing.JFrame {
         Image newimg = image.getScaledInstance(155, 35, java.awt.Image.SCALE_SMOOTH);
         icon = new ImageIcon(newimg);
         this.logo.setIcon(icon);
+        logoutButton.setBackground(new Color(0,0,0));
+        logoutButton.setContentAreaFilled(false);
+        logoutButton.setOpaque(true);
+        logoutButton.setText(this.bookie.getNome());
         
         fillCombos();
         

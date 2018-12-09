@@ -36,7 +36,7 @@ public class Bookie implements Serializable, User{
     }
     
     public boolean hasNotifs(){
-        return this.notifs.isEmpty();
+        return !this.notifs.isEmpty();
     }
 
     @Override
