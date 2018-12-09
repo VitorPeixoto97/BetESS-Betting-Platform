@@ -75,6 +75,7 @@ public class Admin extends javax.swing.JFrame {
         resField = new javax.swing.JTextField();
         Levantar3 = new javax.swing.JLabel();
         fecharButton = new javax.swing.JButton();
+        Levantar4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -157,6 +158,10 @@ public class Admin extends javax.swing.JFrame {
             }
         });
 
+        Levantar4.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        Levantar4.setForeground(new java.awt.Color(250, 250, 250));
+        Levantar4.setText("Odds:");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -185,7 +190,8 @@ public class Admin extends javax.swing.JFrame {
                                         .addGap(18, 18, 18)
                                         .addComponent(oddE, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(oddD, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(oddD, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(Levantar4))
                                 .addGap(74, 74, 74)
                                 .addComponent(criarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -222,7 +228,9 @@ public class Admin extends javax.swing.JFrame {
                             .addComponent(casaCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Levantar2)
                             .addComponent(foraCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Levantar4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(oddE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(oddD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -308,6 +316,7 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JLabel Levantar1;
     private javax.swing.JLabel Levantar2;
     private javax.swing.JLabel Levantar3;
+    private javax.swing.JLabel Levantar4;
     private javax.swing.JLabel Saldo;
     private javax.swing.JComboBox<String> casaCombo;
     private javax.swing.JButton criarButton;

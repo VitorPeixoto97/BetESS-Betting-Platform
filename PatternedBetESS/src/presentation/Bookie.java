@@ -7,6 +7,7 @@ package presentation;
 
 import business.BetESS;
 import business.Evento;
+import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -30,6 +31,12 @@ public class Bookie extends javax.swing.JFrame {
         this.setTitle("Menu de Bookie");
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+        
+        ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/logo2.png"));
+        Image image = icon.getImage();
+        Image newimg = image.getScaledInstance(155, 35, java.awt.Image.SCALE_SMOOTH);
+        icon = new ImageIcon(newimg);
+        this.logo.setIcon(icon);
     }
 
     /**
@@ -45,47 +52,43 @@ public class Bookie extends javax.swing.JFrame {
         foraCombo = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         logo = new javax.swing.JLabel();
-        perfilButton = new javax.swing.JButton();
+        logoutButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         oddV = new javax.swing.JTextField();
         oddE = new javax.swing.JTextField();
         oddD = new javax.swing.JTextField();
         criarButton = new javax.swing.JButton();
         Saldo = new javax.swing.JLabel();
-        eventCombo = new javax.swing.JComboBox<>();
-        Levantar1 = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
-        alterarButton = new javax.swing.JButton();
         casaCombo = new javax.swing.JComboBox<>();
-        newOddD = new javax.swing.JTextField();
-        newOddE = new javax.swing.JTextField();
-        newOddV = new javax.swing.JTextField();
+        Levantar4 = new javax.swing.JLabel();
+        notificacaoCheckBox = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         Levantar2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        Levantar2.setForeground(new java.awt.Color(255, 255, 255));
+        Levantar2.setForeground(new java.awt.Color(55, 55, 55));
         Levantar2.setText("x");
 
-        jPanel2.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel2.setBackground(new java.awt.Color(190, 190, 190));
 
         logo.setText("jLabel1");
 
-        perfilButton.setBackground(new java.awt.Color(0, 0, 0));
-        perfilButton.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        perfilButton.setForeground(new java.awt.Color(255, 102, 102));
-        perfilButton.setText("Logout");
-        perfilButton.setBorderPainted(false);
-        perfilButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        perfilButton.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        perfilButton.addActionListener(new java.awt.event.ActionListener() {
+        logoutButton.setBackground(new java.awt.Color(190, 190, 190));
+        logoutButton.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        logoutButton.setForeground(new java.awt.Color(200, 50, 50));
+        logoutButton.setText("Logout");
+        logoutButton.setBorderPainted(false);
+        logoutButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        logoutButton.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        logoutButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                perfilButtonActionPerformed(evt);
+                logoutButtonActionPerformed(evt);
             }
         });
 
+        jLabel1.setBackground(new java.awt.Color(50, 50, 50));
         jLabel1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setForeground(new java.awt.Color(50, 50, 50));
         jLabel1.setText("Menu de Bookie");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -97,14 +100,13 @@ public class Bookie extends javax.swing.JFrame {
                 .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(perfilButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(47, 47, 47))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
+                .addComponent(logoutButton))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(perfilButton, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
+                .addComponent(logoutButton, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
                 .addComponent(jLabel1))
             .addComponent(logo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -117,118 +119,91 @@ public class Bookie extends javax.swing.JFrame {
         });
 
         Saldo.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        Saldo.setForeground(new java.awt.Color(255, 255, 255));
+        Saldo.setForeground(new java.awt.Color(55, 55, 55));
         Saldo.setText("Criar evento");
 
-        Levantar1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        Levantar1.setForeground(new java.awt.Color(255, 255, 255));
-        Levantar1.setText("Alterar evento");
+        casaCombo.setName(""); // NOI18N
 
-        alterarButton.setText("Alterar evento");
-        alterarButton.setToolTipText("");
-        alterarButton.addActionListener(new java.awt.event.ActionListener() {
+        Levantar4.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        Levantar4.setForeground(new java.awt.Color(50, 50, 50));
+        Levantar4.setText("Odds:");
+
+        notificacaoCheckBox.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
+        notificacaoCheckBox.setText("Desejo receber notificações sobre este evento.");
+        notificacaoCheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                alterarButtonActionPerformed(evt);
+                notificacaoCheckBoxActionPerformed(evt);
             }
         });
-
-        casaCombo.setName(""); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jSeparator1))
-                .addGap(0, 109, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
+                .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(Saldo, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(casaCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(Levantar2)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(foraCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(oddV, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(oddE, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(oddD, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(74, 74, 74)
-                                .addComponent(criarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(casaCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Levantar2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(foraCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Levantar4))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Levantar1)
+                            .addComponent(notificacaoCheckBox)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(eventCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(newOddV, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(newOddE, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(newOddD, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(87, 87, 87)
-                                .addComponent(alterarButton)))))
-                .addContainerGap(34, Short.MAX_VALUE))
+                                .addComponent(oddV, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(oddE, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(oddD, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(criarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(24, 24, 24))))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(Saldo)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addComponent(criarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(casaCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Levantar2)
                             .addComponent(foraCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                        .addGap(9, 9, 9)
+                        .addComponent(Levantar4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(oddE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(oddD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(oddV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)))
-                .addComponent(Levantar1)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(eventCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(oddV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(oddD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(newOddE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(newOddD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(newOddV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(alterarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(notificacaoCheckBox))
+                    .addComponent(criarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void perfilButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_perfilButtonActionPerformed
+    private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
         Login login = new Login(this.betess);
         login.setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_perfilButtonActionPerformed
+    }//GEN-LAST:event_logoutButtonActionPerformed
 
     private void criarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criarButtonActionPerformed
         this.betess.criarEvento(casaCombo.getSelectedItem().toString(),
@@ -238,23 +213,9 @@ public class Bookie extends javax.swing.JFrame {
             Double.parseDouble(oddD.getText()));
     }//GEN-LAST:event_criarButtonActionPerformed
 
-    private void alterarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alterarButtonActionPerformed
-
-        Evento e = (Evento) eventCombo.getSelectedItem();
-        
-        double newoddV = newOddV.getText() != null ? Double.parseDouble(newOddV.getText()) : e.getOddV();
-        double newoddE = newOddE.getText() != null ? Double.parseDouble(newOddE.getText()) : e.getOddE();
-        double newoddD = newOddD.getText() != null ? Double.parseDouble(newOddD.getText()) : e.getOddD();
-        
-        betess.criarEvento(e.getEquipaC().getNome(), e.getEquipaF().getNome(), newoddV, newoddE, newoddD);
-
-        ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/check.png"));
-        JOptionPane.showMessageDialog(null, "Evento alterado.", "Sucesso", JOptionPane.INFORMATION_MESSAGE, icon);
-
-        Bookie bookie = new Bookie(this.betess);
-        bookie.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_alterarButtonActionPerformed
+    private void notificacaoCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notificacaoCheckBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_notificacaoCheckBoxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -281,24 +242,19 @@ public class Bookie extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Levantar1;
     private javax.swing.JLabel Levantar2;
+    private javax.swing.JLabel Levantar4;
     private javax.swing.JLabel Saldo;
-    private javax.swing.JButton alterarButton;
     private javax.swing.JComboBox<String> casaCombo;
     private javax.swing.JButton criarButton;
-    private javax.swing.JComboBox<String> eventCombo;
     private javax.swing.JComboBox<String> foraCombo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel logo;
-    private javax.swing.JTextField newOddD;
-    private javax.swing.JTextField newOddE;
-    private javax.swing.JTextField newOddV;
+    private javax.swing.JButton logoutButton;
+    private javax.swing.JCheckBox notificacaoCheckBox;
     private javax.swing.JTextField oddD;
     private javax.swing.JTextField oddE;
     private javax.swing.JTextField oddV;
-    private javax.swing.JButton perfilButton;
     // End of variables declaration//GEN-END:variables
 }
