@@ -111,37 +111,37 @@ public class Apostador implements Serializable, User{
     public double update(Evento e, double d) {
         d = 0.0d;
            
-           Aposta a = this.apostas.get(e.getID());
-           if(a.getResultado() == e.getResultado()){
-               this.esscoins += a.earnings();
-           }
-           
-           StringBuilder sb = new StringBuilder();
-           sb.append("Resultado final: ");
-           switch(e.getResultado()){
-                   case 1:
-                       sb.append(e.getEquipaC().getNome()).append(" ganha contra ").append(e.getEquipaF().getNome()).append("!\n");
-                       break;
-                   case 2: 
-                       sb.append(e.getEquipaC().getNome()).append(" perde contra ").append(e.getEquipaF().getNome()).append("!\n");
-                       break;
-                   case 3:
-                       sb.append(e.getEquipaC().getNome()).append(" empata contra ").append(e.getEquipaF().getNome()).append("!\n");
-                       break;
-           }
-           if(e.getResultado() == a.getResultado()){
-               sb.append("Ganhos: ").append(a.earnings()).append(" ESScoins.");
-               d -= a.earnings();
-           }
-           else{
-               sb.append("Não ganhou desta vez. Melhor sorte para a próxima!");
-               d += a.getValor();
-           }
-           
-           this.notifications.add(sb.toString());
-           
-           this.apostas.remove(e.getID());
-           
+        Aposta a = this.apostas.get(e.getID());
+        if(a.getResultado() == e.getResultado()){
+            this.esscoins += a.earnings();
+        }
+        d += a.getValor();
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("Resultado final: ");
+        switch(e.getResultado()){
+                case 1:
+                    sb.append(e.getEquipaC().getNome()).append(" ganha contra ").append(e.getEquipaF().getNome()).append("!\n");
+                    break;
+                case 2: 
+                    sb.append(e.getEquipaC().getNome()).append(" perde contra ").append(e.getEquipaF().getNome()).append("!\n");
+                    break;
+                case 3:
+                    sb.append(e.getEquipaC().getNome()).append(" empata contra ").append(e.getEquipaF().getNome()).append("!\n");
+                    break;
+        }
+        if(e.getResultado() == a.getResultado()){
+            sb.append("Ganhos: ").append(a.earnings()).append(" ESScoins.");
+            d -= a.earnings();
+        }
+        else
+            sb.append("Não ganhou desta vez. Melhor sorte para a próxima!");
+
+
+        this.notifications.add(sb.toString());
+
+        this.apostas.remove(e.getID());
+
         return d;
     }
 
