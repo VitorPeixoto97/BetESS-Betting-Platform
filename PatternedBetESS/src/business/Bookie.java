@@ -60,16 +60,16 @@ public class Bookie implements Serializable, User{
     @Override
     public double update(Evento e, double d) {
         StringBuilder sb = new StringBuilder();
-        sb.append("Resultado final: ");
+        sb.append("");
         switch(e.getResultado()){
                 case 1:
                     sb.append(e.getEquipaC().getNome()).append(" ganha contra ").append(e.getEquipaF().getNome()).append("!\n");
                     break;
                 case 2: 
-                    sb.append(e.getEquipaC().getNome()).append(" perde contra ").append(e.getEquipaF().getNome()).append("!\n");
+                    sb.append(e.getEquipaC().getNome()).append(" empata contra ").append(e.getEquipaF().getNome()).append("!\n");
                     break;
                 case 3:
-                    sb.append(e.getEquipaC().getNome()).append(" empata contra ").append(e.getEquipaF().getNome()).append("!\n");
+                    sb.append(e.getEquipaC().getNome()).append(" perde contra ").append(e.getEquipaF().getNome()).append("!\n");
                     break;
         }
         sb.append("Ganhos ").append(d).append(" ESScoins.");
