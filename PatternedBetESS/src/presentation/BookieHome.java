@@ -43,7 +43,7 @@ public class BookieHome extends javax.swing.JFrame {
         Image newimg = image.getScaledInstance(155, 35, java.awt.Image.SCALE_SMOOTH);
         icon = new ImageIcon(newimg);
         this.logo.setIcon(icon);
-        logoutButton.setBackground(new Color(0,0,0));
+        logoutButton.setBackground(new Color(170,170,170));
         logoutButton.setContentAreaFilled(false);
         logoutButton.setOpaque(true);
         logoutButton.setText(this.bookie.getNome());
@@ -104,7 +104,7 @@ public class BookieHome extends javax.swing.JFrame {
         Levantar2.setForeground(new java.awt.Color(55, 55, 55));
         Levantar2.setText("x");
 
-        jPanel2.setBackground(new java.awt.Color(190, 190, 190));
+        jPanel2.setBackground(new java.awt.Color(170, 170, 170));
 
         logo.setText("jLabel1");
 
