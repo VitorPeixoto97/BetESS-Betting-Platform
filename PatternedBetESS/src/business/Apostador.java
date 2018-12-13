@@ -5,11 +5,14 @@
  */
 package business;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class Apostador implements Serializable, User{
@@ -17,7 +20,6 @@ public class Apostador implements Serializable, User{
     private String password;
     private String nome;
     private double esscoins;
-    private Map<Integer, Aposta> apostas;
     private List<String> notifications;
     
     public Apostador(){
@@ -25,7 +27,6 @@ public class Apostador implements Serializable, User{
         this.password = "";
         this.nome = "";
         this.esscoins = 0.0;
-        this.apostas = new HashMap<>();
         this.notifications = new ArrayList<>();
     }
     
@@ -34,7 +35,6 @@ public class Apostador implements Serializable, User{
         this.password = password;
         this.nome = nome;
         this.esscoins = esscoins;
-        this.apostas = new HashMap<>();
         this.notifications = new ArrayList<>();
     }
     
@@ -43,7 +43,6 @@ public class Apostador implements Serializable, User{
         this.password = a.password;
         this.nome = a.getNome();
         this.esscoins = a.getESSCoins();
-        this.apostas = a.getApostas();
         this.notifications = a.getNotif();
     }
    
@@ -62,9 +61,6 @@ public class Apostador implements Serializable, User{
     }
     public double getESSCoins(){
         return this.esscoins;
-    }
-    public Map<Integer, Aposta> getApostas(){
-        return this.apostas;
     }
   
     public List<String> getNotif(){
@@ -85,20 +81,6 @@ public class Apostador implements Serializable, User{
     public void setNome(String nome){
         this.nome=nome;
     }
-    
-    public void efetuarAposta(Aposta a){
-        apostas.put(a.getID(), a);
-        levantarESSCoins(a.getValor());
-    }
-    
-    public Aposta getAposta(int id){
-        return this.apostas.get(id);
-    }
-    
-    public void removerAposta(Aposta a){
-            apostas.remove(a.getID());
-            this.esscoins+=a.getValor();
-    }
         
     public void adicionarESSCoins(double coins){
         this.esscoins+=coins;
@@ -110,8 +92,23 @@ public class Apostador implements Serializable, User{
     @Override
     public double update(Evento e, double d) {
         d = 0.0d;
+        
+        
+        
+        Aposta a = new Aposta();
+        
+        try {
+            for(Aposta ap : persistence.Data.load().getApostas().values()){
+                if(ap.getEvento().equals(e) && ap.getApostador().equals(this))
+                    a=ap;
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(Apostador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
            
-        Aposta a = this.apostas.get(e.getID());
+                
+                
         if(a.getResultado() == e.getResultado()){
             this.esscoins += a.earnings();
         }
@@ -140,7 +137,8 @@ public class Apostador implements Serializable, User{
 
         this.notifications.add(sb.toString());
 
-        this.apostas.remove(e.getID());
+//        this.apostas.remove(e.getID());
+        
 
         return d;
     }

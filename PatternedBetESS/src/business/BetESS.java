@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -19,8 +20,8 @@ public class BetESS implements Serializable{
     public BetESS() {
         this.data = new Data();
     }
-    public BetESS(HashMap<String,User> u, HashMap<Integer,Evento> ev, HashMap<Integer,Equipa> eq) {
-        this.data = new Data(u,ev,eq);
+    public BetESS(HashMap<String,User> u, HashMap<Integer,Evento> ev, HashMap<Integer,Equipa> eq, HashMap<Integer,Aposta> ap) {
+        this.data = new Data(u,ev,eq,ap);
     }
     public BetESS(Data d) {
         this.data = d;
@@ -36,6 +37,20 @@ public class BetESS implements Serializable{
     
     public Map<String, User> getUtilizadores(){
         return data.getUtilizadores();
+    }
+    
+    public Map<Integer, Aposta> getApostas(){
+        return data.getApostas();
+    }
+    
+    public ArrayList<Aposta> getApostas(Apostador ap){
+        ArrayList<Aposta> apostas = new ArrayList<Aposta>();
+        for(Aposta a : data.getApostas().values()){
+            if(a.getApostador().equals(ap)){
+                apostas.add(a);
+            }
+        }
+        return apostas;
     }
     
     public User login(String email, String password){
@@ -81,7 +96,7 @@ public class BetESS implements Serializable{
         }
         else{
             int id = this.data.getEventos().size()+1;
-            Evento evento = new Evento(id, oddV , oddE, oddD, true, 0, casa, fora, u); 
+            Evento evento = new EventoFutebol(id, oddV , oddE, oddD, true, 0, casa, fora, u); 
             data.addEvento(evento);
             this.save();
             
@@ -131,16 +146,21 @@ public class BetESS implements Serializable{
         data.removeEquipa(e);
     }
 
-    public void efetuarAposta(Evento evento, Apostador a, int res, int val, double odd){
+    public void efetuarAposta(Evento e, Apostador a, int res, int val, double odd){
         
-            boolean apostou = a.getApostas().containsKey(evento.getID());
+            boolean apostou = false;
+            for(Aposta ap : data.getApostas().values()){
+                if(ap.getApostador().equals(a) && ap.getEvento().equals(e))
+                    apostou=true;
+            }
+
             if(apostou) {
                 ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
                 JOptionPane.showMessageDialog(null, "Já registou uma aposta neste evento.", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
             }
             else if(a.getESSCoins()-val >= 0){
-                Aposta ap = new Aposta(evento.getID(), res, val, odd);
-                data.getEventos().get(evento.getID()).getUtilizadores().put(a.getEmail(), a);
+                Aposta ap = new Aposta(data.getApostas().size()+1, res, val, odd, a, e);
+                data.getEventos().get(e.getID()).getUtilizadores().put(a.getEmail(), a);
                 data.addAposta(ap, a.getEmail());
                 ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/check.png"));
                 JOptionPane.showMessageDialog(null, "Aposta registada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, icon);
@@ -154,7 +174,7 @@ public class BetESS implements Serializable{
     }
     
     public void cancelarAposta(Aposta a, String apostadorID){
-        data.removeAposta(a,apostadorID);
+        data.removeAposta(a);
     }
     
     public User getApostador(String email){

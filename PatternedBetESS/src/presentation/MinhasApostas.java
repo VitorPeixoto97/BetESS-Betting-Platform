@@ -50,15 +50,15 @@ public class MinhasApostas extends javax.swing.JFrame {
     public void preencherTabela(){
         String[] colunas = {"ID","Evento", "Resultado", "Valor", "Ganhos"};
         ArrayList<Aposta> apostas = new ArrayList<>();
-        for(Aposta ap : apostador.getApostas().values()){
-            if(betess.getEventos().get(ap.getID()).getEstado())
+        for(Aposta ap : betess.getApostas(apostador)){
+            if(ap.getEvento().getEstado())
                 apostas.add(ap);
         }
         Object[][] data = new Object[apostas.size()][5];
         int i=0;
         String res;
         for (Aposta ap : apostas){
-            Evento e = betess.getEventos().get(ap.getID());
+            Evento e = ap.getEvento();
             data[i][0] = ap.getID();
             data[i][1] = e.getEquipaC().getNome() + " x " + e.getEquipaF().getNome();
             switch (ap.getResultado()) {
@@ -244,7 +244,7 @@ public class MinhasApostas extends javax.swing.JFrame {
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
         int row = betsTable.getSelectedRow();
         int value = (Integer) betsTable.getModel().getValueAt(row, 0);
-        Aposta a = apostador.getAposta(value);
+        Aposta a = betess.getApostas().get(value);
         if(a != null){
             this.betess.cancelarAposta(a, apostador.getEmail());
             betess.save();

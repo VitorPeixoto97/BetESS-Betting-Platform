@@ -12,7 +12,6 @@ import java.io.Serializable;
  * @author vitorpeixoto
  */
 public class Aposta implements Serializable{
-    private int id;
     private int resultado; //resultado em que o apostador apostou (V/E/D)
     private int valor;
     private Evento evento;
