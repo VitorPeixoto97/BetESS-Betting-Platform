@@ -35,7 +35,7 @@ public class Bookie implements Serializable, User{
         return this.email;
     }
     
-    public boolean hasNotifs(){
+    public boolean hasNotif(){
         return !this.notifs.isEmpty();
     }
 

@@ -87,12 +87,12 @@ public class Data implements Serializable{
             equipas.get(e.getID()).setEstado(false);
     }
     
-    public void addAposta(Aposta a, String apostadorID) {
+    public void addAposta(Aposta a) {
         Apostador ap = a.getApostador();
         ap.levantarESSCoins(a.getValor());
         this.apostas.put(a.getID(), a);
         a.getApostador().registarAposta(a);
-        this.eventos.get(a.getEvento().getID()).registaUser(ap);
+        this.eventos.get(a.getEvento().getID()).addUser(ap);
     }
     
     public void removeAposta(Aposta a){        

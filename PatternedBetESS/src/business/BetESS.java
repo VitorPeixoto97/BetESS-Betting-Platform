@@ -142,7 +142,7 @@ public class BetESS implements Serializable{
             }
             else if(a.getESSCoins()-val >= 0){
                 Aposta ap = new Aposta(data.getApostas().size()+1, res, val, odd, a, e);
-                data.addAposta(ap, a.getEmail());
+                data.addAposta(ap);
                 ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/check.png"));
                 JOptionPane.showMessageDialog(null, "Aposta registada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, icon);
                 this.save();

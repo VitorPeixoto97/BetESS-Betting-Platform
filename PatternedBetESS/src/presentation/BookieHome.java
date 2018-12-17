@@ -50,7 +50,7 @@ public class BookieHome extends javax.swing.JFrame {
         
         fillCombos();
         
-        if(bookie.hasNotifs()){
+        if(bookie.hasNotif()){
             for(String s : bookie.getNotifs()){
                 icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/ball.png"));
                 JOptionPane.showMessageDialog(null, s, "Evento Terminado", JOptionPane.INFORMATION_MESSAGE, icon);

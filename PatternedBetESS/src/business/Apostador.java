@@ -54,11 +54,6 @@ public class Apostador implements Serializable, User{
     public String getEmail(){
         return this.email;
     }
-
-    @Override
-    public boolean verifyPassword(String pass){
-        return this.password.equals(pass);
-    }
     @Override
     public String getNome(){
         return this.nome;
@@ -66,23 +61,12 @@ public class Apostador implements Serializable, User{
     public double getESSCoins(){
         return this.esscoins;
     }
-  
     public List<String> getNotif(){
         return this.notifications;
     }
-    
     public List<Aposta> getApostas(){
         return this.apostas;
     }
-    
-    public boolean hasNotif(){
-        return !notifications.isEmpty();
-    }
-    
-    public void clearNotifs(){
-        this.notifications = new ArrayList<>();
-    }
-
     public void setPassword(String password){
         this.password=password;
     }
@@ -90,17 +74,25 @@ public class Apostador implements Serializable, User{
         this.nome=nome;
     }
         
+    public boolean hasNotif(){
+        return !notifications.isEmpty();
+    }
+    public void clearNotifs(){
+        this.notifications = new ArrayList<>();
+    }
     public void adicionarESSCoins(double coins){
         this.esscoins+=coins;
     }
     public void levantarESSCoins(double coins){
         this.esscoins-=coins;
     }
-    
     public void registarAposta(Aposta a){
         this.apostas.add(a);
     }
-
+    @Override
+    public boolean verifyPassword(String pass){
+        return this.password.equals(pass);
+    }
     @Override
     public double update(Evento e, double d) {
         d = 0.0d;

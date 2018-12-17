@@ -113,22 +113,20 @@ public class EventoFutebol implements Serializable, Evento{
         this.equipaF=equipaF;
     }
     
-    public boolean equals(EventoFutebol e) {
-        if(e.getID() == this.id) {
-            return true;
-        }
+    public boolean equals(Evento e) {
+        if(e.getID() == this.id) return true;
         return false;
     }
     
     @Override
-    public void notifyUtilizadores() {
+    public void notifyUsers() {
         double total = utilizadores.stream()
-                                            .filter(u -> u.getClass().getSimpleName().equals("Apostador"))
-                                            .mapToDouble(a -> a.update(this, 0)).sum();
+                                   .filter(u -> u.getClass().getSimpleName().equals("Apostador"))
+                                   .mapToDouble(a -> a.update(this, 0)).sum();
         
         utilizadores.stream()
-                             .filter(u -> u.getClass().getSimpleName().equals("Bookie"))
-                             .forEach(b -> b.update(this, total));
+                    .filter(u -> u.getClass().getSimpleName().equals("Bookie"))
+                    .forEach(b -> b.update(this, total));
     }
     
     @Override
@@ -137,27 +135,20 @@ public class EventoFutebol implements Serializable, Evento{
     }
     
     @Override
-    public void registaUser(User u){
+    public void addUser(User u){
         this.utilizadores.add(u);
     }
     
     public int vencedor(String res){
         String[] venc = res.split("-");
-        if(Integer.parseInt(venc[0])>Integer.parseInt(venc[1])){ //equipa casa venceu
-            return 1;
-        }
-        else if(Integer.parseInt(venc[1])>Integer.parseInt(venc[0])){ //equipa fora venceu
-            return 3;
-        }
-        else{ //empate
-            return 2;
-        }
+        if(Integer.parseInt(venc[0])>Integer.parseInt(venc[1])) return 1;
+        else if(Integer.parseInt(venc[1])>Integer.parseInt(venc[0])) return 3;
+        else return 2;
     }
     
     public void finalizar(int res){
         this.setEstado(false);
         this.setResultado(res);
-        this.notifyUtilizadores();
+        this.notifyUsers();
     }
-    
 }

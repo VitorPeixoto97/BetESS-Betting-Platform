@@ -33,10 +33,10 @@ public interface Evento {
     public void setEquipaC(Equipa equipaC);
     public void setEquipaF(Equipa equipaF);
     
-    public boolean equals(EventoFutebol e);
+    public boolean equals(Evento e);
     
-    public void notifyUtilizadores();
-    public void registaUser(User u);
+    public void notifyUsers();
+    public void addUser(User u);
     public void removeUser(User u);
     
     public int vencedor(String res);
