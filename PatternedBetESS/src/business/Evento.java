@@ -5,6 +5,7 @@
  */
 package business;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -21,7 +22,7 @@ public interface Evento {
     public int getResultado();
     public Equipa getEquipaC();
     public Equipa getEquipaF();
-    public Map<String, User> getUtilizadores();
+    public List<User> getUtilizadores();
     
     public void setID(int id);
     public void setOddV(double oddV);

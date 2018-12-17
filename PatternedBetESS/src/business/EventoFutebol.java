@@ -5,7 +5,9 @@
  */
 package business;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -21,7 +23,7 @@ public class EventoFutebol implements Serializable, Evento{
     private int resultado;
     private Equipa equipaC;
     private Equipa equipaF;
-    private Map<String, User> utilizadores;
+    private List<User> utilizadores;
     
     public EventoFutebol(){
         this.id = 9999;
@@ -32,7 +34,7 @@ public class EventoFutebol implements Serializable, Evento{
         this.resultado = 0;
         this.equipaC = new Equipa();
         this.equipaF = new Equipa();
-        this.utilizadores = new HashMap<>();
+        this.utilizadores = new ArrayList<>();
     }
     public EventoFutebol(int id, double oddV, double oddE, double oddD, boolean estado, int resultado, Equipa c, Equipa f, User u){
         this.id = id;
@@ -43,9 +45,9 @@ public class EventoFutebol implements Serializable, Evento{
         this.resultado = resultado;
         this.equipaC = c;
         this.equipaF = f;
-        this.utilizadores = new HashMap<>();
+        this.utilizadores = new ArrayList<>();
         if(u != null)
-            utilizadores.put(u.getEmail(), u);
+            utilizadores.add(u);
     }
     public EventoFutebol(EventoFutebol e){
         this.id = e.getID();
@@ -83,7 +85,7 @@ public class EventoFutebol implements Serializable, Evento{
     public Equipa getEquipaF(){
         return this.equipaF;
     }
-    public Map<String, User> getUtilizadores(){
+    public List<User> getUtilizadores(){
         return this.utilizadores;
     }
     public void setID(int id){
@@ -120,12 +122,12 @@ public class EventoFutebol implements Serializable, Evento{
     
     @Override
     public void notifyUtilizadores() {
-        double total = utilizadores.values().stream()
-                                            .filter(u -> u.getClass().getSimpleName().equals("Apostador") && this.getUtilizadores().containsKey(u.getEmail()))
+        double total = utilizadores.stream()
+                                            .filter(u -> u.getClass().getSimpleName().equals("Apostador"))
                                             .mapToDouble(a -> a.update(this, 0)).sum();
         
-        utilizadores.values().stream()
-                             .filter(u -> u.getClass().getSimpleName().equals("Bookie") && this.getUtilizadores().containsKey(u.getEmail()))
+        utilizadores.stream()
+                             .filter(u -> u.getClass().getSimpleName().equals("Bookie"))
                              .forEach(b -> b.update(this, total));
     }
     
@@ -136,7 +138,7 @@ public class EventoFutebol implements Serializable, Evento{
     
     @Override
     public void registaUser(User u){
-        this.utilizadores.put(u.getEmail(),u);
+        this.utilizadores.add(u);
     }
     
     public int vencedor(String res){
