@@ -17,4 +17,5 @@ public interface User {
     public String getNome();
     
     public double update(Evento e, double total);
+    
 }

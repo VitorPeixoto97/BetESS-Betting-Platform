@@ -37,4 +37,7 @@ public interface Evento {
     public void notifyUtilizadores();
     public void registaUser(User u);
     public void removeUser(User u);
+    
+    public int vencedor(String res);
+    public void finalizar(int res);
 }

@@ -139,4 +139,23 @@ public class EventoFutebol implements Serializable, Evento{
         this.utilizadores.put(u.getEmail(),u);
     }
     
+    public int vencedor(String res){
+        String[] venc = res.split("-");
+        if(Integer.parseInt(venc[0])>Integer.parseInt(venc[1])){ //equipa casa venceu
+            return 1;
+        }
+        else if(Integer.parseInt(venc[1])>Integer.parseInt(venc[0])){ //equipa fora venceu
+            return 3;
+        }
+        else{ //empate
+            return 2;
+        }
+    }
+    
+    public void finalizar(int res){
+        this.setEstado(false);
+        this.setResultado(res);
+        this.notifyUtilizadores();
+    }
+    
 }

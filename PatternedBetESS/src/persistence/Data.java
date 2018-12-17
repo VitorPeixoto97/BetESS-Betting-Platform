@@ -65,19 +65,14 @@ public class Data implements Serializable{
     public HashMap<Integer,Aposta> getApostas(){
         return this.apostas;
     }
-
     
     public void addEvento(Evento e){
         this.eventos.put(e.getID(), e);
     }
     
     public void endEvento(Evento e, int res){
-        //this.distribuiPremios(a,ap,e,res);
-        this.eventos.get(e.getID()).setEstado(false);
-        this.eventos.get(e.getID()).setResultado(res);
-        this.eventos.get(e.getID()).notifyUtilizadores();
+        this.eventos.get(e.getID()).finalizar(res);
     }
-    
     
     public void newApostador(Apostador a){
         this.utilizadores.put(a.getEmail(),a);
@@ -94,14 +89,17 @@ public class Data implements Serializable{
     
     public void addAposta(Aposta a, String apostadorID) {
         Apostador ap = a.getApostador();
-        this.apostas.put(a.getID(), a);
         ap.levantarESSCoins(a.getValor());
+        this.apostas.put(a.getID(), a);
+        a.getApostador().registarAposta(a);
+        this.eventos.get(a.getEvento().getID()).registaUser(ap);
     }
     
     public void removeAposta(Aposta a){        
-        this.apostas.remove(a.getID());
         Apostador ap = a.getApostador();
         ap.adicionarESSCoins(a.getValor());
+        this.apostas.remove(a.getID());
+        this.eventos.get(a.getEvento().getID()).removeUser(ap);
     }
     
     public void save(){
@@ -232,15 +230,11 @@ public class Data implements Serializable{
             in.close();
             fileIn.close();
             System.out.println("Data loaded!\n");
-        //} catch (IOException i) {
-        //    i.printStackTrace();
         } catch (Exception e) {
             System.out.println("Dados preexistentes não encontrados. Gerando dados modelo...");
             d.povoar();
             d.save();
         }
-        
         return d;
     }
-
 }

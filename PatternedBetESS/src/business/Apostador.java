@@ -21,6 +21,7 @@ public class Apostador implements Serializable, User{
     private String nome;
     private double esscoins;
     private List<String> notifications;
+    private List<Aposta> apostas;
     
     public Apostador(){
         this.email = "";
@@ -28,6 +29,7 @@ public class Apostador implements Serializable, User{
         this.nome = "";
         this.esscoins = 0.0;
         this.notifications = new ArrayList<>();
+        this.apostas = new ArrayList<>();
     }
     
     public Apostador(String email, String password, String nome, double esscoins){
@@ -36,6 +38,7 @@ public class Apostador implements Serializable, User{
         this.nome = nome;
         this.esscoins = esscoins;
         this.notifications = new ArrayList<>();
+        this.apostas = new ArrayList<>();
     }
     
     public Apostador(Apostador a){
@@ -44,6 +47,7 @@ public class Apostador implements Serializable, User{
         this.nome = a.getNome();
         this.esscoins = a.getESSCoins();
         this.notifications = a.getNotif();
+        this.apostas = a.getApostas();
     }
    
     @Override
@@ -67,6 +71,10 @@ public class Apostador implements Serializable, User{
         return this.notifications;
     }
     
+    public List<Aposta> getApostas(){
+        return this.apostas;
+    }
+    
     public boolean hasNotif(){
         return !notifications.isEmpty();
     }
@@ -88,27 +96,22 @@ public class Apostador implements Serializable, User{
     public void levantarESSCoins(double coins){
         this.esscoins-=coins;
     }
+    
+    public void registarAposta(Aposta a){
+        this.apostas.add(a);
+    }
 
     @Override
     public double update(Evento e, double d) {
         d = 0.0d;
         
-        
-        
         Aposta a = new Aposta();
         
-        try {
-            for(Aposta ap : persistence.Data.load().getApostas().values()){
-                if(ap.getEvento().equals(e) && ap.getApostador().equals(this))
-                    a=ap;
-            }
-        } catch (IOException ex) {
-            Logger.getLogger(Apostador.class.getName()).log(Level.SEVERE, null, ex);
+        for(Aposta ap : this.apostas){
+            if(ap.getEvento().equals(e) && ap.getApostador().equals(this))
+                a=ap;
         }
-        
-           
-                
-                
+            
         if(a.getResultado() == e.getResultado()){
             this.esscoins += a.earnings();
         }
@@ -128,19 +131,15 @@ public class Apostador implements Serializable, User{
                     break;
         }
         if(e.getResultado() == a.getResultado()){
+            
             sb.append("Ganhos: ").append(a.earnings()).append(" ESScoins.");
             d -= a.earnings();
         }
         else
             sb.append("Não ganhou desta vez. Melhor sorte para a próxima!");
 
-
         this.notifications.add(sb.toString());
-
-//        this.apostas.remove(e.getID());
-        
 
         return d;
     }
-
 }

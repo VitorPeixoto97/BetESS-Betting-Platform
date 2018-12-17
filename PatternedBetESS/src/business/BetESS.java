@@ -114,27 +114,9 @@ public class BetESS implements Serializable{
         String[] equipas = evento.split(" X ");
         ArrayList<Evento> evAtiv = new ArrayList<>();
         this.getEventos().values().stream().filter(e -> e.getEstado()).forEach((e) -> evAtiv.add(e));
-        for(Evento e : evAtiv){
-            if(e.getEquipaC().getNome().equals(equipas[0]) && e.getEquipaF().getNome().equals(equipas[1])){
-                
-                String[] venc = resultado.split("-");
-                int res;
-                if(Integer.parseInt(venc[0])>Integer.parseInt(venc[1])){ //equipa casa venceu
-                    System.out.println("equipa casa venceu\n");
-                    res = 1;
-                }
-                else if(Integer.parseInt(venc[1])>Integer.parseInt(venc[0])){ //equipa fora venceu
-                    System.out.println("equipa fora venceu\n");
-                    res = 3;
-                }
-                else{ //empate
-                    System.out.println("empate\n");
-                    res = 2;
-                }
-
-                this.data.endEvento(e,res);
-            }
-        }
+        for(Evento e : evAtiv)
+            if(e.getEquipaC().getNome().equals(equipas[0]) && e.getEquipaF().getNome().equals(equipas[1]))
+                this.data.endEvento(e,e.vencedor(resultado));
         this.save();
     }
     
@@ -160,7 +142,6 @@ public class BetESS implements Serializable{
             }
             else if(a.getESSCoins()-val >= 0){
                 Aposta ap = new Aposta(data.getApostas().size()+1, res, val, odd, a, e);
-                data.getEventos().get(e.getID()).getUtilizadores().put(a.getEmail(), a);
                 data.addAposta(ap, a.getEmail());
                 ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/check.png"));
                 JOptionPane.showMessageDialog(null, "Aposta registada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, icon);
@@ -175,10 +156,6 @@ public class BetESS implements Serializable{
     
     public void cancelarAposta(Aposta a, String apostadorID){
         data.removeAposta(a);
-    }
-    
-    public User getApostador(String email){
-        return data.getUtilizadores().get(email);
     }
     
     public void levantarCoins(Apostador a, double quantia){
