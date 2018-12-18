@@ -63,7 +63,7 @@ public class BookieHome extends javax.swing.JFrame {
     private void fillCombos(){
         ArrayList<Equipa> eqDisp = new ArrayList<>(betess.getEquipas().values());
         ArrayList<Evento> evAtiv = new ArrayList<>();
-        this.betess.getEventos().values().stream().filter(e -> e.getEstado()).forEach((e) -> evAtiv.add(e));
+        this.betess.getEventos().stream().filter(e -> e.getEstado()).forEach((e) -> evAtiv.add(e));
         for(Evento e : evAtiv){
             eqDisp.remove(e.getEquipaC());
             eqDisp.remove(e.getEquipaF());

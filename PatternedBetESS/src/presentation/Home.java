@@ -30,7 +30,7 @@ public class Home extends javax.swing.JFrame {
     public Home(BetESS b, Apostador a) {
         initComponents();
         this.betess = b;
-        for(Evento e : this.betess.getEventos().values()){
+        for(Evento e : this.betess.getEventos()){
             if(e.getEstado()){
                 jogos.add(e);
             }

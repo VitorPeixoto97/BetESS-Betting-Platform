@@ -39,7 +39,7 @@ public class AdminHome extends javax.swing.JFrame {
     private void fillCombos(){
         ArrayList<Equipa> eqDisp = new ArrayList<>(betess.getEquipas().values());
         ArrayList<Evento> evAtiv = new ArrayList<>();
-        for(Evento e : this.betess.getEventos().values()){
+        for(Evento e : this.betess.getEventos()){
             if(e.getEstado())
                 evAtiv.add(e);
         }

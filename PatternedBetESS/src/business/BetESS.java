@@ -4,8 +4,8 @@ import persistence.Data;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -27,12 +27,12 @@ public class BetESS implements Serializable{
         this.data = d;
     }
     
-    public Map<Integer, Evento> getEventos(){
-        return data.getEventos();
+    public Collection<Evento> getEventos(){
+        return data.getEventos().values();
     }
     
-    public Map<Integer, Equipa> getEquipas(){
-        return data.getEquipas();
+    public Collection<Equipa> getEquipas(){
+        return data.getEquipas().values();
     }
     
     public Map<String, User> getUtilizadores(){
@@ -44,7 +44,7 @@ public class BetESS implements Serializable{
     }
     
     public ArrayList<Aposta> getApostas(Apostador ap){
-        ArrayList<Aposta> apostas = new ArrayList<Aposta>();
+        ArrayList<Aposta> apostas = new ArrayList<>();
         for(Aposta a : data.getApostas().values()){
             if(a.getApostador().equals(ap)){
                 apostas.add(a);
@@ -113,7 +113,7 @@ public class BetESS implements Serializable{
     public void fecharEvento(String evento, String resultado){
         String[] equipas = evento.split(" X ");
         ArrayList<Evento> evAtiv = new ArrayList<>();
-        this.getEventos().values().stream().filter(e -> e.getEstado()).forEach((e) -> evAtiv.add(e));
+        this.getEventos().stream().filter(e -> e.getEstado()).forEach((e) -> evAtiv.add(e));
         for(Evento e : evAtiv)
             if(e.getEquipaC().getNome().equals(equipas[0]) && e.getEquipaF().getNome().equals(equipas[1]))
                 this.data.endEvento(e,e.vencedor(resultado));
