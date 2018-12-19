@@ -31,6 +31,15 @@ public class BetESS implements Serializable{
         return data.getEventos().values();
     }
     
+    public Collection<EventoFutebol> getEventosFutebol(){
+        ArrayList<EventoFutebol> efs = new ArrayList<>();
+        for(Evento e : data.getEventos().values()){
+            EventoFutebol ef = (EventoFutebol) e;
+            efs.add(ef);
+        }
+        return efs;
+    }
+    
     public Collection<Equipa> getEquipas(){
         return data.getEquipas().values();
     }
@@ -54,20 +63,33 @@ public class BetESS implements Serializable{
     }
     
     public User login(String email, String password){
-        User erro = this.data.getUtilizadores().get(email);
-        if(erro != null && !erro.verifyPassword(password)){
-            erro = null;
+        User u = this.data.getUtilizadores().get(email);
+        
+        System.out.println("->"+u.getClass()+"<-");
+        if(u instanceof business.Admin){
+            Admin erro = (Admin) u;
+            if(erro != null && !erro.verifyPassword(password)) erro = null;
+            return erro;
         }
-        return erro;
+        else if(u instanceof Bookie){
+            Bookie erro = (Bookie) u;
+            if(erro != null && !erro.verifyPassword(password)) erro = null;
+            return erro;
+        }
+        else{
+            Apostador erro = (Apostador) u;
+            if(erro != null && !erro.verifyPassword(password)) erro = null;
+            return erro;
+        }
     }
     
     public int registar(String nome, String email, String password, int coins, boolean aut){
         if(aut){
             boolean flag = true;
             for(User a : this.getUtilizadores().values()){
-                if(a.getEmail().equals(email) && flag){
+                Apostador ap = (Apostador) a;
+                if(ap.getEmail().equals(email) && flag){
                     flag = false;
-                    System.out.println("Já existe!!!\n");
                     return 1;
                 }
             }
@@ -113,10 +135,13 @@ public class BetESS implements Serializable{
     public void fecharEvento(String evento, String resultado){
         String[] equipas = evento.split(" X ");
         ArrayList<Evento> evAtiv = new ArrayList<>();
-        this.getEventos().stream().filter(e -> e.getEstado()).forEach((e) -> evAtiv.add(e));
-        for(Evento e : evAtiv)
-            if(e.getEquipaC().getNome().equals(equipas[0]) && e.getEquipaF().getNome().equals(equipas[1]))
-                this.data.endEvento(e,e.vencedor(resultado));
+        this.getEventosFutebol().stream().filter(e -> e.getEstado()).forEach((e) -> evAtiv.add(e));
+        for(Evento e : evAtiv){
+            EventoFutebol ef = (EventoFutebol) e;
+            if(ef.getEquipaC().getNome().equals(equipas[0]) && ef.getEquipaF().getNome().equals(equipas[1]))
+                this.data.endEvento(e,ef.vencedor(resultado));
+        }
+            
         this.save();
     }
     
@@ -156,6 +181,8 @@ public class BetESS implements Serializable{
     
     public void cancelarAposta(Aposta a, String apostadorID){
         data.removeAposta(a);
+        Apostador ap = (Apostador) data.getUtilizadores().get(apostadorID);
+        ap.cancelaAposta(a);
     }
     
     public void levantarCoins(Apostador a, double quantia){

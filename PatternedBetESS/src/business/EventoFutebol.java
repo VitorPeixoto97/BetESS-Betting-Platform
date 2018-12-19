@@ -114,7 +114,8 @@ public class EventoFutebol implements Serializable, Evento{
     }
     
     public boolean equals(Evento e) {
-        if(e.getID() == this.id) return true;
+        EventoFutebol ef = (EventoFutebol) e;
+        if(ef.getID() == this.id) return true;
         return false;
     }
     

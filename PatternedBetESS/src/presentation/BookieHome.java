@@ -9,6 +9,7 @@ import business.BetESS;
 import business.Bookie;
 import business.Equipa;
 import business.Evento;
+import business.EventoFutebol;
 import java.awt.Color;
 import java.awt.Image;
 import java.util.ArrayList;
@@ -61,12 +62,13 @@ public class BookieHome extends javax.swing.JFrame {
     }
     
     private void fillCombos(){
-        ArrayList<Equipa> eqDisp = new ArrayList<>(betess.getEquipas().values());
+        ArrayList<Equipa> eqDisp = new ArrayList<>(betess.getEquipas());
         ArrayList<Evento> evAtiv = new ArrayList<>();
-        this.betess.getEventos().stream().filter(e -> e.getEstado()).forEach((e) -> evAtiv.add(e));
+        this.betess.getEventosFutebol().stream().filter(e -> e.getEstado()).forEach((e) -> evAtiv.add(e));
         for(Evento e : evAtiv){
-            eqDisp.remove(e.getEquipaC());
-            eqDisp.remove(e.getEquipaF());
+            EventoFutebol ef = (EventoFutebol) e;
+            eqDisp.remove(ef.getEquipaC());
+            eqDisp.remove(ef.getEquipaF());
         }
         for(Equipa eq : eqDisp){
             this.casaCombo.addItem(eq.getNome());

@@ -9,6 +9,7 @@ package presentation;
 import business.Apostador;
 import business.BetESS;
 import business.Evento;
+import business.EventoFutebol;
 import java.awt.Color;
 import java.awt.Image;
 import java.util.ArrayList;
@@ -23,14 +24,14 @@ public class Home extends javax.swing.JFrame {
 
     BetESS betess;
     Apostador apostador;
-    ArrayList<Evento> jogos = new ArrayList<>(); 
+    ArrayList<EventoFutebol> jogos = new ArrayList<>(); 
         
     
     /** Creates new form Home */
     public Home(BetESS b, Apostador a) {
         initComponents();
         this.betess = b;
-        for(Evento e : this.betess.getEventos()){
+        for(EventoFutebol e : this.betess.getEventosFutebol()){
             if(e.getEstado()){
                 jogos.add(e);
             }
@@ -1350,7 +1351,7 @@ public class Home extends javax.swing.JFrame {
     private void j1BetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j1BetActionPerformed
         int res = 0;
         double odd = 0.0d;
-        Evento e = jogos.get(0);
+        EventoFutebol e = jogos.get(0);
         int val = (Integer) j1Spin.getValue();
         if(j1V.isSelected()) { res = 1; odd = e.getOddV(); }
         else if (j1E.isSelected()) { res = 2; odd = e.getOddE(); }
@@ -1368,7 +1369,7 @@ public class Home extends javax.swing.JFrame {
     private void j3BetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j3BetActionPerformed
         int res = 0;
         double odd = 0.0d;
-        Evento e = jogos.get(2);
+        EventoFutebol e = jogos.get(2);
         int val = (Integer) j3Spin.getValue();
         if(j3V.isSelected()) { res = 1; odd = e.getOddV(); }
         else if (j3E.isSelected()) { res = 2; odd = e.getOddE(); }
@@ -1386,7 +1387,7 @@ public class Home extends javax.swing.JFrame {
     private void j2BetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j2BetActionPerformed
         int res = 0;
         double odd = 0.0d;
-        Evento e = jogos.get(1);
+        EventoFutebol e = jogos.get(1);
         int val = (Integer) j2Spin.getValue();
         if(j2V.isSelected()) { res = 1; odd = e.getOddV(); }
         else if (j2E.isSelected()) { res = 2; odd = e.getOddE(); }
@@ -1404,7 +1405,7 @@ public class Home extends javax.swing.JFrame {
     private void j4BetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j4BetActionPerformed
         int res = 0;
         double odd = 0.0d;
-        Evento e = jogos.get(3);
+        EventoFutebol e = jogos.get(3);
         int val = (Integer) j4Spin.getValue();
         if(j4V.isSelected()) { res = 1; odd = e.getOddV(); }
         else if (j4E.isSelected()) { res = 2; odd = e.getOddE(); }
@@ -1422,7 +1423,7 @@ public class Home extends javax.swing.JFrame {
     private void j5BetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j5BetActionPerformed
         int res = 0;
         double odd = 0.0d;
-        Evento e = jogos.get(4);
+        EventoFutebol e = jogos.get(4);
         int val = (Integer) j5Spin.getValue();
         if(j5V.isSelected()) { res = 1; odd = e.getOddV(); }
         else if (j5E.isSelected()) { res = 2; odd = e.getOddE(); }
@@ -1440,7 +1441,7 @@ public class Home extends javax.swing.JFrame {
     private void j6BetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j6BetActionPerformed
         int res = 0;
         double odd = 0.0d;
-        Evento e = jogos.get(5);
+        EventoFutebol e = jogos.get(5);
         int val = (Integer) j6Spin.getValue();
         if(j6V.isSelected()) { res = 1; odd = e.getOddV(); }
         else if (j6E.isSelected()) { res = 2; odd = e.getOddE(); }
@@ -1458,7 +1459,7 @@ public class Home extends javax.swing.JFrame {
     private void j7BetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j7BetActionPerformed
         int res = 0;
         double odd = 0.0d;
-        Evento e = jogos.get(6);
+        EventoFutebol e = jogos.get(6);
         int val = (Integer) j7Spin.getValue();
         if(j7V.isSelected()) { res = 1; odd = e.getOddV(); }
         else if (j7E.isSelected()) { res = 2; odd = e.getOddE(); }
@@ -1476,7 +1477,7 @@ public class Home extends javax.swing.JFrame {
     private void j8BetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j8BetActionPerformed
         int res = 0;
         double odd = 0.0d;
-        Evento e = jogos.get(7);
+        EventoFutebol e = jogos.get(7);
         int val = (Integer) j8Spin.getValue();
         if(j8V.isSelected()) { res = 1; odd = e.getOddV(); }
         else if (j8E.isSelected()) { res = 2; odd = e.getOddE(); }
@@ -1494,7 +1495,7 @@ public class Home extends javax.swing.JFrame {
     private void j9BetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j9BetActionPerformed
         int res = 0;
         double odd = 0.0d;
-        Evento e = jogos.get(8);
+        EventoFutebol e = jogos.get(8);
         int val = (Integer) j9Spin.getValue();
         if(j9V.isSelected()) { res = 1; odd = e.getOddV(); }
         else if (j9E.isSelected()) { res = 2; odd = e.getOddE(); }

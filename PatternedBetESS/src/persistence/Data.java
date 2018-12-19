@@ -65,13 +65,23 @@ public class Data implements Serializable{
     public HashMap<Integer,Aposta> getApostas(){
         return this.apostas;
     }
+    public HashMap<Integer,EventoFutebol> getEventosFutebol(){
+        HashMap<Integer,EventoFutebol> efs = new HashMap<>();
+        for(Evento e : this.getEventos().values()){
+            EventoFutebol ef = (EventoFutebol) e;
+            efs.put(ef.getID(), ef);
+        }
+        return efs;
+    }
     
     public void addEvento(Evento e){
-        this.eventos.put(e.getID(), e);
+        EventoFutebol ef = (EventoFutebol) e;
+        this.eventos.put(ef.getID(), e);
     }
     
     public void endEvento(Evento e, int res){
-        this.eventos.get(e.getID()).finalizar(res);
+        EventoFutebol ef = (EventoFutebol) e;
+        this.getEventosFutebol().get(ef.getID()).finalizar(res);
     }
     
     public void newApostador(Apostador a){
@@ -92,14 +102,16 @@ public class Data implements Serializable{
         ap.levantarESSCoins(a.getValor());
         this.apostas.put(a.getID(), a);
         a.getApostador().registarAposta(a);
-        this.eventos.get(a.getEvento().getID()).addUser(ap);
+        EventoFutebol ef = (EventoFutebol) a.getEvento();
+        this.getEventosFutebol().get(ef.getID()).addUser(ap);
     }
     
     public void removeAposta(Aposta a){        
         Apostador ap = a.getApostador();
         ap.adicionarESSCoins(a.getValor());
         this.apostas.remove(a.getID());
-        this.eventos.get(a.getEvento().getID()).removeUser(ap);
+        EventoFutebol ef = (EventoFutebol) a.getEvento();
+        this.getEventosFutebol().get(ef.getID()).removeUser(ap);
     }
     
     public void save(){

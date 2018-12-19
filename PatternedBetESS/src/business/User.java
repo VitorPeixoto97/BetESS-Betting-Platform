@@ -10,11 +10,6 @@ package business;
  * @author danie
  */
 public interface User {
-    public String getEmail();
-    
-    public boolean verifyPassword(String s);
-    
-    public String getNome();
     
     public double update(Evento e, double d);
     

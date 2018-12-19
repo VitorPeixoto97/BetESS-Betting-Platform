@@ -25,17 +25,14 @@ public class Admin implements Serializable, User {
         this.nome = a.getNome();
     }
     
-    @Override
     public String getEmail() {
         return this.email;
     }
 
-    @Override
     public boolean verifyPassword(String s) {
         return this.password.equals(s);
     }
 
-    @Override
     public String getNome() {
         return this.nome;
     }

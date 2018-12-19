@@ -9,6 +9,7 @@ import business.Aposta;
 import business.Apostador;
 import business.BetESS;
 import business.Evento;
+import business.EventoFutebol;
 import java.awt.Color;
 import java.awt.Image;
 import java.util.ArrayList;
@@ -51,14 +52,15 @@ public class MinhasApostas extends javax.swing.JFrame {
         String[] colunas = {"ID","Evento", "Resultado", "Valor", "Ganhos"};
         ArrayList<Aposta> apostas = new ArrayList<>();
         for(Aposta ap : apostador.getApostas()){
-            if(ap.getEvento().getEstado())
+            EventoFutebol e = (EventoFutebol) ap.getEvento();
+            if(e.getEstado())
                 apostas.add(ap);
         }
         Object[][] data = new Object[apostas.size()][5];
         int i=0;
         String res;
         for (Aposta ap : apostas){
-            Evento e = ap.getEvento();
+            EventoFutebol e = (EventoFutebol) ap.getEvento();
             data[i][0] = ap.getID();
             data[i][1] = e.getEquipaC().getNome() + " x " + e.getEquipaF().getNome();
             switch (ap.getResultado()) {

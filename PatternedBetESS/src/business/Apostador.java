@@ -45,11 +45,9 @@ public class Apostador implements Serializable, User{
         this.apostas = a.getApostas();
     }
    
-    @Override
     public String getEmail(){
         return this.email;
     }
-    @Override
     public String getNome(){
         return this.nome;
     }
@@ -84,7 +82,9 @@ public class Apostador implements Serializable, User{
     public void registarAposta(Aposta a){
         this.apostas.add(a);
     }
-    @Override
+    public void cancelaAposta(Aposta a){
+        this.apostas.remove(a);
+    }
     public boolean verifyPassword(String pass){
         return this.password.equals(pass);
     }
@@ -99,25 +99,26 @@ public class Apostador implements Serializable, User{
                 a=ap;
         }
             
-        if(a.getResultado() == e.getResultado()){
+        EventoFutebol ef = (EventoFutebol) e;
+        if(a.getResultado() == ef.getResultado()){
             this.esscoins += a.earnings();
         }
         d += a.getValor();
 
         StringBuilder sb = new StringBuilder();
         sb.append("");
-        switch(e.getResultado()){
+        switch(ef.getResultado()){
                 case 1:
-                    sb.append(e.getEquipaC().getNome()).append(" ganha contra ").append(e.getEquipaF().getNome()).append("!\n");
+                    sb.append(ef.getEquipaC().getNome()).append(" ganha contra ").append(ef.getEquipaF().getNome()).append("!\n");
                     break;
                 case 2: 
-                    sb.append(e.getEquipaC().getNome()).append(" empata contra ").append(e.getEquipaF().getNome()).append("!\n");
+                    sb.append(ef.getEquipaC().getNome()).append(" empata contra ").append(ef.getEquipaF().getNome()).append("!\n");
                     break;
                 case 3:
-                    sb.append(e.getEquipaC().getNome()).append(" perde contra ").append(e.getEquipaF().getNome()).append("!\n");
+                    sb.append(ef.getEquipaC().getNome()).append(" perde contra ").append(ef.getEquipaF().getNome()).append("!\n");
                     break;
         }
-        if(e.getResultado() == a.getResultado()){
+        if(ef.getResultado() == a.getResultado()){
             
             sb.append("Ganhos: ").append(a.earnings()).append(" ESScoins.");
             d -= a.earnings();

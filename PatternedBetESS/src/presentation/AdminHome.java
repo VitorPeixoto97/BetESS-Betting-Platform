@@ -3,6 +3,7 @@ import business.Admin;
 import business.BetESS;
 import business.Equipa;
 import business.Evento;
+import business.EventoFutebol;
 import java.awt.Image;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
@@ -37,16 +38,18 @@ public class AdminHome extends javax.swing.JFrame {
     }
     
     private void fillCombos(){
-        ArrayList<Equipa> eqDisp = new ArrayList<>(betess.getEquipas().values());
+        ArrayList<Equipa> eqDisp = new ArrayList<>(betess.getEquipas());
         ArrayList<Evento> evAtiv = new ArrayList<>();
         for(Evento e : this.betess.getEventos()){
-            if(e.getEstado())
+            EventoFutebol ef = (EventoFutebol) e;
+            if(ef.getEstado())
                 evAtiv.add(e);
         }
         for(Evento e : evAtiv){
-            eqDisp.remove(e.getEquipaC());
-            eqDisp.remove(e.getEquipaF());
-            this.eventCombo.addItem(e.getEquipaC().getNome() + " X " + e.getEquipaF().getNome());
+            EventoFutebol ef = (EventoFutebol) e;
+            eqDisp.remove(ef.getEquipaC());
+            eqDisp.remove(ef.getEquipaF());
+            this.eventCombo.addItem(ef.getEquipaC().getNome() + " X " + ef.getEquipaF().getNome());
         }
         for(Equipa eq : eqDisp){
             this.casaCombo.addItem(eq.getNome());
