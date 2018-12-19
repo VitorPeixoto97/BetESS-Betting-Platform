@@ -64,9 +64,7 @@ public class BetESS implements Serializable{
     
     public User login(String email, String password){
         User u = this.data.getUtilizadores().get(email);
-        
-            if(u != null){
-            System.out.println("->"+u.getClass()+"<-");
+        if(u != null){
             if(u instanceof business.Admin){
                 Admin erro = (Admin) u;
                 if(erro != null && !erro.verifyPassword(password)) erro = null;
@@ -83,7 +81,6 @@ public class BetESS implements Serializable{
                 return erro;
             }
         }
-        
         return null;
     }
     
@@ -112,9 +109,9 @@ public class BetESS implements Serializable{
                 }
                 
             }
-                Apostador novo = new Apostador(email, password, nome, coins);
-                data.newApostador(novo);
-                this.save();
+            Apostador novo = new Apostador(email, password, nome, coins);
+            data.newApostador(novo);
+            this.save();
         }
         else{
             return 2;
