@@ -66,9 +66,11 @@ public class BookieHome extends javax.swing.JFrame {
         ArrayList<Evento> evAtiv = new ArrayList<>();
         this.betess.getEventosFutebol().stream().filter(e -> e.getEstado()).forEach((e) -> evAtiv.add(e));
         for(Evento e : evAtiv){
-            EventoFutebol ef = (EventoFutebol) e;
-            eqDisp.remove(ef.getEquipaC());
-            eqDisp.remove(ef.getEquipaF());
+            if(e.getClass().getSimpleName().equals("EventoFutebol")){
+                EventoFutebol ef = (EventoFutebol) e;
+                eqDisp.remove(ef.getEquipaC());
+                eqDisp.remove(ef.getEquipaF());
+            }
         }
         for(Equipa eq : eqDisp){
             this.casaCombo.addItem(eq.getNome());

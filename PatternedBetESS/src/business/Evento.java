@@ -5,8 +5,6 @@
  */
 package business;
 
-import java.util.List;
-
 /**
  *
  * @author vitorpeixoto

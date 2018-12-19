@@ -65,39 +65,56 @@ public class BetESS implements Serializable{
     public User login(String email, String password){
         User u = this.data.getUtilizadores().get(email);
         
-        System.out.println("->"+u.getClass()+"<-");
-        if(u instanceof business.Admin){
-            Admin erro = (Admin) u;
-            if(erro != null && !erro.verifyPassword(password)) erro = null;
-            return erro;
+            if(u != null){
+            System.out.println("->"+u.getClass()+"<-");
+            if(u instanceof business.Admin){
+                Admin erro = (Admin) u;
+                if(erro != null && !erro.verifyPassword(password)) erro = null;
+                return erro;
+            }
+            else if(u instanceof Bookie){
+                Bookie erro = (Bookie) u;
+                if(erro != null && !erro.verifyPassword(password)) erro = null;
+                return erro;
+            }
+            else{
+                Apostador erro = (Apostador) u;
+                if(erro != null && !erro.verifyPassword(password)) erro = null;
+                return erro;
+            }
         }
-        else if(u instanceof Bookie){
-            Bookie erro = (Bookie) u;
-            if(erro != null && !erro.verifyPassword(password)) erro = null;
-            return erro;
-        }
-        else{
-            Apostador erro = (Apostador) u;
-            if(erro != null && !erro.verifyPassword(password)) erro = null;
-            return erro;
-        }
+        
+        return null;
     }
     
     public int registar(String nome, String email, String password, int coins, boolean aut){
         if(aut){
-            boolean flag = true;
             for(User a : this.getUtilizadores().values()){
-                Apostador ap = (Apostador) a;
-                if(ap.getEmail().equals(email) && flag){
-                    flag = false;
-                    return 1;
+                switch(a.getClass().getSimpleName()){
+                    case "Admin":
+                        Admin ad = (Admin) a;
+                        if(ad.getEmail().equals(email)){
+                            return 1;
+                        }
+                        break;
+                    case "Apostador":
+                        Apostador ap = (Apostador) a;
+                        if(ap.getEmail().equals(email)){
+                            return 1;
+                        }
+                        break;
+                    case "Bookie":
+                        Bookie b = (Bookie) a;
+                        if(b.getEmail().equals(email)){
+                            return 1;
+                        }
+                        break;
                 }
+                
             }
-            if(flag){
                 Apostador novo = new Apostador(email, password, nome, coins);
                 data.newApostador(novo);
                 this.save();
-            }
         }
         else{
             return 2;
@@ -137,9 +154,11 @@ public class BetESS implements Serializable{
         ArrayList<Evento> evAtiv = new ArrayList<>();
         this.getEventosFutebol().stream().filter(e -> e.getEstado()).forEach((e) -> evAtiv.add(e));
         for(Evento e : evAtiv){
-            EventoFutebol ef = (EventoFutebol) e;
-            if(ef.getEquipaC().getNome().equals(equipas[0]) && ef.getEquipaF().getNome().equals(equipas[1]))
-                this.data.endEvento(e,ef.vencedor(resultado));
+            if(e.getClass().getSimpleName().equals("EventoFutebol")){
+                EventoFutebol ef = (EventoFutebol) e;
+                if(ef.getEquipaC().getNome().equals(equipas[0]) && ef.getEquipaF().getNome().equals(equipas[1]))
+                    this.data.endEvento(e,ef.vencedor(resultado));
+            }
         }
             
         this.save();
