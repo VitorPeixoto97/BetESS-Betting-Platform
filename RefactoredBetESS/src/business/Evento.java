@@ -100,11 +100,15 @@ public class Evento implements Serializable{
         this.equipaF=equipaF;
     }
     
+    /* ORIGINAL : BLOATER
     public boolean equals(Evento e) {
         if(e.getID() == this.id) {
             return true;
         }
         return false;
+    }*/
+    public boolean equals(Evento e) {
+        return e.getID() == this.id;
     }
     
 }

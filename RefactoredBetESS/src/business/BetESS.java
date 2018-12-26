@@ -1,5 +1,6 @@
 package business;
 
+/* ORIGINAL : DEAD CODE (?)
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -11,7 +12,16 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Observable;
-import java.util.Set;
+import java.util.Set;*/
+
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  *
@@ -113,6 +123,7 @@ public class BetESS implements Serializable{
         Equipa sporting     = new Equipa(15, "Sporting CP", true, "resources/equipas/sporting.png");
         Equipa setubal      = new Equipa(16, "Vitória FC", true, "resources/equipas/setubal.png");
         Equipa guimaraes    = new Equipa(17, "Vitória SC", true, "resources/equipas/guimaraes.png");
+        //DEAD CODE
         Equipa famalicao    = new Equipa(18, "FC Famalicão", false, "resources/equipas/famalicao.png");
         Equipa pacos        = new Equipa(19, "FC Paços de Ferreira", false, "resources/equipas/pacos.png");
         
