@@ -1,6 +1,4 @@
 package presentation;
-import business.Aposta;
-import business.Apostador;
 import business.BetESS;
 import business.Equipa;
 import business.Evento;
@@ -10,7 +8,6 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
 
 public class Admin extends javax.swing.JFrame {
 

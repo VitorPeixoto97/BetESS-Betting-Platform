@@ -28,6 +28,7 @@ public class Registar extends javax.swing.JFrame {
         this.betess = betess;
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+        this.setTitle("Registar na BetESS");
     }
 
     /**
@@ -218,6 +219,7 @@ public class Registar extends javax.swing.JFrame {
         Login login = new Login(this.betess);
         login.setVisible(true);
         this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_voltarButtonActionPerformed
 
     private void registarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registarButtonActionPerformed
@@ -226,50 +228,35 @@ public class Registar extends javax.swing.JFrame {
         String password = passwordField.getText();
         int coins = (Integer) coinsField.getValue() + 5;
         boolean aut = acessoCheckBox.isSelected();
-        
-        if(aut){
-            boolean flag = true;
-            for(Apostador a : this.betess.getApostadores().values()){
-                if(a.getEmail().equals(email) && flag){
-                    flag = false;
-                    System.out.println("Já existe!!!\n");
-                    ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
-                    JOptionPane.showMessageDialog(null, "Já foi registado um apostador com esse email. Por favor tente outro.", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
-                }
-            }
-            if(flag){
-                int last_id = this.betess.getApostadores().size()+1;
-                ArrayList<Aposta> apostas = new ArrayList<Aposta>();
-                Apostador novo = new Apostador(last_id, email, password, nome, coins, apostas);
-                this.betess.registarApostador(novo);
-                try {
-                    this.betess.save(betess);
-                } catch (IOException ex) {
-                    Logger.getLogger(Registar.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/check.png"));
-                JOptionPane.showMessageDialog(null, "Registado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE, icon);
-                Login login = new Login(this.betess);
-                login.setVisible(true);
-                this.setVisible(false);
+        boolean flag = true;
+        for(Apostador a : this.betess.getApostadores().values()){
+            if(a.getEmail().equals(email) && flag){
+                flag = false;
+                betess.notification(3, "Já foi registado um apostador com esse email. Por favor tente outro.", "Aviso");
             }
         }
-        else{
-            ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/warning.png"));
-            JOptionPane.showMessageDialog(null, "A autorização de acesso e levantamentos da conta bancária é necessária para o registo.", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
-        }
-        
+        if(flag && aut){
+            int last_id = this.betess.getApostadores().size()+1;
+            ArrayList<Aposta> apostas = new ArrayList<>();
+            Apostador novo = new Apostador(last_id, email, password, nome, coins, apostas);
+            betess.registarApostador(novo);
+            betess.notification(1, "Registado com sucesso!", "Sucesso");
+            saveNreturn();
+        } else betess.notification(2, "A autorização é necessária para o registo.", "Aviso");
     }//GEN-LAST:event_registarButtonActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void saveNreturn(){
+        try {
+            this.betess.save(betess);
+        } catch (IOException ex) {
+            Logger.getLogger(Registar.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Login login = new Login(this.betess);
+        login.setVisible(true);
+        this.setVisible(false);
+    }
+    
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -286,9 +273,6 @@ public class Registar extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Registar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-
-
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

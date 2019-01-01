@@ -50,6 +50,26 @@ public class BetESS implements Serializable{
         return this.equipas;
     }
     
+    public boolean efetuarAposta(Evento e, Apostador a, int res, int val, double odd){
+        boolean apostou = false;
+        for (Aposta ap : this.getApostadores().get(a.getID()).getApostas())
+            if(ap.getEvento().getID() == e.getID())
+                apostou = true;
+        if(apostou) {
+            this.notification(3, "Já registou uma aposta neste evento.", "Aviso");
+        }
+        else if(a.getESSCoins()-val >= 0){
+            Aposta ap = new Aposta(res, val, e, true);
+            this.getApostadores().get(a.getID()).efetuarAposta(ap);
+            this.notification(1, "Aposta registada com sucesso!", "Sucesso");
+            return true;
+        }
+        else{
+            this.notification(3, "Não tem saldo suficiente para realizar a aposta.", "Aviso");
+        }  
+        return false;
+    }
+    
     public void criarEvento(Evento e){
         eventos.put(e.getID(), e);
     }

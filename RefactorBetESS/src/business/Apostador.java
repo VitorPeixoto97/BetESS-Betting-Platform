@@ -67,7 +67,14 @@ public class Apostador implements Serializable{
     public ArrayList<Aposta> getApostas(){
         return this.apostas;
     }
-  
+    public ArrayList<Aposta> getApostasAtivas(){
+        ArrayList<Aposta> apostas = new ArrayList<>();
+        for(Aposta ap : this.getApostas()){
+            if(ap.getEvento().getEstado())
+                apostas.add(ap);
+        }
+        return apostas;
+    }
     public void setEmail(String email){
         this.email=email;
     }

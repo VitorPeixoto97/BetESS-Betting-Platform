@@ -9,16 +9,9 @@ import business.Apostador;
 import business.BetESS;
 import java.awt.Color;
 import java.awt.Image;
-import java.io.File;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import static javafx.application.ConditionalFeature.FXML;
-import javafx.fxml.FXML;
-import javafx.scene.image.ImageView;
-import javafx.stage.StageStyle;
 import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -211,6 +204,7 @@ public class Login extends javax.swing.JFrame {
             Admin admin = new Admin(this.betess);
             admin.setVisible(true);
             this.setVisible(false);
+            this.dispose();
         }
         else{
             for (Apostador a : apostadores) {
@@ -219,11 +213,9 @@ public class Login extends javax.swing.JFrame {
                         Home home = new Home(this.betess, a);
                         home.setVisible(true);
                         this.setVisible(false);
+                        this.dispose();
                     }
-                    else{
-                        ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
-                        JOptionPane.showMessageDialog(null, "Dados incorretos!", "Aviso", JOptionPane.INFORMATION_MESSAGE, icon);
-                    }
+                    else this.betess.notification(3, "Dados incorretos!", "Aviso");
                 }   
             }
         }
@@ -233,6 +225,7 @@ public class Login extends javax.swing.JFrame {
         Registar reg = new Registar(this.betess);
         reg.setVisible(true);
         this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_registarButtonActionPerformed
 
     /**

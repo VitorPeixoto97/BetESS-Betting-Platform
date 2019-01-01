@@ -13,7 +13,6 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -28,9 +27,9 @@ public class DepositarLevantar extends javax.swing.JFrame {
      */
     public DepositarLevantar(BetESS b, Apostador a) {
         initComponents();
-        setStyle();
         this.betess = b;
         this.apostador = a;
+        setStyle();
     }
     
     private void setStyle(){
