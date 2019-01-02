@@ -18,8 +18,7 @@ public class Main extends Application implements Serializable{
         try{ data = data.load(); } 
         catch (IOException i){
             data = data.povoar();
-            try { data.save(data); } 
-            catch (IOException ex) { Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex); }
+            data.save();
         }
         BetESS betess = new BetESS(data);
         Login form = new Login(betess);

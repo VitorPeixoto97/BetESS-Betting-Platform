@@ -1,36 +1,41 @@
 package business;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Aposta implements Serializable{
-    private int resultado; //resultado em que o apostador apostou (V/E/D)
+    private int palpite; //resultado em que o apostador apostou (V/E/D)
     private int valor;
     private Evento evento;
+    private Apostador apostador;
     private boolean visto;
     
     public Aposta(){
-        this.resultado=0;
+        this.palpite=0;
         this.valor=0;
         this.evento = new Evento();
+        this.apostador = new Apostador();
         this.visto = true;
     }
     
-    public Aposta(int resultado, int valor, Evento evento, boolean visto){
-        this.resultado = resultado;
+    public Aposta(int resultado, int valor, Evento evento, Apostador a, boolean visto){
+        this.palpite = resultado;
         this.valor= valor;
         this.evento = evento;
+        this.apostador = apostador;
         this.visto = visto;
     }
     
     public Aposta(Aposta a){
-        this.resultado = a.getResultado();
+        this.palpite = a.getPalpite();
         this.valor = a.getValor();
         this.evento = a.getEvento();
+        this.apostador = a.getApostador();
         this.visto = a.getVisto();
     }
 
-    public int getResultado(){
-        return this.resultado;
+    public int getPalpite(){
+        return this.palpite;
     }
     public int getValor(){
         return this.valor;
@@ -38,17 +43,42 @@ public class Aposta implements Serializable{
     public Evento getEvento(){
         return this.evento;
     }
+    public int getEventoID(){
+        return evento.getID();
+    }
+    public boolean getEstadoEvento(){
+        return evento.getEstado();
+    }
+    public String getResultadoEvento(){
+        return evento.getResultado();
+    }
+    public Apostador getApostador(){
+        return this.apostador;
+    }
     public boolean getVisto(){
         return this.visto;
     }
-    public void setResultado(int resultado){
-        this.resultado=resultado;
+    public String getEquipaCasaNome(){
+        return evento.getEquipaCasaNome();
     }
-    public void setValor(int valor){
-        this.valor=valor;
+    public String getEquipaForaNome(){
+        return evento.getEquipaForaNome();
     }
-    public void setEvento(Evento evento){
-        this.evento=evento;
+    public double getOddV(){
+        return evento.getOddV();
+    }
+    public double getOddE(){
+        return evento.getOddE();
+    }
+    public double getOddD(){
+        return evento.getOddD();
+    }
+    
+    public ArrayList<Aposta> getApostadorApostas(){
+        return getApostador().getApostas();
+    }
+    public double getApostadorCoins(){
+        return getApostador().getESSCoins();
     }
     public void notificaApostador(){
         this.visto=false;
@@ -56,34 +86,19 @@ public class Aposta implements Serializable{
     public void visto(){
         this.visto=true;
     }
-    public void distribuirGanhos(Apostador a, int res){
-        if(this.getResultado()==res){
-            if(res==1)      a.adicionarESSCoins(this.getEvento().getOddV()*this.getValor());
-            else if(res==2) a.adicionarESSCoins(this.getEvento().getOddE()*this.getValor());
-            else if(res==3) a.adicionarESSCoins(this.getEvento().getOddD()*this.getValor());
-        }
+    public void registar(){
+        getApostador().efetuarAposta(this);
+    }
+    public void distribuirPremio(){
+        apostador.adicionarESSCoins(ganhos());
     }
     public double ganhos(){
         double ganhos = 0.0;
-        String[] venc = this.evento.getResultado().split("-");
-        int res;
-        if(Integer.parseInt(venc[0])>Integer.parseInt(venc[1])) res = 1;
-        else if(Integer.parseInt(venc[1])>Integer.parseInt(venc[0])) res = 3;
-        else res = 2;
-        if(resultado==res){
-            switch (res) {
-                case 1:
-                    ganhos = evento.getOddV()*valor;
-                    break;
-                case 2:
-                    ganhos = evento.getOddE()*valor;
-                    break;
-                case 3:
-                    ganhos= evento.getOddD()*valor;
-                    break;
-                default:
-                    break;
-            }
+        int p = evento.getRes();
+        if(palpite==p){
+            if(p==1)      ganhos = evento.getOddV()*valor;
+            else if(p==2) ganhos = evento.getOddE()*valor;
+            else if(p==3) ganhos = evento.getOddD()*valor;
         }
         return ganhos;
     }

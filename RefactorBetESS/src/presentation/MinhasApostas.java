@@ -5,10 +5,7 @@ import business.Apostador;
 import business.BetESS;
 import java.awt.Color;
 import java.awt.Image;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
 
@@ -46,20 +43,20 @@ public class MinhasApostas extends javax.swing.JFrame {
         String res;
         double ganho = 0.0;
         for (Aposta a : apostas){
-            data[i][0] = a.getEvento().getID();
-            data[i][1] = a.getEvento().getEquipaC().getNome()+" x "+a.getEvento().getEquipaF().getNome();
-            switch (a.getResultado()) {
+            data[i][0] = a.getEventoID();
+            data[i][1] = a.getEquipaCasaNome()+" x "+a.getEquipaForaNome();
+            switch (a.getPalpite()) {
                 case 1:
-                    res = a.getEvento().getEquipaC().getNome();
-                    ganho = a.getValor() * a.getEvento().getOddV();
+                    res = a.getEquipaCasaNome();
+                    ganho = a.getValor() * a.getOddV();
                     break;
                 case 2:
                     res = "Empate";
-                    ganho = a.getValor() * a.getEvento().getOddE();
+                    ganho = a.getValor() * a.getOddE();
                     break;
                 case 3:
-                    res = a.getEvento().getEquipaF().getNome();
-                    ganho = a.getValor() * a.getEvento().getOddD();
+                    res = a.getEquipaForaNome();
+                    ganho = a.getValor() * a.getOddD();
                     break;
                 default:
                     res = "ERRO!";
@@ -230,13 +227,13 @@ public class MinhasApostas extends javax.swing.JFrame {
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
         int row = betsTable.getSelectedRow();
-        int value = (Integer) betsTable.getModel().getValueAt(row, 0);
+        int value = (Integer) model.getValueAt(row, 0);
         Aposta aposta = new Aposta();
-        for(Aposta a: this.betess.getData().getApostadores().get(apostador.getID()).getApostas()){
-            if (a.getEvento().getID() == value) aposta = a;
+        for(Aposta a: apostador.getApostas()){
+            if (a.getEventoID() == value) aposta = a;
         }
-        this.betess.getData().getApostadores().get(apostador.getID()).removerAposta(aposta);
-        this.saveNrefresh();
+        apostador.removerAposta(aposta);
+        saveNrefresh();
     }//GEN-LAST:event_deleteButtonActionPerformed
 
     private void perfilButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_perfilButtonActionPerformed
@@ -247,11 +244,7 @@ public class MinhasApostas extends javax.swing.JFrame {
     }//GEN-LAST:event_perfilButtonActionPerformed
 
     private void saveNrefresh(){
-        try {
-            betess.getData().save(betess.getData());
-        } catch (IOException ex) {
-            Logger.getLogger(MinhasApostas.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        betess.save();
         MinhasApostas ma = new MinhasApostas(betess, apostador);
         ma.setVisible(true);
         this.setVisible(false);
@@ -266,14 +259,8 @@ public class MinhasApostas extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MinhasApostas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MinhasApostas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MinhasApostas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MinhasApostas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
+            System.out.println("Error in Main");
         }
     }
 

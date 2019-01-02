@@ -5,13 +5,13 @@ import business.Apostador;
 import business.Equipa;
 import business.Evento;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 
 public class Data implements Serializable {
@@ -38,11 +38,37 @@ public class Data implements Serializable {
     public HashMap<Integer,Apostador> getApostadores(){
         return this.apostadores;
     }
+    public Collection<Apostador> getApostadoresValues(){
+        return apostadores.values();
+    }
+    
     public HashMap<Integer,Evento> getEventos(){
         return this.eventos;
     }
+    public Collection<Evento> getEventosValues(){
+        return this.eventos.values();
+    }
+    public ArrayList<Evento> getEventosAtivos(){
+        ArrayList<Evento> ativos = new ArrayList<>();
+        for(Evento e : eventos.values()){
+            if(e.getEstado()){
+                ativos.add(e);
+            }
+        }
+        return ativos;
+    }
     public HashMap<Integer,Equipa> getEquipas(){
         return this.equipas;
+    }
+    public Collection<Equipa> getEquipasValues(){
+        return equipas.values();
+    }
+    
+    public void addEvento(Evento e){
+        eventos.put(e.getID(), e);
+    }
+    public void addApostador(Apostador a){
+        apostadores.put(a.getID(), a);
     }
     
     public Data load() throws IOException {
@@ -60,14 +86,25 @@ public class Data implements Serializable {
         return d;
     }
     
-    public void save(Data d) throws FileNotFoundException, IOException {
-        FileOutputStream fileOut = new FileOutputStream("betess.obj");
-        ObjectOutputStream out = new ObjectOutputStream(fileOut);
-        out.writeObject(d);
-        out.flush();
-        out.close();
-        fileOut.close();
-        System.out.println("Data saved in betess.obj\n");
+    public void save() {
+        ObjectOutputStream out = null;
+        try {
+            FileOutputStream fileOut = new FileOutputStream("betess.obj");
+            out = new ObjectOutputStream(fileOut);
+            out.writeObject(this);
+            out.flush();
+            out.close();
+            fileOut.close();
+            System.out.println("Data saved in betess.obj\n");
+        } catch (IOException ex) {
+            System.out.println("IOException: Couldn't save.");
+        } finally {
+            try {
+                out.close();
+            } catch (IOException ex) {
+                System.out.println("IOException: Couldn't close.");
+            }
+        }
     }
 
     public Data povoar(){

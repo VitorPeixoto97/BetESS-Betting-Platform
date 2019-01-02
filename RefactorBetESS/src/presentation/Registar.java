@@ -3,10 +3,7 @@ package presentation;
 import business.Aposta;
 import business.Apostador;
 import business.BetESS;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Registar extends javax.swing.JFrame {
 
@@ -35,7 +32,6 @@ public class Registar extends javax.swing.JFrame {
         passwordField = new javax.swing.JTextField();
         acessoCheckBox = new javax.swing.JCheckBox();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         emailField3 = new javax.swing.JTextField();
         registarButton = new javax.swing.JButton();
@@ -74,11 +70,7 @@ public class Registar extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(250, 250, 250));
-        jLabel6.setText("Autorizo o acesso e levantamento");
-
-        jLabel7.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(250, 250, 250));
-        jLabel7.setText("de dinheiro da minha conta bancária.");
+        jLabel6.setText("Autorizo o acesso à minha conta bancária.");
 
         jLabel8.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(250, 250, 250));
@@ -120,9 +112,7 @@ public class Registar extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(acessoCheckBox)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel6)))
+                        .addComponent(jLabel6))
                     .addComponent(jLabel8)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -154,14 +144,11 @@ public class Registar extends javax.swing.JFrame {
                 .addComponent(jLabel5)
                 .addGap(0, 0, 0)
                 .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addGap(0, 0, 0)
-                        .addComponent(jLabel7))
-                    .addComponent(acessoCheckBox))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(acessoCheckBox)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(21, 21, 21)
                 .addComponent(jLabel8)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(emailField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -203,14 +190,14 @@ public class Registar extends javax.swing.JFrame {
         int coins = (Integer) coinsField.getValue() + 5;
         boolean aut = acessoCheckBox.isSelected();
         boolean flag = true;
-        for(Apostador a : this.betess.getData().getApostadores().values()){
-            if(a.getEmail().equals(email) && flag){
+        for(Apostador a : betess.getApostadoresValues()){
+            if(a.checkEmail(email) && flag){
                 flag = false;
                 betess.notification(3, "Já foi registado um apostador com esse email. Por favor tente outro.", "Aviso");
             }
         }
         if(flag && aut){
-            int last_id = this.betess.getData().getApostadores().size()+1;
+            int last_id = betess.getApostadoresValues().size()+1;
             ArrayList<Aposta> apostas = new ArrayList<>();
             Apostador novo = new Apostador(last_id, email, password, nome, coins, apostas);
             betess.registarApostador(novo);
@@ -220,11 +207,7 @@ public class Registar extends javax.swing.JFrame {
     }//GEN-LAST:event_registarButtonActionPerformed
 
     private void saveNreturn(){
-        try {
-            betess.getData().save(betess.getData());
-        } catch (IOException ex) {
-            Logger.getLogger(Registar.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        betess.save();
         Login login = new Login(this.betess);
         login.setVisible(true);
         this.setVisible(false);
@@ -239,14 +222,8 @@ public class Registar extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Registar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Registar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Registar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Registar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
+            System.out.println("Error in Main");
         }
     }
 
@@ -261,7 +238,6 @@ public class Registar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField nomeField;

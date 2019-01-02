@@ -4,10 +4,7 @@ import business.BetESS;
 import business.Equipa;
 import business.Evento;
 import java.awt.Image;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 
 public class Admin extends javax.swing.JFrame {
@@ -33,11 +30,11 @@ public class Admin extends javax.swing.JFrame {
     }
     
     private void fillCombos(){
-        ArrayList<Equipa> eqDisp = new ArrayList<>(betess.getData().getEquipas().values());
+        ArrayList<Equipa> eqDisp = new ArrayList<>(betess.getEquipasValues());
         for(Evento e : betess.getEventosAtivos()){
             eqDisp.remove(e.getEquipaC());
             eqDisp.remove(e.getEquipaF());
-            this.eventCombo.addItem(e.getEquipaC().getNome() + " X " + e.getEquipaF().getNome());
+            this.eventCombo.addItem(e.getEquipaCasaNome() + " X " + e.getEquipaForaNome());
         }
         for(Equipa eq : eqDisp){
             this.casaCombo.addItem(eq.getNome());
@@ -253,7 +250,7 @@ public class Admin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void perfilButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_perfilButtonActionPerformed
-        Login login = new Login(this.betess);
+        Login login = new Login(betess);
         login.setVisible(true);
         this.setVisible(false);
         this.dispose();
@@ -273,14 +270,8 @@ public class Admin extends javax.swing.JFrame {
         if(ret) saveNrefresh();
     }//GEN-LAST:event_criarButtonActionPerformed
     
-    
-    //Função para remover código duplicado
     private void saveNrefresh(){
-        try {
-            betess.getData().save(betess.getData());
-        } catch (IOException ex) {
-            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        betess.save();
         Admin admin = new Admin(this.betess);
         admin.setVisible(true);
         this.setVisible(false);
@@ -295,18 +286,9 @@ public class Admin extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Admin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Admin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Admin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Admin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
+            System.out.println("Error in Main");
         }
-        //</editor-fold>
-
-       
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

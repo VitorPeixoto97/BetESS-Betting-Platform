@@ -16,30 +16,22 @@ public class BetESS implements Serializable{
     public BetESS(Data d){
         this.data=d;
     }
-    public BetESS(BetESS b){
-        this.data=b.getData();
-    }
-    
-    public Data getData(){
-        return this.data;
-    }
-    
-    public boolean efetuarAposta(Evento e, Apostador a, int res, int val, double odd){
+
+    public boolean efetuarAposta(Aposta aposta){
         boolean apostou = false;
-        for (Aposta ap : this.data.getApostadores().get(a.getID()).getApostas())
-            if(ap.getEvento().getID() == e.getID())
+        for (Aposta ap : aposta.getApostadorApostas())
+            if(ap.getEventoID() == aposta.getEventoID())
                 apostou = true;
         if(apostou) {
-            this.notification(3, "Já registou uma aposta neste evento.", "Aviso");
+            notification(3, "Já registou uma aposta neste evento.", "Aviso");
         }
-        else if(a.getESSCoins()-val >= 0){
-            Aposta ap = new Aposta(res, val, e, true);
-            this.data.getApostadores().get(a.getID()).efetuarAposta(ap);
-            this.notification(1, "Aposta registada com sucesso!", "Sucesso");
+        else if(aposta.getApostadorCoins()-aposta.getValor() >= 0){
+            aposta.registar();
+            notification(1, "Aposta registada com sucesso!", "Sucesso");
             return true;
         }
         else{
-            this.notification(3, "Não tem saldo suficiente para realizar a aposta.", "Aviso");
+            notification(3, "Não tem saldo suficiente para realizar a aposta.", "Aviso");
         }
         return false;
     }
@@ -47,14 +39,14 @@ public class BetESS implements Serializable{
     public boolean criarEvento(String c, String f, double oddV, double oddE, double oddD){
         Equipa casa = new Equipa();
         Equipa fora = new Equipa();
-        for(Equipa a : data.getEquipas().values()){
+        for(Equipa a : data.getEquipasValues()){
             if(a.getNome().equals(c)) casa = a;
             else if(a.getNome().equals(f)) fora = a;
         }
-        if(c.equals(f)) this.notification(3, "As equipas selecionadas são a mesma. Por favor escolha outra.", "Aviso");
+        if(c.equals(f)) notification(3, "As equipas selecionadas são a mesma. Por favor escolha outra.", "Aviso");
         else{
             Evento evento = new Evento(data.getEventos().size()+1, oddV, oddE, oddD, true, "", casa, fora); 
-            data.getEventos().put(evento.getID(), evento);
+            data.addEvento(evento);
             this.notification(1, "Evento criado e disponível.", "Sucesso");
             
             return true;
@@ -65,44 +57,38 @@ public class BetESS implements Serializable{
     public void finalizarEvento(String jogo, String res){
         String[] equipas = jogo.split(" X ");
         for(Evento e : getEventosAtivos()){
-            if(e.getEquipaC().getNome().equals(equipas[0]) && e.getEquipaF().getNome().equals(equipas[1])){
-                data.getEventos().get(e.getID()).setEstado(false);
-                data.getEventos().get(e.getID()).setResultado(res);
-                int vencedor = e.getRes(res);
-                this.getData().getApostadores().values().forEach((a) -> {
-                    a.getApostas().stream().filter((ap) -> (ap.getEvento().equals(e))).map((ap) -> {
-                        ap.distribuirGanhos(a,vencedor);
-                        return ap;
-                    }).forEachOrdered((ap) -> {
-                        ap.notificaApostador();
-                    });
-                });
-                this.notification(1, "Evento encerrado e prémios distribuídos.", "Sucesso");
+            if(e.getEquipaCasaNome().equals(equipas[0]) && e.getEquipaForaNome().equals(equipas[1])){
+                e.setEstado(false);
+                e.setResultado(res);
+                distribuirPremios(e);
+                notification(1, "Evento encerrado e prémios distribuídos.", "Sucesso");
+            }
+        }
+    }
+    
+    public void distribuirPremios(Evento e){
+        for(Apostador a : data.getApostadoresValues()){
+            for(Aposta ap : a.getApostas()){
+                if(ap.getEvento().equals(e)){
+                    ap.distribuirPremio();
+                    ap.notificaApostador();
+                }
             }
         }
     }
     
     public ArrayList<Evento> getEventosAtivos(){
-        ArrayList<Evento> ativos = new ArrayList<>();
-        for(Evento e : data.getEventos().values()){
-            if(e.getEstado()){
-                ativos.add(e);
-            }
-        }
-        return ativos;
+        return data.getEventosAtivos();
+    }
+    public ArrayList<Equipa> getEquipasValues(){
+        return (ArrayList<Equipa>) data.getEquipasValues();
+    }
+    public ArrayList<Apostador> getApostadoresValues(){
+        return (ArrayList<Apostador>) data.getApostadoresValues();
     }
     
     public void registarApostador(Apostador a){
-        data.getApostadores().put(a.getID(),a);
-    }
-    
-    public void adicionarEquipa(Equipa e){
-        data.getEquipas().put(e.getID(),e);
-    }
-    
-    public void removerEquipa(Equipa e){
-        if(data.getEquipas().containsKey(e.getID()))
-            data.getEquipas().get(e.getID()).setEstado(false);
+        data.addApostador(a);
     }
     
     public void notification(int tipo, String texto, String titulo){
@@ -118,15 +104,15 @@ public class BetESS implements Serializable{
             return new Apostador();
         }
         else{
-            for (Apostador a : data.getApostadores().values()) {
-                if (a.getEmail().compareTo(email)==0){
-                    if (a.getPassword().compareTo(pass)==0){
-                        return a;
-                    }
-                }
-            }
+            for (Apostador a : data.getApostadoresValues())
+                if (a.getEmail().compareTo(email)==0 && a.getPassword().compareTo(pass)==0) 
+                    return a;
             notification(3, "Dados incorretos!", "Aviso");
         }
         return null;
+    }
+    
+    public void save(){
+        data.save();
     }
 }

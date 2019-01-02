@@ -6,10 +6,7 @@ import business.BetESS;
 import business.Evento;
 import java.awt.Color;
 import java.awt.Image;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 
 public class Home extends javax.swing.JFrame {
@@ -1130,11 +1127,7 @@ public class Home extends javax.swing.JFrame {
 
     private void notificacoes(){
         apostador.notificate();
-        try {
-            this.betess.getData().save(betess.getData());
-        } catch (IOException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        betess.save();
     }
     
     private void j1VActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j1VActionPerformed
@@ -1143,182 +1136,156 @@ public class Home extends javax.swing.JFrame {
             j1D.setSelected(false);
         }
     }//GEN-LAST:event_j1VActionPerformed
-
     private void j1EActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j1EActionPerformed
         if (j1E.isSelected()){
             j1V.setSelected(false);
             j1D.setSelected(false);
         }
     }//GEN-LAST:event_j1EActionPerformed
-
     private void j1DActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j1DActionPerformed
         if (j1D.isSelected()){
             j1E.setSelected(false);
             j1V.setSelected(false);
         }
     }//GEN-LAST:event_j1DActionPerformed
-
     private void j2VActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j2VActionPerformed
         if (j2V.isSelected()){
             j2E.setSelected(false);
             j2D.setSelected(false);
         }
     }//GEN-LAST:event_j2VActionPerformed
-
     private void j2EActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j2EActionPerformed
         if (j2E.isSelected()){
             j2V.setSelected(false);
             j2D.setSelected(false);
         }
     }//GEN-LAST:event_j2EActionPerformed
-
     private void j2DActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j2DActionPerformed
         if (j2D.isSelected()){
             j2V.setSelected(false);
             j2E.setSelected(false);
         }
     }//GEN-LAST:event_j2DActionPerformed
-
     private void j3VActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j3VActionPerformed
         if (j3V.isSelected()){
             j3E.setSelected(false);
             j3D.setSelected(false);
         }
     }//GEN-LAST:event_j3VActionPerformed
-
     private void j3EActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j3EActionPerformed
         if (j3E.isSelected()){
             j3V.setSelected(false);
             j3D.setSelected(false);
         }
     }//GEN-LAST:event_j3EActionPerformed
-
     private void j3DActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j3DActionPerformed
         if (j3D.isSelected()){
             j3E.setSelected(false);
             j3V.setSelected(false);
         }
     }//GEN-LAST:event_j3DActionPerformed
-
     private void j4VActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j4VActionPerformed
         if (j4V.isSelected()){
             j4E.setSelected(false);
             j4D.setSelected(false);
         }
     }//GEN-LAST:event_j4VActionPerformed
-
     private void j4EActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j4EActionPerformed
         if (j4E.isSelected()){
             j4V.setSelected(false);
             j4D.setSelected(false);
         }
     }//GEN-LAST:event_j4EActionPerformed
-
     private void j4DActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j4DActionPerformed
         if (j4D.isSelected()){
             j4E.setSelected(false);
             j4V.setSelected(false);
         }
     }//GEN-LAST:event_j4DActionPerformed
-
     private void j6VActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j6VActionPerformed
         if (j6V.isSelected()){
             j6E.setSelected(false);
             j6D.setSelected(false);
         }
     }//GEN-LAST:event_j6VActionPerformed
-
     private void j6EActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j6EActionPerformed
         if (j6E.isSelected()){
             j6V.setSelected(false);
             j6D.setSelected(false);
         }
     }//GEN-LAST:event_j6EActionPerformed
-
     private void j6DActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j6DActionPerformed
         if (j6D.isSelected()){
             j6V.setSelected(false);
             j6E.setSelected(false);
         }
     }//GEN-LAST:event_j6DActionPerformed
-
     private void j5VActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j5VActionPerformed
         if (j5V.isSelected()){
             j5E.setSelected(false);
             j5D.setSelected(false);
         }
     }//GEN-LAST:event_j5VActionPerformed
-
     private void j5EActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j5EActionPerformed
         if (j5E.isSelected()){
             j5V.setSelected(false);
             j5D.setSelected(false);
         }
     }//GEN-LAST:event_j5EActionPerformed
-
     private void j5DActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j5DActionPerformed
         if (j5D.isSelected()){
             j5V.setSelected(false);
             j5E.setSelected(false);
         }
     }//GEN-LAST:event_j5DActionPerformed
-
     private void j7VActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j7VActionPerformed
         if (j7V.isSelected()){
             j7E.setSelected(false);
             j7D.setSelected(false);
         }
     }//GEN-LAST:event_j7VActionPerformed
-
     private void j7EActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j7EActionPerformed
         if (j7E.isSelected()){
             j7V.setSelected(false);
             j7D.setSelected(false);
         }
     }//GEN-LAST:event_j7EActionPerformed
-
     private void j7DActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j7DActionPerformed
         if (j7D.isSelected()){
             j7V.setSelected(false);
             j7E.setSelected(false);
         }
     }//GEN-LAST:event_j7DActionPerformed
-
     private void j8VActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j8VActionPerformed
         if (j8V.isSelected()){
             j8E.setSelected(false);
             j8D.setSelected(false);
         }
     }//GEN-LAST:event_j8VActionPerformed
-
     private void j8EActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j8EActionPerformed
         if (j8E.isSelected()){
             j8V.setSelected(false);
             j8D.setSelected(false);
         }
     }//GEN-LAST:event_j8EActionPerformed
-
     private void j8DActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j8DActionPerformed
         if (j8D.isSelected()){
             j8V.setSelected(false);
             j8E.setSelected(false);
         }
     }//GEN-LAST:event_j8DActionPerformed
-
     private void j9VActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j9VActionPerformed
         if (j9V.isSelected()){
             j9E.setSelected(false);
             j9D.setSelected(false);
         }
     }//GEN-LAST:event_j9VActionPerformed
-
     private void j9EActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j9EActionPerformed
         if (j9E.isSelected()){
             j9V.setSelected(false);
             j9D.setSelected(false);
         }
     }//GEN-LAST:event_j9EActionPerformed
-
     private void j9DActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j9DActionPerformed
         if (j9D.isSelected()){
             j9V.setSelected(false);
@@ -1328,175 +1295,130 @@ public class Home extends javax.swing.JFrame {
 
     private void j1BetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j1BetActionPerformed
         int res = 0;
-        double odd = 0.0d;
-        Evento e = jogos.get(0);
-        int val = (Integer) j1Spin.getValue();
-        if(j1V.isSelected()) { res=1; odd=e.getOddV(); }
-        else if (j1E.isSelected()) { res=2; odd=e.getOddE(); }
-        else if (j1D.isSelected()) { res=3; odd=e.getOddD(); }
-        else {
-            this.betess.notification(2, "Selecione um resultado!", "Aviso");
-        }
+        if(j1V.isSelected()) res=1;
+        else if (j1E.isSelected()) res=2;
+        else if (j1D.isSelected()) res=3;
+        else betess.notification(2, "Selecione um resultado!", "Aviso");
         boolean ret=false;
-        if(res!=0) ret = this.betess.efetuarAposta(e, apostador, res, val, odd);
-        if(ret) this.saveNrefresh();
+        Aposta ap = new Aposta(res, (Integer) j1Spin.getValue(), jogos.get(0), apostador, true);   
+        if(res!=0) ret = betess.efetuarAposta(ap);
+        if(ret) saveNrefresh();
     }//GEN-LAST:event_j1BetActionPerformed
-
     private void j3BetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j3BetActionPerformed
         int res = 0;
-        double odd = 0.0d;
-        Evento e = jogos.get(2);
-        int val = (Integer) j3Spin.getValue();
-        if(j3V.isSelected()) { res=1; odd=e.getOddV(); }
-        else if (j3E.isSelected()) { res=2; odd=e.getOddE(); }
-        else if (j3D.isSelected()) { res=3; odd=e.getOddD(); }
-        else {
-            this.betess.notification(2, "Selecione um resultado!", "Aviso");
-        }
+        if(j3V.isSelected()) res=1;
+        else if (j3E.isSelected()) res=2;
+        else if (j3D.isSelected()) res=3;
+        else this.betess.notification(2, "Selecione um resultado!", "Aviso");
         boolean ret=false;
-        if(res!=0) ret=this.betess.efetuarAposta(e, apostador, res, val, odd);
+        Aposta ap = new Aposta(res, (Integer) j3Spin.getValue(), jogos.get(2), apostador, true);   
+        if(res!=0) ret = betess.efetuarAposta(ap);
         if(ret) this.saveNrefresh();
     }//GEN-LAST:event_j3BetActionPerformed
-
     private void j2BetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j2BetActionPerformed
         int res = 0;
-        double odd = 0.0d;
-        Evento e = jogos.get(1);
-        int val = (Integer) j2Spin.getValue();
-        if(j2V.isSelected()) { res=1; odd=e.getOddV(); }
-        else if (j2E.isSelected()) { res=2; odd=e.getOddE(); }
-        else if (j2D.isSelected()) { res=3; odd=e.getOddD(); }
-        else {
-            this.betess.notification(2, "Selecione um resultado!", "Aviso");
-        }
+        if(j2V.isSelected()) res=1; 
+        else if (j2E.isSelected()) res=2;
+        else if (j2D.isSelected()) res=3;
+        else this.betess.notification(2, "Selecione um resultado!", "Aviso");
         boolean ret=false;
-        if(res!=0) ret=this.betess.efetuarAposta(e, apostador, res, val, odd);
+        Aposta ap = new Aposta(res, (Integer) j2Spin.getValue(), jogos.get(1), apostador, true);   
+        if(res!=0) ret = betess.efetuarAposta(ap);
         if(ret) this.saveNrefresh();
     }//GEN-LAST:event_j2BetActionPerformed
-
     private void j4BetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j4BetActionPerformed
         int res = 0;
-        double odd = 0.0d;
-        Evento e = jogos.get(3);
-        int val = (Integer) j4Spin.getValue();
-        if(j4V.isSelected()) { res=1; odd=e.getOddV(); }
-        else if (j4E.isSelected()) { res=2; odd=e.getOddE(); }
-        else if (j4D.isSelected()) { res=3; odd=e.getOddD(); }
-        else {
-            this.betess.notification(2, "Selecione um resultado!", "Aviso");
-        }
+        if(j4V.isSelected()) res=1;
+        else if (j4E.isSelected()) res=2;
+        else if (j4D.isSelected()) res=3;
+        else this.betess.notification(2, "Selecione um resultado!", "Aviso");
         boolean ret=false;
-        if(res!=0) ret=this.betess.efetuarAposta(e, apostador, res, val, odd);
+        Aposta ap = new Aposta(res, (Integer) j4Spin.getValue(), jogos.get(3), apostador, true);   
+        if(res!=0) ret = betess.efetuarAposta(ap);
         if(ret) this.saveNrefresh();
     }//GEN-LAST:event_j4BetActionPerformed
-
     private void j5BetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j5BetActionPerformed
         int res = 0;
-        double odd = 0.0d;
-        Evento e = jogos.get(4);
-        int val = (Integer) j5Spin.getValue();
-        if(j5V.isSelected()) { res=1; odd=e.getOddV(); }
-        else if (j5E.isSelected()) { res=2; odd=e.getOddE(); }
-        else if (j5D.isSelected()) { res=3; odd=e.getOddD(); }
-        else {
-            this.betess.notification(2, "Selecione um resultado!", "Aviso");
-        }
+        if(j5V.isSelected()) res=1;
+        else if (j5E.isSelected()) res=2;
+        else if (j5D.isSelected()) res=3;
+        else this.betess.notification(2, "Selecione um resultado!", "Aviso");
         boolean ret=false;
-        if(res!=0) ret=this.betess.efetuarAposta(e, apostador, res, val, odd);
+        Aposta ap = new Aposta(res, (Integer) j5Spin.getValue(), jogos.get(4), apostador, true);   
+        if(res!=0) ret = betess.efetuarAposta(ap);
         if(ret) this.saveNrefresh();
     }//GEN-LAST:event_j5BetActionPerformed
-
     private void j6BetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j6BetActionPerformed
         int res = 0;
-        double odd = 0.0d;
-        Evento e = jogos.get(5);
-        int val = (Integer) j6Spin.getValue();
-        if(j6V.isSelected()) { res=1; odd=e.getOddV(); }
-        else if (j6E.isSelected()) { res=2; odd=e.getOddE(); }
-        else if (j6D.isSelected()) { res=3; odd=e.getOddD(); }
-        else {
-            this.betess.notification(2, "Selecione um resultado!", "Aviso");
-        }
+        if(j6V.isSelected()) res=1;
+        else if (j6E.isSelected()) res=2;
+        else if (j6D.isSelected()) res=3;
+        else this.betess.notification(2, "Selecione um resultado!", "Aviso");
         boolean ret=false;
-        if(res!=0) ret=this.betess.efetuarAposta(e, apostador, res, val, odd);
+        Aposta ap = new Aposta(res, (Integer) j6Spin.getValue(), jogos.get(5), apostador, true);   
+        if(res!=0) ret = betess.efetuarAposta(ap);
         if(ret) this.saveNrefresh();
     }//GEN-LAST:event_j6BetActionPerformed
-
     private void j7BetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j7BetActionPerformed
         int res = 0;
-        double odd = 0.0d;
-        Evento e = jogos.get(6);
-        int val = (Integer) j7Spin.getValue();
-        if(j7V.isSelected()) { res=1; odd=e.getOddV(); }
-        else if (j7E.isSelected()) { res=2; odd=e.getOddE(); }
-        else if (j7D.isSelected()) { res=3; odd=e.getOddD(); }
-        else {
-            this.betess.notification(2, "Selecione um resultado!", "Aviso");
-        }
+        if(j7V.isSelected()) res=1;
+        else if (j7E.isSelected()) res=2;
+        else if (j7D.isSelected()) res=3;
+        else this.betess.notification(2, "Selecione um resultado!", "Aviso");
         boolean ret=false;
-        if(res!=0) ret=this.betess.efetuarAposta(e, apostador, res, val, odd);
-        if(ret) this.saveNrefresh();
+        Aposta ap = new Aposta(res, (Integer) j7Spin.getValue(), jogos.get(6), apostador, true);   
+        if(res!=0) ret = betess.efetuarAposta(ap);
+        if(ret) saveNrefresh();
     }//GEN-LAST:event_j7BetActionPerformed
-
     private void j8BetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j8BetActionPerformed
         int res = 0;
-        double odd = 0.0d;
-        Evento e = jogos.get(7);
-        int val = (Integer) j8Spin.getValue();
-        if(j8V.isSelected()) { res=1; odd=e.getOddV(); }
-        else if (j8E.isSelected()) { res=2; odd=e.getOddE(); }
-        else if (j8D.isSelected()) { res=3; odd=e.getOddD(); }
-        else {
-            this.betess.notification(2, "Selecione um resultado!", "Aviso");
-        }
+        if(j8V.isSelected()) res=1;
+        else if (j8E.isSelected()) res=2;
+        else if (j8D.isSelected()) res=3;
+        else this.betess.notification(2, "Selecione um resultado!", "Aviso");
         boolean ret=false;
-        if(res!=0) ret=this.betess.efetuarAposta(e, apostador, res, val, odd);
+        Aposta ap = new Aposta(res, (Integer) j8Spin.getValue(), jogos.get(7), apostador, true);   
+        if(res!=0) ret = betess.efetuarAposta(ap);
         if(ret) this.saveNrefresh();
     }//GEN-LAST:event_j8BetActionPerformed
-
     private void j9BetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j9BetActionPerformed
         int res = 0;
-        double odd = 0.0d;
-        Evento e = jogos.get(8);
-        int val = (Integer) j9Spin.getValue();
-        if(j9V.isSelected()) { res=1; odd=e.getOddV(); }
-        else if (j9E.isSelected()) { res=2; odd=e.getOddE(); }
-        else if (j9D.isSelected()) { res=3; odd=e.getOddD(); }
-        else {
-            this.betess.notification(2, "Selecione um resultado!", "Aviso");
-        }
+        if(j9V.isSelected()) res=1;
+        else if (j9E.isSelected()) res=2;
+        else if (j9D.isSelected()) res=3;
+        else this.betess.notification(2, "Selecione um resultado!", "Aviso");
         boolean ret=false;
-        if(res!=0) ret=this.betess.efetuarAposta(e, apostador, res, val, odd);
+        Aposta ap = new Aposta(res, (Integer) j9Spin.getValue(), jogos.get(8), apostador, true);   
+        if(res!=0) ret = betess.efetuarAposta(ap);
         if(ret) this.saveNrefresh();
     }//GEN-LAST:event_j9BetActionPerformed
 
     private void movimentosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_movimentosButtonActionPerformed
-        DepositarLevantar dl = new DepositarLevantar(this.betess, apostador);
+        DepositarLevantar dl = new DepositarLevantar(betess, apostador);
         dl.setVisible(true);
         this.setVisible(false);
         this.dispose();
     }//GEN-LAST:event_movimentosButtonActionPerformed
-
     private void apostasButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_apostasButtonActionPerformed
-        MinhasApostas ma = new MinhasApostas(this.betess, apostador);
+        MinhasApostas ma = new MinhasApostas(betess, apostador);
         ma.setVisible(true);
         this.setVisible(false);
         this.dispose();
     }//GEN-LAST:event_apostasButtonActionPerformed
-
     private void perfilButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_perfilButtonActionPerformed
-        Login login = new Login(this.betess);
+        Login login = new Login(betess);
         login.setVisible(true);
         this.setVisible(false);
         this.dispose();
     }//GEN-LAST:event_perfilButtonActionPerformed
     
     private void saveNrefresh(){
-        Home home = new Home(this.betess, apostador);
+        Home home = new Home(betess, apostador);
         home.setVisible(true);
         this.setVisible(false);
         this.dispose();
     }
+
     private void fillJogo0(){
             jogo1.setVisible(false);
             jogo2.setVisible(false);
@@ -1526,10 +1448,10 @@ public class Home extends javax.swing.JFrame {
         jogo9.setVisible(false);
     }
     private void fillJogo2(){
-            ImageIcon j1C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaC().getSimbolo()));
-            ImageIcon j1F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaF().getSimbolo()));
-            ImageIcon j2C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(1).getEquipaC().getSimbolo()));
-            ImageIcon j2F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(1).getEquipaF().getSimbolo()));
+            ImageIcon j1C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaCasaSimbolo()));
+            ImageIcon j1F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaForaSimbolo()));
+            ImageIcon j2C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(1).getEquipaCasaSimbolo()));
+            ImageIcon j2F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(1).getEquipaForaSimbolo()));
             jogo1C.setIcon(j1C);
             jogo1F.setIcon(j1F);
             jogo2C.setIcon(j2C);
@@ -1549,12 +1471,12 @@ public class Home extends javax.swing.JFrame {
             jogo9.setVisible(false);
     }
     private void fillJogo3(){
-        ImageIcon j1C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaC().getSimbolo()));
-            ImageIcon j1F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaF().getSimbolo()));
-            ImageIcon j2C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(1).getEquipaC().getSimbolo()));
-            ImageIcon j2F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(1).getEquipaF().getSimbolo()));
-            ImageIcon j3C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(2).getEquipaC().getSimbolo()));
-            ImageIcon j3F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(2).getEquipaF().getSimbolo()));
+        ImageIcon j1C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaCasaSimbolo()));
+        ImageIcon j1F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaForaSimbolo()));
+        ImageIcon j2C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(1).getEquipaCasaSimbolo()));
+        ImageIcon j2F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(1).getEquipaForaSimbolo()));
+        ImageIcon j3C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(2).getEquipaCasaSimbolo()));
+        ImageIcon j3F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(2).getEquipaForaSimbolo()));
             jogo1C.setIcon(j1C);
             jogo1F.setIcon(j1F);
             jogo2C.setIcon(j2C);
@@ -1578,14 +1500,14 @@ public class Home extends javax.swing.JFrame {
             jogo9.setVisible(false);
     }
     private void fillJogo4(){
-        ImageIcon j1C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaC().getSimbolo()));
-            ImageIcon j1F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaF().getSimbolo()));
-            ImageIcon j2C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(1).getEquipaC().getSimbolo()));
-            ImageIcon j2F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(1).getEquipaF().getSimbolo()));
-            ImageIcon j3C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(2).getEquipaC().getSimbolo()));
-            ImageIcon j3F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(2).getEquipaF().getSimbolo()));
-            ImageIcon j4C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(3).getEquipaC().getSimbolo()));
-            ImageIcon j4F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(3).getEquipaF().getSimbolo()));
+        ImageIcon j1C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaCasaSimbolo()));
+        ImageIcon j1F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaForaSimbolo()));
+        ImageIcon j2C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(1).getEquipaCasaSimbolo()));
+        ImageIcon j2F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(1).getEquipaForaSimbolo()));
+        ImageIcon j3C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(2).getEquipaCasaSimbolo()));
+        ImageIcon j3F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(2).getEquipaForaSimbolo()));
+        ImageIcon j4C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(3).getEquipaCasaSimbolo()));
+        ImageIcon j4F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(3).getEquipaForaSimbolo()));
             jogo1C.setIcon(j1C);
             jogo1F.setIcon(j1F);
             jogo2C.setIcon(j2C);
@@ -1613,16 +1535,16 @@ public class Home extends javax.swing.JFrame {
             jogo9.setVisible(false);
     }
     private void fillJogo5(){
-        ImageIcon j1C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaC().getSimbolo()));
-            ImageIcon j1F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaF().getSimbolo()));
-            ImageIcon j2C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(1).getEquipaC().getSimbolo()));
-            ImageIcon j2F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(1).getEquipaF().getSimbolo()));
-            ImageIcon j3C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(2).getEquipaC().getSimbolo()));
-            ImageIcon j3F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(2).getEquipaF().getSimbolo()));
-            ImageIcon j4C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(3).getEquipaC().getSimbolo()));
-            ImageIcon j4F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(3).getEquipaF().getSimbolo()));
-            ImageIcon j5C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(4).getEquipaC().getSimbolo()));
-            ImageIcon j5F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(4).getEquipaF().getSimbolo()));
+        ImageIcon j1C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaCasaSimbolo()));
+        ImageIcon j1F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaForaSimbolo()));
+        ImageIcon j2C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(1).getEquipaCasaSimbolo()));
+        ImageIcon j2F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(1).getEquipaForaSimbolo()));
+        ImageIcon j3C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(2).getEquipaCasaSimbolo()));
+        ImageIcon j3F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(2).getEquipaForaSimbolo()));
+        ImageIcon j4C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(3).getEquipaCasaSimbolo()));
+        ImageIcon j4F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(3).getEquipaForaSimbolo()));
+        ImageIcon j5C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(4).getEquipaCasaSimbolo()));
+        ImageIcon j5F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(4).getEquipaForaSimbolo()));
             jogo1C.setIcon(j1C);
             jogo1F.setIcon(j1F);
             jogo2C.setIcon(j2C);
@@ -1654,18 +1576,18 @@ public class Home extends javax.swing.JFrame {
             jogo9.setVisible(false);
     }
     private void fillJogo6(){
-                    ImageIcon j1C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaC().getSimbolo()));
-            ImageIcon j1F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaF().getSimbolo()));
-            ImageIcon j2C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(1).getEquipaC().getSimbolo()));
-            ImageIcon j2F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(1).getEquipaF().getSimbolo()));
-            ImageIcon j3C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(2).getEquipaC().getSimbolo()));
-            ImageIcon j3F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(2).getEquipaF().getSimbolo()));
-            ImageIcon j4C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(3).getEquipaC().getSimbolo()));
-            ImageIcon j4F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(3).getEquipaF().getSimbolo()));
-            ImageIcon j5C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(4).getEquipaC().getSimbolo()));
-            ImageIcon j5F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(4).getEquipaF().getSimbolo()));
-            ImageIcon j6C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(5).getEquipaC().getSimbolo()));
-            ImageIcon j6F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(5).getEquipaF().getSimbolo()));
+        ImageIcon j1C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaCasaSimbolo()));
+        ImageIcon j1F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaForaSimbolo()));
+        ImageIcon j2C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(1).getEquipaCasaSimbolo()));
+        ImageIcon j2F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(1).getEquipaForaSimbolo()));
+        ImageIcon j3C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(2).getEquipaCasaSimbolo()));
+        ImageIcon j3F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(2).getEquipaForaSimbolo()));
+        ImageIcon j4C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(3).getEquipaCasaSimbolo()));
+        ImageIcon j4F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(3).getEquipaForaSimbolo()));
+        ImageIcon j5C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(4).getEquipaCasaSimbolo()));
+        ImageIcon j5F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(4).getEquipaForaSimbolo()));
+        ImageIcon j6C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(5).getEquipaCasaSimbolo()));
+        ImageIcon j6F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(5).getEquipaForaSimbolo()));
             jogo1C.setIcon(j1C);
             jogo1F.setIcon(j1F);
             jogo2C.setIcon(j2C);
@@ -1701,20 +1623,20 @@ public class Home extends javax.swing.JFrame {
             jogo9.setVisible(false);
     }
     private void fillJogo7(){
-            ImageIcon j1C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaC().getSimbolo()));
-            ImageIcon j1F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaF().getSimbolo()));
-            ImageIcon j2C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(1).getEquipaC().getSimbolo()));
-            ImageIcon j2F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(1).getEquipaF().getSimbolo()));
-            ImageIcon j3C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(2).getEquipaC().getSimbolo()));
-            ImageIcon j3F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(2).getEquipaF().getSimbolo()));
-            ImageIcon j4C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(3).getEquipaC().getSimbolo()));
-            ImageIcon j4F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(3).getEquipaF().getSimbolo()));
-            ImageIcon j5C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(4).getEquipaC().getSimbolo()));
-            ImageIcon j5F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(4).getEquipaF().getSimbolo()));
-            ImageIcon j6C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(5).getEquipaC().getSimbolo()));
-            ImageIcon j6F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(5).getEquipaF().getSimbolo()));
-            ImageIcon j7C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(6).getEquipaC().getSimbolo()));
-            ImageIcon j7F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(6).getEquipaF().getSimbolo()));
+        ImageIcon j1C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaCasaSimbolo()));
+        ImageIcon j1F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaForaSimbolo()));
+        ImageIcon j2C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(1).getEquipaCasaSimbolo()));
+        ImageIcon j2F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(1).getEquipaForaSimbolo()));
+        ImageIcon j3C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(2).getEquipaCasaSimbolo()));
+        ImageIcon j3F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(2).getEquipaForaSimbolo()));
+        ImageIcon j4C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(3).getEquipaCasaSimbolo()));
+        ImageIcon j4F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(3).getEquipaForaSimbolo()));
+        ImageIcon j5C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(4).getEquipaCasaSimbolo()));
+        ImageIcon j5F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(4).getEquipaForaSimbolo()));
+        ImageIcon j6C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(5).getEquipaCasaSimbolo()));
+        ImageIcon j6F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(5).getEquipaForaSimbolo()));
+        ImageIcon j7C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(6).getEquipaCasaSimbolo()));
+        ImageIcon j7F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(6).getEquipaForaSimbolo()));
             jogo1C.setIcon(j1C);
             jogo1F.setIcon(j1F);
             jogo2C.setIcon(j2C);
@@ -1754,22 +1676,22 @@ public class Home extends javax.swing.JFrame {
             jogo9.setVisible(false);
     }
     private void fillJogo8(){
-        ImageIcon j1C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaC().getSimbolo()));
-            ImageIcon j1F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaF().getSimbolo()));
-            ImageIcon j2C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(1).getEquipaC().getSimbolo()));
-            ImageIcon j2F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(1).getEquipaF().getSimbolo()));
-            ImageIcon j3C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(2).getEquipaC().getSimbolo()));
-            ImageIcon j3F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(2).getEquipaF().getSimbolo()));
-            ImageIcon j4C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(3).getEquipaC().getSimbolo()));
-            ImageIcon j4F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(3).getEquipaF().getSimbolo()));
-            ImageIcon j5C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(4).getEquipaC().getSimbolo()));
-            ImageIcon j5F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(4).getEquipaF().getSimbolo()));
-            ImageIcon j6C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(5).getEquipaC().getSimbolo()));
-            ImageIcon j6F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(5).getEquipaF().getSimbolo()));
-            ImageIcon j7C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(6).getEquipaC().getSimbolo()));
-            ImageIcon j7F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(6).getEquipaF().getSimbolo()));
-            ImageIcon j8C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(7).getEquipaC().getSimbolo()));
-            ImageIcon j8F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(7).getEquipaF().getSimbolo()));
+        ImageIcon j1C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaCasaSimbolo()));
+        ImageIcon j1F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaForaSimbolo()));
+        ImageIcon j2C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(1).getEquipaCasaSimbolo()));
+        ImageIcon j2F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(1).getEquipaForaSimbolo()));
+        ImageIcon j3C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(2).getEquipaCasaSimbolo()));
+        ImageIcon j3F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(2).getEquipaForaSimbolo()));
+        ImageIcon j4C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(3).getEquipaCasaSimbolo()));
+        ImageIcon j4F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(3).getEquipaForaSimbolo()));
+        ImageIcon j5C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(4).getEquipaCasaSimbolo()));
+        ImageIcon j5F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(4).getEquipaForaSimbolo()));
+        ImageIcon j6C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(5).getEquipaCasaSimbolo()));
+        ImageIcon j6F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(5).getEquipaForaSimbolo()));
+        ImageIcon j7C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(6).getEquipaCasaSimbolo()));
+        ImageIcon j7F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(6).getEquipaForaSimbolo()));
+        ImageIcon j8C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(7).getEquipaCasaSimbolo()));
+        ImageIcon j8F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(7).getEquipaForaSimbolo()));
             jogo1C.setIcon(j1C);
             jogo1F.setIcon(j1F);
             jogo2C.setIcon(j2C);
@@ -1813,69 +1735,69 @@ public class Home extends javax.swing.JFrame {
             jogo9.setVisible(false);
     }
     private void fillJogo9(){
-        ImageIcon j1C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaC().getSimbolo()));
-            ImageIcon j1F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaF().getSimbolo()));
-            ImageIcon j2C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(1).getEquipaC().getSimbolo()));
-            ImageIcon j2F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(1).getEquipaF().getSimbolo()));
-            ImageIcon j3C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(2).getEquipaC().getSimbolo()));
-            ImageIcon j3F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(2).getEquipaF().getSimbolo()));
-            ImageIcon j4C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(3).getEquipaC().getSimbolo()));
-            ImageIcon j4F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(3).getEquipaF().getSimbolo()));
-            ImageIcon j5C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(4).getEquipaC().getSimbolo()));
-            ImageIcon j5F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(4).getEquipaF().getSimbolo()));
-            ImageIcon j6C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(5).getEquipaC().getSimbolo()));
-            ImageIcon j6F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(5).getEquipaF().getSimbolo()));
-            ImageIcon j7C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(6).getEquipaC().getSimbolo()));
-            ImageIcon j7F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(6).getEquipaF().getSimbolo()));
-            ImageIcon j8C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(7).getEquipaC().getSimbolo()));
-            ImageIcon j8F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(7).getEquipaF().getSimbolo()));
-            ImageIcon j9C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(8).getEquipaC().getSimbolo()));
-            ImageIcon j9F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(8).getEquipaF().getSimbolo()));
-            jogo1C.setIcon(j1C);
-            jogo1F.setIcon(j1F);
-            jogo2C.setIcon(j2C);
-            jogo2F.setIcon(j2F);
-            jogo3C.setIcon(j3C);
-            jogo3F.setIcon(j3F);
-            jogo4C.setIcon(j4C);
-            jogo4F.setIcon(j4F);
-            jogo5C.setIcon(j5C);
-            jogo5F.setIcon(j5F);
-            jogo6C.setIcon(j6C);
-            jogo6F.setIcon(j6F);
-            jogo7C.setIcon(j7C);
-            jogo7F.setIcon(j7F);
-            jogo8C.setIcon(j8C);
-            jogo8F.setIcon(j8F);
-            jogo9C.setIcon(j9C);
-            jogo9F.setIcon(j9F);
-            j1V.setText(Double.toString(jogos.get(0).getOddV()));
-            j1E.setText(Double.toString(jogos.get(0).getOddE()));
-            j1D.setText(Double.toString(jogos.get(0).getOddD()));
-            j2V.setText(Double.toString(jogos.get(1).getOddV()));
-            j2E.setText(Double.toString(jogos.get(1).getOddE()));
-            j2D.setText(Double.toString(jogos.get(1).getOddD()));
-            j3V.setText(Double.toString(jogos.get(2).getOddV()));
-            j3E.setText(Double.toString(jogos.get(2).getOddE()));
-            j3D.setText(Double.toString(jogos.get(2).getOddD()));
-            j4V.setText(Double.toString(jogos.get(3).getOddV()));
-            j4E.setText(Double.toString(jogos.get(3).getOddE()));
-            j4D.setText(Double.toString(jogos.get(3).getOddD()));
-            j5V.setText(Double.toString(jogos.get(4).getOddV()));
-            j5E.setText(Double.toString(jogos.get(4).getOddE()));
-            j5D.setText(Double.toString(jogos.get(4).getOddD()));
-            j6V.setText(Double.toString(jogos.get(5).getOddV()));
-            j6E.setText(Double.toString(jogos.get(5).getOddE()));
-            j6D.setText(Double.toString(jogos.get(5).getOddD()));
-            j7V.setText(Double.toString(jogos.get(6).getOddV()));
-            j7E.setText(Double.toString(jogos.get(6).getOddE()));
-            j7D.setText(Double.toString(jogos.get(6).getOddD()));
-            j8V.setText(Double.toString(jogos.get(7).getOddV()));
-            j8E.setText(Double.toString(jogos.get(7).getOddE()));
-            j8D.setText(Double.toString(jogos.get(7).getOddD()));
-            j9V.setText(Double.toString(jogos.get(8).getOddV()));
-            j9E.setText(Double.toString(jogos.get(8).getOddE()));
-            j9D.setText(Double.toString(jogos.get(8).getOddD()));
+        ImageIcon j1C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaCasaSimbolo()));
+        ImageIcon j1F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaForaSimbolo()));
+        ImageIcon j2C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(1).getEquipaCasaSimbolo()));
+        ImageIcon j2F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(1).getEquipaForaSimbolo()));
+        ImageIcon j3C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(2).getEquipaCasaSimbolo()));
+        ImageIcon j3F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(2).getEquipaForaSimbolo()));
+        ImageIcon j4C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(3).getEquipaCasaSimbolo()));
+        ImageIcon j4F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(3).getEquipaForaSimbolo()));
+        ImageIcon j5C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(4).getEquipaCasaSimbolo()));
+        ImageIcon j5F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(4).getEquipaForaSimbolo()));
+        ImageIcon j6C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(5).getEquipaCasaSimbolo()));
+        ImageIcon j6F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(5).getEquipaForaSimbolo()));
+        ImageIcon j7C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(6).getEquipaCasaSimbolo()));
+        ImageIcon j7F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(6).getEquipaForaSimbolo()));
+        ImageIcon j8C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(7).getEquipaCasaSimbolo()));
+        ImageIcon j8F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(7).getEquipaForaSimbolo()));
+        ImageIcon j9C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(8).getEquipaCasaSimbolo()));
+        ImageIcon j9F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(8).getEquipaForaSimbolo()));
+        jogo1C.setIcon(j1C);
+        jogo1F.setIcon(j1F);
+        jogo2C.setIcon(j2C);
+        jogo2F.setIcon(j2F);
+        jogo3C.setIcon(j3C);
+        jogo3F.setIcon(j3F);
+        jogo4C.setIcon(j4C);
+        jogo4F.setIcon(j4F);
+        jogo5C.setIcon(j5C);
+        jogo5F.setIcon(j5F);
+        jogo6C.setIcon(j6C);
+        jogo6F.setIcon(j6F);
+        jogo7C.setIcon(j7C);
+        jogo7F.setIcon(j7F);
+        jogo8C.setIcon(j8C);
+        jogo8F.setIcon(j8F);
+        jogo9C.setIcon(j9C);
+        jogo9F.setIcon(j9F);
+        j1V.setText(Double.toString(jogos.get(0).getOddV()));
+        j1E.setText(Double.toString(jogos.get(0).getOddE()));
+        j1D.setText(Double.toString(jogos.get(0).getOddD()));
+        j2V.setText(Double.toString(jogos.get(1).getOddV()));
+        j2E.setText(Double.toString(jogos.get(1).getOddE()));
+        j2D.setText(Double.toString(jogos.get(1).getOddD()));
+        j3V.setText(Double.toString(jogos.get(2).getOddV()));
+        j3E.setText(Double.toString(jogos.get(2).getOddE()));
+        j3D.setText(Double.toString(jogos.get(2).getOddD()));
+        j4V.setText(Double.toString(jogos.get(3).getOddV()));
+        j4E.setText(Double.toString(jogos.get(3).getOddE()));
+        j4D.setText(Double.toString(jogos.get(3).getOddD()));
+        j5V.setText(Double.toString(jogos.get(4).getOddV()));
+        j5E.setText(Double.toString(jogos.get(4).getOddE()));
+        j5D.setText(Double.toString(jogos.get(4).getOddD()));
+        j6V.setText(Double.toString(jogos.get(5).getOddV()));
+        j6E.setText(Double.toString(jogos.get(5).getOddE()));
+        j6D.setText(Double.toString(jogos.get(5).getOddD()));
+        j7V.setText(Double.toString(jogos.get(6).getOddV()));
+        j7E.setText(Double.toString(jogos.get(6).getOddE()));
+        j7D.setText(Double.toString(jogos.get(6).getOddD()));
+        j8V.setText(Double.toString(jogos.get(7).getOddV()));
+        j8E.setText(Double.toString(jogos.get(7).getOddE()));
+        j8D.setText(Double.toString(jogos.get(7).getOddD()));
+        j9V.setText(Double.toString(jogos.get(8).getOddV()));
+        j9E.setText(Double.toString(jogos.get(8).getOddE()));
+        j9D.setText(Double.toString(jogos.get(8).getOddD()));
     }
     public void setStyle(){
         this.setTitle("Eventos ativos");
@@ -1891,9 +1813,9 @@ public class Home extends javax.swing.JFrame {
         perfilButton.setBackground(new Color(0,0,0));
         perfilButton.setContentAreaFilled(false);
         perfilButton.setOpaque(true);
-        perfilButton.setText(this.apostador.getNome());
+        perfilButton.setText(apostador.getNome());
         
-        if(jogos.size()==0)      fillJogo0();
+        if(jogos.isEmpty())      fillJogo0();
         else if(jogos.size()==1) fillJogo1();
         else if(jogos.size()==2) fillJogo2();
         else if(jogos.size()==3) fillJogo3();
@@ -1913,14 +1835,8 @@ public class Home extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
+            System.out.println("Error in Main");        
         }
     }
 

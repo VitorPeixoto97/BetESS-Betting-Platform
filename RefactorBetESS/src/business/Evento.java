@@ -4,9 +4,7 @@ import java.io.Serializable;
 
 public class Evento implements Serializable{
     private int id;
-    private double oddV;
-    private double oddE;
-    private double oddD;
+    private Odds odds;
     private boolean estado;
     private String resultado;
     private Equipa equipaC;
@@ -14,9 +12,7 @@ public class Evento implements Serializable{
     
     public Evento(){
         this.id = 9999;
-        this.oddV = 0.0;
-        this.oddE = 0.0;
-        this.oddD = 0.0;
+        this.odds = new Odds();
         this.estado = false;
         this.resultado = "";
         this.equipaC = new Equipa();
@@ -24,9 +20,7 @@ public class Evento implements Serializable{
     }
     public Evento(int id, double oddV, double oddE, double oddD, boolean estado, String resultado, Equipa c, Equipa f){
         this.id = id;
-        this.oddV = oddV;
-        this.oddE = oddE;
-        this.oddD = oddD;
+        this.odds = new Odds(oddV,oddE,oddD);
         this.estado = estado;
         this.resultado = resultado;
         this.equipaC = c;
@@ -34,9 +28,7 @@ public class Evento implements Serializable{
     }
     public Evento(Evento e){
         this.id = e.getID();
-        this.oddV = e.getOddV();
-        this.oddE = e.getOddE();
-        this.oddD = e.getOddD();
+        this.odds = e.getOdds();
         this.estado = e.getEstado();
         this.resultado = e.getResultado();
         this.equipaC = e.getEquipaC();
@@ -46,14 +38,17 @@ public class Evento implements Serializable{
     public int getID(){
         return this.id;
     }
+    public Odds getOdds(){
+        return this.odds;
+    }
     public double getOddV(){
-        return this.oddV;
+        return this.odds.getOddV();
     }
     public double getOddE(){
-        return this.oddE;
+        return this.odds.getOddE();
     }
     public double getOddD(){
-        return this.oddD;
+        return this.odds.getOddD();
     }
     public boolean getEstado(){
         return this.estado;
@@ -64,20 +59,20 @@ public class Evento implements Serializable{
     public Equipa getEquipaC(){
         return this.equipaC;
     }
+    public String getEquipaCasaNome(){
+        return this.equipaC.getNome();
+    }
+    public String getEquipaCasaSimbolo(){
+        return this.equipaC.getSimbolo();
+    }
     public Equipa getEquipaF(){
         return this.equipaF;
     }
-    public void setID(int id){
-        this.id=id;
+    public String getEquipaForaNome(){
+        return this.equipaF.getNome();
     }
-    public void setOddV(double oddV){
-        this.oddV=oddV;
-    }
-    public void setOddE(double oddE){
-        this.oddE=oddE;
-    }
-    public void setOddD(double oddD){
-        this.oddD=oddD;
+    public String getEquipaForaSimbolo(){
+        return this.equipaF.getSimbolo();
     }
     public void setEstado(boolean estado){
         this.estado=estado;
@@ -85,17 +80,11 @@ public class Evento implements Serializable{
     public void setResultado(String resultado){
         this.resultado=resultado;
     }
-    public void setEquipaC(Equipa equipaC){
-        this.equipaC=equipaC;
-    }
-    public void setEquipaF(Equipa equipaF){
-        this.equipaF=equipaF;
-    }
     public boolean equals(Evento e) {
         return e.getID() == this.id;
     }
     
-    public Integer getRes(String resultado){
+    public Integer getRes(){
         String[] venc = resultado.split("-");
         int res;
         if(Integer.parseInt(venc[0])>Integer.parseInt(venc[1])) res = 1; //equipa casa venceu

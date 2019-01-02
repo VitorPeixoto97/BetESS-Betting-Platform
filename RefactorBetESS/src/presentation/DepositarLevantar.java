@@ -4,9 +4,6 @@ import business.Apostador;
 import business.BetESS;
 import java.awt.Color;
 import java.awt.Image;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 
 public class DepositarLevantar extends javax.swing.JFrame {
@@ -34,7 +31,7 @@ public class DepositarLevantar extends javax.swing.JFrame {
         perfilButton.setBackground(new Color(0,0,0));
         perfilButton.setContentAreaFilled(false);
         perfilButton.setOpaque(true);
-        perfilButton.setText(this.apostador.getNome());
+        perfilButton.setText(apostador.getNome());
     }
 
     @SuppressWarnings("unchecked")
@@ -215,14 +212,14 @@ public class DepositarLevantar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void apostasButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_apostasButtonActionPerformed
-        MinhasApostas ma = new MinhasApostas(this.betess, apostador);
+        MinhasApostas ma = new MinhasApostas(betess, apostador);
         ma.setVisible(true);
         this.setVisible(false);
         this.dispose();
     }//GEN-LAST:event_apostasButtonActionPerformed
 
     private void eventosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eventosButtonActionPerformed
-        Home home = new Home(this.betess, apostador);
+        Home home = new Home(betess, apostador);
         home.setVisible(true);
         this.setVisible(false);
         this.dispose();
@@ -231,19 +228,19 @@ public class DepositarLevantar extends javax.swing.JFrame {
     private void levButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_levButtonActionPerformed
         int quantia = (Integer) levSpinner.getValue();
         if (apostador.getESSCoins()-quantia < 5)
-            this.betess.notification(3, "O seu saldo atual não lhe permite levantar essa quantia. Tem de manter um saldo mínimo de 5 ESScoins!", "Aviso");
+            betess.notification(3, "O seu saldo atual não lhe permite levantar essa quantia. Tem de manter um saldo mínimo de 5 ESScoins!", "Aviso");
         else{
-            this.betess.getData().getApostadores().get(apostador.getID()).levantarESSCoins(quantia);
-            this.saveNrefresh();
-            this.betess.notification(1, "Quantia depositada na sua conta bancária!", "Sucesso");
+            apostador.levantarESSCoins(quantia);
+            saveNrefresh();
+            betess.notification(1, "Quantia depositada na sua conta bancária!", "Sucesso");
         }
     }//GEN-LAST:event_levButtonActionPerformed
 
     private void depButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depButtonActionPerformed
         int quantia = (Integer) depSpinner.getValue();
-        this.betess.getData().getApostadores().get(apostador.getID()).adicionarESSCoins(quantia);
-        this.saveNrefresh();
-        this.betess.notification(1, "Quantia adicionada com sucesso!", "Sucesso");
+        apostador.adicionarESSCoins(quantia);
+        saveNrefresh();
+        betess.notification(1, "Quantia adicionada com sucesso!", "Sucesso");
     }//GEN-LAST:event_depButtonActionPerformed
 
     private void perfilButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_perfilButtonActionPerformed
@@ -253,29 +250,15 @@ public class DepositarLevantar extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_perfilButtonActionPerformed
 
-    //Função para remover código duplicado
     private void saveNrefresh(){
-        try {
-            betess.getData().save(betess.getData());
-        } catch (IOException ex) {
-            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        DepositarLevantar dl = new DepositarLevantar(this.betess, this.apostador);
+        betess.save();
+        DepositarLevantar dl = new DepositarLevantar(betess, apostador);
         dl.setVisible(true);
         this.setVisible(false);
         this.dispose();
     }
     
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -283,17 +266,9 @@ public class DepositarLevantar extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DepositarLevantar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DepositarLevantar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DepositarLevantar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DepositarLevantar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
+            System.out.println("Error in Main");
         }
-        //</editor-fold>
-
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

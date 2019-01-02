@@ -61,7 +61,7 @@ public class Apostador implements Serializable{
     public ArrayList<Aposta> getApostasAtivas(){
         ArrayList<Aposta> apostas = new ArrayList<>();
         for(Aposta ap : this.getApostas()){
-            if(ap.getEvento().getEstado())
+            if(ap.getEstadoEvento())
                 apostas.add(ap);
         }
         return apostas;
@@ -85,7 +85,7 @@ public class Apostador implements Serializable{
     }
     
     public void removerAposta(Aposta a){
-        if(a.getEvento().getEstado()){
+        if(a.getEstadoEvento()){
             apostas.remove(a);
             this.esscoins+=a.getValor();
         }
@@ -102,12 +102,17 @@ public class Apostador implements Serializable{
             if(!a.getVisto()){
                 double ganhos = a.ganhos();
                 ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/ball.png"));
-                JOptionPane.showMessageDialog(null, "Resultado final: "+a.getEvento().getEquipaC().getNome()+ " " +
-                                            a.getEvento().getResultado()+" " +
-                                            a.getEvento().getEquipaF().getNome()+
-                                            "\nGanhos: "+ganhos+" ESScoins", "Evento terminado", JOptionPane.INFORMATION_MESSAGE, icon);
+                JOptionPane.showMessageDialog(null, "Resultado final: " + 
+                                                     a.getEquipaCasaNome()  + " " +
+                                                     a.getResultadoEvento() + " " +
+                                                     a.getEquipaForaNome()  +
+                                                     "\nGanhos: " + ganhos + " ESScoins", 
+                                              "Evento terminado", JOptionPane.INFORMATION_MESSAGE, icon);
                 a.visto();
             }
         }
+    }
+    public boolean checkEmail(String em){
+        return email.equals(em);
     }
 }
