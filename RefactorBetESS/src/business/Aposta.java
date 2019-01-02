@@ -73,4 +73,29 @@ public class Aposta implements Serializable{
             else if(res==3) a.adicionarESSCoins(this.getEvento().getOddD()*this.getValor());
         }
     }
+    public double ganhos(){
+        double ganhos = 0.0;
+        String[] venc = this.evento.getResultado().split("-");
+        int res;
+        if(Integer.parseInt(venc[0])>Integer.parseInt(venc[1])) res = 1;
+        else if(Integer.parseInt(venc[1])>Integer.parseInt(venc[0])) res = 3;
+        else res = 2;
+        if(resultado==res){
+            switch (res) {
+                case 1:
+                    ganhos = evento.getOddV()*valor;
+                    break;
+                case 2:
+                    ganhos = evento.getOddE()*valor;
+                    break;
+                case 3:
+                    ganhos= evento.getOddD()*valor;
+                    break;
+                default:
+                    break;
+            }
+        }
+        return ganhos;
+    }
+            
 }

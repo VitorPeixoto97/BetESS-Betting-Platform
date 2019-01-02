@@ -249,7 +249,7 @@ public class DepositarLevantar extends javax.swing.JFrame {
         if (apostador.getESSCoins()-quantia < 5)
             this.betess.notification(3, "O seu saldo atual não lhe permite levantar essa quantia. Tem de manter um saldo mínimo de 5 ESScoins!", "Aviso");
         else{
-            this.betess.getApostadores().get(apostador.getID()).levantarESSCoins(quantia);
+            this.betess.getData().getApostadores().get(apostador.getID()).levantarESSCoins(quantia);
             this.saveNrefresh();
             this.betess.notification(1, "Quantia depositada na sua conta bancária!", "Sucesso");
         }
@@ -257,7 +257,7 @@ public class DepositarLevantar extends javax.swing.JFrame {
 
     private void depButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depButtonActionPerformed
         int quantia = (Integer) depSpinner.getValue();
-        this.betess.getApostadores().get(apostador.getID()).adicionarESSCoins(quantia);
+        this.betess.getData().getApostadores().get(apostador.getID()).adicionarESSCoins(quantia);
         this.saveNrefresh();
         this.betess.notification(1, "Quantia adicionada com sucesso!", "Sucesso");
     }//GEN-LAST:event_depButtonActionPerformed
@@ -272,7 +272,7 @@ public class DepositarLevantar extends javax.swing.JFrame {
     //Função para remover código duplicado
     private void saveNrefresh(){
         try {
-            betess.save(betess);
+            betess.getData().save(betess.getData());
         } catch (IOException ex) {
             Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
         }

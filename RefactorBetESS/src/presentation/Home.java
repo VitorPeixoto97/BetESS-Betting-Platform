@@ -33,7 +33,7 @@ public class Home extends javax.swing.JFrame {
     public Home(BetESS b, Apostador a) {
         initComponents();
         this.betess = b;
-        for(Evento e : this.betess.getEventos().values()){
+        for(Evento e : this.betess.getData().getEventos().values()){
             if(e.getEstado()){
                 jogos.add(e);
             }
@@ -1154,27 +1154,7 @@ public class Home extends javax.swing.JFrame {
     private void notificacoes(){
         for(Aposta a : this.apostador.getApostas()){
             if(!a.getVisto()){
-                double ganhos = 0.0;
-                String[] venc = a.getEvento().getResultado().split("-");
-                int res;
-                if(Integer.parseInt(venc[0])>Integer.parseInt(venc[1])) res = 1;
-                else if(Integer.parseInt(venc[1])>Integer.parseInt(venc[0])) res = 3;
-                else res = 2;
-                if(a.getResultado()==res){
-                    switch (res) {
-                        case 1:
-                            ganhos=a.getEvento().getOddV()*a.getValor();
-                            break;
-                        case 2:
-                            ganhos=a.getEvento().getOddE()*a.getValor();
-                            break;
-                        case 3:
-                            ganhos=a.getEvento().getOddD()*a.getValor();
-                            break;
-                        default:
-                            break;
-                    }
-                }
+                double ganhos = a.ganhos();
                 this.betess.notification(4, "Resultado final: "+a.getEvento().getEquipaC().getNome()+ " " +
                                             a.getEvento().getResultado()+" " +
                                             a.getEvento().getEquipaF().getNome()+
@@ -1183,7 +1163,7 @@ public class Home extends javax.swing.JFrame {
             }
         }
         try {
-            this.betess.save(betess);
+            this.betess.getData().save(betess.getData());
         } catch (IOException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -1550,7 +1530,6 @@ public class Home extends javax.swing.JFrame {
         this.setVisible(false);
         this.dispose();
     }
-    
     private void fillJogo0(){
             jogo1.setVisible(false);
             jogo2.setVisible(false);
@@ -1562,7 +1541,6 @@ public class Home extends javax.swing.JFrame {
             jogo8.setVisible(false);
             jogo9.setVisible(false);
     }
-    
     private void fillJogo1(){
         ImageIcon j1C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaC().getSimbolo()));
         ImageIcon j1F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaF().getSimbolo()));
@@ -1580,7 +1558,6 @@ public class Home extends javax.swing.JFrame {
         jogo8.setVisible(false);
         jogo9.setVisible(false);
     }
-    
     private void fillJogo2(){
             ImageIcon j1C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaC().getSimbolo()));
             ImageIcon j1F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaF().getSimbolo()));
@@ -1604,7 +1581,6 @@ public class Home extends javax.swing.JFrame {
             jogo8.setVisible(false);
             jogo9.setVisible(false);
     }
-    
     private void fillJogo3(){
         ImageIcon j1C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaC().getSimbolo()));
             ImageIcon j1F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaF().getSimbolo()));
@@ -1634,7 +1610,6 @@ public class Home extends javax.swing.JFrame {
             jogo8.setVisible(false);
             jogo9.setVisible(false);
     }
-    
     private void fillJogo4(){
         ImageIcon j1C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaC().getSimbolo()));
             ImageIcon j1F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaF().getSimbolo()));
@@ -1670,7 +1645,6 @@ public class Home extends javax.swing.JFrame {
             jogo8.setVisible(false);
             jogo9.setVisible(false);
     }
-    
     private void fillJogo5(){
         ImageIcon j1C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaC().getSimbolo()));
             ImageIcon j1F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaF().getSimbolo()));
@@ -1712,7 +1686,6 @@ public class Home extends javax.swing.JFrame {
             jogo8.setVisible(false);
             jogo9.setVisible(false);
     }
-    
     private void fillJogo6(){
                     ImageIcon j1C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaC().getSimbolo()));
             ImageIcon j1F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaF().getSimbolo()));
@@ -1760,7 +1733,6 @@ public class Home extends javax.swing.JFrame {
             jogo8.setVisible(false);
             jogo9.setVisible(false);
     }
-    
     private void fillJogo7(){
             ImageIcon j1C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaC().getSimbolo()));
             ImageIcon j1F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaF().getSimbolo()));
@@ -1814,7 +1786,6 @@ public class Home extends javax.swing.JFrame {
             jogo8.setVisible(false);
             jogo9.setVisible(false);
     }
-    
     private void fillJogo8(){
         ImageIcon j1C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaC().getSimbolo()));
             ImageIcon j1F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaF().getSimbolo()));
@@ -1874,7 +1845,6 @@ public class Home extends javax.swing.JFrame {
             j8D.setText(Double.toString(jogos.get(7).getOddD()));
             jogo9.setVisible(false);
     }
-    
     private void fillJogo9(){
         ImageIcon j1C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaC().getSimbolo()));
             ImageIcon j1F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaF().getSimbolo()));
@@ -1940,7 +1910,6 @@ public class Home extends javax.swing.JFrame {
             j9E.setText(Double.toString(jogos.get(8).getOddE()));
             j9D.setText(Double.toString(jogos.get(8).getOddD()));
     }
-    
     public void setStyle(){
         this.setTitle("Eventos ativos");
         this.setLocationRelativeTo(null);

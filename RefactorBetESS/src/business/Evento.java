@@ -103,10 +103,7 @@ public class Evento implements Serializable{
     }
     
     public boolean equals(Evento e) {
-        if(e.getID() == this.id) {
-            return true;
-        }
-        return false;
+        return e.getID() == this.id;
     }
     
     public Integer getRes(String resultado){

@@ -248,10 +248,10 @@ public class MinhasApostas extends javax.swing.JFrame {
         int row = betsTable.getSelectedRow();
         int value = (Integer) betsTable.getModel().getValueAt(row, 0);
         Aposta aposta = new Aposta();
-        for(Aposta a: this.betess.getApostadores().get(apostador.getID()).getApostas()){
+        for(Aposta a: this.betess.getData().getApostadores().get(apostador.getID()).getApostas()){
             if (a.getEvento().getID() == value) aposta = a;
         }
-        this.betess.getApostadores().get(apostador.getID()).removerAposta(aposta);
+        this.betess.getData().getApostadores().get(apostador.getID()).removerAposta(aposta);
         this.saveNrefresh();
     }//GEN-LAST:event_deleteButtonActionPerformed
 
@@ -264,7 +264,7 @@ public class MinhasApostas extends javax.swing.JFrame {
 
     private void saveNrefresh(){
         try {
-            betess.save(betess);
+            betess.getData().save(betess.getData());
         } catch (IOException ex) {
             Logger.getLogger(MinhasApostas.class.getName()).log(Level.SEVERE, null, ex);
         }

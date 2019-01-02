@@ -32,9 +32,9 @@ public class Admin extends javax.swing.JFrame {
     }
     
     private void fillCombos(){
-        ArrayList<Equipa> eqDisp = new ArrayList<>(betess.getEquipas().values());
+        ArrayList<Equipa> eqDisp = new ArrayList<>(betess.getData().getEquipas().values());
         ArrayList<Evento> evAtiv = new ArrayList<>();
-        for(Evento e : this.betess.getEventos().values()){
+        for(Evento e : this.betess.getData().getEventos().values()){
             if(e.getEstado())
                 evAtiv.add(e);
         }
@@ -266,14 +266,14 @@ public class Admin extends javax.swing.JFrame {
     private void fecharButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fecharButtonActionPerformed
         String[] equipas = this.eventCombo.getSelectedItem().toString().split(" X ");
         ArrayList<Evento> evAtiv = new ArrayList<>();
-        this.betess.getEventos().values().stream().filter((e) -> (e.getEstado())).forEachOrdered((e) -> {
+        this.betess.getData().getEventos().values().stream().filter((e) -> (e.getEstado())).forEachOrdered((e) -> {
             evAtiv.add(e);
         });
         for(Evento e : evAtiv){
             if(e.getEquipaC().getNome().equals(equipas[0]) && e.getEquipaF().getNome().equals(equipas[1])){
                 this.betess.finalizarEvento(e, resField.getText());
                 int res = e.getRes(resField.getText());
-                this.betess.getApostadores().values().forEach((a) -> {
+                this.betess.getData().getApostadores().values().forEach((a) -> {
                     a.getApostas().stream().filter((ap) -> (ap.getEvento().equals(e))).map((ap) -> {
                         ap.distribuirGanhos(a,res);
                         return ap;
@@ -290,14 +290,14 @@ public class Admin extends javax.swing.JFrame {
     private void criarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criarButtonActionPerformed
         Equipa casa = new Equipa();
         Equipa fora = new Equipa();
-        for(Equipa a : this.betess.getEquipas().values()){
+        for(Equipa a : this.betess.getData().getEquipas().values()){
             if(a.getNome().equals(casaCombo.getSelectedItem().toString())) casa = a;
             else if(a.getNome().equals(foraCombo.getSelectedItem().toString())) fora = a;
         }
         if(casaCombo.getSelectedItem().toString().equals(foraCombo.getSelectedItem().toString()))
             this.betess.notification(3, "As equipas selecionadas são a mesma. Por favor escolha outra.", "Aviso");
         else{
-            Evento evento = new Evento(this.betess.getEventos().size()+1, 
+            Evento evento = new Evento(this.betess.getData().getEventos().size()+1, 
                                        Double.parseDouble(oddV.getText()),
                                        Double.parseDouble(oddE.getText()),
                                        Double.parseDouble(oddD.getText()),
@@ -313,7 +313,7 @@ public class Admin extends javax.swing.JFrame {
     //Função para remover código duplicado
     private void saveNrefresh(){
         try {
-            betess.save(betess);
+            betess.getData().save(betess.getData());
         } catch (IOException ex) {
             Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
         }

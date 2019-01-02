@@ -229,14 +229,14 @@ public class Registar extends javax.swing.JFrame {
         int coins = (Integer) coinsField.getValue() + 5;
         boolean aut = acessoCheckBox.isSelected();
         boolean flag = true;
-        for(Apostador a : this.betess.getApostadores().values()){
+        for(Apostador a : this.betess.getData().getApostadores().values()){
             if(a.getEmail().equals(email) && flag){
                 flag = false;
                 betess.notification(3, "Já foi registado um apostador com esse email. Por favor tente outro.", "Aviso");
             }
         }
         if(flag && aut){
-            int last_id = this.betess.getApostadores().size()+1;
+            int last_id = this.betess.getData().getApostadores().size()+1;
             ArrayList<Aposta> apostas = new ArrayList<>();
             Apostador novo = new Apostador(last_id, email, password, nome, coins, apostas);
             betess.registarApostador(novo);
@@ -247,13 +247,14 @@ public class Registar extends javax.swing.JFrame {
 
     private void saveNreturn(){
         try {
-            this.betess.save(betess);
+            betess.getData().save(betess.getData());
         } catch (IOException ex) {
             Logger.getLogger(Registar.class.getName()).log(Level.SEVERE, null, ex);
         }
         Login login = new Login(this.betess);
         login.setVisible(true);
         this.setVisible(false);
+        this.dispose();
     }
     
     public static void main(String args[]) {

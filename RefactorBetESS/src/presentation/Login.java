@@ -199,7 +199,7 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-        List<Apostador> apostadores = new ArrayList<>(this.betess.getApostadores().values());
+        List<Apostador> apostadores = new ArrayList<>(this.betess.getData().getApostadores().values());
         if(this.emailField.getText().equals("admin") && this.passwordField.getText().equals("admin")){
             Admin admin = new Admin(this.betess);
             admin.setVisible(true);
