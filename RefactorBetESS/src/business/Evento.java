@@ -1,17 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package business;
-import java.io.Serializable;
-import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
 
-/**
- *
- * @author vitorpeixoto
- */
+import java.io.Serializable;
+
 public class Evento implements Serializable{
     private int id;
     private double oddV;
@@ -101,7 +91,6 @@ public class Evento implements Serializable{
     public void setEquipaF(Equipa equipaF){
         this.equipaF=equipaF;
     }
-    
     public boolean equals(Evento e) {
         return e.getID() == this.id;
     }
@@ -112,8 +101,6 @@ public class Evento implements Serializable{
         if(Integer.parseInt(venc[0])>Integer.parseInt(venc[1])) res = 1; //equipa casa venceu
         else if(Integer.parseInt(venc[1])>Integer.parseInt(venc[0])) res = 3; //equipa fora venceu
         else res = 2; //empate
-        
         return res;
     }
-    
 }

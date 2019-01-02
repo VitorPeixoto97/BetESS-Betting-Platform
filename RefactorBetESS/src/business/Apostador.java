@@ -1,19 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package business;
 
-import java.util.HashMap;
 import java.io.Serializable;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
-
-/**
- *
- * @author vitorpeixoto
- */
 public class Apostador implements Serializable{
     private int id;
     private String email;
@@ -105,5 +96,18 @@ public class Apostador implements Serializable{
     }
     public void levantarESSCoins(double coins){
         this.esscoins-=coins;
+    }
+    public void notificate(){
+        for(Aposta a : apostas){
+            if(!a.getVisto()){
+                double ganhos = a.ganhos();
+                ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/ball.png"));
+                JOptionPane.showMessageDialog(null, "Resultado final: "+a.getEvento().getEquipaC().getNome()+ " " +
+                                            a.getEvento().getResultado()+" " +
+                                            a.getEvento().getEquipaF().getNome()+
+                                            "\nGanhos: "+ganhos+" ESScoins", "Evento terminado", JOptionPane.INFORMATION_MESSAGE, icon);
+                a.visto();
+            }
+        }
     }
 }

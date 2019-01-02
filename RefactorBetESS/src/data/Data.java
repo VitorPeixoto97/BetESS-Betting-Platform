@@ -1,16 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package data;
 
 import business.Aposta;
 import business.Apostador;
-import business.BetESS;
 import business.Equipa;
 import business.Evento;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -19,9 +14,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-
 public class Data implements Serializable {
-    
     private HashMap<Integer,Apostador> apostadores;
     private HashMap<Integer,Evento> eventos;
     private HashMap<Integer,Equipa> equipas;
@@ -52,7 +45,7 @@ public class Data implements Serializable {
         return this.equipas;
     }
     
-    public Data load() throws IOException, ClassNotFoundException {
+    public Data load() throws IOException {
         Data d = new Data();
         try{
             FileInputStream fileIn = new FileInputStream("betess.obj");
@@ -67,16 +60,14 @@ public class Data implements Serializable {
         return d;
     }
     
-    public void save(Data d) throws IOException {
-        try {
-            FileOutputStream fileOut = new FileOutputStream("betess.obj");
-            ObjectOutputStream out = new ObjectOutputStream(fileOut);
-            out.writeObject(d);
-            out.flush();
-            out.close();
-            fileOut.close();
-            System.out.println("Data saved in betess.obj\n");
-        } catch (IOException i) { }
+    public void save(Data d) throws FileNotFoundException, IOException {
+        FileOutputStream fileOut = new FileOutputStream("betess.obj");
+        ObjectOutputStream out = new ObjectOutputStream(fileOut);
+        out.writeObject(d);
+        out.flush();
+        out.close();
+        fileOut.close();
+        System.out.println("Data saved in betess.obj\n");
     }
 
     public Data povoar(){
@@ -86,7 +77,6 @@ public class Data implements Serializable {
         System.out.println("New data reloaded!\n");
         return this;
     }
-    
     public void povoarEquipas(){
         Equipa belenenses   = new Equipa(0, "Belenenses SAD", true, "resources/equipas/belenenses.png");
         Equipa boavista     = new Equipa(1, "Boavista FC", true, "resources/equipas/boavista.png");
@@ -167,6 +157,4 @@ public class Data implements Serializable {
         this.eventos.put(j1j9.getID(),j1j9);
 
     }
-    
-    
 }

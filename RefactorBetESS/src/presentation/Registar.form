@@ -205,9 +205,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JCheckBox" name="acessoCheckBox">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="acessoCheckBoxActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel6">
           <Properties>

@@ -1,4 +1,5 @@
 package presentation;
+
 import business.BetESS;
 import business.Equipa;
 import business.Evento;
@@ -11,7 +12,7 @@ import javax.swing.ImageIcon;
 
 public class Admin extends javax.swing.JFrame {
 
-    BetESS betess;
+    private BetESS betess;
     
     public Admin(BetESS b) {
         this.betess = b;
@@ -33,12 +34,7 @@ public class Admin extends javax.swing.JFrame {
     
     private void fillCombos(){
         ArrayList<Equipa> eqDisp = new ArrayList<>(betess.getData().getEquipas().values());
-        ArrayList<Evento> evAtiv = new ArrayList<>();
-        for(Evento e : this.betess.getData().getEventos().values()){
-            if(e.getEstado())
-                evAtiv.add(e);
-        }
-        for(Evento e : evAtiv){
+        for(Evento e : betess.getEventosAtivos()){
             eqDisp.remove(e.getEquipaC());
             eqDisp.remove(e.getEquipaF());
             this.eventCombo.addItem(e.getEquipaC().getNome() + " X " + e.getEquipaF().getNome());
@@ -264,49 +260,17 @@ public class Admin extends javax.swing.JFrame {
     }//GEN-LAST:event_perfilButtonActionPerformed
 
     private void fecharButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fecharButtonActionPerformed
-        String[] equipas = this.eventCombo.getSelectedItem().toString().split(" X ");
-        ArrayList<Evento> evAtiv = new ArrayList<>();
-        this.betess.getData().getEventos().values().stream().filter((e) -> (e.getEstado())).forEachOrdered((e) -> {
-            evAtiv.add(e);
-        });
-        for(Evento e : evAtiv){
-            if(e.getEquipaC().getNome().equals(equipas[0]) && e.getEquipaF().getNome().equals(equipas[1])){
-                this.betess.finalizarEvento(e, resField.getText());
-                int res = e.getRes(resField.getText());
-                this.betess.getData().getApostadores().values().forEach((a) -> {
-                    a.getApostas().stream().filter((ap) -> (ap.getEvento().equals(e))).map((ap) -> {
-                        ap.distribuirGanhos(a,res);
-                        return ap;
-                    }).forEachOrdered((ap) -> {
-                        ap.notificaApostador();
-                    });
-                });
-                this.betess.notification(1, "Evento encerrado e prémios distribuídos.", "Sucesso");
-            }
-        }
+        betess.finalizarEvento(this.eventCombo.getSelectedItem().toString(), this.resField.getText());
         saveNrefresh();
     }//GEN-LAST:event_fecharButtonActionPerformed
 
     private void criarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criarButtonActionPerformed
-        Equipa casa = new Equipa();
-        Equipa fora = new Equipa();
-        for(Equipa a : this.betess.getData().getEquipas().values()){
-            if(a.getNome().equals(casaCombo.getSelectedItem().toString())) casa = a;
-            else if(a.getNome().equals(foraCombo.getSelectedItem().toString())) fora = a;
-        }
-        if(casaCombo.getSelectedItem().toString().equals(foraCombo.getSelectedItem().toString()))
-            this.betess.notification(3, "As equipas selecionadas são a mesma. Por favor escolha outra.", "Aviso");
-        else{
-            Evento evento = new Evento(this.betess.getData().getEventos().size()+1, 
-                                       Double.parseDouble(oddV.getText()),
-                                       Double.parseDouble(oddE.getText()),
-                                       Double.parseDouble(oddD.getText()),
-                                       true, " ", casa, fora); 
-            this.betess.criarEvento(evento);
-            this.betess.notification(1, "Evento criado e disponível.", "Sucesso");
-            
-            saveNrefresh();
-        }
+        boolean ret = betess.criarEvento(casaCombo.getSelectedItem().toString(),
+                                         foraCombo.getSelectedItem().toString(),
+                                         Double.parseDouble(oddV.getText()),
+                                         Double.parseDouble(oddE.getText()),
+                                         Double.parseDouble(oddD.getText()));
+        if(ret) saveNrefresh();
     }//GEN-LAST:event_criarButtonActionPerformed
     
     
@@ -317,7 +281,6 @@ public class Admin extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
         Admin admin = new Admin(this.betess);
         admin.setVisible(true);
         this.setVisible(false);

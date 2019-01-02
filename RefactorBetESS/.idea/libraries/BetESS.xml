@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="BetESS">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/dist/BetESS.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

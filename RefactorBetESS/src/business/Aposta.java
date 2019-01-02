@@ -1,16 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package business;
 
 import java.io.Serializable;
 
-/**
- *
- * @author vitorpeixoto
- */
 public class Aposta implements Serializable{
     private int resultado; //resultado em que o apostador apostou (V/E/D)
     private int valor;
@@ -50,7 +41,6 @@ public class Aposta implements Serializable{
     public boolean getVisto(){
         return this.visto;
     }
-    
     public void setResultado(int resultado){
         this.resultado=resultado;
     }
@@ -97,5 +87,4 @@ public class Aposta implements Serializable{
         }
         return ganhos;
     }
-            
 }

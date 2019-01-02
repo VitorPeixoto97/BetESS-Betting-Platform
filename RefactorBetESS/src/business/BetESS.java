@@ -1,25 +1,11 @@
 package business;
 
 import data.Data;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.PrintWriter;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Observable;
-import java.util.Set;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author vitorpeixoto
- */
 public class BetESS implements Serializable{
     
     private Data data;
@@ -54,17 +40,56 @@ public class BetESS implements Serializable{
         }
         else{
             this.notification(3, "Não tem saldo suficiente para realizar a aposta.", "Aviso");
-        }  
+        }
         return false;
     }
     
-    public void criarEvento(Evento e){
-        data.getEventos().put(e.getID(), e);
+    public boolean criarEvento(String c, String f, double oddV, double oddE, double oddD){
+        Equipa casa = new Equipa();
+        Equipa fora = new Equipa();
+        for(Equipa a : data.getEquipas().values()){
+            if(a.getNome().equals(c)) casa = a;
+            else if(a.getNome().equals(f)) fora = a;
+        }
+        if(c.equals(f)) this.notification(3, "As equipas selecionadas são a mesma. Por favor escolha outra.", "Aviso");
+        else{
+            Evento evento = new Evento(data.getEventos().size()+1, oddV, oddE, oddD, true, "", casa, fora); 
+            data.getEventos().put(evento.getID(), evento);
+            this.notification(1, "Evento criado e disponível.", "Sucesso");
+            
+            return true;
+        }
+        return false;
     }
     
-    public void finalizarEvento(Evento e, String res){
-        data.getEventos().get(e.getID()).setEstado(false);
-        data.getEventos().get(e.getID()).setResultado(res);
+    public void finalizarEvento(String jogo, String res){
+        String[] equipas = jogo.split(" X ");
+        for(Evento e : getEventosAtivos()){
+            if(e.getEquipaC().getNome().equals(equipas[0]) && e.getEquipaF().getNome().equals(equipas[1])){
+                data.getEventos().get(e.getID()).setEstado(false);
+                data.getEventos().get(e.getID()).setResultado(res);
+                int vencedor = e.getRes(res);
+                this.getData().getApostadores().values().forEach((a) -> {
+                    a.getApostas().stream().filter((ap) -> (ap.getEvento().equals(e))).map((ap) -> {
+                        ap.distribuirGanhos(a,vencedor);
+                        return ap;
+                    }).forEachOrdered((ap) -> {
+                        ap.notificaApostador();
+                    });
+                });
+                this.notification(1, "Evento encerrado e prémios distribuídos.", "Sucesso");
+            }
+        }
+    }
+    
+    public ArrayList<Evento> getEventosAtivos(){
+        ArrayList<Evento> ativos = new ArrayList<>();
+        for(Evento e : data.getEventos().values()){
+            if(e.getEstado()){
+                ativos.add(e);
+            }
+        }
+        return ativos;
     }
     
     public void registarApostador(Apostador a){
@@ -80,7 +105,6 @@ public class BetESS implements Serializable{
             data.getEquipas().get(e.getID()).setEstado(false);
     }
     
-    //função para remover código duplicado desnecessário
     public void notification(int tipo, String texto, String titulo){
         ImageIcon icon = new ImageIcon();
         if(tipo==1) icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/check.png"));
@@ -89,5 +113,20 @@ public class BetESS implements Serializable{
         JOptionPane.showMessageDialog(null, texto, titulo, JOptionPane.INFORMATION_MESSAGE, icon);
     }
     
-
+    public Apostador login(String email, String pass){
+        if(email.equals("admin") && pass.equals("admin")){
+            return new Apostador();
+        }
+        else{
+            for (Apostador a : data.getApostadores().values()) {
+                if (a.getEmail().compareTo(email)==0){
+                    if (a.getPassword().compareTo(pass)==0){
+                        return a;
+                    }
+                }
+            }
+            notification(3, "Dados incorretos!", "Aviso");
+        }
+        return null;
+    }
 }
