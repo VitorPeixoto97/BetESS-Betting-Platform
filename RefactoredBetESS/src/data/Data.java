@@ -45,6 +45,7 @@ public class Data implements Serializable {
     public ArrayList<Equipa> getEquipas(){
         return this.equipas;
     }
+    
     public ArrayList<Evento> getEventosAtivos(){
         ArrayList<Evento> ativos = new ArrayList<>();
         for(Evento e : eventos)
@@ -52,8 +53,6 @@ public class Data implements Serializable {
                 ativos.add(e);
         return ativos;
     }
-    
-
     
     public void addEvento(Evento e){
         eventos.add(e);

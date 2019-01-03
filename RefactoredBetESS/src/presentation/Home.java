@@ -13,12 +13,10 @@ public class Home extends javax.swing.JFrame {
 
     private BetESS betess;
     private Apostador apostador;
-    private ArrayList<Evento> jogos = new ArrayList<>(); 
         
     public Home(BetESS b, Apostador a) {
         initComponents();
         this.betess = b;
-        this.jogos  = betess.getEventosAtivos();
         this.apostador = a;
         setStyle();
         notificacoes();
@@ -1300,7 +1298,7 @@ public class Home extends javax.swing.JFrame {
         else if (j1D.isSelected()) res=3;
         else betess.notification(2, "Selecione um resultado!", "Aviso");
         boolean ret=false;
-        Aposta ap = new Aposta(res, (Integer) j1Spin.getValue(), jogos.get(0), apostador, true);   
+        Aposta ap = new Aposta(res, (Integer) j1Spin.getValue(), betess.getEventoAtivo(0), apostador, true);   
         if(res!=0) ret = apostador.efetuarAposta(ap);
         if(ret) saveNrefresh();
     }//GEN-LAST:event_j1BetActionPerformed
@@ -1311,7 +1309,7 @@ public class Home extends javax.swing.JFrame {
         else if (j3D.isSelected()) res=3;
         else this.betess.notification(2, "Selecione um resultado!", "Aviso");
         boolean ret=false;
-        Aposta ap = new Aposta(res, (Integer) j3Spin.getValue(), jogos.get(2), apostador, true);   
+        Aposta ap = new Aposta(res, (Integer) j3Spin.getValue(), betess.getEventoAtivo(2), apostador, true);   
         if(res!=0) ret = apostador.efetuarAposta(ap);
         if(ret) this.saveNrefresh();
     }//GEN-LAST:event_j3BetActionPerformed
@@ -1322,7 +1320,7 @@ public class Home extends javax.swing.JFrame {
         else if (j2D.isSelected()) res=3;
         else this.betess.notification(2, "Selecione um resultado!", "Aviso");
         boolean ret=false;
-        Aposta ap = new Aposta(res, (Integer) j2Spin.getValue(), jogos.get(1), apostador, true);   
+        Aposta ap = new Aposta(res, (Integer) j2Spin.getValue(), betess.getEventoAtivo(1), apostador, true);   
         if(res!=0) ret = apostador.efetuarAposta(ap);
         if(ret) this.saveNrefresh();
     }//GEN-LAST:event_j2BetActionPerformed
@@ -1333,7 +1331,7 @@ public class Home extends javax.swing.JFrame {
         else if (j4D.isSelected()) res=3;
         else this.betess.notification(2, "Selecione um resultado!", "Aviso");
         boolean ret=false;
-        Aposta ap = new Aposta(res, (Integer) j4Spin.getValue(), jogos.get(3), apostador, true);   
+        Aposta ap = new Aposta(res, (Integer) j4Spin.getValue(), betess.getEventoAtivo(3), apostador, true);   
         if(res!=0) ret = apostador.efetuarAposta(ap);
         if(ret) this.saveNrefresh();
     }//GEN-LAST:event_j4BetActionPerformed
@@ -1344,7 +1342,7 @@ public class Home extends javax.swing.JFrame {
         else if (j5D.isSelected()) res=3;
         else this.betess.notification(2, "Selecione um resultado!", "Aviso");
         boolean ret=false;
-        Aposta ap = new Aposta(res, (Integer) j5Spin.getValue(), jogos.get(4), apostador, true);   
+        Aposta ap = new Aposta(res, (Integer) j5Spin.getValue(), betess.getEventoAtivo(4), apostador, true);   
         if(res!=0) ret = apostador.efetuarAposta(ap);
         if(ret) this.saveNrefresh();
     }//GEN-LAST:event_j5BetActionPerformed
@@ -1355,7 +1353,7 @@ public class Home extends javax.swing.JFrame {
         else if (j6D.isSelected()) res=3;
         else this.betess.notification(2, "Selecione um resultado!", "Aviso");
         boolean ret=false;
-        Aposta ap = new Aposta(res, (Integer) j6Spin.getValue(), jogos.get(5), apostador, true);   
+        Aposta ap = new Aposta(res, (Integer) j6Spin.getValue(), betess.getEventoAtivo(5), apostador, true);   
         if(res!=0) ret = apostador.efetuarAposta(ap);
         if(ret) this.saveNrefresh();
     }//GEN-LAST:event_j6BetActionPerformed
@@ -1366,7 +1364,7 @@ public class Home extends javax.swing.JFrame {
         else if (j7D.isSelected()) res=3;
         else this.betess.notification(2, "Selecione um resultado!", "Aviso");
         boolean ret=false;
-        Aposta ap = new Aposta(res, (Integer) j7Spin.getValue(), jogos.get(6), apostador, true);   
+        Aposta ap = new Aposta(res, (Integer) j7Spin.getValue(), betess.getEventoAtivo(6), apostador, true);   
         if(res!=0) ret = apostador.efetuarAposta(ap);
         if(ret) saveNrefresh();
     }//GEN-LAST:event_j7BetActionPerformed
@@ -1377,7 +1375,7 @@ public class Home extends javax.swing.JFrame {
         else if (j8D.isSelected()) res=3;
         else this.betess.notification(2, "Selecione um resultado!", "Aviso");
         boolean ret=false;
-        Aposta ap = new Aposta(res, (Integer) j8Spin.getValue(), jogos.get(7), apostador, true);   
+        Aposta ap = new Aposta(res, (Integer) j8Spin.getValue(), betess.getEventoAtivo(7), apostador, true);   
         if(res!=0) ret = apostador.efetuarAposta(ap);
         if(ret) this.saveNrefresh();
     }//GEN-LAST:event_j8BetActionPerformed
@@ -1388,7 +1386,7 @@ public class Home extends javax.swing.JFrame {
         else if (j9D.isSelected()) res=3;
         else this.betess.notification(2, "Selecione um resultado!", "Aviso");
         boolean ret=false;
-        Aposta ap = new Aposta(res, (Integer) j9Spin.getValue(), jogos.get(8), apostador, true);   
+        Aposta ap = new Aposta(res, (Integer) j9Spin.getValue(), betess.getEventoAtivo(8), apostador, true);   
         if(res!=0) ret = apostador.efetuarAposta(ap);
         if(ret) this.saveNrefresh();
     }//GEN-LAST:event_j9BetActionPerformed
@@ -1419,387 +1417,96 @@ public class Home extends javax.swing.JFrame {
         this.dispose();
     }
 
-    private void fillJogo0(){
-            jogo1.setVisible(false);
-            jogo2.setVisible(false);
-            jogo3.setVisible(false);
-            jogo4.setVisible(false);
-            jogo5.setVisible(false);
-            jogo6.setVisible(false);
-            jogo7.setVisible(false);
-            jogo8.setVisible(false);
-            jogo9.setVisible(false);
+    private void fillJogoN(int num){
+        int n=num;
+        int i=0;
+        ImageIcon simboloCasa;
+        ImageIcon simboloFora;
+        while(n>i){
+            Evento ativo = betess.getEventoAtivo(i);
+            simboloCasa = new ImageIcon(getClass().getClassLoader().getResource(betess.getEventoAtivo(i).getEquipaCasaSimbolo()));
+            simboloFora = new ImageIcon(getClass().getClassLoader().getResource(betess.getEventoAtivo(i).getEquipaForaSimbolo()));
+            if(i==0) {
+                jogo1C.setIcon(simboloCasa);
+                jogo1F.setIcon(simboloFora);
+                j1V.setText(Double.toString(ativo.getOddV()));
+                j1E.setText(Double.toString(ativo.getOddE()));
+                j1D.setText(Double.toString(ativo.getOddD()));
+            }
+            if(i==1) {
+                jogo2C.setIcon(simboloCasa);
+                jogo2F.setIcon(simboloFora);
+                j2V.setText(Double.toString(ativo.getOddV()));
+                j2E.setText(Double.toString(ativo.getOddE()));
+                j2D.setText(Double.toString(ativo.getOddD()));
+            }
+            if(i==2){
+                jogo3C.setIcon(simboloCasa);
+                jogo3F.setIcon(simboloFora);
+                j3V.setText(Double.toString(ativo.getOddV()));
+                j3E.setText(Double.toString(ativo.getOddE()));
+                j3D.setText(Double.toString(ativo.getOddD()));
+            }
+            if(i==3){
+                jogo4C.setIcon(simboloCasa);
+                jogo4F.setIcon(simboloFora);
+                j4V.setText(Double.toString(ativo.getOddV()));
+                j4E.setText(Double.toString(ativo.getOddE()));
+                j4D.setText(Double.toString(ativo.getOddD()));
+            }
+            if(i==4){
+                jogo5C.setIcon(simboloCasa);
+                jogo5F.setIcon(simboloFora);
+                j5V.setText(Double.toString(ativo.getOddV()));
+                j5E.setText(Double.toString(ativo.getOddE()));
+                j5D.setText(Double.toString(ativo.getOddD()));
+            }
+            if(i==5){
+                jogo6C.setIcon(simboloCasa);
+                jogo6F.setIcon(simboloFora);
+                j6V.setText(Double.toString(ativo.getOddV()));
+                j6E.setText(Double.toString(ativo.getOddE()));
+                j6D.setText(Double.toString(ativo.getOddD()));
+            }
+            if(i==6){
+                jogo7C.setIcon(simboloCasa);
+                jogo7F.setIcon(simboloFora);
+                j7V.setText(Double.toString(ativo.getOddV()));
+                j7E.setText(Double.toString(ativo.getOddE()));
+                j7D.setText(Double.toString(ativo.getOddD()));
+            }
+            if(i==7){
+                jogo8C.setIcon(simboloCasa);
+                jogo8F.setIcon(simboloFora);
+                j8V.setText(Double.toString(ativo.getOddV()));
+                j8E.setText(Double.toString(ativo.getOddE()));
+                j8D.setText(Double.toString(ativo.getOddD()));
+            }
+            if(i==8){
+                jogo9C.setIcon(simboloCasa);
+                jogo9F.setIcon(simboloFora);
+                j9V.setText(Double.toString(ativo.getOddV()));
+                j9E.setText(Double.toString(ativo.getOddE()));
+                j9D.setText(Double.toString(ativo.getOddD()));
+            }
+            i++;
+        }
+        
+        while(i<9){
+            if(9-i==9) jogo1.setVisible(false);
+            if(9-i==8) jogo2.setVisible(false);
+            if(9-i==7) jogo3.setVisible(false);
+            if(9-i==6) jogo4.setVisible(false);
+            if(9-i==5) jogo5.setVisible(false);
+            if(9-i==4) jogo6.setVisible(false);
+            if(9-i==3) jogo7.setVisible(false);
+            if(9-i==2) jogo8.setVisible(false);
+            if(9-i==1) jogo9.setVisible(false);
+            i++;
+        }
+        
     }
-    private void fillJogo1(){
-        ImageIcon j1C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaC().getSimbolo()));
-        ImageIcon j1F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaF().getSimbolo()));
-        jogo1C.setIcon(j1C);
-        jogo1F.setIcon(j1F);
-        j1V.setText(Double.toString(jogos.get(0).getOddV()));
-        j1E.setText(Double.toString(jogos.get(0).getOddE()));
-        j1D.setText(Double.toString(jogos.get(0).getOddD()));
-        jogo2.setVisible(false);
-        jogo3.setVisible(false);
-        jogo4.setVisible(false);
-        jogo5.setVisible(false);
-        jogo6.setVisible(false);
-        jogo7.setVisible(false);
-        jogo8.setVisible(false);
-        jogo9.setVisible(false);
-    }
-    private void fillJogo2(){
-            ImageIcon j1C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaCasaSimbolo()));
-            ImageIcon j1F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaForaSimbolo()));
-            ImageIcon j2C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(1).getEquipaCasaSimbolo()));
-            ImageIcon j2F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(1).getEquipaForaSimbolo()));
-            jogo1C.setIcon(j1C);
-            jogo1F.setIcon(j1F);
-            jogo2C.setIcon(j2C);
-            jogo2F.setIcon(j2F);
-            j1V.setText(Double.toString(jogos.get(0).getOddV()));
-            j1E.setText(Double.toString(jogos.get(0).getOddE()));
-            j1D.setText(Double.toString(jogos.get(0).getOddD()));
-            j2V.setText(Double.toString(jogos.get(1).getOddV()));
-            j2E.setText(Double.toString(jogos.get(1).getOddE()));
-            j2D.setText(Double.toString(jogos.get(1).getOddD()));
-            jogo3.setVisible(false);
-            jogo4.setVisible(false);
-            jogo5.setVisible(false);
-            jogo6.setVisible(false);
-            jogo7.setVisible(false);
-            jogo8.setVisible(false);
-            jogo9.setVisible(false);
-    }
-    private void fillJogo3(){
-        ImageIcon j1C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaCasaSimbolo()));
-        ImageIcon j1F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaForaSimbolo()));
-        ImageIcon j2C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(1).getEquipaCasaSimbolo()));
-        ImageIcon j2F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(1).getEquipaForaSimbolo()));
-        ImageIcon j3C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(2).getEquipaCasaSimbolo()));
-        ImageIcon j3F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(2).getEquipaForaSimbolo()));
-            jogo1C.setIcon(j1C);
-            jogo1F.setIcon(j1F);
-            jogo2C.setIcon(j2C);
-            jogo2F.setIcon(j2F);
-            jogo3C.setIcon(j3C);
-            jogo3F.setIcon(j3F);
-            j1V.setText(Double.toString(jogos.get(0).getOddV()));
-            j1E.setText(Double.toString(jogos.get(0).getOddE()));
-            j1D.setText(Double.toString(jogos.get(0).getOddD()));
-            j2V.setText(Double.toString(jogos.get(1).getOddV()));
-            j2E.setText(Double.toString(jogos.get(1).getOddE()));
-            j2D.setText(Double.toString(jogos.get(1).getOddD()));
-            j3V.setText(Double.toString(jogos.get(2).getOddV()));
-            j3E.setText(Double.toString(jogos.get(2).getOddE()));
-            j3D.setText(Double.toString(jogos.get(2).getOddD()));
-            jogo4.setVisible(false);
-            jogo5.setVisible(false);
-            jogo6.setVisible(false);
-            jogo7.setVisible(false);
-            jogo8.setVisible(false);
-            jogo9.setVisible(false);
-    }
-    private void fillJogo4(){
-        ImageIcon j1C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaCasaSimbolo()));
-        ImageIcon j1F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaForaSimbolo()));
-        ImageIcon j2C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(1).getEquipaCasaSimbolo()));
-        ImageIcon j2F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(1).getEquipaForaSimbolo()));
-        ImageIcon j3C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(2).getEquipaCasaSimbolo()));
-        ImageIcon j3F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(2).getEquipaForaSimbolo()));
-        ImageIcon j4C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(3).getEquipaCasaSimbolo()));
-        ImageIcon j4F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(3).getEquipaForaSimbolo()));
-            jogo1C.setIcon(j1C);
-            jogo1F.setIcon(j1F);
-            jogo2C.setIcon(j2C);
-            jogo2F.setIcon(j2F);
-            jogo3C.setIcon(j3C);
-            jogo3F.setIcon(j3F);
-            jogo4C.setIcon(j4C);
-            jogo4F.setIcon(j4F);
-            j1V.setText(Double.toString(jogos.get(0).getOddV()));
-            j1E.setText(Double.toString(jogos.get(0).getOddE()));
-            j1D.setText(Double.toString(jogos.get(0).getOddD()));
-            j2V.setText(Double.toString(jogos.get(1).getOddV()));
-            j2E.setText(Double.toString(jogos.get(1).getOddE()));
-            j2D.setText(Double.toString(jogos.get(1).getOddD()));
-            j3V.setText(Double.toString(jogos.get(2).getOddV()));
-            j3E.setText(Double.toString(jogos.get(2).getOddE()));
-            j3D.setText(Double.toString(jogos.get(2).getOddD()));
-            j4V.setText(Double.toString(jogos.get(3).getOddV()));
-            j4E.setText(Double.toString(jogos.get(3).getOddE()));
-            j4D.setText(Double.toString(jogos.get(3).getOddD()));
-            jogo5.setVisible(false);
-            jogo6.setVisible(false);
-            jogo7.setVisible(false);
-            jogo8.setVisible(false);
-            jogo9.setVisible(false);
-    }
-    private void fillJogo5(){
-        ImageIcon j1C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaCasaSimbolo()));
-        ImageIcon j1F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaForaSimbolo()));
-        ImageIcon j2C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(1).getEquipaCasaSimbolo()));
-        ImageIcon j2F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(1).getEquipaForaSimbolo()));
-        ImageIcon j3C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(2).getEquipaCasaSimbolo()));
-        ImageIcon j3F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(2).getEquipaForaSimbolo()));
-        ImageIcon j4C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(3).getEquipaCasaSimbolo()));
-        ImageIcon j4F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(3).getEquipaForaSimbolo()));
-        ImageIcon j5C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(4).getEquipaCasaSimbolo()));
-        ImageIcon j5F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(4).getEquipaForaSimbolo()));
-            jogo1C.setIcon(j1C);
-            jogo1F.setIcon(j1F);
-            jogo2C.setIcon(j2C);
-            jogo2F.setIcon(j2F);
-            jogo3C.setIcon(j3C);
-            jogo3F.setIcon(j3F);
-            jogo4C.setIcon(j4C);
-            jogo4F.setIcon(j4F);
-            jogo5C.setIcon(j5C);
-            jogo5F.setIcon(j5F);
-            j1V.setText(Double.toString(jogos.get(0).getOddV()));
-            j1E.setText(Double.toString(jogos.get(0).getOddE()));
-            j1D.setText(Double.toString(jogos.get(0).getOddD()));
-            j2V.setText(Double.toString(jogos.get(1).getOddV()));
-            j2E.setText(Double.toString(jogos.get(1).getOddE()));
-            j2D.setText(Double.toString(jogos.get(1).getOddD()));
-            j3V.setText(Double.toString(jogos.get(2).getOddV()));
-            j3E.setText(Double.toString(jogos.get(2).getOddE()));
-            j3D.setText(Double.toString(jogos.get(2).getOddD()));
-            j4V.setText(Double.toString(jogos.get(3).getOddV()));
-            j4E.setText(Double.toString(jogos.get(3).getOddE()));
-            j4D.setText(Double.toString(jogos.get(3).getOddD()));
-            j5V.setText(Double.toString(jogos.get(4).getOddV()));
-            j5E.setText(Double.toString(jogos.get(4).getOddE()));
-            j5D.setText(Double.toString(jogos.get(4).getOddD()));
-            jogo6.setVisible(false);
-            jogo7.setVisible(false);
-            jogo8.setVisible(false);
-            jogo9.setVisible(false);
-    }
-    private void fillJogo6(){
-        ImageIcon j1C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaCasaSimbolo()));
-        ImageIcon j1F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaForaSimbolo()));
-        ImageIcon j2C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(1).getEquipaCasaSimbolo()));
-        ImageIcon j2F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(1).getEquipaForaSimbolo()));
-        ImageIcon j3C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(2).getEquipaCasaSimbolo()));
-        ImageIcon j3F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(2).getEquipaForaSimbolo()));
-        ImageIcon j4C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(3).getEquipaCasaSimbolo()));
-        ImageIcon j4F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(3).getEquipaForaSimbolo()));
-        ImageIcon j5C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(4).getEquipaCasaSimbolo()));
-        ImageIcon j5F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(4).getEquipaForaSimbolo()));
-        ImageIcon j6C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(5).getEquipaCasaSimbolo()));
-        ImageIcon j6F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(5).getEquipaForaSimbolo()));
-            jogo1C.setIcon(j1C);
-            jogo1F.setIcon(j1F);
-            jogo2C.setIcon(j2C);
-            jogo2F.setIcon(j2F);
-            jogo3C.setIcon(j3C);
-            jogo3F.setIcon(j3F);
-            jogo4C.setIcon(j4C);
-            jogo4F.setIcon(j4F);
-            jogo5C.setIcon(j5C);
-            jogo5F.setIcon(j5F);
-            jogo6C.setIcon(j6C);
-            jogo6F.setIcon(j6F);
-            j1V.setText(Double.toString(jogos.get(0).getOddV()));
-            j1E.setText(Double.toString(jogos.get(0).getOddE()));
-            j1D.setText(Double.toString(jogos.get(0).getOddD()));
-            j2V.setText(Double.toString(jogos.get(1).getOddV()));
-            j2E.setText(Double.toString(jogos.get(1).getOddE()));
-            j2D.setText(Double.toString(jogos.get(1).getOddD()));
-            j3V.setText(Double.toString(jogos.get(2).getOddV()));
-            j3E.setText(Double.toString(jogos.get(2).getOddE()));
-            j3D.setText(Double.toString(jogos.get(2).getOddD()));
-            j4V.setText(Double.toString(jogos.get(3).getOddV()));
-            j4E.setText(Double.toString(jogos.get(3).getOddE()));
-            j4D.setText(Double.toString(jogos.get(3).getOddD()));
-            j5V.setText(Double.toString(jogos.get(4).getOddV()));
-            j5E.setText(Double.toString(jogos.get(4).getOddE()));
-            j5D.setText(Double.toString(jogos.get(4).getOddD()));
-            j6V.setText(Double.toString(jogos.get(5).getOddV()));
-            j6E.setText(Double.toString(jogos.get(5).getOddE()));
-            j6D.setText(Double.toString(jogos.get(5).getOddD()));
-            jogo7.setVisible(false);
-            jogo8.setVisible(false);
-            jogo9.setVisible(false);
-    }
-    private void fillJogo7(){
-        ImageIcon j1C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaCasaSimbolo()));
-        ImageIcon j1F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaForaSimbolo()));
-        ImageIcon j2C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(1).getEquipaCasaSimbolo()));
-        ImageIcon j2F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(1).getEquipaForaSimbolo()));
-        ImageIcon j3C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(2).getEquipaCasaSimbolo()));
-        ImageIcon j3F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(2).getEquipaForaSimbolo()));
-        ImageIcon j4C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(3).getEquipaCasaSimbolo()));
-        ImageIcon j4F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(3).getEquipaForaSimbolo()));
-        ImageIcon j5C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(4).getEquipaCasaSimbolo()));
-        ImageIcon j5F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(4).getEquipaForaSimbolo()));
-        ImageIcon j6C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(5).getEquipaCasaSimbolo()));
-        ImageIcon j6F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(5).getEquipaForaSimbolo()));
-        ImageIcon j7C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(6).getEquipaCasaSimbolo()));
-        ImageIcon j7F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(6).getEquipaForaSimbolo()));
-            jogo1C.setIcon(j1C);
-            jogo1F.setIcon(j1F);
-            jogo2C.setIcon(j2C);
-            jogo2F.setIcon(j2F);
-            jogo3C.setIcon(j3C);
-            jogo3F.setIcon(j3F);
-            jogo4C.setIcon(j4C);
-            jogo4F.setIcon(j4F);
-            jogo5C.setIcon(j5C);
-            jogo5F.setIcon(j5F);
-            jogo6C.setIcon(j6C);
-            jogo6F.setIcon(j6F);
-            jogo7C.setIcon(j7C);
-            jogo7F.setIcon(j7F);
-            j1V.setText(Double.toString(jogos.get(0).getOddV()));
-            j1E.setText(Double.toString(jogos.get(0).getOddE()));
-            j1D.setText(Double.toString(jogos.get(0).getOddD()));
-            j2V.setText(Double.toString(jogos.get(1).getOddV()));
-            j2E.setText(Double.toString(jogos.get(1).getOddE()));
-            j2D.setText(Double.toString(jogos.get(1).getOddD()));
-            j3V.setText(Double.toString(jogos.get(2).getOddV()));
-            j3E.setText(Double.toString(jogos.get(2).getOddE()));
-            j3D.setText(Double.toString(jogos.get(2).getOddD()));
-            j4V.setText(Double.toString(jogos.get(3).getOddV()));
-            j4E.setText(Double.toString(jogos.get(3).getOddE()));
-            j4D.setText(Double.toString(jogos.get(3).getOddD()));
-            j5V.setText(Double.toString(jogos.get(4).getOddV()));
-            j5E.setText(Double.toString(jogos.get(4).getOddE()));
-            j5D.setText(Double.toString(jogos.get(4).getOddD()));
-            j6V.setText(Double.toString(jogos.get(5).getOddV()));
-            j6E.setText(Double.toString(jogos.get(5).getOddE()));
-            j6D.setText(Double.toString(jogos.get(5).getOddD()));
-            j7V.setText(Double.toString(jogos.get(6).getOddV()));
-            j7E.setText(Double.toString(jogos.get(6).getOddE()));
-            j7D.setText(Double.toString(jogos.get(6).getOddD()));
-            jogo8.setVisible(false);
-            jogo9.setVisible(false);
-    }
-    private void fillJogo8(){
-        ImageIcon j1C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaCasaSimbolo()));
-        ImageIcon j1F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaForaSimbolo()));
-        ImageIcon j2C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(1).getEquipaCasaSimbolo()));
-        ImageIcon j2F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(1).getEquipaForaSimbolo()));
-        ImageIcon j3C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(2).getEquipaCasaSimbolo()));
-        ImageIcon j3F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(2).getEquipaForaSimbolo()));
-        ImageIcon j4C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(3).getEquipaCasaSimbolo()));
-        ImageIcon j4F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(3).getEquipaForaSimbolo()));
-        ImageIcon j5C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(4).getEquipaCasaSimbolo()));
-        ImageIcon j5F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(4).getEquipaForaSimbolo()));
-        ImageIcon j6C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(5).getEquipaCasaSimbolo()));
-        ImageIcon j6F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(5).getEquipaForaSimbolo()));
-        ImageIcon j7C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(6).getEquipaCasaSimbolo()));
-        ImageIcon j7F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(6).getEquipaForaSimbolo()));
-        ImageIcon j8C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(7).getEquipaCasaSimbolo()));
-        ImageIcon j8F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(7).getEquipaForaSimbolo()));
-            jogo1C.setIcon(j1C);
-            jogo1F.setIcon(j1F);
-            jogo2C.setIcon(j2C);
-            jogo2F.setIcon(j2F);
-            jogo3C.setIcon(j3C);
-            jogo3F.setIcon(j3F);
-            jogo4C.setIcon(j4C);
-            jogo4F.setIcon(j4F);
-            jogo5C.setIcon(j5C);
-            jogo5F.setIcon(j5F);
-            jogo6C.setIcon(j6C);
-            jogo6F.setIcon(j6F);
-            jogo7C.setIcon(j7C);
-            jogo7F.setIcon(j7F);
-            jogo8C.setIcon(j8C);
-            jogo8F.setIcon(j8F);
-            j1V.setText(Double.toString(jogos.get(0).getOddV()));
-            j1E.setText(Double.toString(jogos.get(0).getOddE()));
-            j1D.setText(Double.toString(jogos.get(0).getOddD()));
-            j2V.setText(Double.toString(jogos.get(1).getOddV()));
-            j2E.setText(Double.toString(jogos.get(1).getOddE()));
-            j2D.setText(Double.toString(jogos.get(1).getOddD()));
-            j3V.setText(Double.toString(jogos.get(2).getOddV()));
-            j3E.setText(Double.toString(jogos.get(2).getOddE()));
-            j3D.setText(Double.toString(jogos.get(2).getOddD()));
-            j4V.setText(Double.toString(jogos.get(3).getOddV()));
-            j4E.setText(Double.toString(jogos.get(3).getOddE()));
-            j4D.setText(Double.toString(jogos.get(3).getOddD()));
-            j5V.setText(Double.toString(jogos.get(4).getOddV()));
-            j5E.setText(Double.toString(jogos.get(4).getOddE()));
-            j5D.setText(Double.toString(jogos.get(4).getOddD()));
-            j6V.setText(Double.toString(jogos.get(5).getOddV()));
-            j6E.setText(Double.toString(jogos.get(5).getOddE()));
-            j6D.setText(Double.toString(jogos.get(5).getOddD()));
-            j7V.setText(Double.toString(jogos.get(6).getOddV()));
-            j7E.setText(Double.toString(jogos.get(6).getOddE()));
-            j7D.setText(Double.toString(jogos.get(6).getOddD()));
-            j8V.setText(Double.toString(jogos.get(7).getOddV()));
-            j8E.setText(Double.toString(jogos.get(7).getOddE()));
-            j8D.setText(Double.toString(jogos.get(7).getOddD()));
-            jogo9.setVisible(false);
-    }
-    private void fillJogo9(){
-        ImageIcon j1C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaCasaSimbolo()));
-        ImageIcon j1F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(0).getEquipaForaSimbolo()));
-        ImageIcon j2C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(1).getEquipaCasaSimbolo()));
-        ImageIcon j2F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(1).getEquipaForaSimbolo()));
-        ImageIcon j3C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(2).getEquipaCasaSimbolo()));
-        ImageIcon j3F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(2).getEquipaForaSimbolo()));
-        ImageIcon j4C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(3).getEquipaCasaSimbolo()));
-        ImageIcon j4F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(3).getEquipaForaSimbolo()));
-        ImageIcon j5C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(4).getEquipaCasaSimbolo()));
-        ImageIcon j5F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(4).getEquipaForaSimbolo()));
-        ImageIcon j6C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(5).getEquipaCasaSimbolo()));
-        ImageIcon j6F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(5).getEquipaForaSimbolo()));
-        ImageIcon j7C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(6).getEquipaCasaSimbolo()));
-        ImageIcon j7F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(6).getEquipaForaSimbolo()));
-        ImageIcon j8C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(7).getEquipaCasaSimbolo()));
-        ImageIcon j8F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(7).getEquipaForaSimbolo()));
-        ImageIcon j9C = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(8).getEquipaCasaSimbolo()));
-        ImageIcon j9F = new ImageIcon(getClass().getClassLoader().getResource(jogos.get(8).getEquipaForaSimbolo()));
-        jogo1C.setIcon(j1C);
-        jogo1F.setIcon(j1F);
-        jogo2C.setIcon(j2C);
-        jogo2F.setIcon(j2F);
-        jogo3C.setIcon(j3C);
-        jogo3F.setIcon(j3F);
-        jogo4C.setIcon(j4C);
-        jogo4F.setIcon(j4F);
-        jogo5C.setIcon(j5C);
-        jogo5F.setIcon(j5F);
-        jogo6C.setIcon(j6C);
-        jogo6F.setIcon(j6F);
-        jogo7C.setIcon(j7C);
-        jogo7F.setIcon(j7F);
-        jogo8C.setIcon(j8C);
-        jogo8F.setIcon(j8F);
-        jogo9C.setIcon(j9C);
-        jogo9F.setIcon(j9F);
-        j1V.setText(Double.toString(jogos.get(0).getOddV()));
-        j1E.setText(Double.toString(jogos.get(0).getOddE()));
-        j1D.setText(Double.toString(jogos.get(0).getOddD()));
-        j2V.setText(Double.toString(jogos.get(1).getOddV()));
-        j2E.setText(Double.toString(jogos.get(1).getOddE()));
-        j2D.setText(Double.toString(jogos.get(1).getOddD()));
-        j3V.setText(Double.toString(jogos.get(2).getOddV()));
-        j3E.setText(Double.toString(jogos.get(2).getOddE()));
-        j3D.setText(Double.toString(jogos.get(2).getOddD()));
-        j4V.setText(Double.toString(jogos.get(3).getOddV()));
-        j4E.setText(Double.toString(jogos.get(3).getOddE()));
-        j4D.setText(Double.toString(jogos.get(3).getOddD()));
-        j5V.setText(Double.toString(jogos.get(4).getOddV()));
-        j5E.setText(Double.toString(jogos.get(4).getOddE()));
-        j5D.setText(Double.toString(jogos.get(4).getOddD()));
-        j6V.setText(Double.toString(jogos.get(5).getOddV()));
-        j6E.setText(Double.toString(jogos.get(5).getOddE()));
-        j6D.setText(Double.toString(jogos.get(5).getOddD()));
-        j7V.setText(Double.toString(jogos.get(6).getOddV()));
-        j7E.setText(Double.toString(jogos.get(6).getOddE()));
-        j7D.setText(Double.toString(jogos.get(6).getOddD()));
-        j8V.setText(Double.toString(jogos.get(7).getOddV()));
-        j8E.setText(Double.toString(jogos.get(7).getOddE()));
-        j8D.setText(Double.toString(jogos.get(7).getOddD()));
-        j9V.setText(Double.toString(jogos.get(8).getOddV()));
-        j9E.setText(Double.toString(jogos.get(8).getOddE()));
-        j9D.setText(Double.toString(jogos.get(8).getOddD()));
-    }
-    public void setStyle(){
+    private void setStyle(){
         this.setTitle("Eventos ativos");
         this.setLocationRelativeTo(null);
         this.setResizable(false);
@@ -1815,16 +1522,7 @@ public class Home extends javax.swing.JFrame {
         perfilButton.setOpaque(true);
         perfilButton.setText(apostador.getNome());
         
-        if(jogos.isEmpty())      fillJogo0();
-        else if(jogos.size()==1) fillJogo1();
-        else if(jogos.size()==2) fillJogo2();
-        else if(jogos.size()==3) fillJogo3();
-        else if(jogos.size()==4) fillJogo4();
-        else if(jogos.size()==5) fillJogo5();
-        else if(jogos.size()==6) fillJogo6();
-        else if(jogos.size()==7) fillJogo7();
-        else if(jogos.size()==8) fillJogo8();
-        else if(jogos.size()==9) fillJogo9();
+        this.fillJogoN(betess.getEventosAtivosSize());
     }
     
     public static void main(String args[]) {

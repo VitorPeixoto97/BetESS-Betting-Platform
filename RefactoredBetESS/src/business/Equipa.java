@@ -41,17 +41,4 @@ public class Equipa implements Serializable{
     public String getSimbolo(){
         return this.simbolo;
     }
-    
-    public void setID(int id){
-        this.id=id;
-    }
-    public void setNome(String nome){
-        this.nome=nome;
-    }
-    public void setEstado(boolean estado){
-        this.estado=estado;
-    }
-    public void setSimbolo(String simbolo){
-        this.simbolo=simbolo;
-    }
 }

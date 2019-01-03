@@ -1,8 +1,6 @@
 package business;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collection;
 
 public class Aposta implements Serializable{
     private int palpite; //resultado em que o apostador apostou (V/E/D)
@@ -74,15 +72,7 @@ public class Aposta implements Serializable{
     public double getOddD(){
         return evento.getOddD();
     }
-    
-    public ArrayList<Aposta> getApostadorApostas(){
-        if(apostador.getApostas()==null)
-            return new ArrayList<>();
-        else return apostador.getApostas();
-    }
-    public double getApostadorCoins(){
-        return apostador.getESSCoins();
-    }
+
     public void notificaApostador(){
         this.visto=false;
     }

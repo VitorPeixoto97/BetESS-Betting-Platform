@@ -66,11 +66,20 @@ public class BetESS implements Serializable{
     public int getEventosSize(){
         return getEventos().size();
     }
+    
     // método que retorna a lista de Eventos registados como ativos.
     public ArrayList<Evento> getEventosAtivos(){
         return data.getEventosAtivos();
     }
-    // método que retorna a equipa dado o seu nome.
+    // método que retorna o número de Eventos registados como ativos.
+    public int getEventosAtivosSize(){
+        return getEventosAtivos().size();
+    }
+    // método que retorna o Evento ativo dado o seu ID.
+    public Evento getEventoAtivo(int i){
+        return getEventosAtivos().get(i);
+    }
+    // método que retorna a Equipa dado o seu nome.
     public Equipa getEquipa(String nome){
         for(Equipa e : data.getEquipas())
             if(e.getNome().equals(nome))

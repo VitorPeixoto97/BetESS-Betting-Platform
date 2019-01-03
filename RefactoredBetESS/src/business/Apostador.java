@@ -2,8 +2,6 @@ package business;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
 
 public class Apostador implements Serializable{
     private int id;
@@ -60,10 +58,9 @@ public class Apostador implements Serializable{
     }
     public ArrayList<Aposta> getApostasAtivas(){
         ArrayList<Aposta> aps = new ArrayList<>();
-        for(Aposta ap : this.getApostas()){
+        for(Aposta ap : apostas)
             if(ap.getEstadoEvento())
                 aps.add(ap);
-        }
         return aps;
     }
     
@@ -130,6 +127,7 @@ public class Apostador implements Serializable{
             }
         }
     }
+    
     public boolean checkEmail(String em){
         return email.equals(em);
     }
