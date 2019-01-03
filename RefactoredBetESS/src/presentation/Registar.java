@@ -1,8 +1,7 @@
 package presentation;
 
-import business.Aposta;
 import business.Apostador;
-import business.BetESS;
+import data.BetESS;
 import java.util.ArrayList;
 
 public class Registar extends javax.swing.JFrame {

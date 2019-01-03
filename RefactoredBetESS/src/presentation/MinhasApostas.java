@@ -2,7 +2,7 @@ package presentation;
 
 import business.Aposta;
 import business.Apostador;
-import business.BetESS;
+import data.BetESS;
 import java.awt.Color;
 import java.awt.Image;
 import java.util.ArrayList;

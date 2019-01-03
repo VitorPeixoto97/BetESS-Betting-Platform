@@ -1,11 +1,8 @@
 package betess;
 
-import business.BetESS;
-import data.Data;
+import data.BetESS;
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import presentation.Login;

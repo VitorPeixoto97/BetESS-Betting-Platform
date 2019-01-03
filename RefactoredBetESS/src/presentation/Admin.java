@@ -1,6 +1,6 @@
 package presentation;
 
-import business.BetESS;
+import data.BetESS;
 import business.Equipa;
 import business.Evento;
 import business.Odds;
