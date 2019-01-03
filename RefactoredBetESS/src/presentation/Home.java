@@ -1301,7 +1301,7 @@ public class Home extends javax.swing.JFrame {
         else betess.notification(2, "Selecione um resultado!", "Aviso");
         boolean ret=false;
         Aposta ap = new Aposta(res, (Integer) j1Spin.getValue(), jogos.get(0), apostador, true);   
-        if(res!=0) ret = betess.efetuarAposta(ap,apostador);
+        if(res!=0) ret = apostador.efetuarAposta(ap);
         if(ret) saveNrefresh();
     }//GEN-LAST:event_j1BetActionPerformed
     private void j3BetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j3BetActionPerformed
@@ -1312,7 +1312,7 @@ public class Home extends javax.swing.JFrame {
         else this.betess.notification(2, "Selecione um resultado!", "Aviso");
         boolean ret=false;
         Aposta ap = new Aposta(res, (Integer) j3Spin.getValue(), jogos.get(2), apostador, true);   
-        if(res!=0) ret = betess.efetuarAposta(ap,apostador);
+        if(res!=0) ret = apostador.efetuarAposta(ap);
         if(ret) this.saveNrefresh();
     }//GEN-LAST:event_j3BetActionPerformed
     private void j2BetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j2BetActionPerformed
@@ -1323,7 +1323,7 @@ public class Home extends javax.swing.JFrame {
         else this.betess.notification(2, "Selecione um resultado!", "Aviso");
         boolean ret=false;
         Aposta ap = new Aposta(res, (Integer) j2Spin.getValue(), jogos.get(1), apostador, true);   
-        if(res!=0) ret = betess.efetuarAposta(ap,apostador);
+        if(res!=0) ret = apostador.efetuarAposta(ap);
         if(ret) this.saveNrefresh();
     }//GEN-LAST:event_j2BetActionPerformed
     private void j4BetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j4BetActionPerformed
@@ -1334,7 +1334,7 @@ public class Home extends javax.swing.JFrame {
         else this.betess.notification(2, "Selecione um resultado!", "Aviso");
         boolean ret=false;
         Aposta ap = new Aposta(res, (Integer) j4Spin.getValue(), jogos.get(3), apostador, true);   
-        if(res!=0) ret = betess.efetuarAposta(ap,apostador);
+        if(res!=0) ret = apostador.efetuarAposta(ap);
         if(ret) this.saveNrefresh();
     }//GEN-LAST:event_j4BetActionPerformed
     private void j5BetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j5BetActionPerformed
@@ -1345,7 +1345,7 @@ public class Home extends javax.swing.JFrame {
         else this.betess.notification(2, "Selecione um resultado!", "Aviso");
         boolean ret=false;
         Aposta ap = new Aposta(res, (Integer) j5Spin.getValue(), jogos.get(4), apostador, true);   
-        if(res!=0) ret = betess.efetuarAposta(ap,apostador);
+        if(res!=0) ret = apostador.efetuarAposta(ap);
         if(ret) this.saveNrefresh();
     }//GEN-LAST:event_j5BetActionPerformed
     private void j6BetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j6BetActionPerformed
@@ -1356,7 +1356,7 @@ public class Home extends javax.swing.JFrame {
         else this.betess.notification(2, "Selecione um resultado!", "Aviso");
         boolean ret=false;
         Aposta ap = new Aposta(res, (Integer) j6Spin.getValue(), jogos.get(5), apostador, true);   
-        if(res!=0) ret = betess.efetuarAposta(ap,apostador);
+        if(res!=0) ret = apostador.efetuarAposta(ap);
         if(ret) this.saveNrefresh();
     }//GEN-LAST:event_j6BetActionPerformed
     private void j7BetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j7BetActionPerformed
@@ -1367,7 +1367,7 @@ public class Home extends javax.swing.JFrame {
         else this.betess.notification(2, "Selecione um resultado!", "Aviso");
         boolean ret=false;
         Aposta ap = new Aposta(res, (Integer) j7Spin.getValue(), jogos.get(6), apostador, true);   
-        if(res!=0) ret = betess.efetuarAposta(ap,apostador);
+        if(res!=0) ret = apostador.efetuarAposta(ap);
         if(ret) saveNrefresh();
     }//GEN-LAST:event_j7BetActionPerformed
     private void j8BetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j8BetActionPerformed
@@ -1378,7 +1378,7 @@ public class Home extends javax.swing.JFrame {
         else this.betess.notification(2, "Selecione um resultado!", "Aviso");
         boolean ret=false;
         Aposta ap = new Aposta(res, (Integer) j8Spin.getValue(), jogos.get(7), apostador, true);   
-        if(res!=0) ret = betess.efetuarAposta(ap,apostador);
+        if(res!=0) ret = apostador.efetuarAposta(ap);
         if(ret) this.saveNrefresh();
     }//GEN-LAST:event_j8BetActionPerformed
     private void j9BetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j9BetActionPerformed
@@ -1389,7 +1389,7 @@ public class Home extends javax.swing.JFrame {
         else this.betess.notification(2, "Selecione um resultado!", "Aviso");
         boolean ret=false;
         Aposta ap = new Aposta(res, (Integer) j9Spin.getValue(), jogos.get(8), apostador, true);   
-        if(res!=0) ret = betess.efetuarAposta(ap,apostador);
+        if(res!=0) ret = apostador.efetuarAposta(ap);
         if(ret) this.saveNrefresh();
     }//GEN-LAST:event_j9BetActionPerformed
 

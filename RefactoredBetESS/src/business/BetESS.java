@@ -19,34 +19,6 @@ public class BetESS implements Serializable{
     public BetESS(Data d){
         this.data=d;
     }
-
-    // método responsável por efetuar uma Aposta.
-    public boolean efetuarAposta(Aposta a, Apostador ap){
-        if(podeApostar(a,ap)){
-            ap.efetuarAposta(a);
-            notification(1, "Aposta registada com sucesso!", "Sucesso");
-            return true;
-        }
-        return false;
-    }  
-    // método auxiliar que verifica se uma Aposta é válida.
-    public boolean podeApostar(Aposta aposta, Apostador apostador){
-        boolean saldoInsuf = apostador.getESSCoins()-aposta.getValor() < 0;
-        boolean jaApostou  = false;
-        for (Aposta ap : apostador.getApostas())
-            if(ap.getEventoID() == aposta.getEventoID())
-                jaApostou = true;
-        
-        if(jaApostou){
-            notification(3, "Já registou uma aposta neste evento.", "Aviso");
-            return false;}
-        
-        else if(saldoInsuf){
-            notification(3, "Não tem saldo suficiente para realizar a aposta.", "Aviso");
-            return false;}
-        
-        return true;
-    }
     
     // método responsável por criar um novo Evento.
     public boolean criarEvento(String c, String f, Odds odds){
@@ -61,7 +33,6 @@ public class BetESS implements Serializable{
         }
         return false;
     }
-    
     // método responsável por finalizar um Evento e ações consequentes.
     public void finalizarEvento(String jogo, String res){
         String[] equipas = jogo.split(" X ");
@@ -113,6 +84,7 @@ public class BetESS implements Serializable{
         if(tipo==1) icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/check.png"));
         else if(tipo==2) icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/warning.png"));
         else if(tipo==3) icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
+        else if(tipo==4) icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/ball.png"));
         JOptionPane.showMessageDialog(null, texto, titulo, JOptionPane.INFORMATION_MESSAGE, icon);
     }
     

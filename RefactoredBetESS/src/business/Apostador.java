@@ -59,31 +59,46 @@ public class Apostador implements Serializable{
         return this.apostas;
     }
     public ArrayList<Aposta> getApostasAtivas(){
-        ArrayList<Aposta> apostas = new ArrayList<>();
+        ArrayList<Aposta> aps = new ArrayList<>();
         for(Aposta ap : this.getApostas()){
             if(ap.getEstadoEvento())
-                apostas.add(ap);
+                aps.add(ap);
         }
-        return apostas;
-    }
-    public void setEmail(String email){
-        this.email=email;
-    }
-    public void setPassword(String password){
-        this.password=password;
-    }
-    public void setNome(String nome){
-        this.nome=nome;
-    }
-    public void setApostas(ArrayList<Aposta> apostas){
-        this.apostas=apostas;
+        return aps;
     }
     
-    public void efetuarAposta(Aposta a){
-        apostas.add(a);
-        levantarESSCoins(a.getValor());
+    // método responsável por efetuar uma Aposta.
+    public boolean efetuarAposta(Aposta a){
+        if(podeApostar(a)){
+            apostas.add(a);
+            levantarESSCoins(a.getValor());
+            BetESS ex = new BetESS();
+            ex.notification(1, "Aposta registada com sucesso!", "Sucesso");
+            return true;
+        }
+        return false;
+    }
+    // método auxiliar que verifica se uma Aposta é válida.
+    public boolean podeApostar(Aposta aposta){
+        BetESS ex = new BetESS();
+        boolean saldoInsuf = esscoins-aposta.getValor() < 0;
+        boolean jaApostou  = false;
+        for (Aposta ap : apostas)
+            if(ap.getEventoID() == aposta.getEventoID())
+                jaApostou = true;
+
+        if(jaApostou){
+            ex.notification(3, "Já registou uma aposta neste evento.", "Aviso");
+            return false;}
+        
+        else if(saldoInsuf){
+            ex.notification(3, "Não tem saldo suficiente para realizar a aposta.", "Aviso");
+            return false;}
+        
+        return true;
     }
     
+    // método responsável por remover uma Aposta.
     public void removerAposta(Aposta a){
         if(a.getEstadoEvento()){
             apostas.remove(a);
@@ -91,23 +106,26 @@ public class Apostador implements Serializable{
         }
     }
     
+    // métodos responsáveis pelas movimentações monetárias do Apostador.
     public void adicionarESSCoins(double coins){
         this.esscoins+=coins;
     }
     public void levantarESSCoins(double coins){
         this.esscoins-=coins;
     }
+    
+    // método que apresenta a notificação do resultado das suas Apostas.
     public void notificate(){
         for(Aposta a : apostas){
             if(!a.getVisto()){
                 double ganhos = a.ganhos();
-                ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/ball.png"));
-                JOptionPane.showMessageDialog(null, "Resultado final: " + 
-                                                     a.getEquipaCasaNome()  + " " +
-                                                     a.getResultadoEvento() + " " +
-                                                     a.getEquipaForaNome()  +
-                                                     "\nGanhos: " + ganhos + " ESScoins", 
-                                              "Evento terminado", JOptionPane.INFORMATION_MESSAGE, icon);
+                BetESS ex = new BetESS();
+                ex.notification(4, "Resultado final: " + 
+                                    a.getEquipaCasaNome()  + " " +
+                                    a.getResultadoEvento() + " " +
+                                    a.getEquipaForaNome()  +
+                                    "\nGanhos: " + ganhos + " ESScoins", 
+                                    "Evento terminado");
                 a.visto();
             }
         }
