@@ -14,17 +14,13 @@ public class Main extends Application implements Serializable{
 
     public static void main(String[] args) {
         
-        Data data = new Data();
-        try{ data = data.load(); } 
+        BetESS betess = new BetESS();
+        try{ betess = betess.load(); } 
         catch (IOException i){
-            data = data.povoar();
-            try {
-                data.save(data);
-            } catch (IOException ex) {
-                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            betess = betess.povoar();
+            betess.save();
         }
-        BetESS betess = new BetESS(data);
+        betess = new BetESS(betess);
         Login form = new Login(betess);
         form.setVisible(true);
     }
