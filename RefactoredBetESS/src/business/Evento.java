@@ -85,7 +85,7 @@ public class Evento implements Serializable{
         return e.getID() == this.id;
     }
     
-    public Integer getRes(){
+    public Integer getVencedor(){
         String[] venc = resultado.split("-");
         int res;
         if(Integer.parseInt(venc[0])>Integer.parseInt(venc[1])) res = 1; //equipa casa venceu
@@ -98,7 +98,7 @@ public class Evento implements Serializable{
         for(Apostador a : aps){
             for(Aposta ap : a.getApostas()){
                 if(ap.getEvento().equals(this)){
-                    a.adicionarESSCoins(ap.ganhos());
+                    a.adicionarCoins(ap.ganhos());
                     ap.notificaApostador();
                 }
             }

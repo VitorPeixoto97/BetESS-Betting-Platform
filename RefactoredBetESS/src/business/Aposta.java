@@ -82,7 +82,7 @@ public class Aposta implements Serializable{
 
     public double ganhos(){
         double ganhos = 0.0;
-        int p = evento.getRes();
+        int p = evento.getVencedor();
         if(palpite==p){
             if(p==1)      ganhos = evento.getOddV()*valor;
             else if(p==2) ganhos = evento.getOddE()*valor;

@@ -228,19 +228,19 @@ public class DepositarLevantar extends javax.swing.JFrame {
     private void levButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_levButtonActionPerformed
         int quantia = (Integer) levSpinner.getValue();
         if (apostador.getESSCoins()-quantia < 5)
-            betess.notification(3, "O seu saldo atual não lhe permite levantar essa quantia. Tem de manter um saldo mínimo de 5 ESScoins!", "Aviso");
+            betess.popupWindow(3, "O seu saldo atual não lhe permite levantar essa quantia. Tem de manter um saldo mínimo de 5 ESScoins!", "Aviso");
         else{
-            apostador.levantarESSCoins(quantia);
+            apostador.levantarCoins(quantia);
             saveNrefresh();
-            betess.notification(1, "Quantia depositada na sua conta bancária!", "Sucesso");
+            betess.popupWindow(1, "Quantia depositada na sua conta bancária!", "Sucesso");
         }
     }//GEN-LAST:event_levButtonActionPerformed
 
     private void depButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depButtonActionPerformed
         int quantia = (Integer) depSpinner.getValue();
-        apostador.adicionarESSCoins(quantia);
+        apostador.adicionarCoins(quantia);
         saveNrefresh();
-        betess.notification(1, "Quantia adicionada com sucesso!", "Sucesso");
+        betess.popupWindow(1, "Quantia adicionada com sucesso!", "Sucesso");
     }//GEN-LAST:event_depButtonActionPerformed
 
     private void perfilButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_perfilButtonActionPerformed

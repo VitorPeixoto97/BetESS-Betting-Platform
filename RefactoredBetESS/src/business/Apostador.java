@@ -68,9 +68,9 @@ public class Apostador implements Serializable{
     public boolean efetuarAposta(Aposta a){
         if(podeApostar(a)){
             apostas.add(a);
-            levantarESSCoins(a.getValor());
+            levantarCoins(a.getValor());
             BetESS ex = new BetESS();
-            ex.notification(1, "Aposta registada com sucesso!", "Sucesso");
+            ex.popupWindow(1, "Aposta registada com sucesso!", "Sucesso");
             return true;
         }
         return false;
@@ -85,11 +85,11 @@ public class Apostador implements Serializable{
                 jaApostou = true;
 
         if(jaApostou){
-            ex.notification(3, "Já registou uma aposta neste evento.", "Aviso");
+            ex.popupWindow(3, "Já registou uma aposta neste evento.", "Aviso");
             return false;}
         
         else if(saldoInsuf){
-            ex.notification(3, "Não tem saldo suficiente para realizar a aposta.", "Aviso");
+            ex.popupWindow(3, "Não tem saldo suficiente para realizar a aposta.", "Aviso");
             return false;}
         
         return true;
@@ -104,20 +104,19 @@ public class Apostador implements Serializable{
     }
     
     // métodos responsáveis pelas movimentações monetárias do Apostador.
-    public void adicionarESSCoins(double coins){
+    public void adicionarCoins(double coins){
         this.esscoins+=coins;
     }
-    public void levantarESSCoins(double coins){
+    public void levantarCoins(double coins){
         this.esscoins-=coins;
     }
     
-    // método que apresenta a notificação do resultado das suas Apostas.
-    public void notificate(){
+    public void notificarEventos(){
         for(Aposta a : apostas){
             if(!a.getVisto()){
                 double ganhos = a.ganhos();
                 BetESS ex = new BetESS();
-                ex.notification(4, "Resultado final: " + 
+                ex.popupWindow(4, "Resultado final: " + 
                                     a.getEquipaCasaNome()  + " " +
                                     a.getResultadoEvento() + " " +
                                     a.getEquipaForaNome()  +

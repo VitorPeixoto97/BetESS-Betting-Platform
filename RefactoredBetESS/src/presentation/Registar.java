@@ -190,7 +190,7 @@ public class Registar extends javax.swing.JFrame {
                                     nomeField.getText(),
                                     (Integer) coinsField.getValue() + 5,
                                     new ArrayList<>());
-        boolean ret = betess.registar(a, acessoCheckBox.isSelected());
+        boolean ret = betess.registarApostador(a, acessoCheckBox.isSelected());
         if(ret) saveNreturn();
     }//GEN-LAST:event_registarButtonActionPerformed
 

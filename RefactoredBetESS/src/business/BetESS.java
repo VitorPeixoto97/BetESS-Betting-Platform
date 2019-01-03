@@ -24,11 +24,11 @@ public class BetESS implements Serializable{
     public boolean criarEvento(String c, String f, Odds odds){
         Equipa casa = new Equipa(getEquipa(c));
         Equipa fora = new Equipa(getEquipa(f));
-        if(c.equals(f)) notification(3, "As equipas selecionadas são a mesma. Por favor selecione outra.", "Aviso");
+        if(c.equals(f)) popupWindow(3, "As equipas selecionadas são a mesma. Por favor selecione outra.", "Aviso");
         else{
             Evento evento = new Evento(getEventosSize()+1, odds, true, "", casa, fora); 
             data.addEvento(evento);
-            notification(1, "Evento criado e disponível.", "Sucesso");
+            popupWindow(1, "Evento criado e disponível.", "Sucesso");
             return true;
         }
         return false;
@@ -41,7 +41,7 @@ public class BetESS implements Serializable{
                 e.setEstado(false);
                 e.setResultado(res);
                 e.distribuirPremios(getApostadores());
-                notification(1, "Evento encerrado e prémios distribuídos.", "Sucesso");
+                popupWindow(1, "Evento encerrado e prémios distribuídos.", "Sucesso");
             }
         }
     }
@@ -87,8 +87,7 @@ public class BetESS implements Serializable{
         return null;
     }
     
-    // método responsável por apresentar janelas popup de aviso.
-    public void notification(int tipo, String texto, String titulo){
+    public void popupWindow(int tipo, String texto, String titulo){
         ImageIcon icon = new ImageIcon();
         if(tipo==1) icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/check.png"));
         else if(tipo==2) icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/warning.png"));
@@ -97,7 +96,6 @@ public class BetESS implements Serializable{
         JOptionPane.showMessageDialog(null, texto, titulo, JOptionPane.INFORMATION_MESSAGE, icon);
     }
     
-    // método responsável por verificar as condições de autenticação no sistema.
     public Apostador login(String email, String pass){
         if(email.equals("admin") && pass.equals("admin")){
             return new Apostador();
@@ -106,28 +104,26 @@ public class BetESS implements Serializable{
             for (Apostador a : getApostadores())
                 if (a.getEmail().compareTo(email)==0 && a.getPassword().compareTo(pass)==0) 
                     return a;
-            notification(3, "Dados incorretos!", "Aviso");
+            popupWindow(3, "Dados incorretos!", "Aviso");
         }
         return null;
     }
-    // método responsável por verificar as condições de registo de um novo apostador.
-    public boolean registar(Apostador a, boolean aut){
+    public boolean registarApostador(Apostador a, boolean aut){
         boolean flag = true;
         for(Apostador ap : getApostadores()){
             if(ap.checkEmail(a.getEmail()) && flag){
                 flag = false;
-                notification(3, "Já foi registado um apostador com esse email. Por favor tente outro.", "Aviso");
+                popupWindow(3, "Já foi registado um apostador com esse email. Por favor tente outro.", "Aviso");
             }
         }
         if(flag && aut){
             data.addApostador(a);
-            notification(1, "Registado com sucesso!", "Sucesso");
+            popupWindow(1, "Registado com sucesso!", "Sucesso");
             return true;
-        } else notification(2, "A autorização é necessária para o registo.", "Aviso");
+        } else popupWindow(2, "A autorização é necessária para o registo.", "Aviso");
         return false;
     }
     
-    // método que transmite à classe Data a intenção de salvar o progresso.
     public void save(){
         try {
             data.save(data);

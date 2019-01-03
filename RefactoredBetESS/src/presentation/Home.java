@@ -1124,7 +1124,7 @@ public class Home extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void notificacoes(){
-        apostador.notificate();
+        apostador.notificarEventos();
         betess.save();
     }
     
@@ -1296,7 +1296,7 @@ public class Home extends javax.swing.JFrame {
         if(j1V.isSelected()) res=1;
         else if (j1E.isSelected()) res=2;
         else if (j1D.isSelected()) res=3;
-        else betess.notification(2, "Selecione um resultado!", "Aviso");
+        else betess.popupWindow(2, "Selecione um resultado!", "Aviso");
         boolean ret=false;
         Aposta ap = new Aposta(res, (Integer) j1Spin.getValue(), betess.getEventoAtivo(0), apostador, true);   
         if(res!=0) ret = apostador.efetuarAposta(ap);
@@ -1307,7 +1307,7 @@ public class Home extends javax.swing.JFrame {
         if(j3V.isSelected()) res=1;
         else if (j3E.isSelected()) res=2;
         else if (j3D.isSelected()) res=3;
-        else this.betess.notification(2, "Selecione um resultado!", "Aviso");
+        else betess.popupWindow(2, "Selecione um resultado!", "Aviso");
         boolean ret=false;
         Aposta ap = new Aposta(res, (Integer) j3Spin.getValue(), betess.getEventoAtivo(2), apostador, true);   
         if(res!=0) ret = apostador.efetuarAposta(ap);
@@ -1318,7 +1318,7 @@ public class Home extends javax.swing.JFrame {
         if(j2V.isSelected()) res=1; 
         else if (j2E.isSelected()) res=2;
         else if (j2D.isSelected()) res=3;
-        else this.betess.notification(2, "Selecione um resultado!", "Aviso");
+        else betess.popupWindow(2, "Selecione um resultado!", "Aviso");
         boolean ret=false;
         Aposta ap = new Aposta(res, (Integer) j2Spin.getValue(), betess.getEventoAtivo(1), apostador, true);   
         if(res!=0) ret = apostador.efetuarAposta(ap);
@@ -1329,7 +1329,7 @@ public class Home extends javax.swing.JFrame {
         if(j4V.isSelected()) res=1;
         else if (j4E.isSelected()) res=2;
         else if (j4D.isSelected()) res=3;
-        else this.betess.notification(2, "Selecione um resultado!", "Aviso");
+        else this.betess.popupWindow(2, "Selecione um resultado!", "Aviso");
         boolean ret=false;
         Aposta ap = new Aposta(res, (Integer) j4Spin.getValue(), betess.getEventoAtivo(3), apostador, true);   
         if(res!=0) ret = apostador.efetuarAposta(ap);
@@ -1340,7 +1340,7 @@ public class Home extends javax.swing.JFrame {
         if(j5V.isSelected()) res=1;
         else if (j5E.isSelected()) res=2;
         else if (j5D.isSelected()) res=3;
-        else this.betess.notification(2, "Selecione um resultado!", "Aviso");
+        else this.betess.popupWindow(2, "Selecione um resultado!", "Aviso");
         boolean ret=false;
         Aposta ap = new Aposta(res, (Integer) j5Spin.getValue(), betess.getEventoAtivo(4), apostador, true);   
         if(res!=0) ret = apostador.efetuarAposta(ap);
@@ -1351,7 +1351,7 @@ public class Home extends javax.swing.JFrame {
         if(j6V.isSelected()) res=1;
         else if (j6E.isSelected()) res=2;
         else if (j6D.isSelected()) res=3;
-        else this.betess.notification(2, "Selecione um resultado!", "Aviso");
+        else this.betess.popupWindow(2, "Selecione um resultado!", "Aviso");
         boolean ret=false;
         Aposta ap = new Aposta(res, (Integer) j6Spin.getValue(), betess.getEventoAtivo(5), apostador, true);   
         if(res!=0) ret = apostador.efetuarAposta(ap);
@@ -1362,7 +1362,7 @@ public class Home extends javax.swing.JFrame {
         if(j7V.isSelected()) res=1;
         else if (j7E.isSelected()) res=2;
         else if (j7D.isSelected()) res=3;
-        else this.betess.notification(2, "Selecione um resultado!", "Aviso");
+        else this.betess.popupWindow(2, "Selecione um resultado!", "Aviso");
         boolean ret=false;
         Aposta ap = new Aposta(res, (Integer) j7Spin.getValue(), betess.getEventoAtivo(6), apostador, true);   
         if(res!=0) ret = apostador.efetuarAposta(ap);
@@ -1373,7 +1373,7 @@ public class Home extends javax.swing.JFrame {
         if(j8V.isSelected()) res=1;
         else if (j8E.isSelected()) res=2;
         else if (j8D.isSelected()) res=3;
-        else this.betess.notification(2, "Selecione um resultado!", "Aviso");
+        else this.betess.popupWindow(2, "Selecione um resultado!", "Aviso");
         boolean ret=false;
         Aposta ap = new Aposta(res, (Integer) j8Spin.getValue(), betess.getEventoAtivo(7), apostador, true);   
         if(res!=0) ret = apostador.efetuarAposta(ap);
@@ -1384,7 +1384,7 @@ public class Home extends javax.swing.JFrame {
         if(j9V.isSelected()) res=1;
         else if (j9E.isSelected()) res=2;
         else if (j9D.isSelected()) res=3;
-        else this.betess.notification(2, "Selecione um resultado!", "Aviso");
+        else this.betess.popupWindow(2, "Selecione um resultado!", "Aviso");
         boolean ret=false;
         Aposta ap = new Aposta(res, (Integer) j9Spin.getValue(), betess.getEventoAtivo(8), apostador, true);   
         if(res!=0) ret = apostador.efetuarAposta(ap);
