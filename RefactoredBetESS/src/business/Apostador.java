@@ -64,7 +64,6 @@ public class Apostador implements Serializable{
         return aps;
     }
     
-    // método responsável por efetuar uma Aposta.
     public boolean efetuarAposta(Aposta a){
         if(podeApostar(a)){
             apostas.add(a);
@@ -75,7 +74,6 @@ public class Apostador implements Serializable{
         }
         return false;
     }
-    // método auxiliar que verifica se uma Aposta é válida.
     public boolean podeApostar(Aposta aposta){
         BetESS ex = new BetESS();
         boolean saldoInsuf = esscoins-aposta.getValor() < 0;
@@ -95,7 +93,6 @@ public class Apostador implements Serializable{
         return true;
     }
     
-    // método responsável por remover uma Aposta.
     public void removerAposta(Aposta a){
         if(a.getEstadoEvento()){
             apostas.remove(a);
@@ -103,7 +100,6 @@ public class Apostador implements Serializable{
         }
     }
     
-    // métodos responsáveis pelas movimentações monetárias do Apostador.
     public void adicionarCoins(double coins){
         this.esscoins+=coins;
     }

@@ -20,7 +20,6 @@ public class BetESS implements Serializable{
         this.data=d;
     }
     
-    // método responsável por criar um novo Evento.
     public boolean criarEvento(String c, String f, Odds odds){
         Equipa casa = new Equipa(getEquipa(c));
         Equipa fora = new Equipa(getEquipa(f));
@@ -33,7 +32,6 @@ public class BetESS implements Serializable{
         }
         return false;
     }
-    // método responsável por finalizar um Evento e ações consequentes.
     public void finalizarEvento(String jogo, String res){
         String[] equipas = jogo.split(" X ");
         for(Evento e : getEventosAtivos()){
@@ -46,7 +44,6 @@ public class BetESS implements Serializable{
         }
     }
     
-    // métodos que retornam as listas de Apostadores, Equipas e Eventos.
     public ArrayList<Apostador> getApostadores(){
         return data.getApostadores();
     }
@@ -56,7 +53,6 @@ public class BetESS implements Serializable{
     public ArrayList<Evento> getEventos(){
         return data.getEventos();
     }
-    // métodos que retornam o número de Apostadores, Equipas e Eventos.
     public int getApostadoresSize(){
         return getApostadores().size();
     }
@@ -67,19 +63,15 @@ public class BetESS implements Serializable{
         return getEventos().size();
     }
     
-    // método que retorna a lista de Eventos registados como ativos.
     public ArrayList<Evento> getEventosAtivos(){
         return data.getEventosAtivos();
     }
-    // método que retorna o número de Eventos registados como ativos.
     public int getEventosAtivosSize(){
         return getEventosAtivos().size();
     }
-    // método que retorna o Evento ativo dado o seu ID.
     public Evento getEventoAtivo(int i){
         return getEventosAtivos().get(i);
     }
-    // método que retorna a Equipa dado o seu nome.
     public Equipa getEquipa(String nome){
         for(Equipa e : data.getEquipas())
             if(e.getNome().equals(nome))
