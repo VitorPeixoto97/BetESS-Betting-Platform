@@ -3,6 +3,7 @@ package presentation;
 import business.BetESS;
 import business.Equipa;
 import business.Evento;
+import business.Odds;
 import java.awt.Image;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
@@ -30,7 +31,7 @@ public class Admin extends javax.swing.JFrame {
     }
     
     private void fillCombos(){
-        ArrayList<Equipa> eqDisp = new ArrayList<>(betess.getEquipasValues());
+        ArrayList<Equipa> eqDisp = new ArrayList<>(betess.getEquipas());
         for(Evento e : betess.getEventosAtivos()){
             eqDisp.remove(e.getEquipaC());
             eqDisp.remove(e.getEquipaF());
@@ -264,9 +265,9 @@ public class Admin extends javax.swing.JFrame {
     private void criarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criarButtonActionPerformed
         boolean ret = betess.criarEvento(casaCombo.getSelectedItem().toString(),
                                          foraCombo.getSelectedItem().toString(),
-                                         Double.parseDouble(oddV.getText()),
-                                         Double.parseDouble(oddE.getText()),
-                                         Double.parseDouble(oddD.getText()));
+                                         new Odds(Double.parseDouble(oddV.getText()),
+                                                  Double.parseDouble(oddE.getText()),
+                                                  Double.parseDouble(oddD.getText())));
         if(ret) saveNrefresh();
     }//GEN-LAST:event_criarButtonActionPerformed
     

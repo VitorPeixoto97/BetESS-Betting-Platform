@@ -3,16 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/vitorpeixoto/Documents/Eng.%20Informática/AS/projeto/PatternedBetESS/src/presentation/Login.java</file>
-            <file>file:/Users/vitorpeixoto/Documents/Eng.%20Informática/AS/projeto/PatternedBetESS/src/business/BetESS.java</file>
-            <file>file:/Users/vitorpeixoto/Documents/Eng.%20Informática/AS/projeto/PatternedBetESS/src/presentation/Home.java</file>
+            <file>file:/Users/vitorpeixoto/Documents/Eng.%20Informática/AS/projeto/PatternedBetESS/src/business/EventoFutebol.java</file>
             <file>file:/Users/vitorpeixoto/Documents/Eng.%20Informática/AS/projeto/PatternedBetESS/src/business/Evento.java</file>
-            <file>file:/Users/vitorpeixoto/Documents/Eng.%20Informática/AS/projeto/PatternedBetESS/src/presentation/AdminHome.java</file>
-            <file>file:/Users/vitorpeixoto/Documents/Eng.%20Informática/AS/projeto/PatternedBetESS/src/business/User.java</file>
-            <file>file:/Users/vitorpeixoto/Documents/Eng.%20Informática/AS/projeto/PatternedBetESS/src/business/Apostador.java</file>
-            <file>file:/Users/vitorpeixoto/Documents/Eng.%20Informática/AS/projeto/PatternedBetESS/src/persistence/Data.java</file>
-            <file>file:/Users/vitorpeixoto/Documents/Eng.%20Informática/AS/projeto/PatternedBetESS/src/presentation/DepositarLevantar.java</file>
-            <file>file:/Users/vitorpeixoto/Documents/Eng.%20Informática/AS/projeto/PatternedBetESS/src/presentation/BookieHome.java</file>
+            <file>file:/Users/vitorpeixoto/Documents/Eng.%20Informática/AS/projeto/PatternedBetESS/src/business/Aposta.java</file>
         </group>
     </open-files>
 </project-private>

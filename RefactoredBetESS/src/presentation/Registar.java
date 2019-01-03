@@ -184,26 +184,14 @@ public class Registar extends javax.swing.JFrame {
     }//GEN-LAST:event_voltarButtonActionPerformed
 
     private void registarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registarButtonActionPerformed
-        String nome = nomeField.getText();
-        String email = emailField.getText();
-        String password = passwordField.getText();
-        int coins = (Integer) coinsField.getValue() + 5;
-        boolean aut = acessoCheckBox.isSelected();
-        boolean flag = true;
-        for(Apostador a : betess.getApostadoresValues()){
-            if(a.checkEmail(email) && flag){
-                flag = false;
-                betess.notification(3, "Já foi registado um apostador com esse email. Por favor tente outro.", "Aviso");
-            }
-        }
-        if(flag && aut){
-            int last_id = betess.getApostadoresValues().size()+1;
-            ArrayList<Aposta> apostas = new ArrayList<>();
-            Apostador novo = new Apostador(last_id, email, password, nome, coins, apostas);
-            betess.registarApostador(novo);
-            betess.notification(1, "Registado com sucesso!", "Sucesso");
-            saveNreturn();
-        } else betess.notification(2, "A autorização é necessária para o registo.", "Aviso");
+        Apostador a = new Apostador(betess.getApostadoresSize()+1,
+                                    emailField.getText(),
+                                    passwordField.getText(),
+                                    nomeField.getText(),
+                                    (Integer) coinsField.getValue() + 5,
+                                    new ArrayList<>());
+        boolean ret = betess.registar(a, acessoCheckBox.isSelected());
+        if(ret) saveNreturn();
     }//GEN-LAST:event_registarButtonActionPerformed
 
     private void saveNreturn(){

@@ -1,6 +1,7 @@
 package business;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Evento implements Serializable{
     private int id;
@@ -18,9 +19,9 @@ public class Evento implements Serializable{
         this.equipaC = new Equipa();
         this.equipaF = new Equipa();
     }
-    public Evento(int id, double oddV, double oddE, double oddD, boolean estado, String resultado, Equipa c, Equipa f){
+    public Evento(int id, Odds odds, boolean estado, String resultado, Equipa c, Equipa f){
         this.id = id;
-        this.odds = new Odds(oddV,oddE,oddD);
+        this.odds = odds;
         this.estado = estado;
         this.resultado = resultado;
         this.equipaC = c;
@@ -91,5 +92,16 @@ public class Evento implements Serializable{
         else if(Integer.parseInt(venc[1])>Integer.parseInt(venc[0])) res = 3; //equipa fora venceu
         else res = 2; //empate
         return res;
+    }
+    
+    public void distribuirPremios(ArrayList<Apostador> aps){
+        for(Apostador a : aps){
+            for(Aposta ap : a.getApostas()){
+                if(ap.getEvento().equals(this)){
+                    a.adicionarESSCoins(ap.ganhos());
+                    ap.notificaApostador();
+                }
+            }
+        }
     }
 }
