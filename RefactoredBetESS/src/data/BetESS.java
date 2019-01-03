@@ -17,7 +17,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 public class BetESS implements Serializable {
-        private ArrayList<Apostador> apostadores;
+    private ArrayList<Apostador> apostadores;
     private ArrayList<Evento> eventos;
     private ArrayList<Equipa> equipas; 
     
@@ -45,9 +45,9 @@ public class BetESS implements Serializable {
         return false;
     }
     public void finalizarEvento(String jogo, String res){
-        String[] equipas = jogo.split(" X ");
+        String[] jogoEquipas = jogo.split(" X ");
         for(Evento e : getEventosAtivos()){
-            if(e.getEquipaCasaNome().equals(equipas[0]) && e.getEquipaForaNome().equals(equipas[1])){
+            if(e.getEquipaCasaNome().equals(jogoEquipas[0]) && e.getEquipaForaNome().equals(jogoEquipas[1])){
                 e.setEstado(false);
                 e.setResultado(res);
                 e.distribuirPremios(getApostadores());
@@ -67,9 +67,6 @@ public class BetESS implements Serializable {
     }
     public int getApostadoresSize(){
         return getApostadores().size();
-    }
-    public int getEquipasSize(){
-        return getEquipas().size();
     }
     public int getEventosSize(){
         return getEventos().size();
@@ -97,7 +94,7 @@ public class BetESS implements Serializable {
     
     public void popupWindow(int tipo, String texto, String titulo){
         ImageIcon icon = new ImageIcon();
-        if(tipo==1) icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/check.png"));
+        if(tipo==1)      icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/check.png"));
         else if(tipo==2) icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/warning.png"));
         else if(tipo==3) icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/forbidden.png"));
         else if(tipo==4) icon = new ImageIcon(getClass().getClassLoader().getResource("resources/icons/ball.png"));
@@ -105,15 +102,13 @@ public class BetESS implements Serializable {
     }
     
     public Apostador login(String email, String pass){
-        if(email.equals("admin") && pass.equals("admin")){
+        if(email.equals("admin") && pass.equals("admin"))
             return new Apostador();
-        }
-        else{
+        else
             for (Apostador a : getApostadores())
                 if (a.getEmail().compareTo(email)==0 && a.getPassword().compareTo(pass)==0) 
                     return a;
-            popupWindow(3, "Dados incorretos!", "Aviso");
-        }
+        popupWindow(3, "Dados incorretos!", "Aviso");
         return null;
     }
     public boolean registarApostador(Apostador a, boolean aut){
@@ -140,7 +135,7 @@ public class BetESS implements Serializable {
             b = (BetESS) in.readObject();
             in.close();
             fileIn.close();
-            System.out.println("Data loaded!\n");
+            System.out.println("Data loaded\n");
         } catch (ClassNotFoundException c) {
             System.out.println("Class not found\n");
         }
@@ -156,7 +151,7 @@ public class BetESS implements Serializable {
                 out.flush();
                 out.close();
             }
-            System.out.printf("Serialized data is saved in betess.obj\n");
+            System.out.printf("Data saved\n");
         } catch (IOException ex) {
             Logger.getLogger(BetESS.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
