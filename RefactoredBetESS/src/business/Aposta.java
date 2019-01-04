@@ -82,9 +82,8 @@ public class Aposta implements Serializable{
 
     public double ganhos(boolean hipotetico){
         double d[] = {0.0d, evento.getOddV(), evento.getOddE(), evento.getOddD()};
-        if(hipotetico || palpite==evento.getVencedor()){
+        if(hipotetico || palpite==evento.getVencedor())
             return d[palpite]*valor;
-        }
         return d[0];
     }
     public String equipaPalpite(){
