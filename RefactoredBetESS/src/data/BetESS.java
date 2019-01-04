@@ -1,6 +1,5 @@
 package data;
 
-import business.Aposta;
 import business.Apostador;
 import business.Equipa;
 import business.Evento;
