@@ -1,5 +1,6 @@
 package data;
 
+import business.Aposta;
 import business.Apostador;
 import business.Equipa;
 import business.Evento;
@@ -66,20 +67,20 @@ public class BetESS implements Serializable {
         return this.eventos;
     }
     public int getApostadoresSize(){
-        return getApostadores().size();
+        return apostadores.size();
     }
     public int getEventosSize(){
-        return getEventos().size();
+        return eventos.size();
     }
 
     public ArrayList<Evento> getEventosAtivos(){
         return eventos.stream().filter(e -> e.getEstado()).collect(Collectors.toCollection(ArrayList::new));
     }
     public int getEventosAtivosSize(){
-        return getEventosAtivos().size();
+        return eventos.stream().filter(e -> e.getEstado()).collect(Collectors.toCollection(ArrayList::new)).size();
     }
     public Evento getEventoAtivo(int i){
-        return getEventosAtivos().get(i);
+        return eventos.stream().filter(e -> e.getEstado()).collect(Collectors.toCollection(ArrayList::new)).get(i);
     }
     public Equipa getEquipa(String nome){
         for(Equipa e : equipas)

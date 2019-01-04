@@ -65,16 +65,17 @@ public class Apostador implements Serializable{
         return aps;
     }
     
-    public boolean efetuarAposta(Aposta a){
-        if(podeApostar(a)){
-            apostas.add(a);
-            levantarCoins(a.getValor());
+    public boolean efetuarAposta(Aposta aposta){
+        if(podeApostar(aposta)){
+            apostas.add(aposta);
+            levantarCoins(aposta.getValor());
             BetESS ex = new BetESS();
             ex.popupWindow(1, "Aposta registada com sucesso!", "Sucesso");
             return true;
         }
         return false;
     }
+    
     public boolean podeApostar(Aposta aposta){
         BetESS ex = new BetESS();
         boolean saldoInsuf = esscoins-aposta.getValor() < 0;

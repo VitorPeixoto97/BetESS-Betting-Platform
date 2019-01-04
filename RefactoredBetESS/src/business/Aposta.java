@@ -86,6 +86,7 @@ public class Aposta implements Serializable{
             return d[palpite]*valor;
         return d[0];
     }
+    
     public String equipaPalpite(){
         String[] s = {"ERRO", getEquipaCasaNome(), "Empate", getEquipaForaNome()};
         if(palpite > 0  && palpite < 4)
