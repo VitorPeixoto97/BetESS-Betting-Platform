@@ -237,8 +237,7 @@ public class DepositarLevantar extends javax.swing.JFrame {
     }//GEN-LAST:event_levButtonActionPerformed
 
     private void depButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depButtonActionPerformed
-        int quantia = (Integer) depSpinner.getValue();
-        apostador.adicionarCoins(quantia);
+        apostador.adicionarCoins((Integer) depSpinner.getValue());
         saveNrefresh();
         betess.popupWindow(1, "Quantia adicionada com sucesso!", "Sucesso");
     }//GEN-LAST:event_depButtonActionPerformed

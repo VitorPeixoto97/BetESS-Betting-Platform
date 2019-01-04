@@ -5,7 +5,6 @@ import business.Apostador;
 import data.BetESS;
 import java.awt.Color;
 import java.awt.Image;
-import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
 
@@ -37,34 +36,15 @@ public class MinhasApostas extends javax.swing.JFrame {
     
     public void preencherTabela(){
         String[] colunas = {"ID","Evento", "Resultado", "Valor", "Ganhos"};
-        ArrayList<Aposta> apostas = new ArrayList<>(apostador.getApostasAtivas());
-        Object[][] data = new Object[apostas.size()][5];
+        Object[][] data = new Object[apostador.getApostasAtivas().size()][5];
         int i=0;
-        String res;
-        double ganho = 0.0;
-        for (Aposta a : apostas){
+        for (Aposta a : apostador.getApostasAtivas()){
+            
             data[i][0] = a.getEventoID();
             data[i][1] = a.getEquipaCasaNome()+" x "+a.getEquipaForaNome();
-            switch (a.getPalpite()) {
-                case 1:
-                    res = a.getEquipaCasaNome();
-                    ganho = a.getValor() * a.getOddV();
-                    break;
-                case 2:
-                    res = "Empate";
-                    ganho = a.getValor() * a.getOddE();
-                    break;
-                case 3:
-                    res = a.getEquipaForaNome();
-                    ganho = a.getValor() * a.getOddD();
-                    break;
-                default:
-                    res = "ERRO!";
-                    break;
-            }
-            data[i][2] = res;
+            data[i][2] = a.equipaPalpite();
             data[i][3] = a.getValor();
-            data[i][4] = ganho;
+            data[i][4] = a.ganhos(true);
             i++;
         }
         model = new DefaultTableModel(data,colunas);

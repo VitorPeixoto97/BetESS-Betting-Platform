@@ -1,6 +1,7 @@
 package business;
 
 import java.io.Serializable;
+import java.util.Map;
 
 public class Aposta implements Serializable{
     private int palpite; //resultado em que o apostador apostou (V/E/D)
@@ -80,14 +81,18 @@ public class Aposta implements Serializable{
         this.visto=true;
     }
 
-    public double ganhos(){
-        double ganhos = 0.0;
-        int p = evento.getVencedor();
-        if(palpite==p){
-            if(p==1)      ganhos = evento.getOddV()*valor;
-            else if(p==2) ganhos = evento.getOddE()*valor;
-            else if(p==3) ganhos = evento.getOddD()*valor;
+    public double ganhos(boolean hipotetico){
+        if(hipotetico || palpite==evento.getVencedor()){
+            if(palpite==1)      return evento.getOddV()*valor;
+            else if(palpite==2) return evento.getOddE()*valor;
+            else if(palpite==3) return evento.getOddD()*valor;
         }
-        return ganhos;
+        return 0.0;
+    }
+    public String equipaPalpite(){
+        if(palpite==1)      return getEquipaCasaNome();
+        else if(palpite==2) return "Empate";
+        else if(palpite==3) return getEquipaForaNome();
+        return "ERRO";
     }
 }

@@ -111,13 +111,12 @@ public class Apostador implements Serializable{
     public void notificarEventos(){
         for(Aposta a : apostas){
             if(!a.getVisto()){
-                double ganhos = a.ganhos();
                 BetESS ex = new BetESS();
                 ex.popupWindow(4, "Resultado final: " + 
                                     a.getEquipaCasaNome()  + " " +
                                     a.getResultadoEvento() + " " +
                                     a.getEquipaForaNome()  +
-                                    "\nGanhos: " + ganhos + " ESScoins", 
+                                    "\nGanhos: " + a.ganhos(false) + " ESScoins", 
                                     "Evento terminado");
                 a.visto();
             }

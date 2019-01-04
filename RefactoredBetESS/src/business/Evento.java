@@ -86,19 +86,18 @@ public class Evento implements Serializable{
     }
     
     public Integer getVencedor(){
+        if(resultado.equals("")) return 2;
         String[] venc = resultado.split("-");
-        int res;
-        if(Integer.parseInt(venc[0])>Integer.parseInt(venc[1])) res = 1; //equipa casa venceu
-        else if(Integer.parseInt(venc[1])>Integer.parseInt(venc[0])) res = 3; //equipa fora venceu
-        else res = 2; //empate
-        return res;
+        if(Integer.parseInt(venc[0])>Integer.parseInt(venc[1])) return 1; //equipa casa venceu
+        else if(Integer.parseInt(venc[1])>Integer.parseInt(venc[0])) return 3; //equipa fora venceu
+        else return 2; //empate
     }
     
     public void distribuirPremios(ArrayList<Apostador> aps){
         for(Apostador a : aps){
             for(Aposta ap : a.getApostas()){
                 if(ap.getEvento().equals(this)){
-                    a.adicionarCoins(ap.ganhos());
+                    a.adicionarCoins(ap.ganhos(false));
                     ap.notificaApostador();
                 }
             }

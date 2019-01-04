@@ -13,6 +13,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -33,11 +34,10 @@ public class BetESS implements Serializable {
     }
     
     public boolean criarEvento(String c, String f, Odds odds){
-        Equipa casa = new Equipa(getEquipa(c));
-        Equipa fora = new Equipa(getEquipa(f));
-        if(c.equals(f)) popupWindow(3, "As equipas selecionadas são a mesma. Por favor selecione outra.", "Aviso");
+        if(c.equals(f))
+            popupWindow(3, "As equipas selecionadas são a mesma. Por favor selecione outra.", "Aviso");
         else{
-            Evento evento = new Evento(getEventosSize()+1, odds, true, "", casa, fora); 
+            Evento evento = new Evento(getEventosSize()+1, odds, true, "", getEquipa(c), getEquipa(f)); 
             eventos.add(evento);
             popupWindow(1, "Evento criado e disponível.", "Sucesso");
             return true;
@@ -71,13 +71,9 @@ public class BetESS implements Serializable {
     public int getEventosSize(){
         return getEventos().size();
     }
-    
+
     public ArrayList<Evento> getEventosAtivos(){
-        ArrayList<Evento> ativos = new ArrayList<>();
-        for(Evento e : eventos)
-            if(e.getEstado())
-                ativos.add(e);
-        return ativos;
+        return eventos.stream().filter(e -> e.getEstado()).collect(Collectors.toCollection(ArrayList::new));
     }
     public int getEventosAtivosSize(){
         return getEventosAtivos().size();
@@ -112,14 +108,12 @@ public class BetESS implements Serializable {
         return null;
     }
     public boolean registarApostador(Apostador a, boolean aut){
-        boolean flag = true;
-        for(Apostador ap : getApostadores()){
-            if(ap.checkEmail(a.getEmail()) && flag){
-                flag = false;
+        for(Apostador ap : getApostadores())
+            if(ap.checkEmail(a.getEmail())){
                 popupWindow(3, "Já foi registado um apostador com esse email. Por favor tente outro.", "Aviso");
+                return false;
             }
-        }
-        if(flag && aut){
+        if(aut){
             apostadores.add(a);
             popupWindow(1, "Registado com sucesso!", "Sucesso");
             return true;
@@ -141,7 +135,6 @@ public class BetESS implements Serializable {
         }
         return b;
     }
-    
     public void save() {
         ObjectOutputStream out = null;
         try {

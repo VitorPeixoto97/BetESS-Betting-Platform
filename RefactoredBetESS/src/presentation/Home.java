@@ -1416,7 +1416,7 @@ public class Home extends javax.swing.JFrame {
         this.dispose();
     }
 
-    private void fillJogoN(int num){
+    private void fillJogos(int num){
         int n=num;
         int i=0;
         ImageIcon simboloCasa;
@@ -1521,7 +1521,7 @@ public class Home extends javax.swing.JFrame {
         perfilButton.setOpaque(true);
         perfilButton.setText(apostador.getNome());
         
-        this.fillJogoN(betess.getEventosAtivosSize());
+        this.fillJogos(betess.getEventosAtivosSize());
     }
     
     public static void main(String args[]) {
