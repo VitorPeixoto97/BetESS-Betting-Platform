@@ -78,6 +78,7 @@ public class Apostador implements Serializable{
     public boolean podeApostar(Aposta aposta){
         BetESS ex = new BetESS();
         boolean saldoInsuf = esscoins-aposta.getValor() < 0;
+        boolean noSelec = aposta.getPalpite()==0;
         boolean jaApostou  = false;
         for (Aposta ap : apostas)
             if(ap.getEventoID() == aposta.getEventoID())
@@ -89,6 +90,10 @@ public class Apostador implements Serializable{
         
         else if(saldoInsuf){
             ex.popupWindow(3, "Não tem saldo suficiente para realizar a aposta.", "Aviso");
+            return false;}
+        
+        else if(noSelec){
+            ex.popupWindow(3, "Não selecionou nenhum palpite.", "Aviso");
             return false;}
         
         return true;
@@ -108,9 +113,11 @@ public class Apostador implements Serializable{
         this.esscoins-=coins;
     }
     
-    public void notificarEventos(){
+    public int notificarEventos(){
+        int i=0;
         for(Aposta a : apostas){
             if(!a.getVisto()){
+                i++;
                 BetESS ex = new BetESS();
                 ex.popupWindow(4, "Resultado final: " + 
                                     a.getEquipaCasaNome()  + " " +
@@ -121,6 +128,7 @@ public class Apostador implements Serializable{
                 a.visto();
             }
         }
+        return i;
     }
     
     public boolean checkEmail(String em){

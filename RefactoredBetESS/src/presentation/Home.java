@@ -1123,8 +1123,8 @@ public class Home extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void notificacoes(){
-        apostador.notificarEventos();
-        betess.save();
+        if(apostador.notificarEventos()>0)
+            betess.save();
     }
     
     private void j1VActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j1VActionPerformed
@@ -1295,99 +1295,72 @@ public class Home extends javax.swing.JFrame {
         if(j1V.isSelected()) res=1;
         else if (j1E.isSelected()) res=2;
         else if (j1D.isSelected()) res=3;
-        else betess.popupWindow(2, "Selecione um resultado!", "Aviso");
-        boolean ret=false;
         Aposta ap = new Aposta(res, (Integer) j1Spin.getValue(), betess.getEventoAtivo(0), apostador, true);   
-        if(res!=0) ret = apostador.efetuarAposta(ap);
-        if(ret) saveNrefresh();
+        if(apostador.efetuarAposta(ap)) this.saveNrefresh();
     }//GEN-LAST:event_j1BetActionPerformed
     private void j3BetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j3BetActionPerformed
         int res = 0;
         if(j3V.isSelected()) res=1;
         else if (j3E.isSelected()) res=2;
         else if (j3D.isSelected()) res=3;
-        else betess.popupWindow(2, "Selecione um resultado!", "Aviso");
-        boolean ret=false;
         Aposta ap = new Aposta(res, (Integer) j3Spin.getValue(), betess.getEventoAtivo(2), apostador, true);   
-        if(res!=0) ret = apostador.efetuarAposta(ap);
-        if(ret) this.saveNrefresh();
+        if(apostador.efetuarAposta(ap)) this.saveNrefresh();
     }//GEN-LAST:event_j3BetActionPerformed
     private void j2BetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j2BetActionPerformed
         int res = 0;
         if(j2V.isSelected()) res=1; 
         else if (j2E.isSelected()) res=2;
         else if (j2D.isSelected()) res=3;
-        else betess.popupWindow(2, "Selecione um resultado!", "Aviso");
-        boolean ret=false;
         Aposta ap = new Aposta(res, (Integer) j2Spin.getValue(), betess.getEventoAtivo(1), apostador, true);   
-        if(res!=0) ret = apostador.efetuarAposta(ap);
-        if(ret) this.saveNrefresh();
+        if(apostador.efetuarAposta(ap)) this.saveNrefresh();
     }//GEN-LAST:event_j2BetActionPerformed
     private void j4BetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j4BetActionPerformed
         int res = 0;
         if(j4V.isSelected()) res=1;
         else if (j4E.isSelected()) res=2;
         else if (j4D.isSelected()) res=3;
-        else this.betess.popupWindow(2, "Selecione um resultado!", "Aviso");
-        boolean ret=false;
         Aposta ap = new Aposta(res, (Integer) j4Spin.getValue(), betess.getEventoAtivo(3), apostador, true);   
-        if(res!=0) ret = apostador.efetuarAposta(ap);
-        if(ret) this.saveNrefresh();
+        if(apostador.efetuarAposta(ap)) this.saveNrefresh();
     }//GEN-LAST:event_j4BetActionPerformed
     private void j5BetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j5BetActionPerformed
         int res = 0;
         if(j5V.isSelected()) res=1;
         else if (j5E.isSelected()) res=2;
         else if (j5D.isSelected()) res=3;
-        else this.betess.popupWindow(2, "Selecione um resultado!", "Aviso");
-        boolean ret=false;
         Aposta ap = new Aposta(res, (Integer) j5Spin.getValue(), betess.getEventoAtivo(4), apostador, true);   
-        if(res!=0) ret = apostador.efetuarAposta(ap);
-        if(ret) this.saveNrefresh();
+        if(apostador.efetuarAposta(ap)) this.saveNrefresh();
     }//GEN-LAST:event_j5BetActionPerformed
     private void j6BetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j6BetActionPerformed
         int res = 0;
         if(j6V.isSelected()) res=1;
         else if (j6E.isSelected()) res=2;
         else if (j6D.isSelected()) res=3;
-        else this.betess.popupWindow(2, "Selecione um resultado!", "Aviso");
-        boolean ret=false;
         Aposta ap = new Aposta(res, (Integer) j6Spin.getValue(), betess.getEventoAtivo(5), apostador, true);   
-        if(res!=0) ret = apostador.efetuarAposta(ap);
-        if(ret) this.saveNrefresh();
+        if(apostador.efetuarAposta(ap)) this.saveNrefresh();
     }//GEN-LAST:event_j6BetActionPerformed
     private void j7BetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j7BetActionPerformed
         int res = 0;
         if(j7V.isSelected()) res=1;
         else if (j7E.isSelected()) res=2;
         else if (j7D.isSelected()) res=3;
-        else this.betess.popupWindow(2, "Selecione um resultado!", "Aviso");
-        boolean ret=false;
         Aposta ap = new Aposta(res, (Integer) j7Spin.getValue(), betess.getEventoAtivo(6), apostador, true);   
-        if(res!=0) ret = apostador.efetuarAposta(ap);
-        if(ret) saveNrefresh();
+        if(apostador.efetuarAposta(ap)) this.saveNrefresh();
     }//GEN-LAST:event_j7BetActionPerformed
     private void j8BetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j8BetActionPerformed
         int res = 0;
         if(j8V.isSelected()) res=1;
         else if (j8E.isSelected()) res=2;
         else if (j8D.isSelected()) res=3;
-        else this.betess.popupWindow(2, "Selecione um resultado!", "Aviso");
-        boolean ret=false;
         Aposta ap = new Aposta(res, (Integer) j8Spin.getValue(), betess.getEventoAtivo(7), apostador, true);   
-        if(res!=0) ret = apostador.efetuarAposta(ap);
-        if(ret) this.saveNrefresh();
+        if(apostador.efetuarAposta(ap)) this.saveNrefresh();
     }//GEN-LAST:event_j8BetActionPerformed
     private void j9BetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j9BetActionPerformed
         int res = 0;
         if(j9V.isSelected()) res=1;
         else if (j9E.isSelected()) res=2;
         else if (j9D.isSelected()) res=3;
-        else this.betess.popupWindow(2, "Selecione um resultado!", "Aviso");
-        boolean ret=false;
         Aposta ap = new Aposta(res, (Integer) j9Spin.getValue(), betess.getEventoAtivo(8), apostador, true);   
-        if(res!=0) ret = apostador.efetuarAposta(ap);
-        if(ret) this.saveNrefresh();
+        if(apostador.efetuarAposta(ap)) this.saveNrefresh();
     }//GEN-LAST:event_j9BetActionPerformed
 
     private void movimentosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_movimentosButtonActionPerformed
@@ -1410,6 +1383,7 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_perfilButtonActionPerformed
     
     private void saveNrefresh(){
+        betess.save();
         Home home = new Home(betess, apostador);
         home.setVisible(true);
         this.setVisible(false);
