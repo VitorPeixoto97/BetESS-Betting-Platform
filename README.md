@@ -6,3 +6,9 @@
 [Daniel Maia](https://github.com/SilentLynx)
 
 [Vitor Peixoto](https://github.com/VitorPeixoto97)
+
+# Classification
+
+* Part 1 - not subject to evaluation
+* Part 2 - 12.0
+* Part 3 - 16.3
