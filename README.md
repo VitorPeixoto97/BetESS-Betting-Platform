@@ -5,7 +5,7 @@
 
 [Daniel Maia](https://github.com/SilentLynx)
 
-[Vitor Peixoto](https://github.com/VitorPeixoto97)
+[Vitor Peixoto](https://github.com/vitorecarpe)
 
 # Classification
 
